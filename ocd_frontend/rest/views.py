@@ -189,7 +189,7 @@ def format_search_results(results, doc_type='items'):
             'source_id': hit['_source']['meta']['source_id'],
             '_external': True
         }
-        hit['_source']['meta']['ocd_url'] = url_for('api.get_object', **kwargs)
+        hit['_source']['meta']['owa_url'] = url_for('api.get_object', **kwargs)
         for key in current_app.config['EXCLUDED_FIELDS_ALWAYS']:
             try:
                 del hit['_source'][key]

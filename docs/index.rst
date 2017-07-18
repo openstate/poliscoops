@@ -1,9 +1,7 @@
-Open Raadsinformatie Documentation
+Open Wob API Documentation
 ===================================
 
-Welcome to the documentation of the Open Raadsinformatie API. The Open Raadsinformatie API is the place where data from dutch municipalities is made available for others to reuse. For more general information about the Open Raadsinformatie project, see the main website: http://www.openraadsinformatie.nl/.
-
-There is an example application available which allows you to browse and query the data easily: http://zoek.openraadsinformatie.nl/
+Welcome to the documentation of the Open Wob API. The Open Wob API is the place where Wob data is made available for others to reuse. For more general information about the Open Wob project, see the main website: https://www.openwob.nl/.
 
 Background
 ----------
@@ -16,7 +14,7 @@ Background
    changes
 
 
-Using the Open Raadsinformatie API
+Using the Open Wob API
 ----------------------------------
 
 .. toctree::

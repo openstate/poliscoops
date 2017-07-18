@@ -16,32 +16,19 @@ DEFAULT_SEARCH_SIZE = 10
 MAX_SEARCH_SIZE = 100
 
 # The name of the index containing documents from all sources
-COMBINED_INDEX = 'ori_combined_index'
+COMBINED_INDEX = 'owa_combined_index'
 
 # The default prefix used for all data
-DEFAULT_INDEX_PREFIX = 'ori'
+DEFAULT_INDEX_PREFIX = 'owa'
 
 # The fields which can be used for sorting results via the REST API
 SORTABLE_FIELDS = {
-    'persons': [
-        'meta.source_id', 'meta.processing_started', 'meta.processing_finished',
-        'start_date', '_score', 'gender', 'name'],
-    'organizations': [
-        'meta.source_id', 'meta.processing_started', 'meta.processing_finished',
-        'start_date', '_score', 'classification', 'name'],
-    'events' :[
-        'meta.source_id', 'meta.processing_started', 'meta.processing_finished',
-        'start_date', '_score', 'classification', 'name', 'start_date',
-        'location'],
-    'motions':[
-        'meta.source_id', 'meta.processing_started', 'meta.processing_finished',
-        'start_date', '_score', 'classification', 'name', 'date'],
-    'vote_events': [
-        'meta.source_id', 'meta.processing_started', 'meta.processing_finished',
-        'start_date', '_score', 'classification', 'name', 'start_date'],
     'items': [
-        'meta.source_id', 'meta.processing_started', 'meta.processing_finished',
-        'start_date', '_score']
+        'meta.source_id',
+        'meta.processing_started',
+        'meta.processing_finished',
+        , '_score'
+    ]
 }
 
 # EXCLUDED_FIELDS_DEFAULT = ['all_text', 'source_data',
@@ -62,23 +49,7 @@ ALLOWED_INCLUDE_FIELDS_DEFAULT = []
 ALLOWED_INCLUDE_FIELDS_SEARCH = []
 
 SIMPLE_QUERY_FIELDS = {
-    'persons': [
-        'biography^4', 'name^3', 'other_names^2', 'memberships.organization.name^2',
-        'memberships.role'],
-    'organizations': ['name^4', 'description'],
-    'events': [
-        'name^4', 'description^3', 'location', 'organization.name',
-        'organization.description', 'sources.note^2', 'sources.description'],
-    'motions': [
-        'name^4', 'text^3', 'organization.name', 'sources.note^2',
-        'sources.description'],
-    'vote_events': [
-        'name^4', 'motion.text^3', 'organization.name', 'sources.note^2',
-        'sources.description'],
-    'items': [
-        'name^4', 'description^3', 'location', 'organization.name',
-        'organization.description', 'sources.note^2', 'sources.description',
-        'biography^4', 'other_names^2', 'memberships.organization.name^2']
+    'items': ['name']
 }
 
 DOC_TYPE_DEFAULT = u'items'
@@ -127,159 +98,11 @@ COMMON_FACETS = {
             'field': '_type',
             'size': 10
         }
-    },
-    'start_date': {
-        'date_histogram': {
-            'field': 'start_date',
-            'interval': 'month'
-        }
-     }
+    }
 }
 
 AVAILABLE_FACETS = {
-    'organizations': {
-        'classification': {
-            'terms': {
-                'field': 'classification',
-                'size': 10
-            }
-        }
-    },
-    'persons': {
-        'gender': {
-            'terms': {
-                'field': 'gender',
-                'size': 2
-            }
-        },
-        'organization': {
-            'terms': {
-                'field': 'memberships.organization_id',
-                'size': 10
-            }
-        }
-    },
-    'events': {
-        'classification': {
-            'terms': {
-                'field': 'classification',
-                'size': 10
-            }
-        },
-        'organization_id': {
-            'terms': {
-                'field': 'organization_id',
-                'size': 10
-            }
-        },
-        'location': {
-            'terms': {
-                'field': 'location',
-                'size': 10
-            }
-        },
-        'status': {
-            'terms': {
-                'field': 'status',
-                'size': 10
-            }
-        },
-        'start_date': {
-            'date_histogram': {
-                'field': 'start_date',
-                'interval': 'month'
-            }
-        },
-        'end_date': {
-            'date_histogram': {
-                'field': 'end_date',
-                'interval': 'month'
-            }
-        }
-    },
-    'motions': {
-        'classification': {
-            'terms': {
-                'field': 'classification',
-                'size': 10
-            }
-        },
-        'organization_id': {
-            'terms': {
-                'field': 'organization_id',
-                'size': 10
-            }
-        },
-        'legislative_session_id': {
-            'terms': {
-                'field': 'legislative_session_id',
-                'size': 10
-            }
-        },
-        'creator_id': {
-            'terms': {
-                'field': 'creator_id',
-                'size': 10
-            }
-        },
-        'date': {
-            'date_histogram': {
-                'field': 'date',
-                'interval': 'month'
-            }
-        },
-        'requirement': {
-            'terms': {
-                'field': 'requirement',
-                'size': 10
-            }
-        },
-        'result': {
-            'terms': {
-                'field': 'result',
-                'size': 10
-            }
-        }
-    },
-    'vote_events': {
-        'classification': {
-            'terms': {
-                'field': 'classification',
-                'size': 10
-            }
-        },
-        'organization_id': {
-            'terms': {
-                'field': 'organization_id',
-                'size': 10
-            }
-        },
-        'start_date': {
-            'date_histogram': {
-                'field': 'start_date',
-                'interval': 'month'
-            }
-        },
-        'end_date': {
-            'date_histogram': {
-                'field': 'end_date',
-                'interval': 'month'
-            }
-        },
-        'legislative_session_id': {
-            'terms': {
-                'field': 'legislative_session_id',
-                'size': 10
-            }
-        }
-    },
     'items': {
-        'classification': {
-            'terms': {
-                'field': 'classification',
-                'size': 10
-            }
-        }
     }
 }
 
@@ -343,42 +166,8 @@ COMMON_HIGHLIGHTS = {
 }
 
 AVAILABLE_HIGHLIGHTS = {
-    'organizations': {
-        'classification': {},
-        'name': {},
-        'description': {}
-    },
-    'persons': {
-        'name': {},
-        'memberships.role': {},
-        'area.name': {}
-    },
-    'events': {
-        'classification': {},
-        'location': {},
-        'organization.name': {},
-        'description': {},
-        'sources.note': {},
-        'sources.description': {}
-    },
-    'motions': {
-        'classification': {},
-        'organization.name': {},
-        'creator.name': {},
-        'text': {},
-        'sources.description': {}
-    },
-    'vote_events': {
-        'classification': {},
-        'organization.name': {},
-        'creator.name': {},
-        'text': {},
-        'sources.description': {}
-    },
     'items': {
-        'classification': {},
-        'name': {},
-        'description': {}
+        'name': {} 
     }
 }
 
@@ -387,12 +176,12 @@ AVAILABLE_HIGHLIGHTS = {
 ALLOWED_DATE_INTERVALS = ('day', 'week', 'month', 'quarter', 'year')
 
 # Name of the Elasticsearch index used to store URL resolve documnts
-RESOLVER_URL_INDEX = 'npo_resolver'
+RESOLVER_URL_INDEX = 'owa_resolver'
 
 # Determines if API usage events should be logged
 USAGE_LOGGING_ENABLED = True
 # Name of the Elasticsearch index used to store logged events
-USAGE_LOGGING_INDEX = 'npo_usage_logs'
+USAGE_LOGGING_INDEX = 'owa_usage_logs'
 
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 DUMPS_DIR = os.path.join(os.path.dirname(ROOT_PATH), 'dumps')
@@ -406,7 +195,7 @@ API_URL = 'http://frontend:5000/v0/'
 
 # URL where collection dumps are hosted. This is used for generating full URLs
 # to dumps in the /dumps endpoint
-DUMP_URL = 'http://dumps.opencultuurdata.nl/'
+DUMP_URL = 'http://dumps.openwob.nl/'
 
 LOGGING = {
     'version': 1,

@@ -11,8 +11,8 @@ RUN apk add --update \
   && pip install cython
 
 # Install python requirements
-COPY ocd_backend/requirements.txt /opt/ori/requirements.txt
-RUN pip install --no-cache-dir -r /opt/ori/requirements.txt
+COPY ocd_backend/requirements.txt /opt/owa/requirements.txt
+RUN pip install --no-cache-dir -r /opt/owa/requirements.txt
 
 # Install poppler for pdfparser
 RUN git clone --depth 1 git://git.freedesktop.org/git/poppler/poppler /tmp/poppler
@@ -40,5 +40,5 @@ RUN adduser -D -H celery \
   && mkdir -p /var/run/celery \
   && chown celery:celery /var/run/celery
 USER celery
-WORKDIR /opt/ori/
+WORKDIR /opt/owa/
 CMD celery --app=ocd_backend:celery_app worker --loglevel=info --concurrency=1

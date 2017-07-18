@@ -1,9 +1,11 @@
 version: "2.1"
 services:
   backend:
-    image: openstatefoundation/open-raadsinformatie-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - .:/opt/ori
+      - .:/opt/owa
     links:
       - redis:redis
       - elasticsearch:elasticsearch
@@ -12,7 +14,9 @@ services:
       - "81:5555"
     mem_limit: 3g
   frontend:
-    image: openstatefoundation/open-raadsinformatie-frontend
+    build:
+      context: ocd_frontend
+      dockerfile: Dockerfile
     links:
       - elasticsearch:elasticsearch
     ports:
@@ -20,7 +24,7 @@ services:
   redis:
     image: "redis:${REDIS_VERSION}"
     sysctls:
-     - net.core.somaxconn=65535
+      - net.core.somaxconn=65535
     mem_limit: 4g
   elasticsearch:
     image: "docker.elastic.co/elasticsearch/elasticsearch:${ES_VERSION}"
@@ -42,7 +46,6 @@ services:
       - esdata:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
-
 volumes:
   esdata:
     driver: local

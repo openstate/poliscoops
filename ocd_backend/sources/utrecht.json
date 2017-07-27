@@ -1,0 +1,39 @@
+[
+    {
+        "id": "utrecht",
+        "extractor": "ocd_backend.extractors.utrecht.UtrechtExtractor",
+        "transformer": "ocd_backend.transformers.BaseTransformer",
+        "item": "ocd_backend.items.utrecht.UtrechtItem",
+        "enrichers": [],
+        "loader": "ocd_backend.loaders.ElasticsearchLoader",
+        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+        "hidden": false,
+        "index_name": "utrecht",
+        "urls": [
+            {
+                "url": "https://www.utrecht.nl/bestuur-en-organisatie/publicaties/openbaar-gemaakte-informatie-na-wob-verzoeken",
+                "start": "2017-01-24",
+                "end": "today",
+                "is_archive": "false",
+                "website_design": "new"
+            },
+            {
+                "url": "https://archief12.archiefweb.eu/archives/archiefweb/20170131235959/https://www.utrecht.nl/bestuur-en-organisatie/publicaties/wet-openbaarheid-van-bestuur-wob",
+                "start": "2016-01-01",
+                "end": "2017-01-23",
+                "is_archive": "true",
+                "archive_url": "https://archief12.archiefweb.eu/archives/archiefweb/20170131235959/",
+                "website_design": "new"
+            },
+            {
+                "url": "https://archief12.archiefweb.eu/archives/archiefweb/20160131235959/https://www.utrecht.nl/bestuur-en-organisatie/publicaties/wet-openbaarheid-van-bestuur-wob",
+                "start": "2012-01-01",
+                "end": "2015-12-31",
+                "is_archive": "true",
+                "archive_url": "https://archief12.archiefweb.eu/archives/archiefweb/20160131235959/",
+                "website_design": "old"
+            }
+        ],
+        "keep_index_on_update": true
+    }
+]

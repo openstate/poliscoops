@@ -16,6 +16,11 @@ Using `Docker Compose<https://docs.docker.com/compose/install/>`_ is by far the 
    $ git clone https://github.com/openstate/open-wob-api.git
    $ cd open-wob-api/
 
+(optional) if you are developing then add the following line to the ``backend`` service in ``docker-compose.yml`` (e.g., below the ``mem_limit`` line); this will automatically reload changed files in Celery::
+
+   command: /opt/owa/bin/backend.sh
+
+
 2. Build and start the containers::
 
    $ docker-compose up -d

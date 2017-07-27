@@ -27,7 +27,7 @@ SORTABLE_FIELDS = {
         'meta.source_id',
         'meta.processing_started',
         'meta.processing_finished',
-        , '_score'
+        '_score'
     ]
 }
 

@@ -16,14 +16,15 @@ Using `Docker Compose<https://docs.docker.com/compose/install/>`_ is by far the 
    $ git clone https://github.com/openstate/open-wob-api.git
    $ cd open-wob-api/
 
-(optional) if you are developing then add the following line to the ``backend`` service in ``docker-compose.yml`` (e.g., below the ``mem_limit`` line); this will automatically reload changed files in Celery::
-
-   command: /opt/owa/bin/backend.sh
-
-
 2. Build and start the containers::
 
+If you're in production:
+
    $ docker-compose up -d
+
+If you're in development (this adds `command: /opt/owa/bin/backend.sh` so celery gets reloaded on file changes):
+
+   $ docker-compose -f docker-compose-dev.yml up -d
 
 Elasticsearch is now accessible locally in the Docker container via http://127.0.0.1:9200, or from the host via http://<CONTAINER IP ADDRESS>:9200 (look up the container's IP address using ``docker inspect`` as shown below).
 

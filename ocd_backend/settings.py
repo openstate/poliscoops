@@ -68,7 +68,7 @@ COMBINED_INDEX = 'owa_combined_index'
 # The default prefix used for all data
 DEFAULT_INDEX_PREFIX = 'owa'
 
-RESOLVER_BASE_URL = 'http://frontend:5000/v0/resolve'
+RESOLVER_BASE_URL = 'http://localhost:5000/v0/resolve'
 RESOLVER_URL_INDEX = 'owa_resolver'
 
 # The User-Agent that is used when retrieving data from external sources

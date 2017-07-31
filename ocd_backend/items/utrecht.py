@@ -75,6 +75,17 @@ class UtrechtItem(BaseItem):
             )
             combined_index_data['date_granularity'] = 12
 
+        # media urls
+        combined_index_data['media_urls'] = []
+        for u in self.original_item.xpath(".//a[@class='download']/@href"):
+            actual_url = unicode(u)
+            if actual_url.startswith(u'/'):
+                actual_url = u'https://www.utrecht.nl%s' % (actual_url,)
+            combined_index_data['media_urls'].append({
+                'original_url': actual_url,
+                'content_type': u'application/pdf'
+            })
+
         return combined_index_data
 
     def get_index_data(self):

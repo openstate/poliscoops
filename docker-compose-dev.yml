@@ -1,0 +1,52 @@
+version: "2.1"
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/opt/owa
+    links:
+      - redis:redis
+      - elasticsearch:elasticsearch
+      - frontend:frontend
+    ports:
+      - "81:5555"
+    mem_limit: 1g
+    command: /opt/owa/bin/backend.sh
+  frontend:
+    build:
+      context: ocd_frontend
+      dockerfile: Dockerfile
+    links:
+      - elasticsearch:elasticsearch
+    ports:
+      - "5000:5000"
+  redis:
+    image: "redis:${REDIS_VERSION}"
+    sysctls:
+      - net.core.somaxconn=65535
+    mem_limit: 4g
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:${ES_VERSION}"
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - cluster.name=docker-cluster
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+volumes:
+  esdata:
+    driver: local

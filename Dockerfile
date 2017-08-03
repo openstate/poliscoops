@@ -128,6 +128,12 @@ RUN ldconfig /tmp/pdfparser \
 
 RUN apt-get install supervisor
 
+
+# Install Docsplit dependencies
+RUN apt-get install -y ruby ruby-dev tesseract-ocr tesseract-ocr-eng tesseract-ocr-nld graphicsmagick ImageMagick poppler-utils poppler-data ghostscript pdftk
+
+RUN gem install docsplit
+
 # Delete all owa API files again
 RUN find . -delete
 RUN rm -rf /tmp/pdfparser /tmp/poppler

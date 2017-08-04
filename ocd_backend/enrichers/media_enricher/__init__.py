@@ -84,7 +84,11 @@ class MediaEnricher(BaseEnricher):
 
         # Create a temporary file to store the media item, write the file
         # to disk if it is larger than 1 MB.
-        media_file = SpooledTemporaryFile(max_size=1024*1024, prefix='ocd_m_',
+        spool_max_size = self.enricher_settings.get(
+            'spool_max_size', 1024*1024)
+
+        media_file = SpooledTemporaryFile(max_size=spool_max_size,
+                                          prefix='ocd_m_',
                                           suffix='.tmp',
                                           dir=TEMP_DIR_PATH)
 

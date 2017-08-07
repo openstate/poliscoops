@@ -4,7 +4,14 @@
         "extractor": "ocd_backend.extractors.utrecht.UtrechtExtractor",
         "transformer": "ocd_backend.transformers.BaseTransformer",
         "item": "ocd_backend.items.utrecht.UtrechtItem",
-        "enrichers": [],
+        "enrichers": [
+          [
+            "ocd_backend.enrichers.media_enricher.MediaEnricher",
+            {
+              "tasks": ["pdf_to_text"]
+            }
+          ]
+        ],
         "loader": "ocd_backend.loaders.ElasticsearchLoader",
         "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
         "hidden": false,

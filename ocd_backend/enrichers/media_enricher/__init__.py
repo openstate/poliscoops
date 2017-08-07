@@ -1,5 +1,5 @@
 import os
-from tempfile import SpooledTemporaryFile
+from tempfile import SpooledTemporaryFile, NamedTemporaryFile
 
 from requests import Session
 from requests.packages.urllib3.util.retry import Retry
@@ -10,7 +10,7 @@ from ocd_backend.enrichers import BaseEnricher
 from ocd_backend.exceptions import SkipEnrichment, UnsupportedContentType
 from ocd_backend.log import get_source_logger
 
-from .tasks import ImageMetadata, MediaType
+from .tasks import ImageMetadata, MediaType, PDFToText
 
 log = get_source_logger('enricher')
 
@@ -30,7 +30,8 @@ class MediaEnricher(BaseEnricher):
     #: returned ``content-type``.
     available_tasks = {
         'image_metadata': ImageMetadata,
-        'media_type': MediaType
+        'media_type': MediaType,
+        'pdf_to_text': PDFToText
     }
 
     http_session = None
@@ -83,14 +84,20 @@ class MediaEnricher(BaseEnricher):
             os.makedirs(TEMP_DIR_PATH)
 
         # Create a temporary file to store the media item, write the file
-        # to disk if it is larger than 1 MB.
+        # to disk if it is larger than 1 MB. If the spool is zero,
+        # create a named temporary file, so we can access it in (sub)processes
         spool_max_size = self.enricher_settings.get(
             'spool_max_size', 1024*1024)
 
-        media_file = SpooledTemporaryFile(max_size=spool_max_size,
-                                          prefix='ocd_m_',
-                                          suffix='.tmp',
-                                          dir=TEMP_DIR_PATH)
+        if spool_max_size > 0:
+            media_file = SpooledTemporaryFile(max_size=spool_max_size,
+                                              prefix='ocd_m_',
+                                              suffix='.tmp',
+                                              dir=TEMP_DIR_PATH)
+        else:
+            media_file = NamedTemporaryFile(prefix='ocd_m_',
+                                            suffix='.tmp',
+                                            dir=TEMP_DIR_PATH)
 
         # When a partial fetch is requested, request up to two MB
         partial_target_size = 1024*1024*2

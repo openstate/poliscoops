@@ -3,6 +3,8 @@ from ocd_backend import settings
 from ocd_backend.exceptions import SkipEnrichment
 from ocd_backend.log import get_source_logger
 
+from pprint import pprint
+
 log = get_source_logger('enricher')
 
 
@@ -30,7 +32,7 @@ class BaseEnricher(celery_app.Task):
         self.source_definition = kwargs['source_definition']
         self.enricher_settings = kwargs['enricher_settings']
 
-        object_id, combined_index_doc, doc = args[0]
+        combined_object_id, object_id, combined_index_doc, doc = args[0]
         try:
             enrichments = self.enrich_item(
                 doc['enrichments'],
@@ -51,7 +53,7 @@ class BaseEnricher(celery_app.Task):
         combined_index_doc['enrichments'] = enrichments
         doc['enrichments'] = enrichments
 
-        return (object_id, combined_index_doc, doc)
+        return (combined_object_id, object_id, combined_index_doc, doc)
 
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
         """Enriches a single item.

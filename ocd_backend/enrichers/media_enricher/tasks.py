@@ -2,6 +2,9 @@ from PIL import Image
 import av
 
 from ocd_backend.exceptions import UnsupportedContentType
+from ocd_backend.log import get_source_logger
+
+log = get_source_logger('enricher_task')
 
 
 class BaseMediaEnrichmentTask(object):
@@ -90,3 +93,13 @@ class ViedeoMetadata(BaseMediaEnrichmentTask):
     def enrich_item(self, media_item, content_type, file_object,
                     enrichment_data, object_id, combined_index_doc, doc):
         pass
+
+
+class PDFToText(BaseMediaEnrichmentTask):
+    content_types = [
+        'application/pdf'
+    ]
+
+    def enrich_item(self, media_item, content_type, file_object,
+                    enrichment_data, object_id, combined_index_doc, doc):
+        log.info("Temporary file: %s" % (file_object.name,))

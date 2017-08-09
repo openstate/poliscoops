@@ -8,6 +8,7 @@
           [
             "ocd_backend.enrichers.media_enricher.MediaEnricher",
             {
+              "spool_max_size": 0,
               "tasks": ["pdf_to_text"]
             }
           ]

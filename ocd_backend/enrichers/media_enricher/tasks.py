@@ -1,10 +1,19 @@
+import codecs
+import os
+from subprocess import call
+
 from PIL import Image
 import av
 
 from ocd_backend.exceptions import UnsupportedContentType
 from ocd_backend.log import get_source_logger
+from ocd_backend.settings import TEMP_DIR_PATH
 
 log = get_source_logger('enricher_task')
+
+
+class MediaEnrichmentException(Exception):
+    pass
 
 
 class BaseMediaEnrichmentTask(object):
@@ -96,10 +105,16 @@ class ViedeoMetadata(BaseMediaEnrichmentTask):
 
 
 class PDFToText(BaseMediaEnrichmentTask):
-    content_types = [
-        'application/pdf'
-    ]
+    content_types = '*'
 
     def enrich_item(self, media_item, content_type, file_object,
                     enrichment_data, object_id, combined_index_doc, doc):
-        log.info("Temporary file: %s" % (file_object.name,))
+        retcode = call("/usr/local/bin/docsplit text -l nld %s -o %s" % (
+            file_object.name, TEMP_DIR_PATH,), shell=True)
+        ocr_file = u'%s.txt' % (os.path.splitext(file_object.name)[0],)
+        if os.path.exists(ocr_file):
+            with codecs.open(ocr_file, 'r', 'utf-8') as in_file:
+                enrichment_data['text'] = in_file.read()
+        else:
+            raise MediaEnrichmentException(
+                "The OCR process did not go well: %s" % (retcode,))

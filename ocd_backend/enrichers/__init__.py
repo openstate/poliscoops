@@ -43,11 +43,11 @@ class BaseEnricher(celery_app.Task):
         except SkipEnrichment as e:
             log.info('Skipping %s for %s, reason: %s'
                      % (self.__class__.__name__, object_id, e.message))
-            return (object_id, combined_index_doc, doc)
+            return (combined_object_id, object_id, combined_index_doc, doc)
         except:
             log.exception('Unexpected error, skipping %s for %s'
                           % (self.__class__.__name__, object_id))
-            return (object_id, combined_index_doc, doc)
+            return (combined_object_id, object_id, combined_index_doc, doc)
 
         # Add the modified 'enrichments' dict to the item documents
         combined_index_doc['enrichments'] = enrichments

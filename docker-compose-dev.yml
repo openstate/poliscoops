@@ -10,9 +10,9 @@ services:
       - redis:redis
       - elasticsearch:elasticsearch
       - frontend:frontend
-    ports:
-      - "81:5555"
-    mem_limit: 1g
+    networks:
+      - owa
+    mem_limit: 10g
     command: /opt/owa/bin/backend.sh
   frontend:
     build:
@@ -20,13 +20,16 @@ services:
       dockerfile: Dockerfile
     links:
       - elasticsearch:elasticsearch
-    ports:
-      - "5000:5000"
+    networks:
+      - owa
+      - nginx-load-balancer
   redis:
     image: "redis:${REDIS_VERSION}"
     sysctls:
       - net.core.somaxconn=65535
     mem_limit: 4g
+    networks:
+      - owa
   elasticsearch:
     image: "docker.elastic.co/elasticsearch/elasticsearch:${ES_VERSION}"
     environment:
@@ -45,8 +48,13 @@ services:
       - IPC_LOCK
     volumes:
       - esdata:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
+    networks:
+      - owa
 volumes:
   esdata:
     driver: local
+networks:
+  owa:
+  nginx-load-balancer:
+    external:
+      name: docker_nginx-load-balancer

@@ -170,15 +170,7 @@ api = BackendAPI()
 
 @app.route("/")
 def main():
-    page = int(request.args.get('page', '1'))
-    query = None
-    results = api.search_questions(query, page)
-    max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
-    today = datetime.datetime.now()
-    stats = api.get_stats_in_period("%s-01-01T00:00:00" % (today.year,))
-    return render_template(
-        'index.html', results=results, stats=stats, query=query, page=page,
-        max_pages=max_pages)
+    return render_template('index.html')
 
 
 @app.route("/stats")

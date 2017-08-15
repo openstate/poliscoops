@@ -4,16 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Openwob</title>
-    <meta name="description" content="Alle kamervragen en antwoorden daarop in kaart gebracht">
+    <meta name="description" content="Alle online vindbare wob-verzoeken, -besluiten en bijlagen van verschillende overheidsorganisaties">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Use http://realfavicongenerator.net/ to generate favicons based on your logo -->
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.0/css/buttons.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css">
     <link rel="stylesheet" href="/static/styles/font-awesome.min.css">
     <link rel="stylesheet" href="/static/styles/main.css">
     <link rel="stylesheet" href="/static/styles/more.css">
-    <script src="../static/scripts/main.js"></script>
+    <link rel="stylesheet" href="/static/styles/search_embed.css" media="all" rel="stylesheet" type="text/css" />
+    <link  href="/static/styles/search_embed-datauri.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/static/scripts/main.js"></script>
   </head>
   <body>
     <!--[if lte IE 9]>
@@ -87,9 +90,21 @@
       </div>
     </footer>
 
+    <!-- SCRIPTS -->
+
+    <!-- jQuery Script -->
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- Documentcloud JS -->
+    <script src="/static/scripts/search_embed.js" type="text/javascript"></script>
+
     <!-- <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script> -->
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.min.js"></script>
+
     <script type="text/javascript">
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>

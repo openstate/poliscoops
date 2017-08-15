@@ -55,7 +55,7 @@ services:
       context: app
       dockerfile: Dockerfile
     volumes:
-      - app:/opt/app
+      - ./app:/opt/app
     restart: always
     networks:
       - owa

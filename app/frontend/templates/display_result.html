@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+<article>
+{% include 'search.html' %}
+<section id="stats">
+  <div class="row" style="margin-left: 0; margin-right: 0;">
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 counter primary">
+      {% if 'answer' in result %}
+        {{ result.date|iso8601_delay_in_days(result.answer.date) }}
+      {% else %}
+        {{ result.date|iso8601_delay_in_days }}
+      {% endif %}
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 expl primary-rev">
+      {% if 'answer' in result %}
+        dagen gedaan over antwoord
+      {% else %}
+        dagen wachtend op antwoord
+      {% endif %}
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <!--
+      <form action="/subscribe" class="form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" name="email" class="form-control">
+        </div>
+        <input type="submit" class="btn btn-default" value="Hou me op de hoogte">
+      </form> -->
+    </div>
+  </div>
+</section>
+
+<section id="data">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>{{ result.name }}</h2>
+
+      {% if 'answer' in result %}
+        {{ result.answer.description |default('De tekst van deze vraag is helaas nog niet beschikbaar') |tk_questions_format |nl2br |safe }}
+      {% else %}
+        {{ result.description |default('De tekst van deze vraag is helaas nog niet beschikbaar') |tk_questions_format |nl2br |safe }}
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item">
+          Ingediend: <span class="badge">{{ result.date |iso8601_to_str("%d-%m-%Y") }}</span>
+        </li>
+        {% if 'answer' in result %}
+        <li class="list-group-item">
+          Beantwoord: <span class="badge">{{ result.answer.date |iso8601_to_str("%d-%m-%Y") }}</span>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</section>
+</article>
+</body>
+{% endblock %}

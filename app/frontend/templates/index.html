@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+<article>
+{% include 'search.html' %}
+<section id="stats">
+  <div class="row" style="margin-left: 0; margin-right: 0;">
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 counter primary">
+      {{ stats.facets.classification.terms[0].count }}
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 expl primary-rev">
+      vragen gesteld dit jaar
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 counter secondary">
+      {{ stats.facets.answer_classification.missing }}
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 expl secondary-rev">
+      wachten nog op antwoord
+    </div>
+  </div>
+</section>
+<section id="data">
+  {% include 'results_as_list.html' %}
+</section>
+</article>
+</body>
+{% endblock %}

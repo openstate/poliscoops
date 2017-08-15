@@ -1,0 +1,18 @@
+<section id="search">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="well">
+        <div class="row">
+          <form action="/zoeken" method="get" class="form">
+            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-10">
+              <input type="text" class="form-control" name="query" value="{{ request.args['query'] }}" placeholder="PGB" style="width: 100%;">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+              <input class="btn btn-default" style="width: 100%;" type="submit" value="Zoeken">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

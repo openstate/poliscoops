@@ -1,0 +1,31 @@
+.counter {
+  font-size: 6em;
+  text-align: center;
+}
+
+.expl {
+  font-size: 2em;
+}
+
+.primary {
+  color: white;
+  background-color: #19bbbd;
+}
+
+.primary-rev {
+  background-color: white;
+  color: #19bbbd;
+}
+
+.secondary {
+  color: white;
+  background-color: #ec117e;
+}
+
+.secondary-rev {
+  background-color: white;
+  color: #ec117e;
+}
+
+ul.wordcloud { list-style-type: none; }
+ul.wordcloud li { display: inline-block; }

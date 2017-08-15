@@ -57,7 +57,7 @@ def do_nl2br(s):
 
 
 class BackendAPI(object):
-    URL = 'http://c-tkv-nginx/v0'
+    URL = 'http://frontend:5000/v0'
 
     def sources(self):
         return requests.get('%s/sources' % (self.URL,)).json()

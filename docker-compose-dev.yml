@@ -12,7 +12,7 @@ services:
       - frontend:frontend
     networks:
       - owa
-    mem_limit: 10g
+    mem_limit: 1g
     command: /opt/owa/bin/backend.sh
   frontend:
     build:

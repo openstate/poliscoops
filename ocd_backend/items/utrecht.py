@@ -1,10 +1,24 @@
 from datetime import datetime
-from lxml import etree
+import re
 
 from ocd_backend.items import BaseItem
 
 
 class UtrechtItem(BaseItem):
+    combined_index_fields = {
+        'hidden': bool,
+        'title': unicode,
+        'description': unicode,
+        'date': datetime,
+        'date_granularity': int,
+        'authors': list,
+        'media_urls': list,
+        'all_text': unicode,
+        'id': unicode,
+        'status': unicode,
+        'categories': list
+    }
+
     def _get_text_or_none(self, xpath_expression):
         node = self.original_item.find(xpath_expression)
         if node is not None and node.text is not None:
@@ -50,6 +64,14 @@ class UtrechtItem(BaseItem):
             combined_index_data['title'] = unicode(
                 self.original_item.xpath(
                     ".//meta[@property='og:title']/@content")[0])
+
+        wob_id, wob_status, actual_title = combined_index_data['title'].split(
+            u' ', 2)
+
+        if re.match('^\d{4}', wob_id):
+            combined_index_data['id'] = wob_id
+            combined_index_data['title'] = actual_title
+            combined_index_data['status'] = wob_status
 
         # Description
         # Case for new website design

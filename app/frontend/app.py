@@ -137,7 +137,7 @@ class BackendAPI(object):
 
     def search_questions(self, gov_slug, query=None, page=1):
         es_query = {
-            "sort": "meta.processing_finished",  # "date",
+            "sort": "date",
             "order": "desc",
             "from": (page - 1) * PAGE_SIZE,
             "size": PAGE_SIZE,

@@ -20,11 +20,11 @@ PAGE_SIZE = 20
 
 
 @app.template_filter('url_for_search_page')
-def do_url_for_search_page(gov_slug, page):
-    args = request.args.copy()
-    args['page'] = page
-    args['gov_slug'] = gov_slug
-    return url_for(request.endpoint, **args)
+def do_url_for_search_page(page, gov_slug):
+    url = u'/%s/zoeken' % (gov_slug,)
+    if page > 0:
+        url += u'?page=%s' % (page,)
+    return url
 
 
 @app.template_filter('wordcloud_font_size')
@@ -204,7 +204,7 @@ def search(gov_slug):
     max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
     return render_template(
         'search_results.html', results=results, query=query, page=page,
-        max_pages=max_pages)
+        max_pages=max_pages, gov_slug=gov_slug)
 
 
 

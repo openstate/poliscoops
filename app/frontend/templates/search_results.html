@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
+{% block lead %}
+<p class="lead-text">Vind en doorzoek Wob verzoeken, besluiten en bijlagen in {{ gov_slug |humanize }}</p>
+{% endblock %}
+
 {% block content %}
-<body>
-<article>
+
 {% include 'search.html' %}
 <section id="data">
 {% include 'results_as_list.html' %}
 </section>
-</article>
-
-</body>
 {% endblock %}

@@ -27,7 +27,8 @@ SORTABLE_FIELDS = {
         'meta.source_id',
         'meta.processing_started',
         'meta.processing_finished',
-        '_score'
+        '_score',
+        'date'
     ]
 }
 
@@ -40,7 +41,7 @@ SORTABLE_FIELDS = {
 # ALLOWED_INCLUDE_FIELDS_SEARCH = ['all_text']
 
 EXCLUDED_FIELDS_ALWAYS = [
-    'combined_index_data', 'enrichments', 'hidden']
+    'combined_index_data', 'hidden']
 EXCLUDED_FIELDS_DEFAULT = ['all_text', 'source_data',
                            'media_urls.original_url']
 EXCLUDED_FIELDS_SEARCH = ['all_text', 'media_urls.original_url']
@@ -49,7 +50,7 @@ ALLOWED_INCLUDE_FIELDS_DEFAULT = []
 ALLOWED_INCLUDE_FIELDS_SEARCH = []
 
 SIMPLE_QUERY_FIELDS = {
-    'items': ['name']
+    'items': ['title','description']
 }
 
 DOC_TYPE_DEFAULT = u'items'
@@ -103,6 +104,12 @@ COMMON_FACETS = {
 
 AVAILABLE_FACETS = {
     'items': {
+        'date': {
+            'date_histogram': {
+                'field': 'date',
+                'interval': 'month'
+            }
+        }
     }
 }
 
@@ -167,7 +174,7 @@ COMMON_HIGHLIGHTS = {
 
 AVAILABLE_HIGHLIGHTS = {
     'items': {
-        'name': {} 
+        'name': {}
     }
 }
 

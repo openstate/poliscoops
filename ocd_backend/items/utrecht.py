@@ -70,7 +70,6 @@ class UtrechtItem(BaseItem):
 
         if re.match('^\d{4}', wob_id):
             combined_index_data['id'] = wob_id
-            combined_index_data['title'] = actual_title
             combined_index_data['status'] = wob_status
 
         # Description

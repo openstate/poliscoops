@@ -3,12 +3,21 @@
   <div class="col-xs-12">
     <h2><a href="#">{{ result.title }}</a></h2>
     <p class="pull-left">{{ result.date|iso8601_to_str("%d-%m-%Y") }}</p>
-    <p class="pull-right"><a href="http://api.openwob.nl/{{ result.meta._type }}/{{ result.meta._type }}/{{ result.meta.original_object_id }}" target="_blank">source</a></p>
+    <p class="pull-right"><a href="{{ result.meta.owa_url |replace(gov_slug, gov_slug + '/item') }}" target="_blank">source</a></p>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
     {{ result.description }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ol class="list-inline">
+    {% for pdf in result.media_urls %}
+      <li><a href="{{ pdf.url }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></li>
+    {% endfor %}
+    </ol>
   </div>
 </div>
 {% endfor %}

@@ -20,9 +20,10 @@ PAGE_SIZE = 20
 
 
 @app.template_filter('url_for_search_page')
-def do_url_for_search_page(page):
+def do_url_for_search_page(gov_slug, page):
     args = request.args.copy()
     args['page'] = page
+    args['gov_slug'] = gov_slug
     return url_for(request.endpoint, **args)
 
 
@@ -62,7 +63,7 @@ def do_humanize(s):
 
 
 class BackendAPI(object):
-    URL = 'http://frontend:5000/v0'
+    URL = 'http://api.openwob.nl/v0'
 
     def sources(self):
         return requests.get('%s/sources' % (self.URL,)).json()
@@ -134,12 +135,17 @@ class BackendAPI(object):
             }
         return result
 
-    def search_questions(self, query=None, page=1):
+    def search_questions(self, gov_slug, query=None, page=1):
         es_query = {
-            "sort": "date",
+            "sort": "meta.processing_finished",  # "date",
             "order": "desc",
             "from": (page - 1) * PAGE_SIZE,
-            "size": PAGE_SIZE
+            "size": PAGE_SIZE,
+            "filters": {
+                'source': {
+                    'terms': [gov_slug]
+                }
+            }
         }
 
         if query is not None:
@@ -147,7 +153,7 @@ class BackendAPI(object):
 
         try:
             result = requests.post(
-                '%s/tk_qa_matches/search' % (self.URL,),
+                '%s/search' % (self.URL,),
                 data=json.dumps(es_query)).json()
         except Exception:
             result = {
@@ -184,21 +190,23 @@ def stats():
     return render_template('stats.html', results=results)
 
 
-@app.route("/zoeken")
-def search():
+@app.route("/<gov_slug>")
+def gov_home(gov_slug):
+    return render_template(
+        'gov.html', gov_slug=gov_slug)
+
+
+@app.route("/<gov_slug>/zoeken")
+def search(gov_slug):
     page = int(request.args.get('page', '1'))
     query = request.args.get('query', None)
-    results = api.search_questions(query, page)
+    results = api.search_questions(gov_slug, query, page)
     max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
     return render_template(
         'search_results.html', results=results, query=query, page=page,
         max_pages=max_pages)
 
 
-@app.route("/<gov_slug>")
-def gov_home(gov_slug):
-    return render_template(
-        'gov.html', gov_slug=gov_slug)
 
 
 def create_app():

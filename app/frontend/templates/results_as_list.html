@@ -1,20 +1,14 @@
-{% for result in results.hits.hits %}
+{% for result in results.item %}
 <div class="row">
   <div class="col-xs-12">
-    <h2><a href="/{{ result.period }}/{{ result.id}}">{{ result.name }}</a></h2>
-    {% if "highlight" in result.meta %}
-      {% if 'description' in result.meta.highlight %}
-        <p>{{ result.meta.highlight.description[0] |safe }}</p>
-      {% endif %}
-    {% endif %}
+    <h2><a href="#">{{ result.title }}</a></h2>
     <p class="pull-left">{{ result.date|iso8601_to_str("%d-%m-%Y") }}</p>
-    <p class="pull-right"><a href="http://api.kamervragentracker.nl/{{ result.meta._type }}/{{ result.meta._type }}/{{ result.meta.original_object_id }}" target="_blank">source</a></p>
-    {% if 'extension' in result %}
-      <p class="pull-right secondary">{{ result.extension.date|iso8601_to_str("%d-%m-%Y") }}</p>
-    {% endif %}
-    {% if 'answer' in result %}
-      <p class="pull-right primary">{{ result.answer.date|iso8601_to_str("%d-%m-%Y") }}</p>
-    {% endif %}
+    <p class="pull-right"><a href="http://api.openwob.nl/{{ result.meta._type }}/{{ result.meta._type }}/{{ result.meta.original_object_id }}" target="_blank">source</a></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    {{ result.description }}
   </div>
 </div>
 {% endfor %}
@@ -26,7 +20,7 @@
       <a href="#" rel="prev">Vorige</a>
     {% else %}
     <li class="prev previous_page">
-      <a href="{{ (page - 1) |url_for_search_page }}" rel="prev">Vorige</a>
+      <a href="{{ (page - 1) |url_for_search_page(gov_slug) }}" rel="prev">Vorige</a>
     {% endif %}
     </li>
     {% if page >= max_pages %}
@@ -34,7 +28,7 @@
       <a href="#" rel="next">Volgende</a>
     {% else %}
     <li class="next next_page">
-      <a href="{{ (page + 1) |url_for_search_page }}" rel="next">Volgende</a>
+      <a href="{{ (page + 1) |url_for_search_page(gov_slug) }}" rel="next">Volgende</a>
     {% endif %}
     </li>
   </ul>

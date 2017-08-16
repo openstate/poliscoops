@@ -2,6 +2,7 @@ import datetime
 import math
 import simplejson as json
 import re
+from urllib import urlencode
 
 from flask import (
     Flask, abort, jsonify, request, redirect, render_template,
@@ -22,8 +23,13 @@ PAGE_SIZE = 20
 @app.template_filter('url_for_search_page')
 def do_url_for_search_page(page, gov_slug):
     url = u'/%s/zoeken' % (gov_slug,)
+    params = {}
     if page > 0:
-        url += u'?page=%s' % (page,)
+        params['page'] = page
+    if 'query' in request.args:
+        params['query'] = request.args['query']
+    if len(params) > 0:
+        url = url + u'?%s' % (urlencode(params),)
     return url
 
 

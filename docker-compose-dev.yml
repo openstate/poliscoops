@@ -54,6 +54,8 @@ services:
     build:
       context: app
       dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
     volumes:
       - ./app:/opt/app
     restart: always
@@ -65,5 +67,5 @@ volumes:
 networks:
   owa:
   nginx-load-balancer:
-    external:
-      name: docker_nginx-load-balancer
+    # external:
+    #   name: docker_nginx-load-balancer

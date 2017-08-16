@@ -56,6 +56,11 @@ def do_nl2br(s):
     return s.replace('\n', '<br>')
 
 
+@app.template_filter('humanize')
+def do_humanize(s):
+    return u' '.join([x.capitalize() for x in s.split(u'-')])
+
+
 class BackendAPI(object):
     URL = 'http://frontend:5000/v0'
 
@@ -190,15 +195,10 @@ def search():
         max_pages=max_pages)
 
 
-@app.route("/<period>/<id>")
-def display(period, id):
-    result = api.find_by_id(id)
-
-    if result['meta']['total'] <= 0:
-        abort(404)
-
+@app.route("/<gov_slug>")
+def gov_home(gov_slug):
     return render_template(
-        'display_result.html', result=result['hits']['hits'][0])
+        'gov.html', gov_slug=gov_slug)
 
 
 def create_app():

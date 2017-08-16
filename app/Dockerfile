@@ -10,9 +10,9 @@ ADD requirements.txt .
 RUN pip install -r requirements.txt
 
 # Production
-CMD uwsgi --socket 0.0.0.0:5000 --processes 8 -w manage:app
+# CMD uwsgi --socket 0.0.0.0:5000 --processes 8 -w manage:app
 
 # Development
-#ENV FLASK_APP=manage.py \
-#   FLASK_DEBUG=1
-#CMD flask run --host=0.0.0.0
+ENV FLASK_APP=manage.py \
+  FLASK_DEBUG=1
+CMD flask run --host=0.0.0.0

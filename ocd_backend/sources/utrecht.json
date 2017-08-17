@@ -1,6 +1,6 @@
 [
     {
-        "id": "utrecht",
+        "id": "utrecht_all",
         "extractor": "ocd_backend.extractors.utrecht.UtrechtExtractor",
         "transformer": "ocd_backend.transformers.BaseTransformer",
         "item": "ocd_backend.items.utrecht.UtrechtItem",
@@ -40,6 +40,57 @@
                 "is_archive": "true",
                 "archive_url": "https://archief12.archiefweb.eu/archives/archiefweb/20160131235959/",
                 "website_design": "old"
+            }
+        ],
+        "keep_index_on_update": true
+    },
+    {
+        "id": "utrecht_new",
+        "extractor": "ocd_backend.extractors.utrecht.UtrechtExtractor",
+        "transformer": "ocd_backend.transformers.BaseTransformer",
+        "item": "ocd_backend.items.utrecht.UtrechtItem",
+        "enrichers": [
+          [
+            "ocd_backend.enrichers.media_enricher.MediaEnricher",
+            {
+              "spool_max_size": 0,
+              "tasks": ["pdf_to_text"]
+            }
+          ]
+        ],
+        "loader": "ocd_backend.loaders.ElasticsearchLoader",
+        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+        "hidden": false,
+        "index_name": "utrecht",
+        "urls": [
+            {
+                "url": "https://www.utrecht.nl/bestuur-en-organisatie/publicaties/openbaar-gemaakte-informatie-na-wob-verzoeken",
+                "start": "2017-01-24",
+                "end": "today",
+                "is_archive": "false",
+                "website_design": "new"
+            }
+        ],
+        "keep_index_on_update": true
+    },
+    {
+        "id": "utrecht_new_no_enrich",
+        "extractor": "ocd_backend.extractors.utrecht.UtrechtExtractor",
+        "transformer": "ocd_backend.transformers.BaseTransformer",
+        "item": "ocd_backend.items.utrecht.UtrechtItem",
+        "enrichers": [
+        ],
+        "loader": "ocd_backend.loaders.ElasticsearchLoader",
+        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+        "hidden": false,
+        "index_name": "utrecht",
+        "urls": [
+            {
+                "url": "https://www.utrecht.nl/bestuur-en-organisatie/publicaties/openbaar-gemaakte-informatie-na-wob-verzoeken",
+                "start": "2017-01-24",
+                "end": "today",
+                "is_archive": "false",
+                "website_design": "new"
             }
         ],
         "keep_index_on_update": true

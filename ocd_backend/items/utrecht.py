@@ -44,8 +44,19 @@ class UtrechtItem(BaseItem):
         if 'archiefweb.eu' in archive_url:
             url = u'http' + archive_url + url
 
+        if self.original_item.xpath(".//time/@datetime"):
+            item_date = datetime.strptime(
+                self.original_item.xpath(".//time/@datetime")[0],
+                '%Y-%m-%dT%H:%M'
+            )
+        else:
+            item_date = datetime.datetime.now()
+
         return {
-            'html': url
+            'html': url,
+            'alternate': (
+                u'https://archief12.archiefweb.eu/archives/archiefweb/'
+                u'%s/%s') % (item_date.strftime('%Y%m%d%H%m%S'), url,)
         }
 
     def get_rights(self):

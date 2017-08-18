@@ -94,5 +94,20 @@
             }
         ],
         "keep_index_on_update": true
+    },
+    {
+        "id": "utrecht_categories",
+        "extractor": "ocd_backend.extractors.utrecht.UtrechtCateogriesExtractor",
+        "transformer": "ocd_backend.transformers.BaseTransformer",
+        "item": "ocd_backend.items.utrecht.UtrechtCategoryItem",
+        "enrichers": [
+        ],
+        "loader": "ocd_backend.loaders.ElasticsearchLoader",
+        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+        "hidden": false,
+        "index_name": "utrecht",
+        "url": "https://www.utrecht.nl/bestuur-en-organisatie/publicaties/openbaar-gemaakte-informatie-na-wob-verzoeken/zoeken-in-wob-overzicht/",
+        "keep_index_on_update": true
     }
+
 ]

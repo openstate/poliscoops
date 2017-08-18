@@ -6,6 +6,7 @@ from datetime import datetime
 import gzip
 import json
 from lxml import etree
+from pprint import pprint
 
 
 class UtrechtExtractor(BaseExtractor, HttpRequestMixin):
@@ -95,3 +96,33 @@ class UtrechtExtractor(BaseExtractor, HttpRequestMixin):
         for url in self.source_definition['urls']:
             for item_url in self.get_collection_objects(url):
                 yield self.get_object(item_url)
+
+
+class UtrechtCateogriesExtractor(BaseExtractor, HttpRequestMixin):
+    def _get_items_links_from_category(self, cat_url):
+        all_wob_links_xpath = "//div[@class='limiter']/div//h2/a/@href"
+        resp = self.http_session.get(cat_url, verify=False)
+        html = etree.HTML(resp.content)
+        # Loop over all div's containg links to wob pages
+        return html.xpath(all_wob_links_xpath)
+
+    def run(self):
+        resp = self.http_session.get(
+            self.source_definition['url'], verify=False)
+        html = etree.HTML(resp.content)
+
+        categories = {}
+        for cat_obj in html.xpath('//div[@class="linklijst"]/div/ul/li/a'):
+            cat_url = u'https://www.utrecht.nl%s' % (
+                cat_obj.xpath('.//@href')[0],)
+            cat_title = u''.join(cat_obj.xpath('.//text()')).replace(
+                u'Wob-verzoeken ', u'')
+            item_links = self._get_items_links_from_category(cat_url)
+            for item_link in item_links:
+                categories.setdefault(item_link, []).append(cat_title)
+
+        for url, categories_list in categories.iteritems():
+            yield 'application/json', json.dumps({
+                'url': url,
+                'categories': categories_list
+            })

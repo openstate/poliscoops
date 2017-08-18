@@ -127,3 +127,7 @@ class UtrechtItem(BaseItem):
         text_items = []
 
         return u' '.join(text_items)
+
+
+class UtrechtCategoryItem(UtrechtItem):
+    pass

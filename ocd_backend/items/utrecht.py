@@ -24,17 +24,39 @@ class UtrechtItem(BaseItem):
         if node is not None and node.text is not None:
             return unicode(node.text)
 
+    def _get_basic_info(self):
+        """
+        Returns a tuple of id, status and title.
+        """
+        # Title
+        wob_title = u''
+        wob_status = u''
+        wob_id = None
+        if self.original_item.xpath(".//meta[@property='og:title']/@content"):
+            wob_title = unicode(
+                self.original_item.xpath(
+                    ".//meta[@property='og:title']/@content")[0])
+
+            wob_id, wob_status, actual_title = wob_title.split(
+                u' ', 2)
+
+            if not re.match('^\d{4}', wob_id):
+                # Use slug as object id
+                wob_id = unicode(
+                    self.original_item.xpath(
+                        ".//meta[@property='og:url']/@content"
+                    )[0].split('/')[-2])
+        return (wob_id, wob_status, wob_title,)
+
     def get_object_id(self):
+        wob_id, wob_status, wob_title = self._get_basic_info()
         # Use slug as object id
-        return unicode(
-            self.original_item.xpath(".//meta[@property='og:url']/@content")[
-                0].split('/')[-2])
+        return wob_id
 
     def get_original_object_id(self):
+        wob_id, wob_status, wob_title = self._get_basic_info()
         # Use slug as object id
-        return unicode(
-            self.original_item.xpath(".//meta[@property='og:url']/@content")[
-                0].split('/')[-2])
+        return wob_id
 
     def get_original_object_urls(self):
         url = unicode(
@@ -77,14 +99,8 @@ class UtrechtItem(BaseItem):
         }
 
         # Title
-        if self.original_item.xpath(".//meta[@property='og:title']/@content"):
-            combined_index_data['title'] = unicode(
-                self.original_item.xpath(
-                    ".//meta[@property='og:title']/@content")[0])
-
-        wob_id, wob_status, actual_title = combined_index_data['title'].split(
-            u' ', 2)
-
+        wob_id, wob_status, wob_title = self._get_basic_info()
+        combined_index_data['title'] = wob_title
         if re.match('^\d{4}', wob_id):
             combined_index_data['id'] = wob_id
             combined_index_data['status'] = wob_status

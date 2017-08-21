@@ -16,3 +16,4 @@ python-magic==0.4.13
 pyOpenSSL==0.14
 translitcodec==0.4.0
 flower
+xlrd

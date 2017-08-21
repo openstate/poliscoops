@@ -24,6 +24,12 @@ class UtrechtItem(BaseItem):
         if node is not None and node.text is not None:
             return unicode(node.text)
 
+    def get_object_id(self):
+        # Use slug as object id
+        return unicode(
+            self.original_item.xpath(".//meta[@property='og:url']/@content")[
+                0].split('/')[-2])
+
     def get_original_object_id(self):
         # Use slug as object id
         return unicode(
@@ -130,4 +136,36 @@ class UtrechtItem(BaseItem):
 
 
 class UtrechtCategoryItem(UtrechtItem):
-    pass
+    combined_index_fields = {
+        'doc': dict
+    }
+
+    def get_object_id(self):
+        return unicode(self.original_item['url']).split('/')[-2]
+
+    def get_original_object_id(self):
+        return unicode(self.original_item['url']).split('/')[-2]
+
+    def get_original_object_urls(self):
+        return {
+            'html': self.original_item['url'],
+            'alternate': (
+                u'https://archief12.archiefweb.eu/archives/archiefweb/'
+                u'%s/%s') % (
+                    datetime.now().strftime('%Y%m%d%H%m%S'),
+                    self.original_item['url'],)
+        }
+
+    def get_rights(self):
+        return u'Undefined'
+
+    def get_collection(self):
+        return u'Utrecht'
+
+    def get_combined_index_data(self):
+        doc = {
+            'doc': {
+                'categories': self.original_item['categories']
+            }
+        }
+        return doc

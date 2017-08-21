@@ -169,3 +169,7 @@ class UtrechtCategoryItem(UtrechtItem):
             }
         }
         return doc
+
+
+class UtrechtOverviewItem(BaseItem):
+    pass

@@ -150,6 +150,9 @@ class BackendAPI(object):
             "filters": {
                 'source': {
                     'terms': [gov_slug]
+                },
+                'types': {
+                    'terms': ['item']
                 }
             }
         }

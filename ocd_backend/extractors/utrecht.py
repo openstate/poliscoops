@@ -175,13 +175,18 @@ class UtrechtOverviewExtractor(GlobExtractor):
                 year = int(wob_id)
                 continue
             if processing:
-                print "%s-%s" % (year, values[0],)
+                record = {
+                    'id': u'%s-%s' % (year, int(values[0]),),
+                    'sender': values[1],
+                    'title': values[2],
+                    'date': values[3]
+                }
+                wobs.append(record)
                 processed += 1
         return wobs
 
     def run(self):
         for file_path in glob(self.pathname):
-            print file_path
             for wob in self._get_wob_requests(file_path):
                 yield 'application/json', json.dumps({
                     'file': file_path, 'wob': wob})

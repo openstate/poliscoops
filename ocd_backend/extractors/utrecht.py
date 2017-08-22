@@ -155,7 +155,6 @@ class UtrechtOverviewExtractor(GlobExtractor):
         for row_num in xrange(0, sh.nrows):
             values = sh.row_values(row_num)
             wob_id = values[0]
-            wob_sender = values[1]
             if unicode(wob_id).strip() == u'NR.':
                 header = True
                 continue
@@ -194,5 +193,4 @@ class UtrechtOverviewExtractor(GlobExtractor):
     def run(self):
         for file_path in glob(self.pathname):
             for wob in self._get_wob_requests(file_path):
-                yield 'application/json', json.dumps({
-                    'file': file_path, 'wob': wob})
+                yield 'application/json', json.dumps(wob)

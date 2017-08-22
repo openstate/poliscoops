@@ -2,6 +2,8 @@ from datetime import datetime
 from hashlib import sha1
 import re
 
+import iso8601
+
 from ocd_backend.items import BaseItem
 
 
@@ -10,8 +12,8 @@ class UtrechtItem(BaseItem):
         'hidden': bool,
         'title': unicode,
         'description': unicode,
-        'date': datetime,
-        'date_granularity': int,
+        'start_date': datetime,
+        'end_date': datetime,
         'authors': list,
         'media_urls': list,
         'all_text': unicode,
@@ -133,11 +135,10 @@ class UtrechtItem(BaseItem):
 
         # Date
         if self.original_item.xpath(".//time/@datetime"):
-            combined_index_data['date'] = datetime.strptime(
+            combined_index_data['end_date'] = datetime.strptime(
                 self.original_item.xpath(".//time/@datetime")[0],
                 '%Y-%m-%dT%H:%M'
             )
-            combined_index_data['date_granularity'] = 12
 
         # media urls
         combined_index_data['media_urls'] = []
@@ -197,5 +198,34 @@ class UtrechtCategoryItem(UtrechtItem):
         return doc
 
 
-class UtrechtOverviewItem(BaseItem):
-    pass
+class UtrechtOverviewItem(UtrechtItem):
+    def _get_title(self):
+        return u'%s Open %s' % (
+            self.original_item['id'], self.original_item['title'],)
+
+    def _get_url(self):
+        return u''
+
+    def get_original_object_urls(self):
+        return {}
+
+    def get_rights(self):
+        return u'Undefined'
+
+    def get_collection(self):
+        return u'Utrecht'
+
+    def get_combined_index_data(self):
+        combined_index_data = {
+            'hidden': self.source_definition['hidden'],
+        }
+
+        wob_id, wob_status, wob_title = self._get_basic_info()
+        combined_index_data['title'] = wob_title
+        combined_index_data['id'] = self._get_hashed_id(wob_id)
+
+        if self.original_item['date'] is not None:
+            combined_index_data['start_date'] = iso8601.parse_date(
+                self.original_item['date'])
+
+        return combined_index_data

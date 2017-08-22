@@ -126,13 +126,52 @@ class ElasticsearchUpdateOnlyLoader(ElasticsearchLoader):
             return
 
         log.info('Indexing documents...')
-        elasticsearch.update(index=settings.COMBINED_INDEX,
-                            doc_type=self.doc_type, id=combined_object_id,
-                            body={'doc': combined_index_doc['doc']})
+        elasticsearch.update(
+            index=settings.COMBINED_INDEX, doc_type=self.doc_type,
+            id=combined_object_id, body={
+                'doc': combined_index_doc['doc'],
+                'doc_as_upsert': combined_index_doc.get('doc_as_upsert', False)
+            })
 
         # Index documents into new index
-        elasticsearch.update(index=self.index_name, doc_type=self.doc_type,
-                            body={'doc': doc['doc']}, id=object_id)
+        elasticsearch.update(
+            index=self.index_name, doc_type=self.doc_type,
+            body={
+                'doc': doc['doc'],
+                'doc_as_upsert': combined_index_doc.get('doc_as_upsert', False)
+            }, id=object_id)
+        # remember, resolver URLs are not update here to prevent too complex
+        # things
+
+
+class ElasticsearchUpsertLoader(ElasticsearchLoader):
+    """
+    Updates elasticsearch items using the update method. Use with caution.
+    """
+
+    def load_item(
+        self, combined_object_id, object_id, combined_index_doc, doc
+    ):
+
+        if combined_index_doc == {}:
+            log.info('Empty document ....')
+            return
+
+        log.info('Indexing documents...')
+        elasticsearch.update(
+            index=settings.COMBINED_INDEX, doc_type=self.doc_type,
+            id=combined_object_id, body={
+                'doc': combined_index_doc,
+                'doc_as_upsert': True
+            })
+
+        # Index documents into new index
+        elasticsearch.update(
+            index=self.index_name, doc_type=self.doc_type,
+            body={
+                'doc': doc,
+                'doc_as_upsert': True
+            }, id=object_id)
         # remember, resolver URLs are not update here to prevent too complex
         # things
 

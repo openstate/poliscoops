@@ -111,7 +111,7 @@
     },
     {
         "id": "utrecht_overviews",
-        "extractor": "ocd_backend.extractors.globber.GlobExtractor",
+        "extractor": "ocd_backend.extractors.utrecht.UtrechtOverviewExtractor",
         "transformer": "ocd_backend.transformers.BaseTransformer",
         "item": "ocd_backend.items.utrecht.UtrechtOverviewItem",
         "enrichers": [

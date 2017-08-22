@@ -1,12 +1,18 @@
 from ocd_backend.extractors import BaseExtractor, HttpRequestMixin
+from ocd_backend.extractors.globber import GlobExtractor
 from ocd_backend.exceptions import ConfigurationError
 
 from click import progressbar
 from datetime import datetime
+from glob import glob
 import gzip
 import json
 from lxml import etree
+import os
 from pprint import pprint
+import re
+
+from xlrd import open_workbook
 
 
 class UtrechtExtractor(BaseExtractor, HttpRequestMixin):
@@ -134,3 +140,48 @@ class UtrechtCateogriesExtractor(BaseExtractor, HttpRequestMixin):
                 'title': unicode(titles[url]),
                 'categories': categories_list
             })
+
+
+class UtrechtOverviewExtractor(GlobExtractor):
+    def _get_wob_requests(self, file_path):
+        wb = open_workbook(file_path)
+        sh = wb.sheet_by_index(0)
+        wobs = []
+        header = False
+        processing = False
+        processed = 0
+        year = int(os.path.basename(file_path)[0:4])
+        for row_num in xrange(0, sh.nrows):
+            values = sh.row_values(row_num)
+            wob_id = values[0]
+            wob_sender = values[1]
+            if unicode(wob_id).strip() == u'NR.':
+                header = True
+                continue
+            if not header:
+                continue
+            processing = (
+                header and
+                u''.join([unicode(v).strip() for v in values]) != u'')
+            if header and unicode(wob_id).strip() == u'' and processed > 0:
+                processing = False
+                header = False
+            if unicode(wob_id).strip() in [u'Totaal', u'OVERIGE']:
+                processing = False
+                header = False
+            if unicode(wob_id).strip() == u'':
+                continue
+            if re.match(r'^\d{4}', unicode(wob_id).strip()):
+                year = int(wob_id)
+                continue
+            if processing:
+                print "%s-%s" % (year, values[0],)
+                processed += 1
+        return wobs
+
+    def run(self):
+        for file_path in glob(self.pathname):
+            print file_path
+            for wob in self._get_wob_requests(file_path):
+                yield 'application/json', json.dumps({
+                    'file': file_path, 'wob': wob})

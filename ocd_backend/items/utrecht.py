@@ -25,28 +25,33 @@ class UtrechtItem(BaseItem):
         if node is not None and node.text is not None:
             return unicode(node.text)
 
+    def _get_title(self):
+        if self.original_item.xpath(".//meta[@property='og:title']/@content"):
+            return unicode(
+                self.original_item.xpath(
+                    ".//meta[@property='og:title']/@content")[0])
+
+    def _get_url(self):
+        return unicode(self.original_item.xpath(
+            ".//meta[@property='og:url']/@content")[0])
+
     def _get_basic_info(self):
         """
         Returns a tuple of id, status and title.
         """
         # Title
-        wob_title = u''
+        wob_title = None
         wob_status = u''
         wob_id = None
-        if self.original_item.xpath(".//meta[@property='og:title']/@content"):
-            wob_title = unicode(
-                self.original_item.xpath(
-                    ".//meta[@property='og:title']/@content")[0])
+        wob_title = self._get_title()
 
+        if wob_title:
             wob_id, wob_status, actual_title = wob_title.split(
                 u' ', 2)
 
             if not re.match('^\d{4}', wob_id):
                 # Use slug as object id
-                wob_id = unicode(
-                    self.original_item.xpath(
-                        ".//meta[@property='og:url']/@content"
-                    )[0].split('/')[-2])
+                wob_id = unicode(self._get_url().split('/')[-2])
         return (wob_id, wob_status, wob_title,)
 
     def _get_hashed_id(self, wob_id):
@@ -161,11 +166,11 @@ class UtrechtCategoryItem(UtrechtItem):
         'doc': dict
     }
 
-    def get_object_id(self):
-        return unicode(self.original_item['url']).split('/')[-2]
+    def _get_title(self):
+        return self.original_item['title']
 
-    def get_original_object_id(self):
-        return unicode(self.original_item['url']).split('/')[-2]
+    def _get_url(self):
+        return self.original_item['url']
 
     def get_original_object_urls(self):
         return {

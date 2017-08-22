@@ -100,11 +100,16 @@ class UtrechtExtractor(BaseExtractor, HttpRequestMixin):
 
 class UtrechtCateogriesExtractor(BaseExtractor, HttpRequestMixin):
     def _get_items_links_from_category(self, cat_url):
-        all_wob_links_xpath = "//div[@class='limiter']/div//h2/a/@href"
+        all_wobs_xpath = "//div[@class='limiter']/div//h2/a"
         resp = self.http_session.get(cat_url, verify=False)
         html = etree.HTML(resp.content)
         # Loop over all div's containg links to wob pages
-        return html.xpath(all_wob_links_xpath)
+        result = {}
+        for wob_obj in html.xpath(all_wobs_xpath):
+            wob_url = wob_obj.xpath('.//@href')[0]
+            wob_title = u''.join(wob_obj.xpath('.//text()'))
+            result[wob_url] = wob_title
+        return result
 
     def run(self):
         resp = self.http_session.get(
@@ -112,17 +117,20 @@ class UtrechtCateogriesExtractor(BaseExtractor, HttpRequestMixin):
         html = etree.HTML(resp.content)
 
         categories = {}
+        titles = {}
         for cat_obj in html.xpath('//div[@class="linklijst"]/div/ul/li/a'):
             cat_url = u'https://www.utrecht.nl%s' % (
                 cat_obj.xpath('.//@href')[0],)
             cat_title = u''.join(cat_obj.xpath('.//text()')).replace(
                 u'Wob-verzoeken ', u'')
             item_links = self._get_items_links_from_category(cat_url)
-            for item_link in item_links:
+            titles.update(item_links)
+            for item_link, item_title in item_links.iteritems():
                 categories.setdefault(item_link, []).append(cat_title)
 
         for url, categories_list in categories.iteritems():
             yield 'application/json', json.dumps({
                 'url': url,
+                'title': unicode(titles[url]),
                 'categories': categories_list
             })

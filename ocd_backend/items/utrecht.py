@@ -1,4 +1,5 @@
 from datetime import datetime
+from hashlib import sha1
 import re
 
 from ocd_backend.items import BaseItem
@@ -48,10 +49,14 @@ class UtrechtItem(BaseItem):
                     )[0].split('/')[-2])
         return (wob_id, wob_status, wob_title,)
 
+    def _get_hashed_id(self, wob_id):
+        obj_id = u'%s:%s' % (self.source_definition['index_name'], wob_id,)
+        return unicode(sha1(obj_id.decode('utf8')).hexdigest())
+
     def get_object_id(self):
         wob_id, wob_status, wob_title = self._get_basic_info()
         # Use slug as object id
-        return wob_id
+        return self._get_hashed_id(wob_id)
 
     def get_original_object_id(self):
         wob_id, wob_status, wob_title = self._get_basic_info()
@@ -102,7 +107,7 @@ class UtrechtItem(BaseItem):
         wob_id, wob_status, wob_title = self._get_basic_info()
         combined_index_data['title'] = wob_title
         if re.match('^\d{4}', wob_id):
-            combined_index_data['id'] = wob_id
+            combined_index_data['id'] = self._get_hashed_id(wob_id)
             combined_index_data['status'] = wob_status
 
         # Description

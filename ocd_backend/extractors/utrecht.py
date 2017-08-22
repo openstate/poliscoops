@@ -12,6 +12,7 @@ import os
 from pprint import pprint
 import re
 
+import xlrd
 from xlrd import open_workbook
 
 
@@ -175,11 +176,16 @@ class UtrechtOverviewExtractor(GlobExtractor):
                 year = int(wob_id)
                 continue
             if processing:
+                if values[3] != u'':
+                    record_date = xlrd.xldate.xldate_as_datetime(
+                        values[3], 0).isoformat()
+                else:
+                    record_date = None
                 record = {
                     'id': u'%s-%s' % (year, int(values[0]),),
                     'sender': values[1],
                     'title': values[2],
-                    'date': values[3]
+                    'date': record_date
                 }
                 wobs.append(record)
                 processed += 1

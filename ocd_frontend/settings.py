@@ -28,7 +28,8 @@ SORTABLE_FIELDS = {
         'meta.processing_started',
         'meta.processing_finished',
         '_score',
-        'date'
+        'start_date',
+        'end_date'
     ]
 }
 
@@ -104,9 +105,15 @@ COMMON_FACETS = {
 
 AVAILABLE_FACETS = {
     'items': {
-        'date': {
+        'start_date': {
             'date_histogram': {
-                'field': 'date',
+                'field': 'start_date',
+                'interval': 'month'
+            }
+        },
+        'end_date': {
+            'date_histogram': {
+                'field': 'end_date',
                 'interval': 'month'
             }
         }

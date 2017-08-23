@@ -3,6 +3,8 @@ import math
 import simplejson as json
 import re
 from urllib import urlencode
+from pprint import pprint
+import sys
 
 from flask import (
     Flask, abort, jsonify, request, redirect, render_template,
@@ -148,7 +150,7 @@ class BackendAPI(object):
             "from": (page - 1) * PAGE_SIZE,
             "size": PAGE_SIZE,
             "filters": {
-                'source': {
+                'collection': {
                     'terms': [gov_slug]
                 },
                 'types': {
@@ -160,17 +162,19 @@ class BackendAPI(object):
         if query is not None:
             es_query['query'] = query
 
+        print >>sys.stderr, json.dumps(es_query)
         try:
             result = requests.post(
                 '%s/search' % (self.URL,),
                 data=json.dumps(es_query)).json()
-        except Exception:
+        except Exception as e:
             result = {
                 'hits': {
                     'hits': [],
                     'total': 0
                 }
             }
+        print >>sys.stderr, json.dumps(result)
         return result
 
     def find_by_id(self, id):

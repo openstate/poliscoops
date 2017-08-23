@@ -143,7 +143,14 @@ RUN rm -rf /tmp/pdfparser /tmp/poppler
 # Setup Celery
 RUN adduser --disabled-password celery \
   && mkdir -p /var/run/celery \
-  && chown celery:celery /var/run/celery
+  && chown celery:celery /var/run/celery \
+  && mkdir -p /opt/owa/ocd_backend/temp \
+  && chown celery:celery /opt/owa/ocd_backend/temp \
+  && touch /opt/owa/backend.log \
+  && chown celery:celery /opt/owa/backend.log \
+  && touch /opt/owa/log/celery.log
+  && chown celery:celery  /opt/owa/log/celery.log
+
 USER celery
 WORKDIR /opt/owa/
 CMD source /opt/bin/activate && /opt/bin/celery --app=ocd_backend:celery_app worker --loglevel=info --concurrency=1

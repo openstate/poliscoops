@@ -148,7 +148,7 @@ RUN adduser --disabled-password celery \
   && chown celery:celery /opt/owa/ocd_backend/temp \
   && touch /opt/owa/backend.log \
   && chown celery:celery /opt/owa/backend.log \
-  && touch /opt/owa/log/celery.log
+  && touch /opt/owa/log/celery.log \
   && chown celery:celery  /opt/owa/log/celery.log
 
 USER celery

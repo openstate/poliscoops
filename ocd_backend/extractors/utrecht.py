@@ -194,3 +194,11 @@ class UtrechtOverviewExtractor(GlobExtractor):
         for file_path in glob(self.pathname):
             for wob in self._get_wob_requests(file_path):
                 yield 'application/json', json.dumps(wob)
+
+
+class UtrechtLatestOverviewExtractor(UtrechtOverviewExtractor):
+    def run(self):
+        pathnames = glob(self.pathname)
+        pathnames.reverse()  # get the latest one only
+        for wob in self._get_wob_requests(pathnames[0]):
+            yield 'application/json', json.dumps(wob)

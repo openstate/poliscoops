@@ -110,8 +110,22 @@
         "keep_index_on_update": true
     },
     {
-        "id": "utrecht_overviews",
+        "id": "utrecht_all_overviews",
         "extractor": "ocd_backend.extractors.utrecht.UtrechtOverviewExtractor",
+        "transformer": "ocd_backend.transformers.BaseTransformer",
+        "item": "ocd_backend.items.utrecht.UtrechtOverviewItem",
+        "enrichers": [
+        ],
+        "loader": "ocd_backend.loaders.ElasticsearchUpsertLoader",
+        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+        "hidden": false,
+        "index_name": "utrecht",
+        "pathname": "/opt/owa/ocd_backend/overviews/utrecht/*.xlsx",
+        "keep_index_on_update": true
+    },
+    {
+        "id": "utrecht_overview",
+        "extractor": "ocd_backend.extractors.utrecht.UtrechtLatestOverviewExtractor",
         "transformer": "ocd_backend.transformers.BaseTransformer",
         "item": "ocd_backend.items.utrecht.UtrechtOverviewItem",
         "enrichers": [

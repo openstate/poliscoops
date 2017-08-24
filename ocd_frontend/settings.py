@@ -122,6 +122,12 @@ AVAILABLE_FACETS = {
                 'field': 'categories',
                 'size': 10
             }
+        },
+        'status': {
+            'terms': {
+                'field': 'status',
+                'size': 10
+            }
         }
     }
 }

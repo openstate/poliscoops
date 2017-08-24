@@ -143,7 +143,7 @@ class UtrechtItem(BaseItem):
 
         # media urls
         combined_index_data['media_urls'] = []
-        for u in self.original_item.xpath(".//a[@class='download']/@href"):
+        for u in self.original_item.xpath(".//a[@class='download']"):
             actual_url = unicode(u.xpath('./@href'))
             label = u''.join(u.xpath('.//text()'))
             if actual_url.startswith(u'/'):

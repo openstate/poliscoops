@@ -29,3 +29,8 @@
 
 ul.wordcloud { list-style-type: none; }
 ul.wordcloud li { display: inline-block; }
+
+#categories .btn {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}

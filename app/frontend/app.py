@@ -65,10 +65,12 @@ def do_nl2br(s):
     return s.replace('\n', '<br>')
 
 
-@app.template_filter('humanize')
-def do_humanize(s):
+def humanize(s):
     return u' '.join([x.capitalize() for x in s.split(u'-')])
 
+@app.template_filter('humanize')
+def do_humanize(s):
+    return humanize(s)
 
 class BackendAPI(object):
     URL = 'http://api.openwob.nl/v0'
@@ -162,20 +164,50 @@ class BackendAPI(object):
         if query is not None:
             es_query['query'] = query
 
-        print >>sys.stderr, json.dumps(es_query)
         try:
             result = requests.post(
                 '%s/search' % (self.URL,),
                 data=json.dumps(es_query)).json()
-        except Exception as e:
+        except Exception:
             result = {
                 'hits': {
                     'hits': [],
                     'total': 0
                 }
             }
-        print >>sys.stderr, json.dumps(result)
         return result
+
+    def category_stats(self, gov_slug, start_date=None, end_date=None):
+        es_query = {
+            "size": 0,
+            "facets": {
+                "categories": {}
+            },
+            "filters": {
+                'collection': {
+                    'terms': [humanize(gov_slug)]
+                },
+                'types': {
+                    'terms': ['item']
+                }
+            }
+        }
+
+        try:
+            print >>sys.stderr, json.dumps(es_query)
+            result = requests.post(
+                '%s/search' % (self.URL,),
+                data=json.dumps(es_query)).json()
+        except Exception as e:
+            print >>sys.stderr, e
+            result = {
+                'facets': {
+                    'categories': {
+                        'buckets': []
+                    }
+                }
+            }
+        return result['facets']['categories']['buckets']
 
     def find_by_id(self, id):
         es_query = {
@@ -205,8 +237,9 @@ def stats():
 
 @app.route("/<gov_slug>")
 def gov_home(gov_slug):
+    categories = api.category_stats(gov_slug)
     return render_template(
-        'gov.html', gov_slug=gov_slug)
+        'gov.html', gov_slug=gov_slug, categories=categories)
 
 
 @app.route("/<gov_slug>/zoeken")

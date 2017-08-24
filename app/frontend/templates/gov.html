@@ -9,8 +9,11 @@
 
 <section id="browse">
 <div class="row">
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-6" id="categories">
     <h2>Zoeken per thema</h2>
+    {% for category in categories %}
+      <a class="btn btn-default" href="#" role="button">{{ category.key }} ({{ category.doc_count}})</a>
+    {% endfor %}
   </div>
   <div class="col-xs-12 col-md-6">
     <h2>Open WOB verzoeken</h2>

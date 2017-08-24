@@ -230,5 +230,6 @@ class UtrechtOverviewItem(UtrechtItem):
         if self.original_item['date'] is not None:
             combined_index_data['start_date'] = iso8601.parse_date(
                 self.original_item['date'])
+        combined_index_data['status'] = u'Open'
 
         return combined_index_data

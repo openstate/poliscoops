@@ -109,6 +109,9 @@
                     "type": "date",
                     "format": "dateOptionalTime"
                 },
+                "status": {
+                  "type": "keyword"
+                },
                 "authors": {
                     "type": "text",
                     "fields": {

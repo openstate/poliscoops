@@ -84,6 +84,9 @@ class ElasticsearchLoader(BaseLoader):
         elasticsearch.index(index=self.index_name, doc_type=self.doc_type,
                             body=doc, id=object_id)
 
+        self._create_resolvable_media_urls(doc)
+
+    def _create_resolvable_media_urls(self, doc):
         m_url_content_types = {}
         if 'media_urls' in doc['enrichments']:
             for media_url in doc['enrichments']['media_urls']:
@@ -172,8 +175,8 @@ class ElasticsearchUpsertLoader(ElasticsearchLoader):
                 'doc': doc,
                 'doc_as_upsert': True
             }, id=object_id)
-        # remember, resolver URLs are not update here to prevent too complex
-        # things
+
+        self._create_resolvable_media_urls(doc)
 
 
 class DummyLoader(BaseLoader):

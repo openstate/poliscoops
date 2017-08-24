@@ -203,13 +203,13 @@ def format_search_results(results, doc_type='items'):
             try:
                 hit['_source']['meta'][fld] = hit[fld]
             except Exception as e:
-                pass 
+                pass
         formatted_results[hit['_type']].append(hit['_source'])
         del hit['_type']
         del hit['_index']
 
-    if results.has_key('facets'):
-        formatted_results['facets'] = results['facets']
+    if results.has_key('aggregations'):
+        formatted_results['facets'] = results['aggregations']
 
     formatted_results['meta'] = {
         'total': results['hits']['total'],

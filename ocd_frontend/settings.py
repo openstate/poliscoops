@@ -116,6 +116,12 @@ AVAILABLE_FACETS = {
                 'field': 'end_date',
                 'interval': 'month'
             }
+        },
+        'categories': {
+            'terms': {
+                'field': 'categories',
+                'size': 10
+            }
         }
     }
 }

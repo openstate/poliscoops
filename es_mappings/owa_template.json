@@ -95,15 +95,19 @@
                     "type": "text",
                     "analyzer": "text_nl"
                 },
+                "categories": {
+                  "type": "keyword"
+                },
                 "classification": {
                     "type": "keyword"
                 },
-                "date": {
+                "start_date": {
                     "type": "date",
                     "format": "dateOptionalTime"
                 },
-                "date_granularity": {
-                    "type": "short"
+                "end_date": {
+                    "type": "date",
+                    "format": "dateOptionalTime"
                 },
                 "authors": {
                     "type": "text",
@@ -140,6 +144,16 @@
                         "content_type": {
                             "type": "keyword",
                             "copy_to": "media_url"
+                        },
+                        "text": {
+                          "type" : "text",
+                          "analyzer": "text_nl",
+                          "copy_to": "media_url"
+                        },
+                        "label": {
+                          "type" : "text",
+                          "analyzer": "text_nl",
+                          "copy_to": "media_url"
                         }
                     }
                 },

@@ -19,6 +19,7 @@ class UtrechtItem(BaseItem):
         'all_text': unicode,
         'id': unicode,
         'status': unicode,
+        'sender': unicode,
         'categories': list
     }
 
@@ -143,12 +144,14 @@ class UtrechtItem(BaseItem):
         # media urls
         combined_index_data['media_urls'] = []
         for u in self.original_item.xpath(".//a[@class='download']/@href"):
-            actual_url = unicode(u)
+            actual_url = unicode(u.xpath('./@href'))
+            label = u''.join(u.xpath('.//text()'))
             if actual_url.startswith(u'/'):
                 actual_url = u'https://www.utrecht.nl%s' % (actual_url,)
             combined_index_data['media_urls'].append({
                 'original_url': actual_url,
-                'content_type': u'application/pdf'
+                'content_type': u'application/pdf',
+                'label': label
             })
 
         return combined_index_data

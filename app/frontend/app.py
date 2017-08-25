@@ -222,16 +222,22 @@ class BackendAPI(object):
             }
         return result['facets']['categories']['buckets']
 
-    def find_by_id(self, id):
+    def find_by_id(self, gov_slug, id):
         es_query = {
             "filters": {
-                "id": {"terms": [id]}
+                "id": {"terms": [id]},
+                'collection': {
+                    'terms': [humanize(gov_slug)]
+                },
+                'types': {
+                    'terms': ['item']
+                }
             },
             "size": 1
         }
 
         return requests.post(
-            '%s/tk_qa_matches/search' % (self.URL,),
+            '%s/search' % (self.URL,),
             data=json.dumps(es_query)).json()
 
 api = BackendAPI()
@@ -276,6 +282,10 @@ def search(gov_slug):
         gov_slug=search_params['gov_slug'])
 
 
+@app.route("/<gov_slug>/verzoek/<obj_id>")
+def show(gov_slug, obj_id):
+    result = api.find_by_id(gov_slug, obj_id)
+    return render_template('show.html', gov_slug=gov_slug, result=result)
 
 
 def create_app():

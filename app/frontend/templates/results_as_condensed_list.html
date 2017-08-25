@@ -1,7 +1,7 @@
 {% for result in results.item %}
 <div class="row">
   <div class="col-xs-12">
-    <h2><a href="#">{{ result.title }}</a></h2>
+    <h2><a href="{{ url_for('show', gov_slug=gov_slug, obj_id=result.id )}}">{{ result.title }}</a></h2>
     {% if result.start_date %}
     <p class="pull-left">S: {{ result.start_date|iso8601_to_str("%d-%m-%Y") }}</p>
     {% endif %}

@@ -128,6 +128,12 @@ AVAILABLE_FACETS = {
                 'field': 'status',
                 'size': 10
             }
+        },
+        'id': {
+            'terms': {
+                'field': 'id',
+                'size': 10
+            }
         }
     }
 }

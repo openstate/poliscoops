@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block lead %}
+<p class="lead-text">Vind en doorzoek Wob verzoeken, besluiten en bijlagen in {{ gov_slug |humanize }}</p>
+{% endblock %}
+
+{% block content %}
+{% include 'search.html' %}
+<h2>{{ result }}</h2>
+{% endblock %}

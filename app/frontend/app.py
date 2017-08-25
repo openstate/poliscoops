@@ -144,7 +144,7 @@ class BackendAPI(object):
             }
         return result
 
-    def search_questions(self, gov_slug, query=None, page=1, *args, **kwargs):
+    def search_questions(self, *args, **kwargs):
         es_query = {
             "facets": {
                 "categories": {},
@@ -153,21 +153,30 @@ class BackendAPI(object):
             },
             "sort": "start_date",
             "order": "desc",
-            "from": (page - 1) * PAGE_SIZE,
+            "from": (kwargs['page'] - 1) * PAGE_SIZE,
             "size": PAGE_SIZE,
             "filters": {
-                'collection': {
-                    'terms': [humanize(gov_slug)]
-                },
                 'types': {
                     'terms': ['item']
                 }
             }
         }
 
-        if query is not None:
-            es_query['query'] = query
-
+        if 'gov_slug' in kwargs:
+            es_query['filters']['collection'] = {
+                'terms': [humanize(kwargs['gov_slug'])]}
+        if kwargs.get('query', None) is not None:
+            es_query['query'] = kwargs['query']
+        if kwargs.get('category', None) is not None:
+            es_query['filters']['categories'] = {
+                'terms': [kwargs['category']]}
+        if kwargs.get('status', None) is not None:
+            es_query['filters']['status'] = {
+                'terms': [kwargs['status']]}
+        # FIXME: we should do dates differently
+        if kwargs.get('start_date', None) is not None:
+            es_query['filters']['start_date'] = {
+                'terms': [kwargs['start_date']]}
         try:
             result = requests.post(
                 '%s/search' % (self.URL,),
@@ -248,13 +257,21 @@ def gov_home(gov_slug):
 
 @app.route("/<gov_slug>/zoeken")
 def search(gov_slug):
-    page = int(request.args.get('page', '1'))
-    query = request.args.get('query', None)
-    results = api.search_questions(gov_slug, query, page)
+    search_params = {
+        'gov_slug': gov_slug,
+        'page': int(request.args.get('page', '1')),
+        'query': request.args.get('query', None),
+        'category': request.args.get('category', None),
+        'status': request.args.get('status', None),
+        'start_date': request.args.get('start_date', None)
+    }
+    results = api.search_questions(**search_params)
     max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
     return render_template(
-        'search_results.html', results=results, query=query, page=page,
-        max_pages=max_pages, gov_slug=gov_slug)
+        'search_results.html', results=results, query=search_params['query'],
+        page=search_params['page'], category=search_params['category'],
+        status=search_params['status'], start_date=search_params['start_date'],
+        max_pages=max_pages, gov_slug=search_params['gov_slug'])
 
 
 

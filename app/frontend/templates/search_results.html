@@ -19,7 +19,9 @@
       <a class="btn btn-default btn-category" href="#" role="button">{{ status.key }} ({{ status.doc_count}})</a>
     {% endfor %}
     <h2>Datum</h2>
-    <p>Coming soon</p>
+    {% for start_date in results.facets.start_date.buckets %}
+      <a class="btn btn-default btn-category" href="#" role="button">{{ start_date.key_as_string |iso8601_to_str("%b %Y") }} ({{ start_date.doc_count}})</a>
+    {% endfor %}
   </div>
   <div class="col-xs-12 col-md-8">
   {% include 'results_as_list.html' %}

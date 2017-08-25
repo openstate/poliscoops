@@ -149,7 +149,8 @@ class BackendAPI(object):
         es_query = {
             "facets": {
                 "categories": {},
-                "status": {}
+                "status": {},
+                "start_date": {}
             },
             "sort": "start_date",
             "order": "desc",

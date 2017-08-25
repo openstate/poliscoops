@@ -30,7 +30,7 @@
 ul.wordcloud { list-style-type: none; }
 ul.wordcloud li { display: inline-block; }
 
-#categories .btn {
+.btn-category {
   margin-right: 10px;
   margin-bottom: 10px;
 }

@@ -8,6 +8,21 @@
 
 {% include 'search.html' %}
 <section id="data">
-{% include 'results_as_list.html' %}
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <h2>Categorieen</h2>
+    {% for category in results.facets.categories.buckets %}
+      <a class="btn btn-default btn-category" href="#" role="button">{{ category.key }} ({{ category.doc_count}})</a>
+    {% endfor %}
+    <h2>Status</h2>
+    {% for status in results.facets.status.buckets %}
+      <a class="btn btn-default btn-category" href="#" role="button">{{ status.key }} ({{ status.doc_count}})</a>
+    {% endfor %}
+    <h2>Datum</h2>
+    <p>Coming soon</p>
+  </div>
+  <div class="col-xs-12 col-md-8">
+  {% include 'results_as_list.html' %}
+  </div>
 </section>
 {% endblock %}

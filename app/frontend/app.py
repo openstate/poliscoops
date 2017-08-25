@@ -145,15 +145,19 @@ class BackendAPI(object):
             }
         return result
 
-    def search_questions(self, gov_slug, query=None, page=1):
+    def search_questions(self, gov_slug, query=None, page=1, *args, **kwargs):
         es_query = {
+            "facets": {
+                "categories": {},
+                "status": {}
+            },
             "sort": "start_date",
             "order": "desc",
             "from": (page - 1) * PAGE_SIZE,
             "size": PAGE_SIZE,
             "filters": {
                 'collection': {
-                    'terms': [gov_slug]
+                    'terms': [humanize(gov_slug)]
                 },
                 'types': {
                     'terms': ['item']

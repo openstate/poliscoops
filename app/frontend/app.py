@@ -251,8 +251,9 @@ def stats():
 @app.route("/<gov_slug>")
 def gov_home(gov_slug):
     categories = api.category_stats(gov_slug)
+    results = api.search_questions(gov_slug=gov_slug, page=1, status='Open')
     return render_template(
-        'gov.html', gov_slug=gov_slug, categories=categories)
+        'gov.html', gov_slug=gov_slug, categories=categories, results=results)
 
 
 @app.route("/<gov_slug>/zoeken")

@@ -17,6 +17,8 @@
   </div>
   <div class="col-xs-12 col-md-6">
     <h2>Open WOB verzoeken</h2>
+    {% include 'results_as_condensed_list.html' %}
+    <a href="{{ url_for('search', gov_slug=gov_slug, status='Open') }}" class="btn btn-default btn-large" style="width: 100%;">Toon alle {{ results.meta.total }} open wob verzoeken</a> 
   </div>
 </div>
 </section>

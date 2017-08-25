@@ -1,0 +1,14 @@
+{% for result in results.item %}
+<div class="row">
+  <div class="col-xs-12">
+    <h2><a href="#">{{ result.title }}</a></h2>
+    {% if result.start_date %}
+    <p class="pull-left">S: {{ result.start_date|iso8601_to_str("%d-%m-%Y") }}</p>
+    {% endif %}
+    {% if result.end_date %}
+    <p class="pull-left">E: {{ result.end_date|iso8601_to_str("%d-%m-%Y") }}</p>
+    {% endif %}
+    <p class="pull-right"><a href="http://api.openwob.nl/v0/combined_index/item/{{ result.id }}" target="_blank">source</a></p>
+  </div>
+</div>
+{% endfor %}

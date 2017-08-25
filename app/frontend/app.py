@@ -269,9 +269,10 @@ def search(gov_slug):
     max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
     return render_template(
         'search_results.html', results=results, query=search_params['query'],
-        page=search_params['page'], category=search_params['category'],
-        status=search_params['status'], start_date=search_params['start_date'],
-        max_pages=max_pages, gov_slug=search_params['gov_slug'])
+        page=search_params['page'], active_category=search_params['category'],
+        active_status=search_params['status'], max_pages=max_pages,
+        active_start_date=search_params['start_date'],
+        gov_slug=search_params['gov_slug'])
 
 
 

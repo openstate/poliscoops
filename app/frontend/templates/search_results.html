@@ -12,15 +12,42 @@
   <div class="col-xs-12 col-md-4">
     <h2>Categorieen</h2>
     {% for category in results.facets.categories.buckets %}
-      <a class="btn btn-default btn-category" href="{{ dict(category=category.key) |url_for_search_page(gov_slug) }}" role="button">{{ category.key }} ({{ category.doc_count}})</a>
+      {% if active_category == category.key %}
+      <a class="btn btn-default btn-category active" href="{{ dict(category=None) |url_for_search_page(gov_slug) }}" role="button">
+      {% else %}
+      <a class="btn btn-default btn-category" href="{{ dict(category=category.key) |url_for_search_page(gov_slug) }}" role="button">
+      {% endif %}
+        {% if active_category == category.key %}
+        <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px;"><span aria-hidden="true">&times;</span></button>
+        {% endif %}
+        {{ category.key }} ({{ category.doc_count}})
+      </a>
     {% endfor %}
     <h2>Status</h2>
     {% for status in results.facets.status.buckets %}
-      <a class="btn btn-default btn-category" href="{{ dict(status=status.key) |url_for_search_page(gov_slug) }}" role="button">{{ status.key }} ({{ status.doc_count}})</a>
+      {% if active_status == status.key %}
+      <a class="btn btn-default btn-category active" href="{{ dict(status=None) |url_for_search_page(gov_slug) }}" role="button">
+      {% else %}
+      <a class="btn btn-default btn-category" href="{{ dict(status=status.key) |url_for_search_page(gov_slug) }}" role="button">
+        {% if active_status == status.key %}
+        <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px;"><span aria-hidden="true">&times;</span></button>
+        {% endif %}
+        {{ status.key }} ({{ status.doc_count}})
+      </a>
+      {% endif %}
     {% endfor %}
     <h2>Datum</h2>
     {% for start_date in results.facets.start_date.buckets %}
-      <a class="btn btn-default btn-category" href="{{ dict(start_date=start_date.key) |url_for_search_page(gov_slug) }}" role="button">{{ start_date.key_as_string |iso8601_to_str("%b %Y") }} ({{ start_date.doc_count}})</a>
+      {% if active_start_date == start_date.key %}
+      <a class="btn btn-default btn-category active" href="{{ dict(start_date=None) |url_for_search_page(gov_slug) }}" role="button">
+      {% else %}
+      <a class="btn btn-default btn-category" href="{{ dict(start_date=start_date.key) |url_for_search_page(gov_slug) }}" role="button">
+      {% endif %}
+      {% if active_start_date == start_date.key %}
+      <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px;"><span aria-hidden="true">&times;</span></button>
+      {% endif %}
+      {{ start_date.key_as_string |iso8601_to_str("%b %Y") }} ({{ start_date.doc_count}})
+      </a>
     {% endfor %}
   </div>
   <div class="col-xs-12 col-md-8">

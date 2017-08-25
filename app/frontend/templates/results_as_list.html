@@ -34,7 +34,7 @@
       <a href="#" rel="prev">Vorige</a>
     {% else %}
     <li class="prev previous_page">
-      <a href="{{ (page - 1) |url_for_search_page(gov_slug) }}" rel="prev">Vorige</a>
+      <a href="{{ dict(page=(page - 1)) |url_for_search_page(gov_slug) }}" rel="prev">Vorige</a>
     {% endif %}
     </li>
     {% if page >= max_pages %}
@@ -42,7 +42,7 @@
       <a href="#" rel="next">Volgende</a>
     {% else %}
     <li class="next next_page">
-      <a href="{{ (page + 1) |url_for_search_page(gov_slug) }}" rel="next">Volgende</a>
+      <a href="{{ dict(page=(page + 1)) |url_for_search_page(gov_slug) }}" rel="next">Volgende</a>
     {% endif %}
     </li>
   </ul>

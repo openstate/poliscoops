@@ -23,14 +23,13 @@ PAGE_SIZE = 20
 
 
 @app.template_filter('url_for_search_page')
-def do_url_for_search_page(page, gov_slug):
+def do_url_for_search_page(params, gov_slug):
     url_args = {
         'gov_slug': gov_slug
     }
     if 'query' in request.args:
         url_args['query'] = request.args['query']
-    if page > 0:
-        url_args['page'] = page
+    url_args.update(params)
     url = url_for('search', **url_args)
     return url
 

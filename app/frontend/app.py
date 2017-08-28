@@ -67,9 +67,16 @@ def do_nl2br(s):
 def humanize(s):
     return u' '.join([x.capitalize() for x in s.split(u'-')])
 
+
 @app.template_filter('humanize')
 def do_humanize(s):
     return humanize(s)
+
+
+@app.template_filter('normalize_wob_title')
+def do_normalize_wob_title(r):
+    return r['title'].replace(r['meta']['original_object_id'], u'').strip()
+
 
 class BackendAPI(object):
     URL = 'http://api.openwob.nl/v0'

@@ -38,12 +38,12 @@
     {% endfor %}
     <h2>Datum</h2>
     {% for start_date in results.facets.start_date.buckets %}
-      {% if active_start_date == start_date.key %}
+      {% if active_start_date|int == start_date.key|int %}
       <a class="btn btn-default btn-category active" href="{{ dict(start_date=None, category=active_category, status=active_status) |url_for_search_page(gov_slug) }}" role="button">
       {% else %}
       <a class="btn btn-default btn-category" href="{{ dict(start_date=start_date.key, category=active_category, status=active_status) |url_for_search_page(gov_slug) }}" role="button">
       {% endif %}
-      {% if active_start_date == start_date.key %}
+      {% if active_start_date|int == start_date.key|int %}
       <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px;"><span aria-hidden="true">&times;</span></button>
       {% endif %}
       {{ start_date.key_as_string |iso8601_to_str("%b %Y") }} ({{ start_date.doc_count}})

@@ -49,8 +49,10 @@ def do_tk_questions_format(s):
 
 @app.template_filter('iso8601_to_str')
 def do_iso8601_to_str(s, format):
-    return iso8601.parse_date(s).strftime(format)
-
+    try:
+        return iso8601.parse_date(s).strftime(format)
+    except iso8601.ParseError:
+        return u''
 
 @app.template_filter('iso8601_delay_in_days')
 def do_iso8601_delay_in_days(q, a=None):
@@ -182,8 +184,15 @@ class BackendAPI(object):
                 'terms': [kwargs['status']]}
         # FIXME: we should do dates differently
         if kwargs.get('start_date', None) is not None:
+            sd = datetime.datetime.fromtimestamp(int(kwargs['start_date']) / 1000)
+            ed_month = sd.month + 1
+            ed_year = sd.year
+            if ed_month > 12:
+                ed_month = 1
+                ed_year += 1
             es_query['filters']['start_date'] = {
-                'terms': [kwargs['start_date']]}
+                'from': "%s-%s-01T00:00:00" % (sd.year, sd.month,),
+                'to': "%s-%s-01T00:00:00" % (ed_year, ed_month,)}
         try:
             result = requests.post(
                 '%s/search' % (self.URL,),

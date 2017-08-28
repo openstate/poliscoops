@@ -46,3 +46,25 @@ ul.wordcloud li { display: inline-block; }
 .vote-detail {
   display: inline-block;
 }
+
+.dashes {
+  width: 100%;
+  height: 20px;
+  background: url(/static/images/assets/dash.svg) repeat-x;
+}
+
+.dot {
+  width: 30px;
+  height: 30px;
+  margin-top: -5px;
+}
+
+.dot-left {
+  margin-left: -5px;
+  float: left;
+}
+
+.dot-right {
+  margin-left: 5px;
+  float: right;
+}

@@ -28,6 +28,7 @@
 </div>
 </section>
 
+<p></p>
 <section id="timeline">
 <div class="well">
   <div class="clearfix">
@@ -37,6 +38,12 @@
   <div class="clearfix">
     <p class="pull-left">Ingediend</p>
     <p class="pull-right">{{ result.status }}</p>
+  </div>
+  <div class="dashes">
+    <img src="/static/images/assets/dot.svg" class="dot dot-left"/>
+    {% if result.status != "Open" %}
+    <img src="/static/images/assets/dot.svg" class="dot dot-right"/>
+    {% endif %}
   </div>
 </div>
 </section>

@@ -292,7 +292,12 @@ def search(gov_slug):
 @app.route("/<gov_slug>/verzoek/<obj_id>")
 def show(gov_slug, obj_id):
     result = api.find_by_id(gov_slug, obj_id)
-    return render_template('show.html', gov_slug=gov_slug, result=result)
+
+    if result['meta']['total'] <= 0:
+        abort(404)
+
+    return render_template(
+        'show.html', gov_slug=gov_slug, result=result['item'][0])
 
 
 def create_app():

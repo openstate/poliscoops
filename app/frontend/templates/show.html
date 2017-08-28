@@ -6,5 +6,48 @@
 
 {% block content %}
 {% include 'search.html' %}
-<h2>{{ result }}</h2>
+<h1><span class="wob-id">{{ result.meta.original_object_id }}</span> {{ result |normalize_wob_title }}</h1>
+
+<section id="rating">
+<div class="row">
+  <div class="col-xs-12">
+    Geef je stem:
+    <div class="vote-detail vote-aye">
+      <button type="button" class="btn btn-success">+1</button>
+      <span class="count">
+        ({{ result.votes_aye |default("0") }})
+      </span>
+    </div>
+    <div class="vote-detail vote-nay">
+      <button type="button" class="btn btn-danger">-1</button>
+      <span class="count">
+        ({{ result.votes_nay |default("0") }})
+      </span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="timeline">
+<div class="well">
+  <div class="clearfix">
+    <p class="pull-left">{{ result.start_date |iso8601_to_str('%d %b %Y') }}</p>
+    <p class="pull-right">{{ result.end_date |iso8601_to_str('%d %b %Y') }}</p>
+  </div>
+  <div class="clearfix">
+    <p class="pull-left">Ingediend</p>
+    <p class="pull-right">{{ result.status }}</p>
+  </div>
+</div>
+</section>
+
+<p>{{ result.description }}</p>
+
+<ol class="list-inline">
+{% for pdf in result.media_urls %}
+  <li><a href="{{ pdf.url }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ pdf.label }}</a></li>
+{% endfor %}
+</ol>
+<p class="pull-right"><a href="http://api.openwob.nl/v0/combined_index/item/{{ result.id }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a></p>
+
 {% endblock %}

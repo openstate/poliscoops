@@ -34,3 +34,15 @@ ul.wordcloud li { display: inline-block; }
   margin-right: 10px;
   margin-bottom: 10px;
 }
+
+.wob-id {
+  color: #cccccc;
+}
+
+.count {
+  color: #cccccc;
+}
+
+.vote-detail {
+  display: inline-block;
+}

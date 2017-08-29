@@ -135,8 +135,18 @@ AVAILABLE_FACETS = {
                 'size': 10
             }
         },
-        'wordcloud_significant': {
-            "significant_terms": {"field": "enrichtments.media_urls.text"}
+        'wordcloud_text': {
+            "terms": {"field": "enrichments.media_urls.text", "size": 50}
+        },
+        'wordcloud_description': {
+            "terms": {"field": "description", "size": 50}
+        },
+        'significant_wordcloud_text': {
+            "significant_terms": {
+                "field": "enrichments.media_urls.text", "size": 50}
+        },
+        'significant_wordcloud_description': {
+            "significant_terms": {"field": "description", "size": 50}
         }
     }
 }

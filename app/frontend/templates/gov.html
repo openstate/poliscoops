@@ -29,7 +29,9 @@
       <h2>Statistieken</h2>
     </div>
     <div class="col-xs-12 col-md-6">
-      maand stats
+      <div id="graph-monthly" class="graph">
+        <svg></svg>
+      </div>
     </div>
     <div class="col-xs-12 col-md-6">
       <p class="delay-lead"><span class="count">0</span> dagen</p>
@@ -49,7 +51,7 @@
 $(document).ready(function() {
   var cur_date = new Date();
   var cur_year = cur_date.getFullYear();
-  OpenWOBApp.get_average_delay_in_period((cur_year - 1) + "-01-01T00:00:00", cur_year + "-12-31T23:59:59");
+  OpenWOBApp.set_date_years((cur_year - 1), cur_year);
 });
 </script>
 {% endblock %}

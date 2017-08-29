@@ -68,3 +68,13 @@ ul.wordcloud li { display: inline-block; }
   margin-left: 5px;
   float: right;
 }
+
+.delay-lead {
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+}
+
+.delay-lead .count {
+  font-size: 4em;
+}

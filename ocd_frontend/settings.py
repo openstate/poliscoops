@@ -134,6 +134,9 @@ AVAILABLE_FACETS = {
                 'field': 'id',
                 'size': 10
             }
+        },
+        'wordcloud_significant': {
+            "significant_terms": {"field": "enrichtments.media_urls.text"}
         }
     }
 }

@@ -89,11 +89,13 @@
                 },
                 "title": {
                     "type": "text",
-                    "analyzer": "text_nl"
+                    "analyzer": "text_nl",
+                    "fielddata": true
                 },
                 "description": {
                     "type": "text",
-                    "analyzer": "text_nl"
+                    "analyzer": "text_nl",
+                    "fielddata": true
                 },
                 "categories": {
                   "type": "keyword"
@@ -151,6 +153,7 @@
                         "text": {
                           "type" : "text",
                           "analyzer": "text_nl",
+                          "fielddata": true,
                           "copy_to": "media_url"
                         },
                         "label": {
@@ -201,6 +204,17 @@
                                 },
                                 "image_mode": {
                                     "type": "keyword"
+                                },
+                                "text": {
+                                  "type" : "text",
+                                  "analyzer": "text_nl",
+                                  "fielddata": true,
+                                  "copy_to": "media_url"
+                                },
+                                "label": {
+                                  "type" : "text",
+                                  "analyzer": "text_nl",
+                                  "copy_to": "media_url"
                                 }
                             }
                         }

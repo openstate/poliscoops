@@ -135,6 +135,10 @@ AVAILABLE_FACETS = {
                 'size': 10
             }
         },
+        'delay_avg': {
+            'avg': {
+                'script':  "(doc['end_date'].value - doc['start_date'].value) / 86400000"}
+        },
         'wordcloud_text': {
             "terms": {"field": "enrichments.media_urls.text", "size": 50}
         },

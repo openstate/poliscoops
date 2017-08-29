@@ -78,3 +78,7 @@ ul.wordcloud li { display: inline-block; }
 .delay-lead .count {
   font-size: 4em;
 }
+
+.graph {
+  width: 300px;
+}

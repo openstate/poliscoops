@@ -14,6 +14,28 @@ OpenWOBApp.init = function() {
   // init here
 };
 
+OpenWOBApp.init_month_graph = function() {
+  nv.addGraph(function() {
+    var chart = nv.models.discreteBarChart()
+        .x(function(d) { return d.key_as_string.slice(0, 7); })    //Specify the data accessors.
+        .y(function(d) { return d.doc_count; })
+        .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
+        .tooltips(true)        //Don't show tooltips
+        .showValues(false)       //...instead, show the bar value right on top of each bar.
+        ;
+
+    d3.select('#graph-monthly svg')
+        .datum([
+          {
+            key: 'Wob verzoeken', values: OpenWOBApp.data.months}])
+        .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+};
+
 OpenWOBApp.get_data = function(start_date, end_date) {
   var req = {
     "filters": {
@@ -49,6 +71,7 @@ OpenWOBApp.get_data = function(start_date, end_date) {
           $('.delay-lead .count').text(Math.floor(OpenWOBApp.data.delay));
 
           OpenWOBApp.data.months = data.facets.start_date.buckets;
+          OpenWOBApp.init_month_graph();
         }
       }
   });

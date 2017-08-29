@@ -19,7 +19,7 @@ import requests
 
 app = Flask(__name__)
 
-PAGE_SIZE = 20
+PAGE_SIZE = 10
 
 
 @app.template_filter('url_for_search_page')

@@ -82,3 +82,12 @@ ul.wordcloud li { display: inline-block; }
 .graph {
   width: 300px;
 }
+
+#tagcloud {
+  width: 100%;
+}
+
+#tagcloud span {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}

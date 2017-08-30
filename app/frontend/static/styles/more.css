@@ -87,7 +87,7 @@ ul.wordcloud li { display: inline-block; }
   width: 100%;
 }
 
-#tagcloud span {
+#tagcloud a {
   margin-left: 20px;
   margin-bottom: 10px;
 }

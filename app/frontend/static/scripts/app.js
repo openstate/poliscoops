@@ -78,15 +78,17 @@ OpenWOBApp.get_data = function(start_date, end_date) {
           OpenWOBApp.data.words = data.facets.significant_wordcloud_text.buckets;
           $('#tagcloud').empty();
           $.each(OpenWOBApp.data.words, function (idx, word) {
-            $('#tagcloud').append($('<span data-count="' + word.score + '">' + word.key + '</span>'));
+            var query_url = $('#tagcloud').attr('data-base-search-url') + '?query=' + word.key;
+            $('#tagcloud').append($('<a href="' + query_url +'" data-count="' + word.score + '">' + word.key + '</span>'));
           });
           var tc = document.getElementById('tagcloud');
-          OpenWOBApp.tagcloud(tc,'span');
+          OpenWOBApp.tagcloud(tc,'a');
         }
       }
   });
 };
 
+// from http://geekthis.net/post/javascript-tag-cloud/
 OpenWOBApp.tagcloud = function(dom,tag) {
 	var highVal = 0;
 	var lowVal = Number.MAX_VALUE;

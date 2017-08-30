@@ -13,6 +13,23 @@ var OpenWOBApp = window.OpenWOBApp || {
 
 OpenWOBApp.init = function() {
   // init here
+
+  $('.vote-btn').click(function (e) {
+    var wob_id = $(this).attr('data-vote-id');
+    var vote_type = $(this).attr('data-vote-type');
+    var vote_url = "/" + OpenWOBApp.gov_slug + "/verzoek/" + wob_id + "/vote/" + vote_type;
+
+    $.ajax({
+        url: vote_url,
+        type: "GET",
+        contentType: "application/json",
+        success: function (data) {
+          alert(data);
+        }
+    });
+
+    return false;
+  });
 };
 
 OpenWOBApp.init_month_graph = function() {

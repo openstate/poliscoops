@@ -14,13 +14,16 @@ from jinja2 import Markup
 
 import iso8601
 import requests
+from redis import StrictRedis
 
 # locale.setlocale(locale.LC_TIME, "nl_NL")
 
 app = Flask(__name__)
 
 PAGE_SIZE = 10
-
+REDIS_HOST = 'redis'
+REDIS_PORT = 6379
+REDIS_DB = 0
 
 @app.template_filter('url_for_search_page')
 def do_url_for_search_page(params, gov_slug):
@@ -78,6 +81,10 @@ def do_humanize(s):
 @app.template_filter('normalize_wob_title')
 def do_normalize_wob_title(r):
     return r['title'].replace(r['meta']['original_object_id'], u'').strip()
+
+
+def redis_client():
+    return StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 
 
 class BackendAPI(object):
@@ -305,8 +312,41 @@ def show(gov_slug, obj_id):
     if result['meta']['total'] <= 0:
         abort(404)
 
+    client = redis_client()
+
+    redis_key = 'votes_%s_%s' % (obj_id, gov_slug,)
+    vote_aye = client.get('%s_inc' % (redis_key,))
+    vote_nay = client.get('%s_dec' % (redis_key,))
+
     return render_template(
-        'show.html', gov_slug=gov_slug, result=result['item'][0])
+        'show.html', gov_slug=gov_slug, result=result['item'][0], votes=[
+            vote_aye, vote_nay])
+
+
+@app.route("/<gov_slug>/verzoek/<obj_id>/vote/<vote_type>")
+def vote(gov_slug, obj_id, vote_type):
+    result = api.find_by_id(gov_slug, obj_id)
+
+    if result['meta']['total'] <= 0:
+        abort(404)
+
+    if unicode(vote_type.lower()) not in [u'inc', u'dec']:
+        abort(404)
+
+    client = redis_client()
+
+    redis_key = 'votes_%s_%s_%s' % (obj_id, gov_slug, vote_type.lower(),)
+    client.incr(redis_key)
+
+    return client.get(redis_key)
+
+
+@app.route("/<gov_slug>/verzoek/<obj_id>/signup", methods=['POST'])
+def email_signup(gov_slug, obj_id):
+    redis_key = 'emails_%s' % (obj_id,)
+    client = redis_client()
+    client.hset(redis_key, request.form['email'], '0')
+    return 'ok'
 
 
 def create_app():

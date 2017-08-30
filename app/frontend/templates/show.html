@@ -13,15 +13,27 @@
   <div class="col-xs-12">
     Geef je stem:
     <div class="vote-detail vote-aye">
-      <button type="button" class="btn btn-success">+1</button>
+      <a href="#" class="vote-btn" data-vote-id="{{ result.id }}" data-vote-type="inc"><img src="/static/images/assets/plus1.svg" /></a>
       <span class="count">
-        ({{ result.votes_aye |default("0") }})
+        (
+        {% if votes[0] %}
+        {{ votes[0] }}
+        {% else %}
+        0
+        {% endif %}
+        )
       </span>
     </div>
     <div class="vote-detail vote-nay">
-      <button type="button" class="btn btn-danger">-1</button>
+      <a href="#" class="vote-btn" data-vote-id="{{ result.id }}" data-vote-type="dec"><img src="/static/images/assets/minus1.svg" /></a>
       <span class="count">
-        ({{ result.votes_nay |default("0") }})
+        (
+        {% if votes[1] %}
+        {{ votes[1] }}
+        {% else %}
+        0
+        {% endif %}
+        )
       </span>
     </div>
   </div>
@@ -47,6 +59,17 @@
   </div>
 </div>
 </section>
+<p></p>
+<section id="social">
+<div class="row">
+  <div class="col-xs-12">
+    Krijg besluit per e-mail
+    <a href="#email-signup-modal" role="button" data-toggle="modal" class="email-signup">
+      <img src="/static/images/assets/e-mail.svg">
+    </a>
+  </div>
+</div>
+</section>
 
 <p>{{ result.description }}</p>
 
@@ -57,4 +80,35 @@
 </ol>
 <p class="pull-right"><a href="http://api.openwob.nl/v0/combined_index/item/{{ result.id }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a></p>
 
+
+<!-- Modal -->
+      <div id="email-signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="email-signup-modalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h4 class="modal-title">Email notificatie</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="containter">
+                          <div class="row">
+                              <form class="form-horizontal" name="commentform" method="post" action="send_form_email.php">
+                                  <div class="col-xs-8">
+                                      <div class="form-group">
+                                          <label for="InputEmail" class="col-lg-4 control-label">Email</label>
+                                          <div class="col-lg-8">
+                                              <input type="email" class="form-control" id="email" name="email"  required  >
+                                          </div>
+                                      </div>
+
+                                      <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                                  </div>
+                              </form>
+                          </div>
+
+                      </div>
+                  </div><!-- End of Modal body -->
+              </div><!-- End of Modal content -->
+          </div><!-- End of Modal dialog -->
+      </div><!-- End of Modal -->
 {% endblock %}

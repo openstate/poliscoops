@@ -47,6 +47,11 @@ ul.wordcloud li { display: inline-block; }
   display: inline-block;
 }
 
+.vote-detail img {
+  width: 30px;
+  height: 30px;
+}
+
 .dashes {
   width: 100%;
   height: 20px;
@@ -90,4 +95,9 @@ ul.wordcloud li { display: inline-block; }
 #tagcloud a {
   margin-left: 20px;
   margin-bottom: 10px;
+}
+
+.email-signup img {
+  width: 30px;
+  height: 30px;
 }

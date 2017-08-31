@@ -13,6 +13,11 @@ var OpenWOBApp = window.OpenWOBApp || {
 
 OpenWOBApp.init = function() {
   // init here
+  $('.rrssb-buttons').rrssb({
+     // required:
+     title: document.title,
+     url: window.location.href
+   });
 
   $('.vote-btn').click(function (e) {
     var wob_id = $(this).attr('data-vote-id');

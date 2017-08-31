@@ -343,7 +343,7 @@ def vote(gov_slug, obj_id, vote_type):
 
 @app.route("/<gov_slug>/verzoek/<obj_id>/signup", methods=['POST'])
 def email_signup(gov_slug, obj_id):
-    redis_key = 'emails_%s' % (obj_id,)
+    redis_key = 'emails_%s_%s' % (gov_slug, obj_id,)
     client = redis_client()
     client.hset(redis_key, request.form['email'], '0')
     return 'ok'

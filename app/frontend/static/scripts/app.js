@@ -24,11 +24,32 @@ OpenWOBApp.init = function() {
         type: "GET",
         contentType: "application/json",
         success: function (data) {
-          alert(data);
+          if (vote_type == 'inc') {
+            $('.vote-aye .count').text('(' + data + ')');
+          } else {
+            $('.vote-nay .count').text('(' + data + ')');
+          }
         }
     });
 
     return false;
+  });
+
+  $('#email-signup-modal form').submit(function () {
+    $.ajax({
+        url: $(this).attr('action'),
+        type: $(this).attr('method'),
+        data: $(this).serialize(),
+        success: function (data) {
+          if (data == 'ok') {
+            $(this).find('input[name="email"]').val('');
+            $('#email-signup-modal').modal('hide');
+          }
+        }
+    });
+
+    return false;
+
   });
 };
 

@@ -92,7 +92,7 @@
                   <div class="modal-body">
                       <div class="containter">
                           <div class="row">
-                              <form class="form-horizontal" name="commentform" method="post" action="send_form_email.php">
+                              <form class="form-horizontal" name="commentform" method="post" action="{{ url_for('email_signup', gov_slug=gov_slug, obj_id=result.id )}}">
                                   <div class="col-xs-8">
                                       <div class="form-group">
                                           <label for="InputEmail" class="col-lg-4 control-label">Email</label>

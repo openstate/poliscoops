@@ -35,21 +35,24 @@ OpenWOBApp.init = function() {
     return false;
   });
 
-  $('#email-signup-modal form').submit(function () {
+  $('#email-signup-modal form').submit(function (e) {
+    console.log('gonna submit form!');
     $.ajax({
         url: $(this).attr('action'),
         type: $(this).attr('method'),
         data: $(this).serialize(),
         success: function (data) {
           if (data == 'ok') {
-            $(this).find('input[name="email"]').val('');
-            $('#email-signup-modal').modal('hide');
+            console.log('clearing stuff!');
+            $('#email-signup-modal input[name="email"]').val('');
+            $('#email-signup-modal').modal('toggle');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
           }
         }
     });
 
     return false;
-
   });
 };
 

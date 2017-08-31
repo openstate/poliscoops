@@ -95,12 +95,14 @@
       </ul>
       <!-- Buttons end here -->
     </div>
+    {% if result.status == 'Open' %}
     <div class="pull-right">
     <strong>Krijg besluit per e-mail</strong>
     <a href="#email-signup-modal" role="button" data-toggle="modal" class="email-signup">
       <img src="/static/images/assets/e-mail.svg">
     </a>
     </div>
+    {% endif %}
   </div>
 </div>
 </section>

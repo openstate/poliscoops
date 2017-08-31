@@ -78,10 +78,18 @@ def perform_mail_run(client, gov_slug, obj_id):
     emails = client.hgetall('emails_%s_%s' % (gov_slug, obj_id,))
 
     wob = api.find_by_id(gov_slug, obj_id)
-    print wob['item'][0]['title']
+    w = wob['item'][0]
     sendmail(
-        wob['item'][0]['title'],
-        u'',
+        w['title'],
+        u'''De status van het volgende wob verzoek is gewijzigd:
+
+%s
+
+U kunt dit verzoek bekijken via de volgende link:
+
+http://www.openwob.nl/%s/verzoek/%s
+
+''' % (w['title'], gov_slug, obj_id,),
         emails.values())
 
 

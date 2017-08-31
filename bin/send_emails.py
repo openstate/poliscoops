@@ -8,6 +8,8 @@ from pprint import pprint
 
 import redis
 import requests
+from sendgrid.helpers.mail import Email, Mail
+from sendgrid import SendGridAPIClient, Personalization, Content
 
 REDIS_HOST = 'redis'
 REDIS_PORT = 6379
@@ -50,16 +52,37 @@ def get_all_email_keys(client):
     return client.keys('emails_*_*')
 
 
-def send_mail(gov_slug, obj_id, email):
-    wob = api.find_by_id(gov_slug, obj_id)
-    print wob['item'][0]['title']
+def sendmail(subject, content, to):
+    api_key = '<SENDGRID_API_KEY>'
+    sg = SendGridAPIClient(apikey=api_key)
+
+    mail = Mail()
+    email = Email()
+    email.email = 'contact@openstate.eu'
+    email.name = 'Openwob'
+    mail.from_email = email
+    mail.subject = subject
+
+    personalization = Personalization()
+    for address in to:
+        personalization.add_to(Email(address))
+    mail.add_personalization(personalization)
+
+    mail.add_content(Content("text/plain", content))
+
+    sg.client.mail.send.post(request_body=mail.get())
 
 
 def perform_mail_run(client, gov_slug, obj_id):
     print "Getting for %s : %s" % (gov_slug, obj_id,)
     emails = client.hgetall('emails_%s_%s' % (gov_slug, obj_id,))
-    for email, dummy in emails.iteritems():
-        send_mail(gov_slug, obj_id, email)
+
+    wob = api.find_by_id(gov_slug, obj_id)
+    print wob['item'][0]['title']
+    sendmail(
+        wob['item'][0]['title'],
+        u'',
+        emails.values())
 
 
 def main():
@@ -68,6 +91,7 @@ def main():
     for key in keys:
         dummy, gov_slug, obj_id = key.split('_', 2)
         perform_mail_run(client, gov_slug, obj_id)
+        # client.delete(key)
     return 0
 
 if __name__ == '__main__':

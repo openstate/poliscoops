@@ -15,10 +15,10 @@
       <a class="btn btn-default btn-category" href="{{ url_for('search', gov_slug=gov_slug, category=category.key) }}" role="button">{{ category.key }} ({{ category.doc_count}})</a>
     {% endfor %}
   </div>
-  <div class="col-xs-12 col-md-6">
-    <h2>Open WOB verzoeken</h2>
+  <div class="col-xs-12 col-md-6" id="open-requests">
+    <h2>Openstaande WOB verzoeken</h2>
     {% include 'results_as_condensed_list.html' %}
-    <a href="{{ url_for('search', gov_slug=gov_slug, status='Open') }}" class="btn btn-default btn-large" style="width: 100%;">Toon alle {{ results.meta.total }} open wob verzoeken</a>
+    <a href="{{ url_for('search', gov_slug=gov_slug, status='Open') }}" class="btn btn-default btn-large" style="width: 100%;">Toon alle {{ results.meta.total }} openstaande wob verzoeken</a>
   </div>
 </div>
 </section>
@@ -31,13 +31,13 @@
           <div class="col-xs-12">
             <h2>Statistieken</h2>
           </div>
-          <div class="col-xs-12 col-md-6">
+          <div class="col-xs-12 col-md-6" style="color: #c21889;">
             <div id="graph-monthly" class="graph">
               <svg></svg>
             </div>
           </div>
-          <div class="col-xs-12 col-md-6">
-            <p class="delay-lead"><span class="count">0</span> dagen</p>
+          <div class="col-xs-12 col-md-6" style="color: #c21889;">
+            <p class="delay-lead"><span class="count" style="color: #c21889;">0</span> dagen</p>
             <p>Gemiddelde looptijd besluit</p>
           </div>
         </div>

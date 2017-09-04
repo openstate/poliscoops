@@ -117,3 +117,8 @@ ul.wordcloud li { display: inline-block; }
   box-shadow: none;
   width: 90%;
 }
+
+#open-requests .btn-default {
+  border-color: #c21889;
+  color: #c21889;
+}

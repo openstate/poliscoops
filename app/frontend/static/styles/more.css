@@ -101,3 +101,19 @@ ul.wordcloud li { display: inline-block; }
   width: 30px;
   height: 30px;
 }
+
+#search {
+  color: #c21889;
+  line-height: 30px;
+}
+
+#search .form-group {
+  width: 100%;
+  border-bottom: 1px solid #c21889;
+}
+
+#search input {
+  border: 0;
+  box-shadow: none;
+  width: 90%;
+}

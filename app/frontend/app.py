@@ -5,6 +5,7 @@ import re
 from urllib import urlencode
 from pprint import pprint
 import sys
+import time
 
 from flask import (
     Flask, abort, jsonify, request, redirect, render_template,
@@ -81,6 +82,24 @@ def do_humanize(s):
 @app.template_filter('normalize_wob_title')
 def do_normalize_wob_title(r):
     return r['title'].replace(r['meta']['original_object_id'], u'').strip()
+
+
+@app.template_filter('get_original_wob_link')
+def do_get_original_wob_link(r):
+    if 'start_date' in r:
+        ref_date = iso8601.parse_date(r['start_date'])
+    else:
+        ref_date = iso8601.parse_date(r['end_date'])
+    url_type = 'html'
+    time_diff = (
+        time.mktime(datetime.datetime.now().utctimetuple()) -
+        time.mktime(ref_date.utctimetuple()))
+    if time_diff > (86400 * 365):
+        url_type = 'alternate'
+    if url_type in r['meta']['original_object_urls']:
+        return r['meta']['original_object_urls'][url_type]
+    else:
+        return '#'
 
 
 def redis_client():

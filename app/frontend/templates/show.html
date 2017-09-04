@@ -6,7 +6,10 @@
 
 {% block content %}
 {% include 'search.html' %}
-<h1><span class="wob-id">{{ result.meta.original_object_id }}</span> {{ result |normalize_wob_title }}</h1>
+<h1>
+  <span class="wob-id">{{ result.meta.original_object_id }}</span>
+  <a href="{{ result |get_original_wob_link }}" target="_blank" title="Bekijk dit WOB verzoek op de bronpagina">{{ result |normalize_wob_title }}</a>
+</h1>
 
 <section id="rating">
 <div class="row">

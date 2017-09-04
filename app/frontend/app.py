@@ -181,6 +181,8 @@ class BackendAPI(object):
         if 'gov_slug' in kwargs:
             es_query['filters']['collection'] = {
                 'terms': [humanize(kwargs['gov_slug'])]}
+        if 'size' in kwargs:
+            es_query['size'] = kwargs['size']
         if kwargs.get('query', None) is not None:
             es_query['query'] = kwargs['query']
         if kwargs.get('category', None) is not None:
@@ -212,38 +214,6 @@ class BackendAPI(object):
                 }
             }
         return result
-
-    def category_stats(self, gov_slug, start_date=None, end_date=None):
-        es_query = {
-            "size": 0,
-            "facets": {
-                "categories": {}
-            },
-            "filters": {
-                'collection': {
-                    'terms': [humanize(gov_slug)]
-                },
-                'types': {
-                    'terms': ['item']
-                }
-            }
-        }
-
-        try:
-            print >>sys.stderr, json.dumps(es_query)
-            result = requests.post(
-                '%s/search' % (self.URL,),
-                data=json.dumps(es_query)).json()
-        except Exception as e:
-            print >>sys.stderr, e
-            result = {
-                'facets': {
-                    'categories': {
-                        'buckets': []
-                    }
-                }
-            }
-        return result['facets']['categories']['buckets']
 
     def find_by_id(self, gov_slug, id):
         es_query = {
@@ -279,10 +249,11 @@ def stats():
 
 @app.route("/<gov_slug>")
 def gov_home(gov_slug):
-    categories = api.category_stats(gov_slug)
-    results = api.search_questions(gov_slug=gov_slug, page=1, status='Open')
+    facets = api.search_questions(gov_slug=gov_slug, page=1, size=0)
+    results = api.search_questions(
+        gov_slug=gov_slug, page=1, size=5, status='Open')
     return render_template(
-        'gov.html', gov_slug=gov_slug, categories=categories, results=results)
+        'gov.html', gov_slug=gov_slug, results=results, facets=facets)
 
 
 @app.route("/<gov_slug>/zoeken")

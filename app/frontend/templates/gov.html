@@ -11,9 +11,15 @@
 <div class="row">
   <div class="col-xs-12 col-md-6" id="categories">
     <h2>Zoeken per thema</h2>
-    {% for category in categories %}
+    {% for category in facets.facets.categories.buckets %}
       <a class="btn btn-default btn-category" href="{{ url_for('search', gov_slug=gov_slug, category=category.key) }}" role="button">{{ category.key }} ({{ category.doc_count}})</a>
     {% endfor %}
+
+    <h2>Zoeken op status</h2>
+    {% for status in facets.facets.status.buckets %}
+      <a class="btn btn-default btn-category" href="{{ url_for('search', gov_slug=gov_slug, status=status.key) }}" role="button">{{ status.key }} ({{ status.doc_count}})</a>
+    {% endfor %}
+
   </div>
   <div class="col-xs-12 col-md-6" id="open-requests">
     <h2>Openstaande WOB verzoeken</h2>

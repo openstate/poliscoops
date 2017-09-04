@@ -8,7 +8,7 @@
     {% if result.start_date %}
     <p class="pull-left">{{ result.start_date|iso8601_to_str("%d-%m-%Y") }}</p>
     {% endif %}
-    <p class="pull-right"><a href="http://api.openwob.nl/v0/combined_index/item/{{ result.id }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a></p>
+    <p class="pull-right"><a href="http://api.openwob.nl/v0/combined_index/item/{{ result.id }}" target="_blank" title="JSON data bekijken"><i class="fa fa-floppy-o" aria-hidden="true"></i></a></p>
   </div>
 </div>
 {% endfor %}

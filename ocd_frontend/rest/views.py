@@ -161,6 +161,11 @@ def parse_search_request(data, doc_type, mlt=False):
                 r_filter['range'][field]['to'] = filter_opts['to']
 
             filters.append(r_filter)
+        else:
+            if type(filter_opts) is not dict:
+                raise OcdApiError('\'filters.%s\' should be an object'
+                                  % r_filter, 400)
+            filters.append(filter_opts)
 
     filters.append({"term": {"hidden": "false"}})
 

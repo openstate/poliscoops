@@ -184,7 +184,8 @@ class BackendAPI(object):
             "facets": {
                 "categories": {},
                 "status": {},
-                "start_date": {}
+                "start_date": {},
+                "delay": {}
             },
             "sort": "start_date",
             "order": "desc",
@@ -210,7 +211,18 @@ class BackendAPI(object):
         if kwargs.get('status', None) is not None:
             es_query['filters']['status'] = {
                 'terms': [kwargs['status']]}
-        # FIXME: we should do dates differently
+        if kwargs.get('delay', None) is not None:
+            delay_from, delay_to = kwargs['delay'].split('-', 1)
+            script_stmnt = []
+            if delay_from != '*':
+                script_stmnt.append(
+                    "(((doc['end_date'].value - doc['start_date'].value) / 86400000) > %s)" % (delay_from,))
+            if delay_to != '*':
+                script_stmnt.append(
+                    "(((doc['end_date'].value - doc['start_date'].value) / 86400000) < %s)" % (delay_to,))
+            es_query['filters']['delay'] = {
+                "script": {"script":{"inline": u' AND '.join(script_stmnt)}}}
+
         if kwargs.get('start_date', None) is not None:
             sd = datetime.datetime.fromtimestamp(int(kwargs['start_date']) / 1000)
             ed_month = sd.month + 1
@@ -221,6 +233,8 @@ class BackendAPI(object):
             es_query['filters']['start_date'] = {
                 'from': "%s-%s-01T00:00:00" % (sd.year, sd.month,),
                 'to': "%s-%s-01T00:00:00" % (ed_year, ed_month,)}
+
+        print >>sys.stderr, es_query
         try:
             result = requests.post(
                 '%s/search' % (self.URL,),
@@ -283,7 +297,8 @@ def search(gov_slug):
         'query': request.args.get('query', None),
         'category': request.args.get('category', None),
         'status': request.args.get('status', None),
-        'start_date': request.args.get('start_date', None)
+        'start_date': request.args.get('start_date', None),
+        'delay': request.args.get('delay', None)
     }
     results = api.search_questions(**search_params)
     max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
@@ -292,6 +307,7 @@ def search(gov_slug):
         page=search_params['page'], active_category=search_params['category'],
         active_status=search_params['status'], max_pages=max_pages,
         active_start_date=search_params['start_date'],
+        active_delay=search_params['delay'],
         gov_slug=search_params['gov_slug'])
 
 

@@ -135,6 +135,24 @@ AVAILABLE_FACETS = {
                 'size': 10
             }
         },
+        'delay': {
+            'range': {
+                'script':  {
+                    "inline": "(doc['end_date'].value - doc['start_date'].value) / 86400000"
+                },
+                'ranges': [
+                    {"to": 3},
+                    {"from": 3, "to": 7},
+                    {"from": 7, "to": 14},
+                    {"from": 14, "to": 21},
+                    {"from": 21, "to": 28},
+                    {"from": 28, "to": 35},
+                    {"from": 35, "to": 42},
+                    {"from": 42, "to": 49},
+                    {"from": 49}
+                ]
+            }
+        },
         'delay_avg': {
             'avg': {
                 'script':  "(doc['end_date'].value - doc['start_date'].value) / 86400000"}

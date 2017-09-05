@@ -221,7 +221,7 @@ class BackendAPI(object):
                 script_stmnt.append(
                     "(((doc['end_date'].value - doc['start_date'].value) / 86400000) < %s)" % (delay_to,))
             es_query['filters']['delay'] = {
-                "script": {"script":{"inline": u' AND '.join(script_stmnt)}}}
+                "script": {"script": u' && '.join(script_stmnt)}}
 
         if kwargs.get('start_date', None) is not None:
             sd = datetime.datetime.fromtimestamp(int(kwargs['start_date']) / 1000)
@@ -234,12 +234,13 @@ class BackendAPI(object):
                 'from': "%s-%s-01T00:00:00" % (sd.year, sd.month,),
                 'to': "%s-%s-01T00:00:00" % (ed_year, ed_month,)}
 
-        print >>sys.stderr, es_query
+        plain_result = requests.post(
+            '%s/search' % (self.URL,),
+            data=json.dumps(es_query))
         try:
-            result = requests.post(
-                '%s/search' % (self.URL,),
-                data=json.dumps(es_query)).json()
-        except Exception:
+            result = plain_result.json()
+        except Exception as e:
+            print >>sys.stderr, "ERROR (%s): %s" % (e.__class__, e)
             result = {
                 'hits': {
                     'hits': [],

@@ -285,7 +285,7 @@ def stats():
 def gov_home(gov_slug):
     facets = api.search_questions(gov_slug=gov_slug, page=1, size=0)
     results = api.search_questions(
-        gov_slug=gov_slug, page=1, size=5, status='Open')
+        gov_slug=gov_slug, page=1, size=5, status='Openstaand')
     return render_template(
         'gov.html', gov_slug=gov_slug, results=results, facets=facets)
 

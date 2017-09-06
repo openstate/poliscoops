@@ -203,7 +203,7 @@ class UtrechtCategoryItem(UtrechtItem):
 
 class UtrechtOverviewItem(UtrechtItem):
     def _get_title(self):
-        return u'%s Open %s' % (
+        return u'%s Openstaand %s' % (
             self.original_item['id'], self.original_item['title'],)
 
     def _get_url(self):
@@ -230,6 +230,6 @@ class UtrechtOverviewItem(UtrechtItem):
         if self.original_item['date'] is not None:
             combined_index_data['start_date'] = iso8601.parse_date(
                 self.original_item['date'])
-        combined_index_data['status'] = u'Open'
+        combined_index_data['status'] = u'Openstaand'
 
         return combined_index_data

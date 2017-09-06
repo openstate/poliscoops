@@ -56,7 +56,7 @@
   </div>
   <div class="dashes">
     <img src="/static/images/assets/dot.svg" class="dot dot-left"/>
-    {% if result.status != "Open" %}
+    {% if result.status != "Openstaand" %}
     <img src="/static/images/assets/dot.svg" class="dot dot-right"/>
     {% endif %}
   </div>
@@ -98,7 +98,7 @@
       </ul>
       <!-- Buttons end here -->
     </div>
-    {% if result.status == 'Open' %}
+    {% if result.status == 'Openstaand' %}
     <div class="pull-right">
     <strong>Krijg besluit per e-mail</strong>
     <a href="#email-signup-modal" role="button" data-toggle="modal" class="email-signup">

@@ -116,5 +116,5 @@ class PDFToText(BaseMediaEnrichmentTask):
             with codecs.open(ocr_file, 'r', 'utf-8') as in_file:
                 enrichment_data['text'] = in_file.read()
         else:
-            raise MediaEnrichmentException(
-                "The OCR process did not go well: %s" % (retcode,))
+            log.error(u'OCR of object %s resulted in error code: %s' % (
+                object_id, retcode,))

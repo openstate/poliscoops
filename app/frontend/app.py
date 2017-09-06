@@ -356,5 +356,10 @@ def email_signup(gov_slug, obj_id):
     return 'ok'
 
 
+@app.route("/data")
+def do_data():
+    return render_template("data.html")
+
+
 def create_app():
     return app

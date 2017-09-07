@@ -102,7 +102,7 @@
         "item": "ocd_backend.items.utrecht.UtrechtCategoryItem",
         "enrichers": [
         ],
-        "loader": "ocd_backend.loaders.ElasticsearchUpdateOnlyLoader",
+        "loader": "ocd_backend.loaders.ElasticsearchUpsertLoader",
         "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
         "hidden": false,
         "index_name": "utrecht",

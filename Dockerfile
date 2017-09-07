@@ -130,7 +130,7 @@ RUN apt-get install supervisor
 
 
 # Install Docsplit dependencies
-RUN apt-get install -y ruby ruby-dev tesseract-ocr tesseract-ocr-eng tesseract-ocr-nld graphicsmagick ImageMagick poppler-utils poppler-data ghostscript pdftk
+RUN apt-get update && apt-get install -y ruby ruby-dev tesseract-ocr tesseract-ocr-eng tesseract-ocr-nld graphicsmagick ImageMagick poppler-utils poppler-data ghostscript pdftk
 
 RUN gem install docsplit
 

@@ -89,12 +89,14 @@ ul.wordcloud li { display: inline-block; }
 }
 
 #tagcloud {
-  width: 100%;
+  margin: 0 auto;
+  width: 50%;
 }
 
 #tagcloud a {
   margin-left: 20px;
   margin-bottom: 10px;
+  display: inline-block;
 }
 
 .email-signup img {

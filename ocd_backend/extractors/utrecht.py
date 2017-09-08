@@ -181,7 +181,7 @@ class UtrechtOverviewExtractor(GlobExtractor):
                 else:
                     record_date = None
                 record = {
-                    'id': u'%s-%s' % (year, int(values[0]),),
+                    'id': u'%s-%03d' % (year, int(values[0]),),
                     'sender': values[1],
                     'title': values[2],
                     'date': record_date

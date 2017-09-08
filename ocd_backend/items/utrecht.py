@@ -58,6 +58,12 @@ class UtrechtItem(BaseItem):
         return (wob_id, wob_status, wob_title,)
 
     def _get_hashed_id(self, wob_id):
+        # leftpad with zeroes if necessary
+        if len(wob_id) < 3:
+            try:
+                wob_id = u'%03d' % (int(wob_id),)
+            except ValueError:
+                pass
         obj_id = u'%s:%s' % (self.source_definition['index_name'], wob_id,)
         return unicode(sha1(obj_id.decode('utf8')).hexdigest())
 

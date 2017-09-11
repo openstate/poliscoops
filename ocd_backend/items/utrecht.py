@@ -1,7 +1,9 @@
 from datetime import datetime
 from hashlib import sha1
 import re
+import sys
 
+from lxml import etree
 import iso8601
 
 from ocd_backend.items import BaseItem
@@ -29,14 +31,23 @@ class UtrechtItem(BaseItem):
             return unicode(node.text)
 
     def _get_title(self):
-        if self.original_item.xpath(".//meta[@property='og:title']/@content"):
+        try:
             return unicode(
                 self.original_item.xpath(
                     ".//meta[@property='og:title']/@content")[0])
+        except LookupError:
+            return unicode(
+                u''.join(self.original_item.xpath(
+                    ".//title/text()")))
 
     def _get_url(self):
-        return unicode(self.original_item.xpath(
-            ".//meta[@property='og:url']/@content")[0])
+        try:
+            return unicode(self.original_item.xpath(
+                ".//meta[@property='og:url']/@content")[0])
+        except LookupError:
+            return unicode(self.original_item.xpath(
+                ".//a[@class='rsbtn_play']/@href")[0]).replace(
+                    u'https://app-eu.readspeaker.com/cgi-bin/rsent?customerid=7663&lang=nl_nl&readid=page-container&url=', u'')
 
     def _get_basic_info(self):
         """
@@ -47,6 +58,9 @@ class UtrechtItem(BaseItem):
         wob_status = u''
         wob_id = None
         wob_title = self._get_title()
+        #print >>sys.stderr, etree.tostring(self.original_item)
+        print >>sys.stderr, "URL: %s" % (self._get_url(),)
+        print >>sys.stderr, "Title: %s" % (wob_title,)
 
         if wob_title:
             wob_id, wob_status, actual_title = wob_title.split(
@@ -74,13 +88,12 @@ class UtrechtItem(BaseItem):
 
     def get_original_object_id(self):
         wob_id, wob_status, wob_title = self._get_basic_info()
+        print >>sys.stderr, "Wob ID: %s" % (wob_id,)
         # Use slug as object id
         return wob_id
 
     def get_original_object_urls(self):
-        url = unicode(
-            self.original_item.xpath(".//meta[@property='og:url']/@content")[0]
-        )
+        url = unicode(self._get_url())
 
         # Check if we are dealing with an archived page, if true then
         # prepend the archive URL to the original URL

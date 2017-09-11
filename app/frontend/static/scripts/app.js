@@ -66,6 +66,9 @@ OpenWOBApp.init_month_graph = function() {
     var chart = nv.models.discreteBarChart()
         .x(function(d) { return d.key_as_string.slice(0, 7); })    //Specify the data accessors.
         .y(function(d) { return d.doc_count; })
+        .color(['#c21889'])
+        .showYAxis(false)
+        .showXAxis(false)
         .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
         .tooltips(true)        //Don't show tooltips
         .showValues(false)       //...instead, show the bar value right on top of each bar.

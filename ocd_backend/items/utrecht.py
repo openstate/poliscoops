@@ -189,7 +189,7 @@ class UtrechtItem(BaseItem):
 
 class UtrechtCategoryItem(UtrechtItem):
     combined_index_fields = {
-        'doc': dict
+        'categories': list
     }
 
     def _get_title(self):
@@ -216,9 +216,7 @@ class UtrechtCategoryItem(UtrechtItem):
 
     def get_combined_index_data(self):
         doc = {
-            'doc': {
-                'categories': self.original_item['categories']
-            }
+            'categories': self.original_item['categories']
         }
         return doc
 

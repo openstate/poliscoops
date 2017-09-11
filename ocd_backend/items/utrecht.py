@@ -79,7 +79,10 @@ class UtrechtItem(BaseItem):
             except ValueError:
                 pass
         obj_id = u'%s:%s' % (self.source_definition['index_name'], wob_id,)
-        return unicode(sha1(obj_id.decode('utf8')).hexdigest())
+        hashed_obj_id = sha1(obj_id.decode('utf8')).hexdigest()
+        print >>sys.stderr, "Checking Wob ID: %s, Class: %s, Hash id: %s" % (
+            wob_id, self.__class__, hashed_obj_id,)
+        return unicode(hashed_obj_id)
 
     def get_object_id(self):
         wob_id, wob_status, wob_title = self._get_basic_info()

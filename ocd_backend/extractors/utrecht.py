@@ -136,8 +136,13 @@ class UtrechtCateogriesExtractor(BaseExtractor, HttpRequestMixin):
                 categories.setdefault(item_link, []).append(cat_title)
 
         for url, categories_list in categories.iteritems():
+            pprint({
+                'url': u'https://www.utrecht.nl%s' % (url,),
+                'title': unicode(titles[url]),
+                'categories': categories_list
+            })
             yield 'application/json', json.dumps({
-                'url': url,
+                'url': u'https://www.utrecht.nl%s' % (url,),
                 'title': unicode(titles[url]),
                 'categories': categories_list
             })

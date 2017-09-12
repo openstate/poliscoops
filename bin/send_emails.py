@@ -8,8 +8,8 @@ from pprint import pprint
 
 import redis
 import requests
-from sendgrid.helpers.mail import Email, Mail
-from sendgrid import SendGridAPIClient, Personalization, Content
+from sendgrid.helpers.mail import Email, Mail, Personalization, Content
+from sendgrid import SendGridAPIClient
 
 REDIS_HOST = 'redis'
 REDIS_PORT = 6379

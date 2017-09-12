@@ -185,6 +185,7 @@ class BackendAPI(object):
                 "categories": {},
                 "status": {},
                 "start_date": {},
+                "end_date": {},
                 "delay": {}
             },
             "sort": "start_date",
@@ -224,7 +225,8 @@ class BackendAPI(object):
                 "script": {"script": u' && '.join(script_stmnt)}}
 
         if kwargs.get('start_date', None) is not None:
-            sd = datetime.datetime.fromtimestamp(int(kwargs['start_date']) / 1000)
+            sd = datetime.datetime.fromtimestamp(
+                int(kwargs['start_date']) / 1000)
             ed_month = sd.month + 1
             ed_year = sd.year
             if ed_month > 12:
@@ -233,6 +235,19 @@ class BackendAPI(object):
             es_query['filters']['start_date'] = {
                 'from': "%s-%s-01T00:00:00" % (sd.year, sd.month,),
                 'to': "%s-%s-01T00:00:00" % (ed_year, ed_month,)}
+
+        if kwargs.get('end_date', None) is not None:
+            ed = datetime.datetime.fromtimestamp(
+                int(kwargs['end_date']) / 1000)
+            sd_month = ed.month + 1
+            sd_year = ed.year
+            if sd_month > 12:
+                sd_month = 1
+                sd_year += 1
+            es_query['filters']['end_date'] = {
+                'to': "%s-%s-01T00:00:00" % (sd_year, sd_month,),
+                'from': "%s-%s-01T00:00:00" % (ed.year, ed.month,)}
+
 
         plain_result = requests.post(
             '%s/search' % (self.URL,),
@@ -299,6 +314,7 @@ def search(gov_slug):
         'category': request.args.get('category', None),
         'status': request.args.get('status', None),
         'start_date': request.args.get('start_date', None),
+        'end_date': request.args.get('end_date', None),
         'delay': request.args.get('delay', None)
     }
     results = api.search_questions(**search_params)
@@ -308,6 +324,7 @@ def search(gov_slug):
         page=search_params['page'], active_category=search_params['category'],
         active_status=search_params['status'], max_pages=max_pages,
         active_start_date=search_params['start_date'],
+        active_end_date=search_params['end_date'],
         active_delay=search_params['delay'],
         gov_slug=search_params['gov_slug'])
 

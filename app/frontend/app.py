@@ -84,6 +84,11 @@ def do_normalize_wob_title(r):
     return r['title'].replace(r['meta']['original_object_id'], u'').strip()
 
 
+@app.template_filter('split')
+def do_split(s, delim):
+    return s.split(delim)
+
+
 @app.template_filter('get_original_wob_link')
 def do_get_original_wob_link(r):
     if 'start_date' in r:
@@ -282,6 +287,11 @@ class BackendAPI(object):
             '%s/search' % (self.URL,),
             data=json.dumps(es_query)).json()
 
+    def get_by_id(self, gov_slug, id):
+        return requests.get(
+            '%s/combined_index/item/%s' % (self.URL, id,)).json()
+
+
 api = BackendAPI()
 
 
@@ -333,7 +343,13 @@ def search(gov_slug):
 def show(gov_slug, obj_id):
     result = api.find_by_id(gov_slug, obj_id)
 
-    if result['meta']['total'] <= 0:
+    show_item = None
+    if result['meta']['total'] > 0:
+        show_item = result['item'][0]
+    else:
+        show_item = api.get_by_id(gov_slug, obj_id)
+
+    if show_item is None:
         abort(404)
 
     client = redis_client()
@@ -343,7 +359,7 @@ def show(gov_slug, obj_id):
     vote_nay = client.get('%s_dec' % (redis_key,))
 
     return render_template(
-        'show.html', gov_slug=gov_slug, result=result['item'][0], votes=[
+        'show.html', gov_slug=gov_slug, result=show_item, votes=[
             vote_aye, vote_nay])
 
 

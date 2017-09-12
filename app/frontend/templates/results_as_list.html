@@ -6,10 +6,10 @@
 {% for result in results.item %}
 <div class="row">
   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-    <h4>{{ result.meta.original_object_id }}</h4>
+    <h4>{{ result.meta.original_object_id |truncate(8, True) }}</h4>
   </div>
   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
-    <h4><a href="{{ url_for('show', gov_slug=gov_slug, obj_id=result.id )}}">{{ result |normalize_wob_title }}</a></h4>
+    <h4><a href="{{ url_for('show', gov_slug=gov_slug, obj_id=(result.id or result.meta.owa_url |split("/") |last))}}">{{ result |normalize_wob_title }}</a></h4>
     {% if result.start_date %}
     <p class="pull-left">{{ result.start_date|iso8601_to_str("%d-%m-%Y") }}</p>
     {% endif %}
@@ -19,7 +19,7 @@
       <li><a href="{{ pdf.url }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ pdf.label }}</a></li>
     {% endfor %}
     </ol>
-    <p class="pull-right"><a href="http://api.openwob.nl/v0/combined_index/item/{{ result.id }}" target="_blank" title="JSON data bekijken"><i class="fa fa-floppy-o" aria-hidden="true"></i></a></p>
+    <p class="pull-right"><a href="http://api.openwob.nl/v0/combined_index/item/{{ result.id or result.meta.owa_url |split("/") |last }}" target="_blank" title="JSON data bekijken"><i class="fa fa-floppy-o" aria-hidden="true"></i></a></p>
   </div>
 </div>
 {% endfor %}

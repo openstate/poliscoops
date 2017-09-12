@@ -90,7 +90,7 @@ U kunt dit verzoek bekijken via de volgende link:
 http://www.openwob.nl/%s/verzoek/%s
 
 ''' % (w['title'], gov_slug, obj_id,),
-        emails.values())
+        emails.keys())
 
 
 def main():

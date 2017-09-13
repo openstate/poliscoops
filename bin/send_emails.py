@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import getopt
 import os
 import json
 import sys
@@ -61,7 +62,7 @@ def sendmail(subject, content, to):
     email.email = 'contact@openstate.eu'
     email.name = 'Openwob'
     mail.from_email = email
-    mail.subject = subject
+    mail.subject = u'Openwob: ' + subject
 
     personalization = Personalization()
     for address in to:
@@ -73,12 +74,16 @@ def sendmail(subject, content, to):
     sg.client.mail.send.post(request_body=mail.get())
 
 
-def perform_mail_run(client, gov_slug, obj_id):
+def perform_mail_run(client, gov_slug, obj_id, default_status):
     print "Getting for %s : %s" % (gov_slug, obj_id,)
     emails = client.hgetall('emails_%s_%s' % (gov_slug, obj_id,))
 
     wob = api.find_by_id(gov_slug, obj_id)
     w = wob['item'][0]
+
+    if w['status'] == default_status:
+        return
+
     sendmail(
         w['title'],
         u'''De status van het volgende wob verzoek is gewijzigd:
@@ -93,17 +98,35 @@ http://www.openwob.nl/%s/verzoek/%s
         emails.keys())
 
 
-# TODO: add option to not destroy keys
-# TODO: add option for status so we can send test mails
-# normally mails should be send when the status is not 'Openstaand'
-def main():
+def main(argv=None):
+    delete_keys = True
+    default_status = 'Openstaand'
+
+    try:
+        opts, args = getopt.getopt(
+            argv[1:], "ds:", ["no-delete-keys", "status"]
+        )
+    except getopt.error, msg:
+        print >>sys.stderr, "send_emails.py [--no-delete-keys] --status <default>"
+
+    # option processing
+    for option, value in opts:
+        if option in ("-d", "--no-delete-keys"):
+            delete_keys = False
+        if option in ("-s", "--status"):
+            default_status = value
+
     client = redis_client()
     keys = get_all_email_keys(client)
     for key in keys:
         dummy, gov_slug, obj_id = key.split('_', 2)
-        perform_mail_run(client, gov_slug, obj_id)
-        # client.delete(key)
+        try:
+            perform_mail_run(client, gov_slug, obj_id, default_status)
+        except Exception as e:
+            print >>sys.stderr, e
+        if delete_keys:
+            client.delete(key)
     return 0
 
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(main(sys.argv))

@@ -93,6 +93,9 @@ http://www.openwob.nl/%s/verzoek/%s
         emails.keys())
 
 
+# TODO: add option to not destroy keys
+# TODO: add option for status so we can send test mails
+# normally mails should be send when the status is not 'Openstaand'
 def main():
     client = redis_client()
     keys = get_all_email_keys(client)

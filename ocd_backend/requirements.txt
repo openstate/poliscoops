@@ -18,3 +18,6 @@ translitcodec==0.4.0
 flower
 xlrd
 sendgrid
+Sphinx==1.2.2
+sphinxcontrib-httpdomain==1.2.1
+sphinx-rtd-theme==0.1.6

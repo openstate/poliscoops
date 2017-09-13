@@ -115,11 +115,16 @@ class UtrechtItem(BaseItem):
         else:
             item_date = datetime.datetime.now()
 
-        return {
-            'html': url,
-            'alternate': (
+        if 'archiefweb.eu' in url:
+            alternate_url = url
+        else:
+            alternate_url = (
                 u'https://archief12.archiefweb.eu/archives/archiefweb/'
                 u'%s/%s') % (item_date.strftime('%Y%m%d%H%m%S'), url,)
+
+        return {
+            'html': url,
+            'alternate': alternate_url
         }
 
     def get_rights(self):
@@ -199,13 +204,18 @@ class UtrechtCategoryItem(UtrechtItem):
         return self.original_item['url']
 
     def get_original_object_urls(self):
-        return {
-            'html': self.original_item['url'],
-            'alternate': (
+        if 'archiefweb.eu' in self.original_item['url']:
+            alternate_url = self.original_item['url']
+        else:
+            alternate_url = (
                 u'https://archief12.archiefweb.eu/archives/archiefweb/'
                 u'%s/%s') % (
                     datetime.now().strftime('%Y%m%d%H%m%S'),
                     self.original_item['url'],)
+
+        return {
+            'html': self.original_item['url'],
+            'alternate': alternate_url
         }
 
     def get_rights(self):

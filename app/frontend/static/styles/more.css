@@ -127,3 +127,7 @@ ul.wordcloud li { display: inline-block; }
   border-color: #c21889;
   color: #c21889;
 }
+
+#statistics h2 {
+  text-align: center;
+}

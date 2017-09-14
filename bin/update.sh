@@ -4,3 +4,4 @@ source /opt/bin/activate
 cd /opt/owa
 ./manage.py extract start utrecht_new
 ./manage.py extract start utrecht_categories
+./bin/send_emails.py

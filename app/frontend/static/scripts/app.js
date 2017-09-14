@@ -1,7 +1,7 @@
 var owa_cur_date = new Date();
 var owa_cur_year = owa_cur_date.getFullYear();
 var OpenWOBApp = window.OpenWOBApp || {
-  "api_base_url": "http://api.openwob.nl/v0",
+  "api_base_url": "https://api.openwob.nl/v0",
   "start_date": owa_cur_year + "-01-01T00:00:00",
   "end_date": owa_cur_year + "21-31T23:59:59",
   "data":{

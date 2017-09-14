@@ -112,7 +112,7 @@ def redis_client():
 
 
 class BackendAPI(object):
-    URL = 'http://api.openwob.nl/v0'
+    URL = 'https://api.openwob.nl/v0'
 
     def sources(self):
         return requests.get('%s/sources' % (self.URL,)).json()

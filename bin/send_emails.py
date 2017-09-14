@@ -22,7 +22,7 @@ def humanize(s):
 
 
 class BackendAPI(object):
-    URL = 'http://api.openwob.nl/v0'
+    URL = 'https://api.openwob.nl/v0'
 
     def find_by_id(self, gov_slug, id):
         es_query = {
@@ -54,7 +54,7 @@ def get_all_email_keys(client):
 
 
 def sendmail(subject, content, to):
-    api_key = '<SENDGRID_API_KEY>'
+    api_key = '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'
     sg = SendGridAPIClient(apikey=api_key)
 
     mail = Mail()

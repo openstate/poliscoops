@@ -59,6 +59,9 @@ OpenWOBApp.init = function() {
 
     return false;
   });
+
+  // make the button disappear
+  $('*[data-target="#collapseExample"]').on('click', function() { $(this).hide();});
 };
 
 OpenWOBApp.init_month_graph = function() {

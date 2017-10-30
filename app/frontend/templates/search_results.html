@@ -37,7 +37,13 @@
       </a>
     {% endfor %}
     <h2>Datum</h2>
-    {% for end_date in results.facets.end_date.buckets %}
+    {% for end_date in results.facets.end_date.buckets|reverse %}
+      {% if loop.index == 11 %}
+      <button class="btn btn-primary btn-large" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Toon meer maanden
+      </button>
+        <div class="collapse" id="collapseExample">
+      {% endif %}
       {% if active_end_date|int == end_date.key|int %}
       <a class="btn btn-default btn-category active" href="{{ dict(end_date=None, delay=active_delay, category=active_category, status=active_status) |url_for_search_page(gov_slug) }}" role="button">
       {% else %}
@@ -49,6 +55,9 @@
       {{ end_date.key_as_string |iso8601_to_str("%b %Y") }} ({{ end_date.doc_count}})
       </a>
     {% endfor %}
+    {% if results.facets.end_date.buckets|length > 10 %}
+    </div> <!-- collapse -->
+    {% endif %}
     <h2>Doorlooptijd</h2>
     {% for delay in results.facets.delay.buckets %}
       {% if active_delay == delay.key %}

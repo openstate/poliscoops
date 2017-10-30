@@ -65,6 +65,16 @@ def do_iso8601_delay_in_days(q, a=None):
     return delay.days
 
 
+@app.template_filter('delay_buckets_humanize')
+def do_delay_buckets_humanize(s):
+    result = s.replace(
+        '*-', 'minder dan '
+    ).replace('.0', '').replace(
+        '-*', ' of meer '
+    )
+    return result
+
+
 @app.template_filter('nl2br')
 def do_nl2br(s):
     return s.replace('\n', '<br>')

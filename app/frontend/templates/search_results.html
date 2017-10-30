@@ -59,7 +59,7 @@
         {% if active_delat == delay.key %}
         <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px;"><span aria-hidden="true">&times;</span></button>
         {% endif %}
-        {{ delay.key }} ({{ delay.doc_count}})
+        {{ delay.key |delay_buckets_humanize }} dagen ({{ delay.doc_count}})
       </a>
     {% endfor %}
   </div>

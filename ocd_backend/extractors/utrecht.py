@@ -206,4 +206,5 @@ class UtrechtLatestOverviewExtractor(UtrechtOverviewExtractor):
         pathnames = glob(self.pathname)
         pathnames.reverse()  # get the latest one only
         for wob in self._get_wob_requests(pathnames[0]):
+            print wob
             yield 'application/json', json.dumps(wob)

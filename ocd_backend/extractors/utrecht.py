@@ -203,7 +203,7 @@ class UtrechtOverviewExtractor(GlobExtractor):
 
 class UtrechtLatestOverviewExtractor(UtrechtOverviewExtractor):
     def run(self):
-        pathnames = glob(self.pathname)
+        pathnames = sorted(glob(self.pathname))
         pathnames.reverse()  # get the latest one only
         for wob in self._get_wob_requests(pathnames[0]):
             print wob

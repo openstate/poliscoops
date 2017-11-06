@@ -1,7 +1,7 @@
 PoliFLW API Documentation
 ===================================
 
-Welcome to the documentation of the PoliFLW API. The PoliFLW API is the place where Wob data is made available for others to reuse. For more general information about the PoliFLW project, see the main website: https://www.openwob.nl/.
+Welcome to the documentation of the PoliFLW API. The PoliFLW API is the place where documents about politicians and political parties is made available for others to reuse. For more general information about the PoliFLW project, see the main website: https://poliflw.nl/.
 
 Background
 ----------

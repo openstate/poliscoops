@@ -39,7 +39,8 @@ RUN add-apt-repository ppa:mc3man/trusty-media \
     && apt-get update \
     && apt-get dist-upgrade -y
 
-RUN apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y \
         make \
         libxml2-dev \
         libxslt1-dev \
@@ -48,14 +49,10 @@ RUN apt-get install -y \
         libtiff4-dev \
         libjpeg8-dev \
         liblcms2-dev \
-        python-dev \
-        python-setuptools \
         python-virtualenv \
-        git \
-        supervisor \
-        vim
+        supervisor
 
-RUN easy_install pip
+RUN pip install --upgrade pip
 
 ##### Install dependencies for pyav #####
 RUN apt-get update \
@@ -94,25 +91,27 @@ RUN apt-get install -y ffmpeg
 
 ##########
 
-WORKDIR /opt/owa
+WORKDIR /opt/pfl
 # Create a virtualenv project
 RUN echo 'ok'
 RUN virtualenv -q /opt
-RUN echo "source /opt/bin/activate; cd /opt/owa;" >> ~/.bashrc
+RUN echo "source /opt/bin/activate; cd /opt/pfl;" >> /etc/profile
 
-# Temporarily add all owa API files on the host to the container
+# Temporarily add all pfl API files on the host to the container
 # as it contains files needed to finish the base installation
-ADD . /opt/owa
+ADD . /opt/pfl
 
 # Install Python requirements
-COPY ocd_backend/requirements.txt /opt/owa/requirements.txt
+COPY ocd_backend/requirements.txt /opt/pfl/requirements.txt
 RUN source /opt/bin/activate \
+    && pip install --upgrade pip \
+    && pip install --upgrade setuptools \
     && pip install pycparser==2.13 \
     && pip install Cython==0.21.2 \
     && pip install -r requirements.txt
 
 # Install poppler for pdfparser
-RUN git clone --depth 1 git://git.freedesktop.org/git/poppler/poppler /tmp/poppler
+RUN git clone --depth 1 git://people.freedesktop.org/~cloos/poppler /tmp/poppler
 RUN git clone https://github.com/izderadicka/pdfparser.git /tmp/pdfparser
 WORKDIR /tmp/poppler/
 RUN ./autogen.sh \
@@ -134,7 +133,7 @@ RUN apt-get update && apt-get install -y ruby ruby-dev tesseract-ocr tesseract-o
 
 RUN gem install docsplit
 
-# Delete all owa API files again
+# Delete all pfl API files again
 RUN find . -delete
 RUN rm -rf /tmp/pdfparser /tmp/poppler
 
@@ -144,13 +143,13 @@ RUN rm -rf /tmp/pdfparser /tmp/poppler
 RUN adduser --disabled-password celery \
   && mkdir -p /var/run/celery \
   && chown celery:celery /var/run/celery \
-  && mkdir -p /opt/owa/ocd_backend/temp \
-  && chown celery:celery /opt/owa/ocd_backend/temp \
-  && touch /opt/owa/backend.log \
-  && chown celery:celery /opt/owa/backend.log \
-  && touch /opt/owa/log/celery.log \
-  && chown celery:celery  /opt/owa/log/celery.log
+  && mkdir -p /opt/pfl/ocd_backend/temp \
+  && chown celery:celery /opt/pfl/ocd_backend/temp \
+  && touch /opt/pfl/backend.log \
+  && chown celery:celery /opt/pfl/backend.log \
+  && touch /opt/pfl/log/celery.log \
+  && chown celery:celery  /opt/pfl/log/celery.log
 
 USER celery
-WORKDIR /opt/owa/
+WORKDIR /opt/pfl/
 CMD source /opt/bin/activate && /opt/bin/celery --app=ocd_backend:celery_app worker --loglevel=info --concurrency=1

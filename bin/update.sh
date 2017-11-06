@@ -1,9 +1,7 @@
 #!/bin/sh
 
 source /opt/bin/activate
-cd /opt/owa
+cd /opt/pfl
 ./bin/download_overview.sh
-./manage.py extract start utrecht_overview
-./manage.py extract start utrecht_new
-./manage.py extract start utrecht_categories
+#./manage.py extract start <source>
 ./bin/send_emails.py

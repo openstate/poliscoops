@@ -1,5 +1,5 @@
 {
-    "template": "owa_*",
+    "template": "pfl_*",
     "settings": {
         "index": {
             "number_of_shards": 1,

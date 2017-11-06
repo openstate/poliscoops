@@ -181,7 +181,7 @@ def parse_search_request(data, doc_type, mlt=False):
     }
 
 
-def format_search_results(results, doc_type='items'):
+def format_search_results(results, doc_type=u'item'):
     del results['_shards']
     del results['timed_out']
 
@@ -192,9 +192,10 @@ def format_search_results(results, doc_type='items'):
         kwargs = {
             'object_id': hit['_id'],
             'source_id': hit['_source']['meta']['source_id'],
-            '_external': True
+            '_external': True,
+            '_scheme': 'https'
         }
-        hit['_source']['meta']['owa_url'] = url_for('api.get_object', **kwargs)
+        hit['_source']['meta']['pfl_url'] = url_for('api.get_object', **kwargs)
         for key in current_app.config['EXCLUDED_FIELDS_ALWAYS']:
             try:
                 del hit['_source'][key]
@@ -274,12 +275,13 @@ def list_sources():
             'index': {
                 'terms': {
                     'field': '_index',
-                    'size': 0,
+                    'size': 100000
                 },
                 'aggregations': {
                     'doc_type': {
                         'terms': {
-                            'field': '_type'
+                            'field': '_type',
+                            'size': 100000
                         }
                     }
                 }
@@ -307,7 +309,7 @@ def list_sources():
 @bp.route('/search', methods=['POST', 'GET'])
 @bp.route('/search/<doc_type>', methods=['POST', 'GET'])
 @decode_json_post_data
-def search(doc_type=u'items'):
+def search(doc_type=u'item'):
     data = request.data or request.args
     search_req = parse_search_request(data, doc_type)
 
@@ -394,7 +396,7 @@ def search(doc_type=u'items'):
 @bp.route('/<source_id>/search', methods=['POST', 'GET'])
 @bp.route('/<source_id>/<doc_type>/search', methods=['POST', 'GET'])
 @decode_json_post_data
-def search_source(source_id, doc_type=u'items'):
+def search_source(source_id, doc_type=u'item'):
     # Disallow searching in multiple indexes by providing a wildcard
     if '*' in source_id:
         raise OcdApiError('Invalid \'source_id\'', 400)
@@ -484,7 +486,7 @@ def search_source(source_id, doc_type=u'items'):
 
 @bp.route('/<source_id>/<object_id>', methods=['GET'])
 @bp.route('/<source_id>/<doc_type>/<object_id>', methods=['GET'])
-def get_object(source_id, object_id, doc_type=u'items'):
+def get_object(source_id, object_id, doc_type=u'item'):
     index_name = '%s_%s' % (current_app.config['DEFAULT_INDEX_PREFIX'],
                             source_id)
 
@@ -532,7 +534,7 @@ def get_object(source_id, object_id, doc_type=u'items'):
 
 @bp.route('/<source_id>/<object_id>/source')
 @bp.route('/<source_id>/<doc_type>/<object_id>/source')
-def get_object_source(source_id, object_id, doc_type=u'items'):
+def get_object_source(source_id, object_id, doc_type=u'item'):
     index_name = '%s_%s' % (current_app.config['DEFAULT_INDEX_PREFIX'],
                             source_id)
 
@@ -569,7 +571,7 @@ def get_object_source(source_id, object_id, doc_type=u'items'):
 
 @bp.route('/<source_id>/<object_id>/stats')
 @bp.route('/<source_id>/<doc_type>/<object_id>/stats')
-def get_object_stats(source_id, object_id, doc_type=u'items'):
+def get_object_stats(source_id, object_id, doc_type=u'item'):
     index_name = '%s_%s' % (current_app.config['DEFAULT_INDEX_PREFIX'],
                             source_id)
 
@@ -665,7 +667,7 @@ def get_object_stats(source_id, object_id, doc_type=u'items'):
 @bp.route('/<source_id>/<doc_type>/similar/<object_id>', methods=['POST'])
 @bp.route('/similar/<doc_type>/<object_id>', methods=['POST'])
 @decode_json_post_data
-def similar(object_id, source_id=None, doc_type=u'items'):
+def similar(object_id, source_id=None, doc_type=u'item'):
     search_params = parse_search_request(request.data, doc_type, mlt=True)
     # not relevant, as mlt already creates the query for us
     search_params.pop('query')

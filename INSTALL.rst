@@ -1,4 +1,4 @@
-Open Wob API install notes
+PoliFLW API install notes
 ######################################
 
 .. contents::
@@ -9,20 +9,20 @@ Installation instructions
 Install using Docker
 ------------
 
-Using `Docker Compose<https://docs.docker.com/compose/install/>`_ is by far the easiest way to spin up a development environment and get started with contributing to the Open Wob API. The following has been tested to work with Docker 1.0.1 and up.
+Using `Docker Compose<https://docs.docker.com/compose/install/>`_ is by far the easiest way to spin up a development environment and get started with contributing to the PoliFLW API. The following has been tested to work with Docker 1.0.1 and up.
 
-1. Clone the Open Wob API git repository::
+1. Clone the PoliFLW API git repository::
 
-   $ git clone https://github.com/openstate/open-wob-api.git
-   $ cd open-wob-api/
+   $ git clone https://github.com/openstate/poliflw.git
+   $ cd poliflw/
 
 2. Build and start the containers::
 
-If you're in production:
+If you're in production::
 
    $ docker-compose up -d
 
-If you're in development (this adds `command: /opt/owa/bin/backend.sh` so celery gets reloaded on file changes):
+If you're in development::
 
    $ docker-compose -f docker-compose-dev.yml up -d
 
@@ -56,18 +56,14 @@ Some useful Docker commands::
 Usage
 ============
 
-Some quick notes on how to use the Open Wob API
+Some quick notes on how to use the PoliFLW API
 
-Running an Open Wob API extractor
+Running an PoliFLW API extractor
 ------------
 
 1. Make the necessary changes to the 'sources' settings file (``ocd_backend/sources.json``). For example, fill out any API keys you might need for specific APIs.
 
-2. Start worker processes::
-
-   $ celery --app=ocd_backend:celery_app worker --loglevel=info --concurrency=2
-
-3. In another terminal (in case of Docker, use ``docker exec`` as described above), start the extraction process::
+2. In another terminal (in case of Docker, use ``docker exec`` as described above), start the extraction process::
 
    $ ./manage.py extract start <name_of_source>
 
@@ -78,4 +74,4 @@ Automatic updating using cron
 
 The ``update.sh`` script contains the instructions to update indices. On the host machine run ``sudo crontab -e`` and add the following line::
 
-   $ 0 1,7,13,19 * * * sudo docker exec open-wob-api_backend_1 ./opt/owa/update.sh
+   $ 0 1,7,13,19 * * * sudo docker exec poliflw_backend_1 ./opt/pfl/update.sh

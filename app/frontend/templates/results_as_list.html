@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <h3>{{ results.meta.total}} WOB verzoeken</h3>
+    <h3>{{ results.meta.total}} documenten</h3>
   </div>
 </div>
 {% for result in results.item %}
@@ -19,7 +19,7 @@
       <li><a href="{{ pdf.url }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ pdf.label }}</a></li>
     {% endfor %}
     </ol>
-    <p class="pull-right"><a href="https://api.openwob.nl/v0/combined_index/item/{{ result.id or result.meta.owa_url |split("/") |last }}" target="_blank" title="JSON data bekijken"><i class="fa fa-floppy-o" aria-hidden="true"></i></a></p>
+    <p class="pull-right"><a href="https://api.poliflw.nl/v0/combined_index/item/{{ result.id or result.meta.owa_url |split("/") |last }}" target="_blank" title="JSON data bekijken"><i class="fa fa-floppy-o" aria-hidden="true"></i></a></p>
   </div>
 </div>
 {% endfor %}

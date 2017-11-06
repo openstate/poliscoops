@@ -1,14 +1,14 @@
-Contributing to the Open Wob API
+Contributing to the PoliFLW API
 =========================================
 
-Want to get involved with the Open Wob API? Here's how you can help!
+Want to get involved with the PoliFLW API? Here's how you can help!
 
 Please take a moment to review this document in order to make the contribution process easy and effective for everyone involved.
 
 Using the issue tracker
 -----------------------
 
-The `issue tracker <https://github.com/openstate/open-wob-api/issues>`_ is the preferred channel for submitting bug reports, feature requests and pull requests.
+The `issue tracker <https://github.com/openstate/poliflw/issues>`_ is the preferred channel for submitting bug reports, feature requests and pull requests.
 
 Bug reports
 -----------
@@ -19,7 +19,7 @@ Some guidelines when submitting a bug report:
 
 - Check if the issue hasn't already been reported.
 - Be as detailed as possible, people reading the report shouldn't have to chase you up for more information. Describe the problem thoroughly, so others can try to reproduce it.
-- Verify that the problem only occurs within the Open Wob API, and not in the original source. You can do this by requesting the original document(s) via the REST API (``/(source_id)/(object_id)/source``). Problems in the source data will not be fixed by us and should be reported to the data publishers.
+- Verify that the problem only occurs within the PoliFLW API, and not in the original source. You can do this by requesting the original document(s) via the REST API (``/(source_id)/(object_id)/source``). Problems in the source data will not be fixed by us and should be reported to the data publishers.
 
 Feature requests
 ----------------
@@ -39,9 +39,9 @@ To submit a pull request, follow this process:
 
 1. `Fork the project <http://help.github.com/fork-a-repo/>`_ and clone your fork::
 
-   $ git clone https://github.com/<your-username>/open-wob-api.git
-   $ cd open-wob-api
-   $ git remote add upstream https://github.com/openstate/open-wob-api.git
+   $ git clone https://github.com/<your-username>/poliflw.git
+   $ cd poliflw
+   $ git remote add upstream https://github.com/openstate/poliflw.git
 
 2. Always make sure you are working with a recent version. To get the latest changes from upstream::
 
@@ -56,7 +56,7 @@ To submit a pull request, follow this process:
 
    $ git push origin <topic-branch-name>
 
-5. When you've finished writing your awesome additions to the Open Wob API, please make sure you merge with the `upstream dev` branch before you submit your pull request, in order to prevent us from running into massive merge conflict resolutions::
+5. When you've finished writing your awesome additions to the PoliFLW API, please make sure you merge with the `upstream dev` branch before you submit your pull request, in order to prevent us from running into massive merge conflict resolutions::
 
    $ git pull upstream dev
 

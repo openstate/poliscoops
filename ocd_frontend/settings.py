@@ -16,14 +16,14 @@ DEFAULT_SEARCH_SIZE = 10
 MAX_SEARCH_SIZE = 100
 
 # The name of the index containing documents from all sources
-COMBINED_INDEX = 'owa_combined_index'
+COMBINED_INDEX = 'pfl_combined_index'
 
 # The default prefix used for all data
-DEFAULT_INDEX_PREFIX = 'owa'
+DEFAULT_INDEX_PREFIX = 'pfl'
 
 # The fields which can be used for sorting results via the REST API
 SORTABLE_FIELDS = {
-    'items': [
+    'item': [
         'meta.source_id',
         'meta.processing_started',
         'meta.processing_finished',
@@ -51,10 +51,10 @@ ALLOWED_INCLUDE_FIELDS_DEFAULT = []
 ALLOWED_INCLUDE_FIELDS_SEARCH = []
 
 SIMPLE_QUERY_FIELDS = {
-    'items': ['title', 'description', 'enrichments.media_urls.text']
+    'item': ['title', 'description', 'enrichments.media_urls.text']
 }
 
-DOC_TYPE_DEFAULT = u'items'
+DOC_TYPE_DEFAULT = u'item'
 
 # Definition of the ES facets (and filters) that are accessible through
 # the REST API
@@ -104,7 +104,7 @@ COMMON_FACETS = {
 }
 
 AVAILABLE_FACETS = {
-    'items': {
+    'item': {
         'start_date': {
             'date_histogram': {
                 'field': 'start_date',
@@ -233,7 +233,7 @@ COMMON_HIGHLIGHTS = {
 }
 
 AVAILABLE_HIGHLIGHTS = {
-    'items': {
+    'item': {
         'name': {}
     }
 }
@@ -243,12 +243,12 @@ AVAILABLE_HIGHLIGHTS = {
 ALLOWED_DATE_INTERVALS = ('day', 'week', 'month', 'quarter', 'year')
 
 # Name of the Elasticsearch index used to store URL resolve documnts
-RESOLVER_URL_INDEX = 'owa_resolver'
+RESOLVER_URL_INDEX = 'pfl_resolver'
 
 # Determines if API usage events should be logged
 USAGE_LOGGING_ENABLED = True
 # Name of the Elasticsearch index used to store logged events
-USAGE_LOGGING_INDEX = 'owa_usage_logs'
+USAGE_LOGGING_INDEX = 'pfl_usage_logs'
 
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 DUMPS_DIR = os.path.join(os.path.dirname(ROOT_PATH), 'dumps')
@@ -262,7 +262,7 @@ API_URL = 'http://frontend:5000/v0/'
 
 # URL where collection dumps are hosted. This is used for generating full URLs
 # to dumps in the /dumps endpoint
-DUMP_URL = 'http://dumps.openwob.nl/'
+#DUMP_URL = 'http://dumps.poliflw.nl/'
 
 LOGGING = {
     'version': 1,

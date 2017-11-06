@@ -1,7 +1,7 @@
-Open Wob API Documentation
+PoliFLW API Documentation
 ===================================
 
-Welcome to the documentation of the Open Wob API. The Open Wob API is the place where Wob data is made available for others to reuse. For more general information about the Open Wob project, see the main website: https://www.openwob.nl/.
+Welcome to the documentation of the PoliFLW API. The PoliFLW API is the place where Wob data is made available for others to reuse. For more general information about the PoliFLW project, see the main website: https://www.openwob.nl/.
 
 Background
 ----------
@@ -14,7 +14,7 @@ Background
    changes
 
 
-Using the Open Wob API
+Using the PoliFLW API
 ----------------------------------
 
 .. toctree::

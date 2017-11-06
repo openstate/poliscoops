@@ -63,16 +63,16 @@ TEMP_DIR_PATH = os.path.join(ROOT_PATH, 'temp')
 SOURCES_CONFIG_FILE = os.path.join(ROOT_PATH, 'sources/*.json')
 
 # The name of the index containing documents from all sources
-COMBINED_INDEX = 'owa_combined_index'
+COMBINED_INDEX = 'pfl_combined_index'
 
 # The default prefix used for all data
-DEFAULT_INDEX_PREFIX = 'owa'
+DEFAULT_INDEX_PREFIX = 'pfl'
 
-RESOLVER_BASE_URL = 'https://api.openwob.nl/v0/resolve'
-RESOLVER_URL_INDEX = 'owa_resolver'
+RESOLVER_BASE_URL = 'https://api.poliflw.nl/v0/resolve'
+RESOLVER_URL_INDEX = 'pfl_resolver'
 
 # The User-Agent that is used when retrieving data from external sources
-USER_AGENT = 'Open Wob API/0.1 (+https://www.openwob.nl/)'
+USER_AGENT = 'PoliFLW API/0.1 (+https://poliflw.nl/)'
 
 # URL where of the API instance that should be used for management commands
 # Should include API version and a trailing slash.

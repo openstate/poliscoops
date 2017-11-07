@@ -21,7 +21,9 @@ services:
     links:
       - elasticsearch:elasticsearch
     volumes:
-      - ./ocd_frontend:/opt/pfl/ocd_frontend 
+      - ./ocd_frontend:/opt/pfl/ocd_frontend
+    ports:
+      - "5001:5000"
     networks:
       - pfl
       - nginx-load-balancer
@@ -60,6 +62,8 @@ services:
       - ./app:/opt/app
     networks:
       - pfl
+    ports:
+      - "5000:5000"
 volumes:
   esdata:
     driver: local

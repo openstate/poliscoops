@@ -6,9 +6,6 @@ from ocd_backend.items import BaseItem
 
 
 class FeedItem(BaseItem):
-    def get_object_id(self):
-        return unicode(self.original_item['id'])
-
     def get_original_object_id(self):
         return unicode(self.original_item['id'])
 

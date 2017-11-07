@@ -2,8 +2,7 @@ import feedparser
 import json
 import time
 
-from ocd_backend.extractors import BaseExtractor
-from ocd_backend.exceptions import ConfigurationError
+from ocd_backend.extractors.staticfile import StaticFileBaseExtractor
 
 
 class FeedDateEncoder(json.JSONEncoder):
@@ -16,22 +15,11 @@ class FeedDateEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-class FeedExtractor(BaseExtractor):
+class FeedExtractor(StaticFileBaseExtractor):
     """
     Extract items from an RSS/Atom Feed
     """
-    def __init__(self, *args, **kwargs):
-        super(FeedExtractor, self).__init__(*args, **kwargs)
-
-        if 'file_url' not in self.source_definition:
-            raise ConfigurationError('Missing \'file_url\' definition')
-
-        if not self.source_definition['file_url']:
-            raise ConfigurationError('The \'file_url\' is empty')
-
-        self.file_url = self.source_definition['file_url']
-
-    def run(self):
-        self.feedparser = feedparser.parse(self.file_url)
-        for entry in feedparser.entries:
+    def extract_items(self, static_content):
+        self.feedparser = feedparser.parse(static_content)
+        for entry in self.feedparser.entries:
             yield 'application/json', json.dumps(entry, cls=FeedDateEncoder)

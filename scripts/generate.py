@@ -56,7 +56,7 @@ def _generate_for_groenlinks(name):
             "hidden": False,
             "index_name": "groenlinks",
             "collection": "GroenLinks",
-            "file_url": os.path.join(link, 'rss.xml'),
+            "file_url": os.path.join(link, 'rss.xml'),  # TODO: sometimes /feed
             "keep_index_on_update": True
         }]
 

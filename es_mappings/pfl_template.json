@@ -111,6 +111,9 @@
                     "type": "date",
                     "format": "dateOptionalTime"
                 },
+                "location": {
+                  "type": "keyword"
+                },
                 "status": {
                   "type": "keyword"
                 },

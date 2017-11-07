@@ -43,9 +43,17 @@ def _generate_for_groenlinks(name):
             slug = m.group(1)
         else:
             slug = None
+        feed_url = os.path.join(link, 'rss.xml')
+        try:
+            requests.head(feed_url)
+        except (
+            requests.exceptions.HTTPError,
+            requests.exceptions.ConnectionError
+        ):
+            feed_url = os.path.join(link, 'feed')
         return [{
             "id": "groenlinks_" + slug,
-            "location": name,
+            "location": unicode(name),
             "extractor": "ocd_backend.extractors.feed.FeedExtractor",
             "transformer": "ocd_backend.transformers.BaseTransformer",
             "item": "ocd_backend.items.feed.FeedItem",
@@ -56,7 +64,7 @@ def _generate_for_groenlinks(name):
             "hidden": False,
             "index_name": "groenlinks",
             "collection": "GroenLinks",
-            "file_url": os.path.join(link, 'rss.xml'),  # TODO: sometimes /feed
+            "file_url": feed_url,
             "keep_index_on_update": True
         }]
 
@@ -74,6 +82,49 @@ def _generate_for_groenlinks(name):
         if local_link is not None:
             result += _generate_for_groen_links_subsite(local_name, local_link)
     return result
+
+
+def _generate_for_cda(name):
+    def _generate_for_cda_subsite(name, link):
+        prefix = u'' if link.startswith('/') else '/'
+        feed_url = u'%s%s%s%s' % (
+            'https://www.cda.nl', prefix,  link, u'nieuws.xml',)
+        try:
+            slug = link.split('/')[-2]
+        except LookupError:
+            slug = u''
+        return [{
+            "id": u"cda_%s" % (slug,),
+            "location": unicode(name),
+            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "item": "ocd_backend.items.feed.FeedItem",
+            "enrichers": [
+            ],
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False,
+            "index_name": "cda",
+            "collection": "CDA",
+            "file_url": feed_url,
+            "keep_index_on_update": True
+        }]
+
+    resp = requests.get('https://www.cda.nl/partij/afdelingen/')
+    html = etree.HTML(resp.content)
+    party_elems = html.xpath(
+        '//div[@class="panel-mainContent"]//select[@class="redirectSelect"]//option')
+    result = []
+    for party_elem in party_elems:
+        local_name = u''.join(party_elem.xpath('.//text()')).strip()
+        try:
+            local_link = party_elem.xpath('./@value')[0]
+        except LookupError:
+            local_link = None
+        if local_link is not None:
+            result += _generate_for_cda_subsite(local_name, local_link)
+    return result
+
 
 @click.group()
 @click.version_option()

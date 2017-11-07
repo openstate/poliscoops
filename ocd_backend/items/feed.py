@@ -27,15 +27,20 @@ class FeedItem(BaseItem):
 
         # TODO: provide easier way for default mapping
         mappings = {
-            'updated': 'date',  # default mapping
             'summary': 'description'
         }
         mappings.update(self.source_definition.get('mappings', {}))
 
-        for fld in ['title', 'summary', 'updated']:
+        for fld in ['title', 'summary']:
             if self.original_item.get(fld, None) is not None:
                 mapping_fld = mappings.get(fld, fld)
                 combined_index_data[mapping_fld] = self.original_item[fld]
+
+        try:
+            combined_index_data['date'] = iso8601.parse_date(
+                self.original_item['published_parsed'])
+        except LookupError:
+            pass
 
         if self.source_definition.get('location', None) is not None:
             combined_index_data['location'] = unicode(self.source_definition[

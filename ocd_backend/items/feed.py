@@ -37,6 +37,9 @@ class FeedItem(BaseItem):
                 mapping_fld = mappings.get(fld, fld)
                 combined_index_data[mapping_fld] = self.original_item[fld]
 
+        if self.source_definition.get('location', None) is not None:
+            combined_index_data['location'] = self.source_definition[
+                'location']
         combined_index_data['date_granularity'] = 12
 
         return combined_index_data

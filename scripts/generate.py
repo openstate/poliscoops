@@ -5,15 +5,19 @@ from glob import glob
 import gzip
 from hashlib import sha1
 import os
+import re
 import requests
 import sys
 import time
 from urlparse import urljoin
+from pprint import pprint
 
 import click
 from click.core import Command
 from click.decorators import _make_command
 
+from lxml import etree
+import requests
 
 def command(name=None, cls=None, **attrs):
     """
@@ -32,144 +36,77 @@ def command(name=None, cls=None, **attrs):
     return decorator
 
 
-def _generate_for_organisations(name, almanak):
-    organisations = [{
-        "id": "%s_municipality" % (name.lower(),),
-        "extractor": "ocd_backend.extractors.odata.ODataExtractor",
-        "transformer": "ocd_backend.transformers.BaseTransformer",
-        "item": "ocd_backend.items.organisations.MunicipalityOrganisationItem",
-        "enrichers": [],
-        "loader": "ocd_backend.loaders.ElasticsearchLoader",
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-        "hidden": False,
-        "index_name": name.lower(),
-        "file_url": (
-            "http://dataderden.cbs.nl/ODataApi/OData/45006NED/Gemeenten"),
-        "doc_type": "organizations",
-        "filter": {
-            "Title": name.lower()
-        },
-        "keep_index_on_update": True
-    }, {
-        "id": "%s_organisations" % (name.lower(),),
-        "extractor": "ocd_backend.extractors.almanak.OrganisationsExtractor",
-        "transformer": "ocd_backend.transformers.BaseTransformer",
-        "item": "ocd_backend.items.organisations.AlmanakOrganisationItem",
-        "enrichers": [],
-        "loader": "ocd_backend.loaders.ElasticsearchLoader",
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-        "hidden": False,
-        "index_name": name.lower(),
-        "file_url": almanak,
-        "doc_type": "organizations",
-        "item_xpath": "//",
-        "keep_index_on_update": True
-    }]
-    return organisations
+def _generate_for_groenlinks(name):
+    def _generate_for_groen_links_subsite(name, link):
+        m = re.match(r'^https?\:\/\/w?w?w?\.?([^\.]+)', link)
+        if m is not None:
+            slug = m.group(1)
+        else:
+            slug = None
+        return [{
+            "id": "groenlinks_" + slug,
+            "location": name,
+            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "item": "ocd_backend.items.feed.FeedItem",
+            "enrichers": [
+            ],
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False,
+            "index_name": "groenlinks",
+            "collection": "GroenLinks",
+            "file_url": os.path.join(link, 'rss.xml'),
+            "keep_index_on_update": True
+        }]
 
-
-def _generate_for_persons(name, almanak):
-    persons = [{
-        "id": "%s_persons" % (name.lower(),),
-        "extractor": "ocd_backend.extractors.almanak.PersonsExtractor",
-        "transformer": "ocd_backend.transformers.BaseTransformer",
-        "item": "ocd_backend.items.persons.AlmanakPersonItem",
-        "enrichers": [],
-        "loader": "ocd_backend.loaders.ElasticsearchLoader",
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-        "hidden": False,
-        "index_name": name.lower(),
-        "file_url": almanak,
-        "doc_type": "persons",
-        "item_xpath": "//",
-        "keep_index_on_update": True
-    }]
-    return persons
-
-
-def _generate_for_msi(name, almanak):
-    sources = [{
-        "id": "%s_meetings" % (name.lower(),),
-        "extractor": "ocd_backend.extractors.ibabs.IBabsMeetingsExtractor",
-        "transformer": "ocd_backend.transformers.BaseTransformer",
-        "item": "ocd_backend.items.ibabs_meeting.IBabsMeetingItem",
-        "enrichers": [],
-        "loader": "ocd_backend.loaders.ElasticsearchLoader",
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-        "hidden": False,
-        "index_name": name.lower(),
-        "doc_type": "events",
-        "sitename": name,
-        "keep_index_on_update": True
-    }, {
-        "id": "%s_reports" % (name.lower(),),
-        "extractor": "ocd_backend.extractors.ibabs.IBabsReportsExtractor",
-        "transformer": "ocd_backend.transformers.BaseTransformer",
-        "item": "ocd_backend.items.ibabs_meeting.IBabsReportItem",
-        "enrichers": [],
-        "loader": "ocd_backend.loaders.ElasticsearchLoader",
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-        "hidden": False,
-        "index_name": name.lower(),
-        "doc_type": "events",
-        "sitename": name,
-        "keep_index_on_update": True,
-        "regex": ".*"
-    }, {
-        "id": "%s_committees" % (name.lower(),),
-        "extractor": "ocd_backend.extractors.ibabs.IBabsCommitteesExtractor",
-        "transformer": "ocd_backend.transformers.BaseTransformer",
-        "item": "ocd_backend.items.ibabs_committee.CommitteeItem",
-        "enrichers": [],
-        "loader": "ocd_backend.loaders.ElasticsearchLoader",
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-        "hidden": False,
-        "index_name": name.lower(),
-        "doc_type": "organizations",
-        "sitename": name,
-        "keep_index_on_update": True
-    }]
-    return sources
-
+    resp = requests.get('https://groenlinks.nl/lokaal')
+    html = etree.HTML(resp.content)
+    party_elems = html.xpath(
+        '//ul[@class="clearfix province-departments-list"]//li/a')
+    result = []
+    for party_elem in party_elems:
+        local_name = u''.join(party_elem.xpath('.//text()'))
+        try:
+            local_link = party_elem.xpath('./@href')[0]
+        except LookupError:
+            local_link = None
+        if local_link is not None:
+            result += _generate_for_groen_links_subsite(local_name, local_link)
+    return result
 
 @click.group()
 @click.version_option()
 def cli():
-    """Open Raads Informatie Data"""
+    """Poliflw"""
 
 
 @cli.group()
 def sources():
-    """Generate sources for a municipality"""
+    """Generate sources for a party"""
 
 
-@command('municipality')
+@command('party')
 @click.argument('name', default='')
-@click.argument('almanak', default='')
-@click.argument('provider', default='msi')
-def generate_sources_municipality(name, almanak, provider):
+def generate_sources_local_party(name):
     """
-    This generate the sources for a municipality
+    This generate the sources for a party
 
-    param: name: The name of the municipality
-    param: almanak: The link to the Almanak page
-    param: provider: The provider of the information system. Currently: msi
+    param: name: The name of the party
     """
 
-    method_name = '_generate_for_%s' % (provider,)
+    method_name = '_generate_for_%s' % (name,)
     possibles = globals().copy()
     possibles.update(locals())
     method = possibles.get(method_name)
 
     sources = (
-        _generate_for_organisations(name, almanak) +
-        _generate_for_persons(name, almanak) +
-        method(name, almanak)
+        method(name)
     )
 
     print json.dumps(sources, indent=4)
 
-sources.add_command(generate_sources_municipality)
+sources.add_command(generate_sources_local_party)
 
 if __name__ == '__main__':
     cli()

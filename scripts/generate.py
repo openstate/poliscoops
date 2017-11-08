@@ -177,6 +177,51 @@ def _generate_for_cu(name):
     return result
 
 
+def _generate_for_d66(name):
+    def _generate_for_d66_subsite(name, link):
+        m = re.match(r'^w?w?w?\.?([^\.]+)', link.replace('http://', '').replace('https', ''))
+        if m is not None:
+            slug = m.group(1)
+        else:
+            slug = None
+
+        feed_url = "%s/feed/" % (link,)
+        return [{
+            "id": u"d66_%s" % (slug.replace('-', '_'),),
+            "location": unicode(name),
+            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "item": "ocd_backend.items.feed.FeedItem",
+            "enrichers": [
+            ],
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False,
+            "index_name": "d66",
+            "collection": "D66",
+            "file_url": feed_url,
+            "keep_index_on_update": True
+        }]
+
+    resp = requests.get('https://d66.nl/partij/d66-het-land/')
+    html = etree.HTML(resp.content)
+    provinces = html.xpath('//a[@class="tile-thumb"]/@href')
+    result = []
+    for province in provinces:
+        province_resp = requests.get(province)
+        province_html = etree.HTML(province_resp.content)
+        party_elems = province_html.xpath('//div[@id="rs-content"]//p/a')
+        for party_elem in party_elems:
+            local_name = u''.join(party_elem.xpath('.//text()')).strip()
+            try:
+                local_link = party_elem.xpath('./@href')[0]
+            except LookupError:
+                local_link = None
+            if local_link is not None:
+                result += _generate_for_d66_subsite(local_name, local_link)
+    return result
+
+
 @click.group()
 @click.version_option()
 def cli():

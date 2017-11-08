@@ -63,5 +63,3 @@ ocd_frontend/.thumbnail-cache/*
 log/*log*
 log/*err*
 log/*.pid
-
-ocd_backend/sources/groenlinks.json

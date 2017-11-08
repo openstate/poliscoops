@@ -268,7 +268,99 @@ def _generate_for_vvd(name):
                 rss_url = 'http://' + line[0] + line[1]
 
             result += _generate_for_vvd_subsite(name, rss_url, feed_idx)
+    return result
 
+
+def _generate_for_d66(name):
+    def _generate_for_d66_subsite(name, link):
+        m = re.match(r'^w?w?w?\.?([^\.]+)', link.replace('http://', '').replace('https', ''))
+        if m is not None:
+            slug = m.group(1)
+        else:
+            slug = None
+
+        feed_url = "%s/feed/" % (link,)
+        return [{
+            "id": u"d66_%s" % (slug.replace('-', '_'),),
+            "location": unicode(name),
+            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "item": "ocd_backend.items.feed.FeedItem",
+            "enrichers": [
+            ],
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False,
+            "index_name": "d66",
+            "collection": "D66",
+            "file_url": feed_url,
+            "keep_index_on_update": True
+        }]
+
+    resp = requests.get('https://d66.nl/partij/d66-het-land/')
+    html = etree.HTML(resp.content)
+    provinces = html.xpath('//a[@class="tile-thumb"]/@href')
+    result = []
+    for province in provinces:
+        province_resp = requests.get(province)
+        province_html = etree.HTML(province_resp.content)
+        party_elems = province_html.xpath('//div[@id="rs-content"]//p/a')
+        for party_elem in party_elems:
+            local_name = u''.join(party_elem.xpath('.//text()')).strip()
+            try:
+                local_link = party_elem.xpath('./@href')[0]
+            except LookupError:
+                local_link = None
+            if local_link is not None:
+                result += _generate_for_d66_subsite(local_name, local_link)
+    return result
+
+
+def _generate_for_sp(name):
+    def _generate_for_sp_subsite(name, link):
+        m = re.match(r'^https?\:\/\/w?w?w?\.?([^\.]+)', link)
+        if m is not None:
+            slug = m.group(1)
+        else:
+            slug = None
+        feed_url = os.path.join(link, 'rss.xml')
+        try:
+            requests.head(feed_url)
+        except (
+            requests.exceptions.HTTPError,
+            requests.exceptions.ConnectionError
+        ):
+            feed_url = os.path.join(link, 'feed')
+        return [{
+            "id": "sp_" + slug,
+            "location": unicode(name).replace('SP ', ''),
+            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "item": "ocd_backend.items.feed.FeedItem",
+            "enrichers": [
+            ],
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False,
+            "index_name": "sp",
+            "collection": "SP",
+            "file_url": feed_url,
+            "keep_index_on_update": True
+        }]
+
+    resp = requests.get('https://www.sp.nl/wij-sp/lokale-afdelingen')
+    html = etree.HTML(resp.content)
+    party_elems = html.xpath(
+        '//ul[@class="afdelingen-overview"]//li/a')
+    result = []
+    for party_elem in party_elems:
+        local_name = u''.join(party_elem.xpath('.//text()'))
+        try:
+            local_link = party_elem.xpath('./@href')[0]
+        except LookupError:
+            local_link = None
+        if local_link is not None:
+            result += _generate_for_sp_subsite(local_name, local_link)
     return result
 
 

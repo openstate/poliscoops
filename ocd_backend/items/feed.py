@@ -7,7 +7,7 @@ from ocd_backend.items import BaseItem
 
 class FeedItem(BaseItem):
     def get_original_object_id(self):
-        return unicode(self.original_item['id'])
+        return unicode(self.original_item['link'])
 
     def get_original_object_urls(self):
         return {

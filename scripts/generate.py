@@ -126,6 +126,57 @@ def _generate_for_cda(name):
     return result
 
 
+def _generate_for_cu(name):
+    def _generate_for_cu_subsite(name, link):
+        m = re.match(r'^https?\:\/\/w?w?w?\.?([^\.]+)', link)
+        if m is not None:
+            slug = m.group(1)
+        else:
+            slug = None
+
+        resp = requests.get(link)
+        html = etree.HTML(resp.content)
+        feeds = html.xpath('//link[@type="application/rss+xml"]')
+
+        result = []
+        feed_idx = 0
+        for feed in feeds:
+            feed_idx += 1
+            feed_url = u''.join(feed.xpath('./@href'))
+            result.append({
+                "id": u"cu_%s_%s" % (slug.replace('-', '_'), feed_idx,),
+                "location": unicode(name),
+                "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "item": "ocd_backend.items.feed.FeedItem",
+                "enrichers": [
+                ],
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False,
+                "index_name": "christenunie",
+                "collection": "ChristenUnie",
+                "file_url": feed_url,
+                "keep_index_on_update": True
+            })
+        return result
+
+    resp = requests.get('https://www.christenunie.nl/lokaal-en-provinciaal')
+    html = etree.HTML(resp.content)
+    party_elems = html.xpath(
+        '//form[@name="formName2"]/select//option')
+    result = []
+    for party_elem in party_elems:
+        local_name = u''.join(party_elem.xpath('.//text()')).strip()
+        try:
+            local_link = party_elem.xpath('./@value')[0]
+        except LookupError:
+            local_link = None
+        if local_link is not None:
+            result += _generate_for_cu_subsite(local_name, local_link)
+    return result
+
+
 @click.group()
 @click.version_option()
 def cli():

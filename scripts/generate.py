@@ -88,9 +88,9 @@ def _generate_for_cda(name):
     def _generate_for_cda_subsite(name, link):
         prefix = u'' if link.startswith('/') else '/'
         feed_url = u'%s%s%s%s' % (
-            'https://www.cda.nl', prefix,  link, u'nieuws.xml',)
+            'https://www.cda.nl', prefix,  link, u'nieuws.rss',)
         try:
-            slug = link.split('/')[-2]
+            slug = link.split('/')[-2].replace('-', '_')
         except LookupError:
             slug = u''
         return [{

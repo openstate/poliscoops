@@ -80,7 +80,7 @@ def _generate_for_pvdd(name):
             slug = None
         url = os.path.join(link, 'nieuws')
         return [{
-            "id": "pvdd" + slug,
+            "id": "pvdd_" + slug,
             "location": unicode(name),
             "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
             "transformer": "ocd_backend.transformers.BaseTransformer",

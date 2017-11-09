@@ -71,6 +71,46 @@ def command(name=None, cls=None, **attrs):
     return decorator
 
 
+def _generate_for_pvdd(name):
+    def _generate_for_pvdd_subsite(name, link):
+        m = re.match(r'^https?\:\/\/w?w?w?\.?([^\.]+)', link)
+        if m is not None:
+            slug = m.group(1)
+        else:
+            slug = None
+        url = os.path.join(link, 'nieuws')
+        return [{
+            "id": "pvdd" + slug,
+            "location": unicode(name),
+            "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "item": "ocd_backend.items.pvdd.PVDDItem",
+            "enrichers": [
+            ],
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False,
+            "index_name": "pvdd",
+            "collection": "Partij voor de Dieren",
+            "file_url": url,
+            "keep_index_on_update": True
+        }]
+
+    resp = requests.get('https://gemeenten.partijvoordedieren.nl/over-de-gemeenteraadsfracties', verify=False)
+    html = etree.HTML(resp.content)
+    party_elems = html.xpath('//article/p//a')
+    result = []
+    for party_elem in party_elems:
+        local_name = u''.join(party_elem.xpath('.//text()'))
+        try:
+            local_link = party_elem.xpath('./@href')[0]
+        except LookupError:
+            local_link = None
+        if local_link is not None and not local_link.endswith('pdf'):
+            result += _generate_for_pvdd_subsite(local_name, local_link)
+    return result
+
+
 def _generate_for_groenlinks(name):
     def _generate_for_groen_links_subsite(name, link):
         m = re.match(r'^https?\:\/\/w?w?w?\.?([^\.]+)', link)

@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 from datetime import datetime
+import csv
+import codecs
 import json
 from glob import glob
 import gzip
@@ -18,6 +20,39 @@ from click.decorators import _make_command
 
 from lxml import etree
 import requests
+
+
+class UTF8Recoder:
+    """
+    Iterator that reads an encoded stream and reencodes the input to UTF-8
+    """
+    def __init__(self, f, encoding):
+        self.reader = codecs.getreader(encoding)(f)
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        return self.reader.next().encode("utf-8")
+
+
+class UnicodeReader:
+    """
+    A CSV reader which will iterate over lines in the CSV file "f",
+    which is encoded in the given encoding.
+    """
+
+    def __init__(self, f, dialect=csv.excel, encoding="utf-8", **kwds):
+        f = UTF8Recoder(f, encoding)
+        self.reader = csv.reader(f, dialect=dialect, **kwds)
+
+    def next(self):
+        row = self.reader.next()
+        return [unicode(s, "utf-8") for s in row]
+
+    def __iter__(self):
+        return self
+
 
 def command(name=None, cls=None, **attrs):
     """
@@ -174,6 +209,65 @@ def _generate_for_cu(name):
             local_link = None
         if local_link is not None:
             result += _generate_for_cu_subsite(local_name, local_link)
+    return result
+
+
+def _generate_for_vvd(name):
+    def _generate_for_vvd_subsite(name, feed_url, feed_idx):
+        m = re.match(r'^https?\:\/\/w?w?w?\.?([^\.]+)', feed_url)
+        if m is not None:
+            slug = m.group(1)
+        else:
+            slug = None
+
+        result = []
+        result.append({
+            "id": u"vvd_%s_%s" % (slug.replace('-', '_'), feed_idx,),
+            "location": unicode(name),
+            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "item": "ocd_backend.items.feed.FeedItem",
+            "enrichers": [
+            ],
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False,
+            "index_name": "vvd",
+            "collection": "VVD",
+            "file_url": feed_url,
+            "keep_index_on_update": True
+        })
+        return result
+
+    result = []
+
+    session = requests.session()
+
+    with open('vvd.txt') as IN:
+        lines = list(UnicodeReader(IN))
+
+        feed_idx = 0
+        for line in lines:
+            feed_idx += 1
+
+            rss_url = 'http://' + line[0] + '/feeds/nieuws.rss'
+
+            # Get name from CSV or website
+            if len(line) == 3:
+                name = line[2]
+                if line[1]:
+                    rss_url = 'http://' + line[0] + line[1]
+            else:
+                url = 'http://' + line[0]
+                resp = session.get(url, verify=False)
+                html = etree.HTML(resp.content)
+                name = html.xpath('.//span[@class="site-logo__text"]/text()')[0]
+
+            # Get RSS feed path from CSV or assume default '/feeds/nieuws.rss'
+            if len(line) == 2:
+                rss_url = 'http://' + line[0] + line[1]
+
+            result += _generate_for_vvd_subsite(name, rss_url, feed_idx)
     return result
 
 

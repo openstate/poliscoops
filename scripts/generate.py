@@ -405,6 +405,55 @@ def _generate_for_pvda(name):
     return result
 
 
+def _generate_for_sgp(name):
+    def _generate_for_sgp_subsite(name, link):
+        if ".sgp.nl" not in link:
+            return []
+
+        m = re.match(r'^https?s?\:\/\/w?w?w?\.?([^\.]+)', link)
+        if m is not None:
+            slug = m.group(1)
+        else:
+            slug = None
+
+        if slug is None:
+            return []
+
+        return [{
+            "id": "sgp_" + slug,
+            "location": unicode(name).strip(),
+            "extractor": "ocd_backend.extractors.staticfile.StaticHtmlExtractor",
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "item": "ocd_backend.items.sgp.SGPItem",
+            "enrichers": [
+            ],
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False,
+            "index_name": "sgp",
+            "collection": "SGP",
+            "item_xpath": "//a[contains(@class, \"overlay-link\")]",
+            "file_url": u"%s/actueel" % (link,),
+            "keep_index_on_update": True
+        }]
+
+    resp = requests.get('https://www.sgp.nl/decentraal')
+    html = etree.HTML(resp.content)
+    party_elems = html.xpath(
+        '//div[@class="markers"]//div')
+    result = []
+    links = {}
+    for party_elem in party_elems:
+        local_name = u''.join(party_elem.xpath('./h3//text()'))
+        try:
+            local_link = party_elem.xpath('.//a/@href')[0]
+        except LookupError:
+            local_link = None
+        if (local_link is not None) and (links.get(local_link, None) is None):
+            links[local_link] = 1
+            result += _generate_for_sgp_subsite(local_name, local_link)
+    return result
+
 
 @click.group()
 @click.version_option()

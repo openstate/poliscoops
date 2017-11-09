@@ -270,6 +270,48 @@ def _generate_for_sp(name):
     return result
 
 
+def _generate_for_pvda(name):
+    def _generate_for_pvda_subsite(name, link):
+        m = re.match(r'^https?s?\:\/\/w?w?w?\.?([^\.]+)', link)
+        if m is not None:
+            slug = m.group(1)
+        else:
+            slug = None
+        feed_url = os.path.join(link, 'feed')
+        return [{
+            "id": "pvda_" + slug,
+            "location": unicode(name),
+            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "item": "ocd_backend.items.feed.FeedItem",
+            "enrichers": [
+            ],
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False,
+            "index_name": "pvda",
+            "collection": "PvdA",
+            "file_url": feed_url,
+            "keep_index_on_update": True
+        }]
+
+    resp = requests.get('https://www.pvda.nl/partij/organisatie/lokale-afdelingen/')
+    html = etree.HTML(resp.content)
+    party_elems = html.xpath(
+        '//select//option')
+    result = []
+    for party_elem in party_elems:
+        local_name = u''.join(party_elem.xpath('.//text()'))
+        try:
+            local_link = party_elem.xpath('./@value')[0]
+        except LookupError:
+            local_link = None
+        if local_link is not None:
+            result += _generate_for_pvda_subsite(local_name, local_link)
+    return result
+
+
+
 @click.group()
 @click.version_option()
 def cli():

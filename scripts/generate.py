@@ -419,6 +419,18 @@ def _generate_for_sgp(name):
         if slug is None:
             return []
 
+        feed_url = u"%s/actueel" % (link,)
+        try:
+            requests.head(feed_url)
+        except (
+            requests.exceptions.HTTPError,
+            requests.exceptions.ConnectionError
+        ):
+            feed_url = None
+
+        if feed_url is None:
+            return []
+
         return [{
             "id": "sgp_" + slug,
             "location": unicode(name).strip(),
@@ -433,7 +445,7 @@ def _generate_for_sgp(name):
             "index_name": "sgp",
             "collection": "SGP",
             "item_xpath": "//a[contains(@class, \"overlay-link\")]",
-            "file_url": u"%s/actueel" % (link,),
+            "file_url": feed_url,
             "keep_index_on_update": True
         }]
 

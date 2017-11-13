@@ -30,15 +30,23 @@ class FacebookExtractor(BaseExtractor, HttpRequestMixin):
     def _fb_get_access_token(self):
         return u"%s|%s" % (self.fb_app_id, self.fb_app_secret,)
 
-    def _fb_get_object(self):
-        graph_url = "https://graph.facebook.com/%s/%s?access_token=%s" % (
-            self.fb_api_version, self.fb_graph_url,
-            self._fb_get_access_token(),)
+    def _fb_get_object(self, next_url=None):
+        if next_url is not None:
+            graph_url = next_url
+        else:
+            graph_url = "https://graph.facebook.com/%s/%s?access_token=%s" % (
+                self.fb_api_version, self.fb_graph_url,
+                self._fb_get_access_token(),)
         r = self.http_session.get(graph_url, verify=False)
         r.raise_for_status()
         return r.json()
 
     def run(self):
+        do_paging = self.source_definition['facebook'].get('paging', False)
         obj = self._fb_get_object()
         for item in obj['data']:
             yield 'application/json', json.dumps(item)
+        while do_paging and ('paging' in obj) and ('next' in obj['paging']):
+            obj = self._fb_get_object(obj['paging']['next'])
+            for item in obj['data']:
+                yield 'application/json', json.dumps(item)

@@ -12,7 +12,9 @@ class FacebookExtractor(BaseExtractor, HttpRequestMixin):
         if 'facebook' not in self.source_definition:
             raise ConfigurationError('Missing \'facebook\' definition')
 
-        for fld in ['api_version', 'app_id', 'app_secret', 'graph_url']:
+        for fld in [
+            'api_version', 'app_id', 'app_secret', 'graph_url', 'page_url'
+        ]:
             if fld not in self.source_definition['facebook']:
                 raise ConfigurationError(
                     'Missing \'%s\' definition of facebook' % (fld,))

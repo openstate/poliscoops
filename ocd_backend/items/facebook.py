@@ -12,7 +12,7 @@ class PageItem(BaseItem):
     def get_original_object_urls(self):
         return {
             'html': u'https://www.facebook.com/%s/posts/%s' % (
-                self.source_definition['facebook']['page_url'],
+                self.source_definition['facebook']['graph_url'].split('/')[0],
                 self.original_item['id'].split('_')[1],)
         }
 

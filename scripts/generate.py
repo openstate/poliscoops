@@ -507,6 +507,77 @@ def _generate_for_sgp(name):
     return result
 
 
+class SimpleFacebookAPI(object):
+    def __init__(self, api_version, app_id, app_secret):
+        self.api_version = api_version
+        self.app_id = app_id
+        self.app_secret = app_secret
+
+    def _fb_get_access_token(self):
+        return u"%s|%s" % (self.app_id, self.app_secret,)
+
+    def _fb_search(self, query, next_url=None):
+        if next_url is not None:
+            graph_url = next_url
+        else:
+            graph_url = "https://graph.facebook.com/%s/search?q=%s&type=page&fields=id,location,name,username,website&access_token=%s" % (
+                self.api_version, query,
+                self._fb_get_access_token(),)
+        r = requests.get(graph_url)
+        r.raise_for_status()
+        return r.json()
+
+    def search(self, query):
+        do_paging = True
+        obj = self._fb_search(query)
+        for item in obj['data']:
+            yield item
+        while do_paging and ('paging' in obj) and ('next' in obj['paging']):
+            obj = self._fb_search(query, obj['paging']['next'])
+            for item in obj['data']:
+                yield item
+
+
+def _generate_fb_for_groenlinks(name):
+    def _generate_for_groen_links_facebook(result):
+        slug = result.get('username', result['id'])
+        if 'location' in result and 'city' in result['location']:
+            location = r['location']['city']
+        else:
+            location = r['name'].replace('GroenLinks', '').replace('Groenlinks', '').replace('Groen Llniks', '').strip()
+        return [{
+                "extractor": "ocd_backend.extractors.facebook.FacebookExtractor",
+                "keep_index_on_update": True,
+                "enrichers": [],
+                "index_name": "groenlinks",
+                "collection": "GroenLinks",
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "id": "groenlinks_fb_%s" % (slug,),
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "facebook": {
+                  "api_version": os.environ['FACEBOOK_API_VERSION'],
+                  "app_id": os.environ['FACEBOOK_APP_ID'],
+                  "app_secret": os.environ['FACEBOOK_APP_SECRET'],
+                  "graph_url": "%s/feed" % (slug,),
+                  "paging": False
+                },
+                "item": "ocd_backend.items.facebook.PageItem",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "location": location,
+                "hidden": False
+            }]
+
+    api = SimpleFacebookAPI(
+        os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
+        os.environ['FACEBOOK_APP_SECRET'])
+    result = api.search('GroenLinks')
+    return [
+        _generate_for_groen_links_facebook(r) for r in result
+        if ('.groenlinks.nl' in r.get('website', '')) and
+        r.get('name', '').lower().startswith('groen')
+    ]
+
+
 @click.group()
 @click.version_option()
 def cli():
@@ -538,7 +609,29 @@ def generate_sources_local_party(name):
 
     print json.dumps(sources, indent=4)
 
+
+@command('facebook')
+@click.argument('name', default='')
+def generate_facebook_local_party(name):
+    """
+    This generate the facebook sources for a party
+
+    param: name: The name of the party
+    """
+
+    method_name = '_generate_fb_for_%s' % (name,)
+    possibles = globals().copy()
+    possibles.update(locals())
+    method = possibles.get(method_name)
+
+    sources = (
+        method(name)
+    )
+
+    print json.dumps(sources, indent=4)
+
 sources.add_command(generate_sources_local_party)
+sources.add_command(generate_facebook_local_party)
 
 if __name__ == '__main__':
     cli()

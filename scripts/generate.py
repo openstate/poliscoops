@@ -288,6 +288,7 @@ def _generate_for_vvd(name):
 
         feed_idx = 0
         for line in lines:
+            print >> sys.stderr, line
             feed_idx += 1
 
             rss_url = 'http://' + line[0] + '/feeds/nieuws.rss'

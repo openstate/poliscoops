@@ -1,5 +1,12 @@
 vvdamsterdam.nl
 vvddenhaag.nl,/feed/,Den Haag
+vvdachtkarspelen.nl,/?feed=rss2,Achtkarspelen
+vvdheerenveen.nl,/feed/atom/,Heerenveen
+vvd-weststellingwerf.nl,/feed/,Weststellingwerf
+vvd-westerveld.nl,/index.php/feed/,Westerveld
+vvdermelo.nl,/feed/,Ermelo
+vvdzwolle.nl,/index.php/tools/packages/page_list_teasers/rss?bID=458&cID=137&arHandle=Main,Zwolle
+omdatjevanhilversumhoudt.nl,/?feed=rss2,Hilversum
 aaenhunze.vvd.nl
 aalsmeer.vvd.nl
 aalten.vvd.nl
@@ -220,7 +227,6 @@ sliedrecht.vvd.nl
 slochteren.vvd.nl
 sluis.vvd.nl
 soest.vvd.nl
-someren-asten.vvd.nl
 sonenbreugel.vvd.nl
 stadgroningen.vvd.nl
 staphorst.vvd.nl
@@ -280,7 +286,6 @@ winsum.vvd.nl
 winterswijk.vvd.nl
 wormerland.vvd.nl
 woudenberg.vvd.nl
-woudrichem.vvd.nl
 zaanstad.vvd.nl
 zaltbommel.vvd.nl
 zandvoort.vvd.nl

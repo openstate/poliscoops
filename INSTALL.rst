@@ -9,7 +9,7 @@ Installation instructions
 Install using Docker
 ------------
 
-Using `Docker Compose<https://docs.docker.com/compose/install/>`_ is by far the easiest way to spin up a development environment and get started with contributing to the PoliFLW API. The following has been tested to work with Docker 1.0.1 and up.
+Using `Docker Compose <https://docs.docker.com/compose/install/>`_ is by far the easiest way to spin up a development environment and get started with contributing to the PoliFLW API. The following has been tested to work with Docker 1.0.1 and up.
 
 1. Clone the PoliFLW API git repository::
 

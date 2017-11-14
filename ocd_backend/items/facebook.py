@@ -24,7 +24,10 @@ class PageItem(BaseItem):
 
     def get_combined_index_data(self):
         combined_index_data = {
-            'hidden': self.source_definition['hidden']
+            'hidden': self.source_definition['hidden'],
+            'source': unicode(
+                self.source_definition.get('source', 'Facebook')),
+            'type': unicode(self.source_definition.get('type', 'Partij')),
         }
 
         combined_index_data['description'] = unicode(

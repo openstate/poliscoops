@@ -22,7 +22,10 @@ class FeedItem(BaseItem):
 
     def get_combined_index_data(self):
         combined_index_data = {
-            'hidden': self.source_definition['hidden']
+            'hidden': self.source_definition['hidden'],
+            'source': unicode(
+                self.source_definition.get('source', 'Partij nieuws')),
+            'type': unicode(self.source_definition.get('type', 'Partij')),
         }
 
         # TODO: provide easier way for default mapping

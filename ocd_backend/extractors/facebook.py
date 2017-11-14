@@ -37,7 +37,7 @@ class FacebookExtractor(BaseExtractor, HttpRequestMixin):
             graph_url = "https://graph.facebook.com/%s/%s?access_token=%s" % (
                 self.fb_api_version, self.fb_graph_url,
                 self._fb_get_access_token(),)
-        r = self.http_session.get(graph_url, verify=False)
+        r = self.http_session.get(graph_url)
         r.raise_for_status()
         return r.json()
 

@@ -538,41 +538,59 @@ class SimpleFacebookAPI(object):
                 yield item
 
 
+def _generate_facebook_for_party(
+    result, index_name, collection, replacements=[]
+):
+    slug = result.get('username', result['id'])
+    if 'location' in result and 'city' in result['location']:
+        location = result['location']['city']
+    else:
+        rep = {}  # define desired replacements here
+        for replacement in replacements:
+            rep[replacement] = u''
+        # use these three lines to do the replacement
+        rep = dict((re.escape(k), v) for k, v in rep.iteritems())
+        pattern = re.compile("|".join(rep.keys()))
+        location = pattern.sub(
+            lambda m: rep[re.escape(m.group(0))], result['name'])
+        location = location.strip()
+    return [{
+        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor",
+        "keep_index_on_update": True,
+        "enrichers": [],
+        "index_name": index_name,
+        "collection": collection,
+        "loader": "ocd_backend.loaders.ElasticsearchLoader",
+        "id": "%s_fb_%s" % (index_name, slug,),
+        "transformer": "ocd_backend.transformers.BaseTransformer",
+        "facebook": {
+          "api_version": os.environ['FACEBOOK_API_VERSION'],
+          "app_id": os.environ['FACEBOOK_APP_ID'],
+          "app_secret": os.environ['FACEBOOK_APP_SECRET'],
+          "graph_url": "%s/feed" % (slug,),
+          "paging": False
+        },
+        "item": "ocd_backend.items.facebook.PageItem",
+        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+        "location": location,
+        "hidden": False
+    }]
+
+
 def _generate_fb_for_groenlinks(name):
-    def _generate_for_groen_links_facebook(result):
-        slug = result.get('username', result['id'])
-        if 'location' in result and 'city' in result['location']:
-            location = r['location']['city']
-        else:
-            location = r['name'].replace('GroenLinks', '').replace('Groenlinks', '').replace('Groen Llniks', '').strip()
-        return [{
-                "extractor": "ocd_backend.extractors.facebook.FacebookExtractor",
-                "keep_index_on_update": True,
-                "enrichers": [],
-                "index_name": "groenlinks",
-                "collection": "GroenLinks",
-                "loader": "ocd_backend.loaders.ElasticsearchLoader",
-                "id": "groenlinks_fb_%s" % (slug,),
-                "transformer": "ocd_backend.transformers.BaseTransformer",
-                "facebook": {
-                  "api_version": os.environ['FACEBOOK_API_VERSION'],
-                  "app_id": os.environ['FACEBOOK_APP_ID'],
-                  "app_secret": os.environ['FACEBOOK_APP_SECRET'],
-                  "graph_url": "%s/feed" % (slug,),
-                  "paging": False
-                },
-                "item": "ocd_backend.items.facebook.PageItem",
-                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-                "location": location,
-                "hidden": False
-            }]
 
     api = SimpleFacebookAPI(
         os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
         os.environ['FACEBOOK_APP_SECRET'])
     result = api.search('GroenLinks')
     return [
-        _generate_for_groen_links_facebook(r) for r in result
+        _generate_facebook_for_party(
+            r, 'groenlinks', 'GroenLinks',
+            [
+                'GroenLinks', 'Groen Links', 'Groenlinks', 'GROENLINKS',
+                '/pe', 'Groen & Sociaal'
+            ]
+        ) for r in result
         if ('.groenlinks.nl' in r.get('website', '')) and
         r.get('name', '').lower().startswith('groen')
     ]

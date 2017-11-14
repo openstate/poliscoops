@@ -74,4 +74,4 @@ Automatic updating using cron
 
 The ``update.sh`` script contains the instructions to update indices. On the host machine run ``sudo crontab -e`` and add the following line::
 
-   $ 0 1,7,13,19 * * * sudo docker exec poliflw_backend_1 ./opt/pfl/update.sh
+   $ 0 1,7,13,19 * * * sudo docker exec poliflw_backend_1 ./opt/pfl/bin/update.sh

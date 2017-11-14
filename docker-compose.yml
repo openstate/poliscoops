@@ -13,7 +13,6 @@ services:
     restart: always
     networks:
       - pfl
-    mem_limit: 10g
     command: /opt/pfl/bin/backend.sh
   frontend:
     build:
@@ -29,7 +28,6 @@ services:
     image: "redis:${REDIS_VERSION}"
     sysctls:
       - net.core.somaxconn=65535
-    mem_limit: 4g
     restart: always
     networks:
       - pfl
@@ -46,7 +44,6 @@ services:
       memlock:
         soft: -1
         hard: -1
-    mem_limit: 1g
     cap_add:
       - IPC_LOCK
     volumes:

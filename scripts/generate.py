@@ -648,11 +648,12 @@ def _generate_fb_for_sp(name):
 
 
 def _generate_fb_for_cda(name):
-    # TODO: this does not work ...
     api = SimpleFacebookAPI(
         os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
         os.environ['FACEBOOK_APP_SECRET'])
-    result = api.search('CDA')
+    result1 = api.search('CDA POLITICAL_ORGANIZATION')
+    result2 = api.search('CDA POLITICAL_PARTY')
+    result = [r for r in result1] + [r for r in result2]
     return [
         _generate_facebook_for_party(
             r, 'cda', 'CDA',
@@ -687,7 +688,9 @@ def _generate_fb_for_sgp(name):
     api = SimpleFacebookAPI(
         os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
         os.environ['FACEBOOK_APP_SECRET'])
-    result = api.search('SGP')
+    result1 = api.search('SGP POLITICAL_ORGANIZATION')
+    result2 = api.search('SGP POLITICAL_PARTY')
+    result = [r for r in result1] + [r for r in result2]
     return [
         _generate_facebook_for_party(
             r, 'sgp', 'SGP',
@@ -701,7 +704,6 @@ def _generate_fb_for_sgp(name):
 
 
 def _generate_fb_for_pvda(name):
-    # TODO: this does not work ...
     api = SimpleFacebookAPI(
         os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
         os.environ['FACEBOOK_APP_SECRET'])

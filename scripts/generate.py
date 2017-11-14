@@ -578,7 +578,6 @@ def _generate_facebook_for_party(
 
 
 def _generate_fb_for_groenlinks(name):
-
     api = SimpleFacebookAPI(
         os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
         os.environ['FACEBOOK_APP_SECRET'])
@@ -593,6 +592,149 @@ def _generate_fb_for_groenlinks(name):
         ) for r in result
         if ('.groenlinks.nl' in r.get('website', '')) and
         r.get('name', '').lower().startswith('groen')
+    ]
+
+
+def _generate_fb_for_vvd(name):
+    api = SimpleFacebookAPI(
+        os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
+        os.environ['FACEBOOK_APP_SECRET'])
+    result = api.search('VVD')
+    return [
+        _generate_facebook_for_party(
+            r, 'vvd', 'VVD',
+            [
+                'VVD', 'vvd', 'netwerk'
+            ]
+        ) for r in result
+        if ('.vvd.nl' in r.get('website', '')) and
+        r.get('name', '').lower().startswith('vvd')
+    ]
+
+
+def _generate_fb_for_d66(name):
+    api = SimpleFacebookAPI(
+        os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
+        os.environ['FACEBOOK_APP_SECRET'])
+    result = api.search('D66')
+    return [
+        _generate_facebook_for_party(
+            r, 'd66', 'D66',
+            [
+                'd66', 'D66'
+            ]
+        ) for r in result
+        if ('.d66.nl' in r.get('website', '')) and
+        r.get('name', '').lower().startswith('d66')
+    ]
+
+
+def _generate_fb_for_sp(name):
+    # TODO: this does not work ...
+    api = SimpleFacebookAPI(
+        os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
+        os.environ['FACEBOOK_APP_SECRET'])
+    result = api.search('SP')
+    return [
+        _generate_facebook_for_party(
+            r, 'sp', 'SP',
+            [
+                'sp', 'SP'
+            ]
+        ) for r in result
+        if ('.sp.nl' in r.get('website', '')) and
+        r.get('name', '').lower().startswith('sp')
+    ]
+
+
+def _generate_fb_for_cda(name):
+    # TODO: this does not work ...
+    api = SimpleFacebookAPI(
+        os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
+        os.environ['FACEBOOK_APP_SECRET'])
+    result = api.search('CDA')
+    return [
+        _generate_facebook_for_party(
+            r, 'cda', 'CDA',
+            [
+                'cda', 'CDA'
+            ]
+        ) for r in result
+        if ('.cda.nl' in r.get('website', '')) and
+        r.get('name', '').lower().startswith('cda')
+    ]
+
+
+def _generate_fb_for_cu(name):
+    api = SimpleFacebookAPI(
+        os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
+        os.environ['FACEBOOK_APP_SECRET'])
+    result = api.search('ChristenUnie')
+    return [
+        _generate_facebook_for_party(
+            r, 'christenunie', 'ChristenUnie',
+            [
+                'christenunie', 'ChristenUnie', 'Christenunie', 'SGP'
+            ]
+        ) for r in result
+        if ('.christenunie.nl' in r.get('website', '')) and
+        r.get('name', '').lower().startswith('christenunie')
+    ]
+
+
+def _generate_fb_for_sgp(name):
+    # TODO: this does not work correctly ...
+    api = SimpleFacebookAPI(
+        os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
+        os.environ['FACEBOOK_APP_SECRET'])
+    result = api.search('SGP')
+    return [
+        _generate_facebook_for_party(
+            r, 'sgp', 'SGP',
+            [
+                'christenunie', 'ChristenUnie', 'Christenunie', 'SGP', 'sgp'
+            ]
+        ) for r in result
+        if ('.sgp.nl' in r.get('website', '')) and
+        r.get('name', '').lower().startswith('sgp')
+    ]
+
+
+def _generate_fb_for_pvda(name):
+    # TODO: this does not work ...
+    api = SimpleFacebookAPI(
+        os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
+        os.environ['FACEBOOK_APP_SECRET'])
+    result = api.search('PvdA')
+    return [
+        _generate_facebook_for_party(
+            r, 'pvda', 'PvdA',
+            [
+                'pvda', 'PvdA', 'Pvda', 'PVDA', 'Afdeling', 'Roze netwerk',
+                'Europees Parlement', 'afdeling', ', links in ', 'fractie',
+                'Tk-2017 kandidaat op 43'
+            ]
+        ) for r in result
+        if ('.pvda.nl' in r.get('website', '')) and
+        r.get('name', '').lower().startswith('pvda')
+    ]
+
+
+def _generate_fb_for_pvdd(name):
+    api = SimpleFacebookAPI(
+        os.environ['FACEBOOK_API_VERSION'], os.environ['FACEBOOK_APP_ID'],
+        os.environ['FACEBOOK_APP_SECRET'])
+    result = api.search('"Partij voor de Dieren"')
+    return [
+        _generate_facebook_for_party(
+            r, 'pvdd', 'PvdD',
+            [
+                'pvdd', 'PvdD', 'Partij voor de Dieren', 'Werkgroep', 'e.o.',
+                'en omstreken', '/'
+            ]
+        ) for r in result
+        if ('.partijvoordedieren.nl' in r.get('website', '')) and
+        r.get('name', '').lower().startswith('partij')
     ]
 
 

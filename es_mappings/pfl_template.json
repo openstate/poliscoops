@@ -97,37 +97,18 @@
                     "analyzer": "text_nl",
                     "fielddata": true
                 },
-                "categories": {
-                  "type": "keyword"
-                },
-                "classification": {
-                    "type": "keyword"
-                },
-                "start_date": {
-                    "type": "date",
-                    "format": "dateOptionalTime"
-                },
-                "end_date": {
+                "date": {
                     "type": "date",
                     "format": "dateOptionalTime"
                 },
                 "location": {
                   "type": "keyword"
                 },
-                "status": {
+                "source": {
                   "type": "keyword"
                 },
-                "authors": {
-                    "type": "text",
-                    "fields": {
-                        "authors": {
-                            "type" : "text",
-                            "analyzer": "text_nl"
-                        },
-                        "untouched": {
-                            "type": "keyword"
-                        }
-                    }
+                "type": {
+                  "type": "keyword"
                 },
                 "media_urls": {
                     "properties": {

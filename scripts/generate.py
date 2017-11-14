@@ -555,7 +555,7 @@ def _generate_facebook_for_party(
         location = pattern.sub(
             lambda m: rep[re.escape(m.group(0))], result['name'])
         location = location.strip()
-    return [{
+    return {
         "extractor": "ocd_backend.extractors.facebook.FacebookExtractor",
         "keep_index_on_update": True,
         "enrichers": [],
@@ -575,7 +575,7 @@ def _generate_facebook_for_party(
         "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
         "location": location,
         "hidden": False
-    }]
+    }
 
 
 def _generate_fb_for_groenlinks(name):

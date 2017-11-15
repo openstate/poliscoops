@@ -46,6 +46,32 @@ def do_url_for_search_page(params, gov_slug):
     return url
 
 
+@app.template_filter('active_bucket')
+def do_active_bucket(bucket, facet):
+    if facet not in request.args:
+        return u''
+    if request.args[facet] == bucket['key']:
+        return u'active'
+    return u''
+
+
+@app.template_filter('link_bucket')
+def do_link_bucket(bucket, facet):
+    url_args = {
+    }
+    if 'query' in request.args:
+        url_args['query'] = request.args['query']
+
+    for param, title in FACETS:
+        if param in request.args:
+            url_args[param] = request.args[param]
+
+    url_args[facet] = bucket['key']
+
+    url = url_for('search', **url_args)
+    return url
+
+
 @app.template_filter('wordcloud_font_size')
 def do_wordcloud_fontsize(c, total):
     max_size = 100 + 25 * math.log(total, 2)

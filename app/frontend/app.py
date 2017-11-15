@@ -197,13 +197,9 @@ class BackendAPI(object):
     def search_questions(self, *args, **kwargs):
         es_query = {
             "facets": {
-                "categories": {},
-                "status": {},
-                "start_date": {},
-                "end_date": {},
-                "delay": {}
+                "date": {},
             },
-            "sort": "start_date",
+            "sort": "date",
             "order": "desc",
             "from": (kwargs['page'] - 1) * PAGE_SIZE,
             "size": PAGE_SIZE,
@@ -310,98 +306,24 @@ def main():
     return render_template('index.html')
 
 
-@app.route("/stats")
-def stats():
-    results = api.stats_questions()
-    return render_template('stats.html', results=results)
-
-
-@app.route("/<gov_slug>")
-def gov_home(gov_slug):
-    facets = api.search_questions(gov_slug=gov_slug, page=1, size=0)
-    results = api.search_questions(
-        gov_slug=gov_slug, page=1, size=5, status='Openstaand')
-    return render_template(
-        'gov.html', gov_slug=gov_slug, results=results, facets=facets)
-
-
-@app.route("/<gov_slug>/zoeken")
-def search(gov_slug):
+@app.route("/zoeken")
+def search():
     search_params = {
-        'gov_slug': gov_slug,
         'page': int(request.args.get('page', '1')),
         'query': request.args.get('query', None),
-        'category': request.args.get('category', None),
-        'status': request.args.get('status', None),
-        'start_date': request.args.get('start_date', None),
-        'end_date': request.args.get('end_date', None),
-        'delay': request.args.get('delay', None)
+        'date': request.args.get('date', None),
     }
     results = api.search_questions(**search_params)
-    max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
+    try:
+        max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
+    except LookupError:
+        max_pages = 0
     return render_template(
         'search_results.html', results=results, query=search_params['query'],
-        page=search_params['page'], active_category=search_params['category'],
-        active_status=search_params['status'], max_pages=max_pages,
-        active_start_date=search_params['start_date'],
-        active_end_date=search_params['end_date'],
-        active_delay=search_params['delay'],
-        gov_slug=search_params['gov_slug'])
+        page=search_params['page'], max_pages=max_pages,
+        active_end_date=search_params['date'])
 
 
-@app.route("/<gov_slug>/verzoek/<obj_id>")
-def show(gov_slug, obj_id):
-    result = api.find_by_id(gov_slug, obj_id)
-
-    show_item = None
-    if result['meta']['total'] > 0:
-        show_item = result['item'][0]
-    else:
-        show_item = api.get_by_id(gov_slug, obj_id)
-
-    if show_item is None:
-        abort(404)
-
-    client = redis_client()
-
-    redis_key = 'votes_%s_%s' % (obj_id, gov_slug,)
-    vote_aye = client.get('%s_inc' % (redis_key,))
-    vote_nay = client.get('%s_dec' % (redis_key,))
-
-    return render_template(
-        'show.html', gov_slug=gov_slug, result=show_item, votes=[
-            vote_aye, vote_nay])
-
-
-@app.route("/<gov_slug>/verzoek/<obj_id>/vote/<vote_type>")
-def vote(gov_slug, obj_id, vote_type):
-    result = api.find_by_id(gov_slug, obj_id)
-
-    if result['meta']['total'] <= 0:
-        abort(404)
-
-    if unicode(vote_type.lower()) not in [u'inc', u'dec']:
-        abort(404)
-
-    client = redis_client()
-
-    redis_key = 'votes_%s_%s_%s' % (obj_id, gov_slug, vote_type.lower(),)
-    client.incr(redis_key)
-
-    return client.get(redis_key)
-
-
-@app.route("/<gov_slug>/verzoek/<obj_id>/signup", methods=['POST'])
-def email_signup(gov_slug, obj_id):
-    redis_key = 'emails_%s_%s' % (gov_slug, obj_id,)
-    client = redis_client()
-    client.hset(redis_key, request.form['email'], '0')
-    return 'ok'
-
-
-@app.route("/data")
-def do_data():
-    return render_template("data.html")
 
 
 def create_app():

@@ -28,8 +28,7 @@ SORTABLE_FIELDS = {
         'meta.processing_started',
         'meta.processing_finished',
         '_score',
-        'start_date',
-        'end_date'
+        'date'
     ]
 }
 
@@ -105,28 +104,10 @@ COMMON_FACETS = {
 
 AVAILABLE_FACETS = {
     'item': {
-        'start_date': {
-            'date_histogram': {
-                'field': 'start_date',
-                'interval': 'month'
-            }
-        },
-        'end_date': {
+        'date': {
             'date_histogram': {
                 'field': 'end_date',
                 'interval': 'month'
-            }
-        },
-        'categories': {
-            'terms': {
-                'field': 'categories',
-                'size': 10
-            }
-        },
-        'status': {
-            'terms': {
-                'field': 'status',
-                'size': 10
             }
         },
         'id': {
@@ -134,41 +115,6 @@ AVAILABLE_FACETS = {
                 'field': 'id',
                 'size': 10
             }
-        },
-        'delay': {
-            'range': {
-                'script':  {
-                    "inline": "(doc['end_date'].value - doc['start_date'].value) / 86400000"
-                },
-                'ranges': [
-                    {"to": 3},
-                    {"from": 3, "to": 7},
-                    {"from": 7, "to": 14},
-                    {"from": 14, "to": 21},
-                    {"from": 21, "to": 28},
-                    {"from": 28, "to": 35},
-                    {"from": 35, "to": 42},
-                    {"from": 42, "to": 49},
-                    {"from": 49}
-                ]
-            }
-        },
-        'delay_avg': {
-            'avg': {
-                'script':  "(doc['end_date'].value - doc['start_date'].value) / 86400000"}
-        },
-        'wordcloud_text': {
-            "terms": {"field": "enrichments.media_urls.text", "size": 50}
-        },
-        'wordcloud_description': {
-            "terms": {"field": "description", "size": 50}
-        },
-        'significant_wordcloud_text': {
-            "significant_terms": {
-                "field": "enrichments.media_urls.text", "size": 50}
-        },
-        'significant_wordcloud_description': {
-            "significant_terms": {"field": "description", "size": 50}
         }
     }
 }
@@ -234,7 +180,8 @@ COMMON_HIGHLIGHTS = {
 
 AVAILABLE_HIGHLIGHTS = {
     'item': {
-        'name': {}
+        'title': {},
+        'description': {}
     }
 }
 

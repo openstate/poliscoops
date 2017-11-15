@@ -106,13 +106,31 @@ AVAILABLE_FACETS = {
     'item': {
         'date': {
             'date_histogram': {
-                'field': 'end_date',
+                'field': 'date',
                 'interval': 'month'
             }
         },
         'id': {
             'terms': {
                 'field': 'id',
+                'size': 10
+            }
+        },
+        'location': {
+            'terms': {
+                'field': 'location',
+                'size': 10
+            }
+        },
+        'sources': {
+            'terms': {
+                'field': 'source',
+                'size': 10
+            }
+        },
+        'type': {
+            'terms': {
+                'field': 'type',
                 'size': 10
             }
         }

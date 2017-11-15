@@ -26,6 +26,14 @@ REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_DB = 0
 
+FACETS = (
+    ('date', 'Datum',),
+    ('location', 'Locatie',),
+    ('sources', 'Bron',),
+    ('type', 'Soort',),
+)
+
+
 @app.template_filter('url_for_search_page')
 def do_url_for_search_page(params, gov_slug):
     url_args = {
@@ -58,12 +66,22 @@ def do_iso8601_to_str(s, format):
     except iso8601.ParseError:
         return u''
 
+
 @app.template_filter('iso8601_delay_in_days')
 def do_iso8601_delay_in_days(q, a=None):
     s = a or datetime.datetime.now().isoformat()
     delay = iso8601.parse_date(s) - iso8601.parse_date(q)
     return delay.days
 
+
+@app.template_filter('format_bucket')
+def do_format_bucket(bucket, facet):
+    output = u''
+    if facet == 'date':
+        output = bucket['key_as_string'].split('T')[0]
+    else:
+        output = bucket['key']
+    return output
 
 @app.template_filter('delay_buckets_humanize')
 def do_delay_buckets_humanize(s):
@@ -198,6 +216,9 @@ class BackendAPI(object):
         es_query = {
             "facets": {
                 "date": {},
+                "location": {},
+                "sources": {},
+                "type": {},
             },
             "sort": "date",
             "order": "desc",
@@ -319,9 +340,9 @@ def search():
     except LookupError:
         max_pages = 0
     return render_template(
-        'search_results.html', results=results, query=search_params['query'],
-        page=search_params['page'], max_pages=max_pages,
-        active_end_date=search_params['date'])
+        'search_results.html', facets=FACETS, results=results,
+        query=search_params['query'], page=search_params['page'],
+        max_pages=max_pages, active_date=search_params['date'])
 
 
 

@@ -66,7 +66,10 @@ def do_link_bucket(bucket, facet):
         if param in request.args:
             url_args[param] = request.args[param]
 
-    url_args[facet] = bucket['key']
+    if facet in request.args and (bucket['key'] == request.args[facet]):
+        url_args[facet] = None
+    else:
+        url_args[facet] = bucket['key']
 
     url = url_for('search', **url_args)
     return url

@@ -138,7 +138,7 @@ def redis_client():
 
 
 class BackendAPI(object):
-    URL = 'http://frontend:5000/v0'
+    URL = 'http://api.poliflw.nl/v0'
 
     def sources(self):
         return requests.get('%s/sources' % (self.URL,)).json()

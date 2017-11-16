@@ -61,7 +61,7 @@ OpenWOBApp.init = function() {
   });
 
   // make the button disappear
-  $('*[data-target="#collapseExample"]').on('click', function() { $(this).hide();});
+  $('*[data-toggle="collapse"]').on('click', function() { $(this).hide();});
 };
 
 OpenWOBApp.init_month_graph = function() {

@@ -34,18 +34,6 @@ FACETS = (
 )
 
 
-@app.template_filter('url_for_search_page')
-def do_url_for_search_page(params, gov_slug):
-    url_args = {
-        'gov_slug': gov_slug
-    }
-    if 'query' in request.args:
-        url_args['query'] = request.args['query']
-    url_args.update(params)
-    url = url_for('search', **url_args)
-    return url
-
-
 @app.template_filter('active_bucket')
 def do_active_bucket(bucket, facet):
     if facet not in request.args:
@@ -53,6 +41,22 @@ def do_active_bucket(bucket, facet):
     if request.args[facet] == bucket['key']:
         return u'active'
     return u''
+
+
+@app.template_filter('url_for_search_page')
+def do_url_for_search_page(params, gov_slug):
+    url_args = {
+    }
+    if 'query' in request.args:
+        url_args['query'] = request.args['query']
+
+    for param, title in FACETS:
+        if param in request.args:
+            url_args[param] = request.args[param]
+
+    url_args.update(params)
+    url = url_for('search', **url_args)
+    return url
 
 
 @app.template_filter('link_bucket')
@@ -73,19 +77,6 @@ def do_link_bucket(bucket, facet):
 
     url = url_for('search', **url_args)
     return url
-
-
-@app.template_filter('wordcloud_font_size')
-def do_wordcloud_fontsize(c, total):
-    max_size = 100 + 25 * math.log(total, 2)
-    cur_size = 100 + 25 * math.log(c, 2)
-    return '{p:.1f}%'.format(p=100 + ((cur_size * 100.0) / max_size))
-
-
-@app.template_filter('tk_questions_format')
-def do_tk_questions_format(s):
-    return re.sub(
-        r'^\s*(Vraag|Antwoord)\s+(\d+)', r"<h2>\1 \2</h2>", s, 0, re.M)
 
 
 @app.template_filter('iso8601_to_str')
@@ -111,6 +102,7 @@ def do_format_bucket(bucket, facet):
     else:
         output = bucket['key']
     return output
+
 
 @app.template_filter('delay_buckets_humanize')
 def do_delay_buckets_humanize(s):
@@ -262,55 +254,15 @@ class BackendAPI(object):
             }
         }
 
-        if 'gov_slug' in kwargs:
-            es_query['filters']['collection'] = {
-                'terms': [humanize(kwargs['gov_slug'])]}
         if 'size' in kwargs:
             es_query['size'] = kwargs['size']
         if kwargs.get('query', None) is not None:
             es_query['query'] = kwargs['query']
-        if kwargs.get('category', None) is not None:
-            es_query['filters']['categories'] = {
-                'terms': [kwargs['category']]}
-        if kwargs.get('status', None) is not None:
-            es_query['filters']['status'] = {
-                'terms': [kwargs['status']]}
-        if kwargs.get('delay', None) is not None:
-            delay_from, delay_to = kwargs['delay'].split('-', 1)
-            script_stmnt = []
-            if delay_from != '*':
-                script_stmnt.append(
-                    "(((doc['end_date'].value - doc['start_date'].value) / 86400000) > %s)" % (delay_from,))
-            if delay_to != '*':
-                script_stmnt.append(
-                    "(((doc['end_date'].value - doc['start_date'].value) / 86400000) < %s)" % (delay_to,))
-            es_query['filters']['delay'] = {
-                "script": {"script": u' && '.join(script_stmnt)}}
 
-        if kwargs.get('start_date', None) is not None:
-            sd = datetime.datetime.fromtimestamp(
-                int(kwargs['start_date']) / 1000)
-            ed_month = sd.month + 1
-            ed_year = sd.year
-            if ed_month > 12:
-                ed_month = 1
-                ed_year += 1
-            es_query['filters']['start_date'] = {
-                'from': "%s-%s-01T00:00:00" % (sd.year, sd.month,),
-                'to': "%s-%s-01T00:00:00" % (ed_year, ed_month,)}
-
-        if kwargs.get('end_date', None) is not None:
-            ed = datetime.datetime.fromtimestamp(
-                int(kwargs['end_date']) / 1000)
-            sd_month = ed.month + 1
-            sd_year = ed.year
-            if sd_month > 12:
-                sd_month = 1
-                sd_year += 1
-            es_query['filters']['end_date'] = {
-                'to': "%s-%s-01T00:00:00" % (sd_year, sd_month,),
-                'from': "%s-%s-01T00:00:00" % (ed.year, ed.month,)}
-
+        for facet, desc in FACETS:
+            if kwargs.get(facet, None) is not None:
+                es_query['filters'][facet] = {
+                    'terms': [kwargs[facet]]}
 
         plain_result = requests.post(
             '%s/search' % (self.URL,),
@@ -362,9 +314,11 @@ def main():
 def search():
     search_params = {
         'page': int(request.args.get('page', '1')),
-        'query': request.args.get('query', None),
-        'date': request.args.get('date', None),
-    }
+        'query': request.args.get('query', None)}
+
+    for facet, desc in FACETS:
+        search_params[facet] = request.args.get(facet, None)
+
     results = api.search_questions(**search_params)
     try:
         max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
@@ -373,7 +327,7 @@ def search():
     return render_template(
         'search_results.html', facets=FACETS, results=results,
         query=search_params['query'], page=search_params['page'],
-        max_pages=max_pages, active_date=search_params['date'])
+        max_pages=max_pages, search_params=search_params)
 
 
 

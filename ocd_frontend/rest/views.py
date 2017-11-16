@@ -95,6 +95,8 @@ def parse_search_request(data, doc_type, mlt=False):
 
                 facets[facet][f_type]['size'] = size
 
+            if 'order' in facet_opts.keys():
+                facets[facet][f_type]['order'] = facet_opts['order']
         elif f_type == 'date_histogram':
             if 'interval' in facet_opts.keys():
                 interval = facet_opts['interval']
@@ -110,6 +112,8 @@ def parse_search_request(data, doc_type, mlt=False):
                                       % (interval, facet), 400)
 
                 facets[facet][f_type]['interval'] = interval
+            if 'order' in facet_opts.keys():
+                facets[facet][f_type]['order'] = facet_opts['order']
 
     # Check which 'filters' are requested
     requested_filters = data.get('filters', {})
@@ -363,6 +367,7 @@ def search(doc_type=u'item'):
         request_doc_type = doc_type
     else:
         request_doc_type = None
+
     es_r = current_app.es.search(body=es_q,
                                  index=current_app.config['COMBINED_INDEX'],
                                  doc_type=request_doc_type)

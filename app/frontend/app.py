@@ -244,7 +244,9 @@ class BackendAPI(object):
     def search_questions(self, *args, **kwargs):
         es_query = {
             "facets": {
-                "date": {},
+                "date": {
+                    "order": {"_key": "desc"}
+                },
                 "location": {},
                 "sources": {},
                 "type": {},

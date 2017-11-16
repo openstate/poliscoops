@@ -128,32 +128,9 @@ def do_humanize(s):
     return humanize(s)
 
 
-@app.template_filter('normalize_wob_title')
-def do_normalize_wob_title(r):
-    return r['title'].replace(r['meta']['original_object_id'], u'').strip()
-
-
 @app.template_filter('split')
 def do_split(s, delim):
     return s.split(delim)
-
-
-@app.template_filter('get_original_wob_link')
-def do_get_original_wob_link(r):
-    if 'start_date' in r:
-        ref_date = iso8601.parse_date(r['start_date'])
-    else:
-        ref_date = iso8601.parse_date(r['end_date'])
-    url_type = 'html'
-    time_diff = (
-        time.mktime(datetime.datetime.now().utctimetuple()) -
-        time.mktime(ref_date.utctimetuple()))
-    if time_diff > (86400 * 365):
-        url_type = 'alternate'
-    if url_type in r['meta']['original_object_urls']:
-        return r['meta']['original_object_urls'][url_type]
-    else:
-        return '#'
 
 
 def redis_client():
@@ -161,79 +138,12 @@ def redis_client():
 
 
 class BackendAPI(object):
-    URL = 'https://api.poliflw.nl/v0'
+    URL = 'http://frontend:5000/v0'
 
     def sources(self):
         return requests.get('%s/sources' % (self.URL,)).json()
 
-    def get_stats_in_period(self, date_from, date_to=None):
-        es_query = {
-            "size": 0,
-            "filters": {
-                "date": {
-                    "from": date_from
-                }
-            },
-            "facets": {
-                "classification": {},
-                "answer_classification": {},
-                "additional_answer_classification": {},
-                "extension_classification": {}
-            }
-        }
-
-        if date_to is not None:
-            es_query["filters"]["date"]["to"] = date_to
-
-        try:
-            result = requests.post(
-                '%s/tk_qa_matches/search' % (self.URL,),
-                data=json.dumps(es_query)).json()
-        except Exception:
-            result = {
-                'facets': {
-                    'dates': {
-                        'entries': []
-                    }
-                },
-                'hits': {
-                    'hits': [],
-                    'total': 0
-                }
-            }
-        return result
-
-    def stats_questions(self):
-        es_query = {
-            "size": 0,
-            "facets": {
-                "date": {
-                    "interval": "year"
-                },
-                "description": {"size": 200},
-                "answer_description": {"size": 200}
-            }
-        }
-
-        try:
-            result = requests.post(
-                '%s/tk_qa_matches/search' % (self.URL,),
-                data=json.dumps(es_query)).json()
-        except Exception:
-            result = {
-                'facets': {
-                    'dates': {
-                        'entries': []
-                    }
-                },
-                'hits': {
-                    'hits': [],
-                    'total': 0
-                }
-            }
-        return result
-
-    def search_questions(self, *args, **kwargs):
+    def search(self, *args, **kwargs):
         es_query = {
             "facets": {
                 "date": {
@@ -261,8 +171,20 @@ class BackendAPI(object):
 
         for facet, desc in FACETS:
             if kwargs.get(facet, None) is not None:
-                es_query['filters'][facet] = {
-                    'terms': [kwargs[facet]]}
+                if facet == 'date':
+                    sd = datetime.datetime.fromtimestamp(
+                        int(kwargs[facet]) / 1000)
+                    ed_month = sd.month + 1
+                    ed_year = sd.year
+                    if ed_month > 12:
+                        ed_month = 1
+                        ed_year += 1
+                    es_query['filters'][facet] = {
+                        'from': "%s-%s-01T00:00:00" % (sd.year, sd.month,),
+                        'to': "%s-%s-01T00:00:00" % (ed_year, ed_month,)}
+                else:
+                    es_query['filters'][facet] = {
+                        'terms': [kwargs[facet]]}
 
         plain_result = requests.post(
             '%s/search' % (self.URL,),
@@ -279,13 +201,10 @@ class BackendAPI(object):
             }
         return result
 
-    def find_by_id(self, gov_slug, id):
+    def find_by_id(self, id):
         es_query = {
             "filters": {
                 "id": {"terms": [id]},
-                'collection': {
-                    'terms': [humanize(gov_slug)]
-                },
                 'types': {
                     'terms': ['item']
                 }
@@ -297,7 +216,7 @@ class BackendAPI(object):
             '%s/search' % (self.URL,),
             data=json.dumps(es_query)).json()
 
-    def get_by_id(self, gov_slug, id):
+    def get_by_id(self, id):
         return requests.get(
             '%s/combined_index/item/%s' % (self.URL, id,)).json()
 
@@ -319,7 +238,7 @@ def search():
     for facet, desc in FACETS:
         search_params[facet] = request.args.get(facet, None)
 
-    results = api.search_questions(**search_params)
+    results = api.search(**search_params)
     try:
         max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
     except LookupError:

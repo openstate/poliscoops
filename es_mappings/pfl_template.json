@@ -110,6 +110,12 @@
                 "type": {
                   "type": "keyword"
                 },
+                "persons": {
+                  "type": "keyword"
+                },
+                "parties": {
+                  "type": "keyword"
+                },
                 "media_urls": {
                     "properties": {
                         "url": {

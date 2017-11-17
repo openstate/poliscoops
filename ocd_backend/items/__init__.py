@@ -49,6 +49,8 @@ class BaseItem(object):
         'type': unicode,
         'authors': list,
         'media_urls': list,
+        'persons': list,
+        'parties': list,
         'all_text': unicode
     }
 

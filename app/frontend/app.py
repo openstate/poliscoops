@@ -72,7 +72,10 @@ def do_link_bucket(bucket, facet):
         if param in request.args:
             url_args[param] = request.args[param]
 
-    if facet in request.args and (bucket['key'] == request.args[facet]):
+    if (
+        facet in request.args and
+        (unicode(bucket['key']) == (request.args[facet]))
+    ):
         url_args[facet] = None
     else:
         url_args[facet] = bucket['key']

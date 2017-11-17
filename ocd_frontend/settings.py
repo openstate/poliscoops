@@ -129,6 +129,18 @@ COMMON_FACETS = {
             'field': 'type',
             'size': 10
         }
+    },
+    'persons': {
+        'terms': {
+            'field': 'persons',
+            'size': 10
+        }
+    },
+    'parties': {
+        'terms': {
+            'field': 'parties',
+            'size': 10
+        }
     }
 }
 

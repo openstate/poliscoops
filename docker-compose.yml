@@ -60,6 +60,7 @@ services:
     restart: always
     networks:
       - pfl
+      - nginx-load-balancer
 volumes:
   esdata:
     driver: local

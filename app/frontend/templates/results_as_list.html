@@ -16,6 +16,12 @@
       {{ result.date|iso8601_to_str("%d-%m-%Y %H:%M:%S") }}
       </a>
     </p>
+    <p class="pull-right">
+      <a href="{{ url_for('search', location=result.location) }}">  <span class="label label-info">{{ result.location }}</span></a>
+      {% for party in result.parties %}
+        <a href="{{ url_for('search', parties=party) }}">  <span class="label label-primary">{{ party }}</span></a>
+      {% endfor %}
+    </p>
     {% endif %}
   </div>
 </div>

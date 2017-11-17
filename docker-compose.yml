@@ -20,6 +20,8 @@ services:
       dockerfile: Dockerfile
     links:
       - elasticsearch:elasticsearch
+    volumes:
+      - ./ocd_frontend:/opt/pfl/ocd_frontend
     restart: always
     networks:
       - pfl

@@ -8,24 +8,26 @@
 <div class="row">
   <div class="col-xs-12 col-md-4">
     {% for key, desc in facets %}
-      <h2 id="facet-{{ key }}">{{ desc }}</h2>
       {% if key in results.facets %}
-        {% for bucket in results.facets[key].buckets %}
-            {% if loop.index == 11 %}
-            <button class="btn btn-primary btn-large" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}">
-              Toon meer
-            </button>
-            <div class="collapse" id="collapse-{{ key }}">
-            {% endif %}
-          <a class="btn btn-default btn-category {{ bucket |active_bucket(key) }}" href="{{ bucket |link_bucket(key) }}" role="button">
-            {% if bucket |active_bucket(key) == 'active' %}
-            <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px;"><span aria-hidden="true">&times;</span></button>
-            {% endif %}
-            {{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})
-          </a>
-        {% endfor %}
-        {% if results.facets[key].buckets|length > 10 %}
-          </div> <!-- collapse-{{ key }} -->
+        {% if results.facets[key].buckets|length > 0 %}
+          <h2 id="facet-{{ key }}">{{ desc }}</h2>
+          {% for bucket in results.facets[key].buckets %}
+              {% if loop.index == 11 %}
+              <button class="btn btn-primary btn-large" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}">
+                Toon meer
+              </button>
+              <div class="collapse" id="collapse-{{ key }}">
+              {% endif %}
+            <a class="btn btn-default btn-category {{ bucket |active_bucket(key) }}" href="{{ bucket |link_bucket(key) }}" role="button">
+              {% if bucket |active_bucket(key) == 'active' %}
+              <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px;"><span aria-hidden="true">&times;</span></button>
+              {% endif %}
+              {{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})
+            </a>
+          {% endfor %}
+          {% if results.facets[key].buckets|length > 10 %}
+            </div> <!-- collapse-{{ key }} -->
+          {% endif %}
         {% endif %}
       {% endif %}
     {% endfor %}

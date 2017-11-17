@@ -40,7 +40,7 @@ FACETS = (
 def do_active_bucket(bucket, facet):
     if facet not in request.args:
         return u''
-    if request.args[facet] == bucket['key']:
+    if unicode(request.args[facet]) == unicode(bucket['key']):
         return u'active'
     return u''
 

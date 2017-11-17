@@ -28,6 +28,7 @@ class PageItem(BaseItem):
             'source': unicode(
                 self.source_definition.get('source', 'Facebook')),
             'type': unicode(self.source_definition.get('type', 'Partij')),
+            'parties': [unicode(self.source_definition['collection'])]
         }
 
         combined_index_data['description'] = unicode(

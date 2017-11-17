@@ -38,6 +38,7 @@ class SGPItem(BaseItem):
             'source': unicode(
                 self.source_definition.get('source', 'Partij nieuws')),
             'type': unicode(self.source_definition.get('type', 'Partij')),
+            'parties': [unicode(self.source_definition['collection'])]
         }
 
         url_info = urlparse(self.source_definition['file_url'])

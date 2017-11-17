@@ -730,7 +730,7 @@ def _generate_fb_for_pvdd(name):
     result = api.search('"Partij voor de Dieren"')
     return [
         _generate_facebook_for_party(
-            r, 'pvdd', 'PvdD',
+            r, 'pvdd', 'Partij voor de Dieren',
             [
                 'pvdd', 'PvdD', 'Partij voor de Dieren', 'Werkgroep', 'e.o.',
                 'en omstreken', '/'

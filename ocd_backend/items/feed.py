@@ -26,6 +26,7 @@ class FeedItem(BaseItem):
             'source': unicode(
                 self.source_definition.get('source', 'Partij nieuws')),
             'type': unicode(self.source_definition.get('type', 'Partij')),
+            'parties': [unicode(self.source_definition['collection'])]
         }
 
         # TODO: provide easier way for default mapping

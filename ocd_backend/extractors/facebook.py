@@ -34,7 +34,7 @@ class FacebookExtractor(BaseExtractor, HttpRequestMixin):
         if next_url is not None:
             graph_url = next_url
         else:
-            graph_url = "https://graph.facebook.com/%s/%s?access_token=%s" % (
+            graph_url = "https://graph.facebook.com/%s/%s?fields=id,name,message,link,picture,description,created_time&access_token=%s" % (
                 self.fb_api_version, self.fb_graph_url,
                 self._fb_get_access_token(),)
         r = self.http_session.get(graph_url)

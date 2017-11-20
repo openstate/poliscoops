@@ -32,7 +32,24 @@ class PageItem(BaseItem):
         }
 
         combined_index_data['description'] = unicode(
-            self.original_item['message'])
+            self.original_item.get('message', ''))
+
+        if 'name' in self.original_item and 'link' in self.original_item:
+            try:
+                pic_str = u'<img src="%s">' % (self.original_item['picture'],)
+            except LookupError:
+                pic_str = u''
+            try:
+                desc_str = u'<p>%s</p>' % (self.original_item['description'],)
+            except LookupError:
+                desc_str = u''
+            combined_index_data['description'] += (
+                u'<div class="facebook-external-link">'
+                u'<h6><a href="%s">%s</a></h6>'
+                u'%s%s'
+                u'<div class="clearfix"></div></div>') % (
+                    self.original_item['link'], self.original_item['name'],
+                    pic_str, desc_str,)
 
         try:
             combined_index_data['date'] = iso8601.parse_date(

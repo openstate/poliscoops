@@ -131,3 +131,13 @@ ul.wordcloud li { display: inline-block; }
 #statistics h2 {
   text-align: center;
 }
+
+.facebook-external-link {
+  background: #ccc;
+  padding: 10px;
+}
+
+.facebook-external-link img {
+  float: left;
+  margin-right: 10px;
+}

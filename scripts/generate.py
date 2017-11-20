@@ -377,7 +377,7 @@ def _generate_for_sp(name):
             "location": unicode(name).replace('SP ', ''),
             "extractor": "ocd_backend.extractors.feed.FeedExtractor",
             "transformer": "ocd_backend.transformers.BaseTransformer",
-            "item": "ocd_backend.items.feed.FeedItem",
+            "item": "ocd_backend.items.feed.FeedFullTextItem",
             "enrichers": [
             ],
             "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -386,7 +386,8 @@ def _generate_for_sp(name):
             "index_name": "sp",
             "collection": "SP",
             "file_url": feed_url,
-            "keep_index_on_update": True
+            "keep_index_on_update": True,
+            "content_xpath": "//div[contains(@class, \"node-content\")]"
         }]
 
     resp = requests.get('https://www.sp.nl/wij-sp/lokale-afdelingen')

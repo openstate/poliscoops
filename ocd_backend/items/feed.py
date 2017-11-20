@@ -1,7 +1,11 @@
 from datetime import datetime
+import sys
 
 import iso8601
 
+from lxml import etree
+
+from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.items import BaseItem
 
 
@@ -67,3 +71,31 @@ class FeedItem(BaseItem):
         text_items = []
 
         return u' '.join(text_items)
+
+
+class FeedFullTextItem(FeedItem, HttpRequestMixin):
+    def get_combined_index_data(self):
+        combined_index_data = super(
+            FeedFullTextItem, self).get_combined_index_data()
+
+        r = self.http_session.get(self.original_item['link'])
+        print >>sys.stderr, "Got %s with status code : %s" % (
+            self.original_item['link'], r.status_code)
+
+        # only continue if we got the page
+        if r.status_code < 200 or r.status_code >= 300:
+            return combined_index_data
+
+        try:
+            html = etree.HTML(r.content)
+        except etree.ElementTree.ParseError as e:
+            return combined_index_data
+
+        output = u''
+        for elem in html.xpath(self.source_definition['content_xpath']):
+            output += unicode(etree.tostring(elem))
+
+        if output.strip() != u'':
+            combined_index_data['description'] = output
+
+        return combined_index_data

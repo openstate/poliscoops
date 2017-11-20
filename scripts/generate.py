@@ -267,7 +267,7 @@ def _generate_for_vvd(name):
             "location": unicode(name),
             "extractor": "ocd_backend.extractors.feed.FeedExtractor",
             "transformer": "ocd_backend.transformers.BaseTransformer",
-            "item": "ocd_backend.items.feed.FeedItem",
+            "item": "ocd_backend.items.feed.FeedFullTextItem",
             "enrichers": [
             ],
             "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -276,7 +276,8 @@ def _generate_for_vvd(name):
             "index_name": "vvd",
             "collection": "VVD",
             "file_url": feed_url,
-            "keep_index_on_update": True
+            "keep_index_on_update": True,
+            "content_xpath": "//div[@class=\"article__intro\"]|//div[@class=\"article__content\"]"
         })
         return result
 
@@ -310,6 +311,7 @@ def _generate_for_vvd(name):
                 rss_url = 'http://' + line[0] + line[1]
 
             result += _generate_for_vvd_subsite(name, rss_url, feed_idx)
+            time.sleep(1)
     return result
 
 

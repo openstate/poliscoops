@@ -131,7 +131,7 @@ def _generate_for_groenlinks(name):
             "location": unicode(name),
             "extractor": "ocd_backend.extractors.feed.FeedExtractor",
             "transformer": "ocd_backend.transformers.BaseTransformer",
-            "item": "ocd_backend.items.feed.FeedItem",
+            "item": "ocd_backend.items.feed.FeedFullTextItem",
             "enrichers": [
             ],
             "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -140,7 +140,8 @@ def _generate_for_groenlinks(name):
             "index_name": "groenlinks",
             "collection": "GroenLinks",
             "file_url": feed_url,
-            "keep_index_on_update": True
+            "keep_index_on_update": True,
+            "content_xpath": "//div[contains(@class, \"intro\")]|//div[@class=\"content\"]"
         }]
 
     resp = requests.get('https://groenlinks.nl/lokaal')

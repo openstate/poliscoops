@@ -1,11 +1,26 @@
 version: "2.1"
 services:
-  backend:
+  nginx:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-nginx
     volumes:
-      - .:/opt/pfl
+      - ./nginx-start/:/opt/nginx/
+      - ./nginx/:/etc/nginx/
+      - ../docs/_build/html/:/usr/share/nginx/html/docs/
+    links:
+      - frontend:frontend
+      - app:app
+    restart: always
+    networks:
+      - nginx-load-balancer
+      - pfl
+  backend:
+    build:
+      context: ..
+      dockerfile: Dockerfile-backend
+    volumes:
+      - ../:/opt/pfl
     links:
       - redis:redis
       - elasticsearch:elasticsearch
@@ -16,16 +31,15 @@ services:
     command: /opt/pfl/bin/backend.sh
   frontend:
     build:
-      context: ocd_frontend
-      dockerfile: Dockerfile
+      context: ../ocd_frontend
+      dockerfile: Dockerfile-frontend
     links:
       - elasticsearch:elasticsearch
     volumes:
-      - ./ocd_frontend:/opt/pfl/ocd_frontend
+      - ../ocd_frontend:/opt/pfl/ocd_frontend
     restart: always
     networks:
       - pfl
-      - nginx-load-balancer
   redis:
     image: "redis:${REDIS_VERSION}"
     sysctls:
@@ -55,14 +69,13 @@ services:
       - pfl
   app:
     build:
-      context: app
-      dockerfile: Dockerfile
+      context: ../app
+      dockerfile: Dockerfile-app
     volumes:
-      - ./app:/opt/app
+      - ../app:/opt/app
     restart: always
     networks:
       - pfl
-      - nginx-load-balancer
 volumes:
   esdata:
     driver: local

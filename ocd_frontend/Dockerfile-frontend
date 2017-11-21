@@ -1,0 +1,18 @@
+# NOTE: Production config (also make any relevant changes to
+# Dockerfile-frontend-dev
+
+
+FROM python:2.7-alpine
+MAINTAINER Open State Foundation <developers@openstate.eu>
+
+WORKDIR /opt/pfl/ocd_frontend
+COPY requirements.txt /opt/pfl/ocd_frontend/requirements.txt
+
+# Install build base for alpine including gcc for Pillow
+RUN apk add --update linux-headers build-base python-dev py-pip jpeg-dev zlib-dev \
+    && pip install --no-cache-dir -r requirements.txt \
+    && apk del build-base python-dev py-pip
+
+COPY . /opt/pfl/ocd_frontend
+
+CMD uwsgi --socket 0.0.0.0:5000 --processes 8 -w wsgi

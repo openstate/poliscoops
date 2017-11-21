@@ -1,0 +1,16 @@
+# NOTE: Production config (also make any relevant changes to
+# Dockerfile-app-dev
+
+
+FROM python:2.7
+MAINTAINER Open State Foundation <developers@openstate.eu>
+
+#Set Timezone
+RUN echo "Europe/Amsterdam" > /etc/timezone \
+    && dpkg-reconfigure -f noninteractive tzdata
+
+WORKDIR /opt/app
+ADD requirements.txt .
+RUN pip install -r requirements.txt
+
+CMD uwsgi --socket 0.0.0.0:5000 --processes 8 -w manage:app

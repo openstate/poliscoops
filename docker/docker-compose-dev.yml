@@ -1,0 +1,33 @@
+version: "2.1"
+services:
+  nginx:
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-dev/:/etc/nginx/
+    restart: "no"
+  backend:
+    mem_limit: 1g
+    restart: "no"
+  frontend:
+    build:
+      context: ../ocd_frontend
+      dockerfile: Dockerfile-frontend-dev
+    restart: "no"
+  redis:
+    mem_limit: 4g
+    restart: "no"
+  elasticsearch:
+    mem_limit: 1g
+    restart: "no"
+  app:
+    build:
+      context: ../app
+      dockerfile: Dockerfile-app-dev
+    restart: "no"
+volumes:
+  esdata:
+    driver: local
+networks:
+  pfl:
+  nginx-load-balancer:

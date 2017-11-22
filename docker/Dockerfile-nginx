@@ -8,7 +8,7 @@ RUN echo "Europe/Amsterdam" > /etc/timezone \
 WORKDIR /usr/share/nginx/html
 RUN mkdir /opt/nginx
 
-CMD /opt/nginx/nginx-start.sh
+CMD nginx -g 'daemon off;'
 
 # Debug: use the nginx binary which was compiled with '--with-debug'
 # CMD ["nginx-debug", "-g", "daemon off;"]

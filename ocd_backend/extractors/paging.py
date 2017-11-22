@@ -63,4 +63,4 @@ class PagedStaticHtmlExtractor(StaticHtmlExtractor):
                 yield 'application/json', json.dumps({'link': link})
 
             static_url = self._get_next_page(static_content)
-            finished = True  # (static_url is None)
+            finished = (static_url is None)

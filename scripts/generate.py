@@ -126,23 +126,46 @@ def _generate_for_groenlinks(name):
             requests.exceptions.ConnectionError
         ):
             feed_url = os.path.join(link, 'feed')
-        return [{
-            "id": "groenlinks_" + slug,
-            "location": unicode(name),
-            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
-            "transformer": "ocd_backend.transformers.BaseTransformer",
-            "item": "ocd_backend.items.feed.FeedFullTextItem",
-            "enrichers": [
-            ],
-            "loader": "ocd_backend.loaders.ElasticsearchLoader",
-            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-            "hidden": False,
-            "index_name": "groenlinks",
-            "collection": "GroenLinks",
-            "file_url": feed_url,
-            "keep_index_on_update": True,
-            "content_xpath": "//div[contains(@class, \"intro\")]|//div[@class=\"content\"]"
-        }]
+        return [
+            {
+                "id": "groenlinks_" + slug,
+                "location": unicode(name),
+                "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "item": "ocd_backend.items.feed.FeedFullTextItem",
+                "enrichers": [
+                ],
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False,
+                "index_name": "groenlinks",
+                "collection": "GroenLinks",
+                "file_url": feed_url,
+                "keep_index_on_update": True,
+                "content_xpath": "//div[contains(@class, \"intro\")]|//div[@class=\"content\"]"
+            },
+            {
+                "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
+                "keep_index_on_update": True,
+                "enrichers": [],
+                "index_name": "groenlinks",
+                "collection": "GroenLinks",
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "item_xpath": "//article[contains(@class, \"node-newsarticle\")]",
+                "item_link_xpath": "(.//h1//a/@href)[1]",
+                "paging_xpath": "//li[@class=\"pager-next\"]/a/@href",
+                "content_xpath": "//div[contains(@class, \"intro\")]|//div[@class=\"content\"]",
+                "title_xpath": "//title//text()",
+                "date_xpath": "//span[contains(@class, \"submitted-date\")]//text()",
+                "id": "groenlinks_archives_" + slug,
+                "location": unicode(name),
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "file_url": urljoin(link, "/nieuws"),
+                "item": "ocd_backend.items.html.HTMLPageItem",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False
+            }
+        ]
 
     resp = requests.get('https://groenlinks.nl/lokaal')
     html = etree.HTML(resp.content)
@@ -169,22 +192,46 @@ def _generate_for_cda(name):
             slug = link.split('/')[-2].replace('-', '_')
         except LookupError:
             slug = u''
-        return [{
-            "id": u"cda_%s" % (slug,),
-            "location": unicode(name),
-            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
-            "transformer": "ocd_backend.transformers.BaseTransformer",
-            "item": "ocd_backend.items.feed.FeedItem",
-            "enrichers": [
-            ],
-            "loader": "ocd_backend.loaders.ElasticsearchLoader",
-            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-            "hidden": False,
-            "index_name": "cda",
-            "collection": "CDA",
-            "file_url": feed_url,
-            "keep_index_on_update": True
-        }]
+        return [
+            {
+                "id": u"cda_%s" % (slug,),
+                "location": unicode(name),
+                "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "item": "ocd_backend.items.feed.FeedItem",
+                "enrichers": [
+                ],
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False,
+                "index_name": "cda",
+                "collection": "CDA",
+                "file_url": feed_url,
+                "keep_index_on_update": True
+            },
+            {
+                "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
+                "keep_index_on_update": True,
+                "enrichers": [],
+                "index_name": "cda",
+                "collection": "CDA",
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "item_xpath": "//*[@id=\"mainContent\"]/section/div/div/div/div/div/a",
+                "item_link_xpath": "(./@href)[1]",
+                "paging_xpath": "//li[contains(@class, \"pagination-next\")]/a/@href",
+                "content_xpath": "//div[contains(@class, \"widePhoto\")]//img|//div[@id=\"readSpeakerContent\"]//p",
+                "title_xpath": "//h1//text()",
+                "date_xpath": "(//div[contains(@class, \"widePhoto-content\")])[1]//span//text()",
+                "id": u"cda_archives_%s" % (slug,),
+                "location": unicode(name),
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                # "file_url": "https://www.cda.nl/overijssel/dinkelland/actueel/nieuws/",
+                "file_url": urljoin('https://www.cda.nl', urljoin(link, 'actueel/nieuws')),
+                "item": "ocd_backend.items.html.HTMLPageItem",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False
+            }
+        ]
 
     resp = requests.get('https://www.cda.nl/partij/afdelingen/')
     html = etree.HTML(resp.content)
@@ -279,6 +326,27 @@ def _generate_for_vvd(name):
             "keep_index_on_update": True,
             "content_xpath": "//div[@class=\"article__intro\"]|//div[@class=\"article__content\"]"
         })
+        result.append({
+            "extractor": "ocd_backend.extractors.vvd.VVDHtmlExtractor",
+            "keep_index_on_update": True,
+            "enrichers": [],
+            "index_name": "vvd",
+            "collection": "VVD",
+            "loader": "ocd_backend.loaders.ElasticsearchLoader",
+            "item_xpath": "//ul[@class=\"archive__list overview__list\"]//li",
+            "item_link_xpath": "(./a/@href)[1]",
+            "paging_xpath": "//ul[contains(@class, \"pagination\")]//a[@aria-label=\"Next\"]/@href",
+            "content_xpath": "//div[@class=\"article__intro\"]|//div[@class=\"article__content\"]",
+            "title_xpath": "//h1[@class=\"article__heading\"]//text()",
+            "date_xpath": "(//span[@item-prop=\"date\"])[1]//text()",
+            "id": u"vvd_archives_%s_%s" % (slug.replace('-', '_'), feed_idx,),
+            "location": unicode(name),
+            "transformer": "ocd_backend.transformers.BaseTransformer",
+            "file_url": urljoin(feed_url, '/'),
+            "item": "ocd_backend.items.html.HTMLPageItem",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "hidden": False
+        })
         return result
 
     result = []
@@ -311,7 +379,7 @@ def _generate_for_vvd(name):
                 rss_url = 'http://' + line[0] + line[1]
 
             result += _generate_for_vvd_subsite(name, rss_url, feed_idx)
-            time.sleep(1)
+            time.sleep(2)
     return result
 
 
@@ -324,22 +392,45 @@ def _generate_for_d66(name):
             slug = None
 
         feed_url = "%s/feed/" % (link,)
-        return [{
-            "id": u"d66_%s" % (slug.replace('-', '_'),),
-            "location": unicode(name),
-            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
-            "transformer": "ocd_backend.transformers.BaseTransformer",
-            "item": "ocd_backend.items.feed.FeedItem",
-            "enrichers": [
-            ],
-            "loader": "ocd_backend.loaders.ElasticsearchLoader",
-            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-            "hidden": False,
-            "index_name": "d66",
-            "collection": "D66",
-            "file_url": feed_url,
-            "keep_index_on_update": True
-        }]
+        return [
+            {
+                "id": u"d66_%s" % (slug.replace('-', '_'),),
+                "location": unicode(name),
+                "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "item": "ocd_backend.items.feed.FeedItem",
+                "enrichers": [
+                ],
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False,
+                "index_name": "d66",
+                "collection": "D66",
+                "file_url": feed_url,
+                "keep_index_on_update": True
+            },
+            {
+                "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
+                "keep_index_on_update": True,
+                "enrichers": [],
+                "index_name": "d66",
+                "collection": "D66",
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "item_xpath": "//article[contains(@class, \"news-item\")]",
+                "item_link_xpath": "(.//h2//a/@href)[1]",
+                "paging_xpath": "//div[@class=\"pager\"]/a[contains(@class, \"next\")]/@href",
+                "content_xpath": "//section[@class=\"readable\"]/img|//section[@class=\"readable\"]/p",
+                "title_xpath": "//div[@class=\"content\"]//h1//text()",
+                "date_xpath": "(//span[contains(@class, \"label\")])[1]//text()",
+                "id": u"d66_archives_%s" % (slug.replace('-', '_'),),
+                "location": unicode(name),
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "file_url": urljoin(feed_url, "/actueel/"),
+                "item": "ocd_backend.items.html.HTMLPageItem",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False
+            }
+        ]
 
     resp = requests.get('https://d66.nl/partij/d66-het-land/')
     html = etree.HTML(resp.content)
@@ -375,23 +466,46 @@ def _generate_for_sp(name):
             requests.exceptions.ConnectionError
         ):
             feed_url = os.path.join(link, 'feed')
-        return [{
-            "id": "sp_" + slug,
-            "location": unicode(name).replace('SP ', ''),
-            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
-            "transformer": "ocd_backend.transformers.BaseTransformer",
-            "item": "ocd_backend.items.feed.FeedFullTextItem",
-            "enrichers": [
-            ],
-            "loader": "ocd_backend.loaders.ElasticsearchLoader",
-            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-            "hidden": False,
-            "index_name": "sp",
-            "collection": "SP",
-            "file_url": feed_url,
-            "keep_index_on_update": True,
-            "content_xpath": "//div[contains(@class, \"node-content\")]"
-        }]
+        return [
+            {
+                "id": "sp_" + slug,
+                "location": unicode(name).replace('SP ', ''),
+                "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "item": "ocd_backend.items.feed.FeedFullTextItem",
+                "enrichers": [
+                ],
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False,
+                "index_name": "sp",
+                "collection": "SP",
+                "file_url": feed_url,
+                "keep_index_on_update": True,
+                "content_xpath": "//div[contains(@class, \"node-content\")]"
+            },
+            {
+                "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
+                "keep_index_on_update": True,
+                "enrichers": [],
+                "index_name": "sp",
+                "collection": "SP",
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "item_xpath": "//div[contains(@class, \"node-nieuwsitem\")]",
+                "item_link_xpath": "(.//h2//a/@href)[1]",
+                "paging_xpath": "//ul[@class=\"pager\"]/li[@class=\"pager-next\"]/a/@href",
+                "content_xpath": "//div[contains(@class, \"node-content\")]",
+                "title_xpath": "//div[@class=\"content\"]//h2[@class=\"title\"]//text()",
+                "date_xpath": "(//div[contains(@class, \"pub-date\")])[1]//text()",
+                "id": "sp_archives_" + slug,
+                "location": unicode(name).replace('SP ', ''),
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "file_url": urljoin(feed_url, "/nieuws"),
+                "item": "ocd_backend.items.html.HTMLPageItem",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False
+            }
+        ]
 
     resp = requests.get('https://www.sp.nl/wij-sp/lokale-afdelingen')
     html = etree.HTML(resp.content)
@@ -417,22 +531,45 @@ def _generate_for_pvda(name):
         else:
             slug = None
         feed_url = os.path.join(link, 'feed')
-        return [{
-            "id": "pvda_" + slug,
-            "location": unicode(name),
-            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
-            "transformer": "ocd_backend.transformers.BaseTransformer",
-            "item": "ocd_backend.items.feed.FeedItem",
-            "enrichers": [
-            ],
-            "loader": "ocd_backend.loaders.ElasticsearchLoader",
-            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-            "hidden": False,
-            "index_name": "pvda",
-            "collection": "PvdA",
-            "file_url": feed_url,
-            "keep_index_on_update": True
-        }]
+        return [
+            {
+                "id": "pvda_" + slug,
+                "location": unicode(name),
+                "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "item": "ocd_backend.items.feed.FeedItem",
+                "enrichers": [
+                ],
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False,
+                "index_name": "pvda",
+                "collection": "PvdA",
+                "file_url": feed_url,
+                "keep_index_on_update": True
+            },
+            {
+                "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
+                "keep_index_on_update": True,
+                "enrichers": [],
+                "index_name": "pvda",
+                "collection": "PvdA",
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "item_xpath": "//div[contains(@class, \"post\")]",
+                "item_link_xpath": "(./div/h3/a/@href)[1]",
+                "paging_xpath": "//div[contains(@class, \"navigation\")]/div[@class=\"alignright\"]/a/@href",
+                "content_xpath": "//div[contains(@class, \"post\")]//img|//div[contains(@class, \"post\")]//p",
+                "title_xpath": "//div[contains(@class, \"post\")]//h2//text()",
+                "date_xpath": "//div[contains(@class, \"post\")]//div[@class=\"meta\"]//text()",
+                "id": "pvda_archives_" + slug,
+                "location": unicode(name),
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "file_url": urljoin(feed_url, "/nieuws/"),
+                "item": "ocd_backend.items.html.HTMLPageItem",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False
+            }
+        ]
 
     resp = requests.get('https://www.pvda.nl/partij/organisatie/lokale-afdelingen/')
     html = etree.HTML(resp.content)
@@ -476,23 +613,46 @@ def _generate_for_sgp(name):
         if feed_url is None:
             return []
 
-        return [{
-            "id": "sgp_" + slug,
-            "location": unicode(name).strip(),
-            "extractor": "ocd_backend.extractors.staticfile.StaticHtmlExtractor",
-            "transformer": "ocd_backend.transformers.BaseTransformer",
-            "item": "ocd_backend.items.sgp.SGPItem",
-            "enrichers": [
-            ],
-            "loader": "ocd_backend.loaders.ElasticsearchLoader",
-            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-            "hidden": False,
-            "index_name": "sgp",
-            "collection": "SGP",
-            "item_xpath": "//a[contains(@class, \"overlay-link\")]",
-            "file_url": feed_url,
-            "keep_index_on_update": True
-        }]
+        return [
+            {
+                "id": "sgp_" + slug,
+                "location": unicode(name).strip(),
+                "extractor": "ocd_backend.extractors.staticfile.StaticHtmlExtractor",
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "item": "ocd_backend.items.sgp.SGPItem",
+                "enrichers": [
+                ],
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False,
+                "index_name": "sgp",
+                "collection": "SGP",
+                "item_xpath": "//a[contains(@class, \"overlay-link\")]",
+                "file_url": feed_url,
+                "keep_index_on_update": True
+            },
+            {
+                "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
+                "keep_index_on_update": True,
+                "enrichers": [],
+                "index_name": "sgp",
+                "collection": "SGP",
+                "loader": "ocd_backend.loaders.ElasticsearchLoader",
+                "item_xpath": "//a[contains(@class, \"overlay-link\")]",
+                "item_link_xpath": "(./@href)[1]",
+                "paging_xpath": "//ul[contains(@class, \"pagination\")]//a[@aria-label=\"Next\"]/@href",
+                "content_xpath": "//div[@class=\"story--detail__content\"]//div[@class=\"text\"]",
+                "title_xpath": "//h1//text()",
+                "date_xpath": "(//span[@class=\"date\"])[1]//text()",
+                "id": "sgp_archives_" + slug,
+                "location": unicode(name).strip(),
+                "transformer": "ocd_backend.transformers.BaseTransformer",
+                "file_url": feed_url,
+                "item": "ocd_backend.items.html.HTMLPageItem",
+                "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+                "hidden": False
+            }
+        ]
 
     resp = requests.get('https://www.sgp.nl/decentraal')
     html = etree.HTML(resp.content)

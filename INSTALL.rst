@@ -14,7 +14,7 @@ Using `Docker Compose <https://docs.docker.com/compose/install/>`_ is by far the
 1. Clone the PoliFLW API git repository::
 
    $ git clone https://github.com/openstate/poliflw.git
-   $ cd poliflw/
+   $ cd poliflw/docker
 
 2. Build and start the containers::
 
@@ -24,7 +24,7 @@ If you're in production::
 
 If you're in development::
 
-   $ docker-compose -f docker-compose-dev.yml up -d
+   $ docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d
 
 Elasticsearch is now accessible locally in the Docker container via http://127.0.0.1:9200, or from the host via http://<CONTAINER IP ADDRESS>:9200 (look up the container's IP address using ``docker inspect`` as shown below).
 
@@ -68,6 +68,15 @@ Running an PoliFLW API extractor
    $ ./manage.py extract start <name_of_source>
 
    You can get an overview of the available sources by running ``./manage.py extract list_sources``.
+
+Generating documentation
+------------
+
+To generate the documentation run::
+
+   $ docker exec pfl_backend_1 sh -c "source ../bin/activate && cd docs && make html"
+
+If you get permission errors then ``pfl_nginx_1`` probably already created an empty ``_build/html`` directory. Simply delete this directory and run the command above again.
 
 Automatic updating using cron
 ------------

@@ -143,10 +143,11 @@ def redis_client():
 
 
 class BackendAPI(object):
-    URL = 'http://frontend:5000/v0'
+    URL = 'http://pfl_nginx_1/v0'
+    HEADERS = {'Host': 'api.poliflw.nl'}
 
     def sources(self):
-        return requests.get('%s/sources' % (self.URL,)).json()
+        return requests.get('%s/sources' % (self.URL,), headers=self.HEADERS).json()
 
     def search(self, *args, **kwargs):
         es_query = {
@@ -195,6 +196,7 @@ class BackendAPI(object):
 
         plain_result = requests.post(
             '%s/search' % (self.URL,),
+            headers=self.HEADERS,
             data=json.dumps(es_query))
         try:
             result = plain_result.json()
@@ -221,11 +223,12 @@ class BackendAPI(object):
 
         return requests.post(
             '%s/search' % (self.URL,),
+            headers=self.HEADERS,
             data=json.dumps(es_query)).json()
 
     def get_by_id(self, id):
         return requests.get(
-            '%s/combined_index/item/%s' % (self.URL, id,)).json()
+            '%s/combined_index/item/%s' % (self.URL, id,), headers=self.HEADERS).json()
 
 
 api = BackendAPI()

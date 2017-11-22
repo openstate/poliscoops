@@ -29,4 +29,4 @@ if application.app.config.get('DEBUG', False):
         return send_from_directory(base_dir, os.path.basename(filename))
 
 if __name__ == '__main__':
-    run_simple('0.0.0.0', 5000, application, processes=8, use_reloader=True, use_debugger=True)
+    run_simple('0.0.0.0', 5000, application, processes=4, use_reloader=True, use_debugger=True)

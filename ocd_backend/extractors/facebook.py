@@ -38,7 +38,10 @@ class FacebookExtractor(BaseExtractor, HttpRequestMixin):
                 self.fb_api_version, self.fb_graph_url,
                 self._fb_get_access_token(),)
         r = self.http_session.get(graph_url)
-        r.raise_for_status()
+        # check if we get good status codes
+        if (r.status_code >= 300) or (r.status_code < 200):
+            print "%s got status code: %s" % (graph_url, r.status_code,)
+            return {'data': []}  # return an empty object
         return r.json()
 
     def run(self):

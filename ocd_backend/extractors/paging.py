@@ -50,7 +50,12 @@ class PagedStaticHtmlExtractor(StaticHtmlExtractor):
         while not finished:
             print "Fetching url : %s" % (static_url,)
             r = self.http_session.get(static_url)
-            r.raise_for_status()
+
+            # check if we get good status codes
+            if (r.status_code >= 300) or (r.status_code < 200):
+                print "%s got status code: %s" % (static_url, r.status_code,)
+                finished = True
+                continue
 
             static_content = r.content
 

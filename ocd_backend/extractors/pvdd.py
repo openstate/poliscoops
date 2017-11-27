@@ -16,6 +16,13 @@ class PVDDExtractor(BaseExtractor, HttpRequestMixin):
         finished = False
         while not finished:
             resp = self.http_session.get('%s/?page=%s' % (url, str(page)))
+
+            # check if we get good status codes
+            if (resp.status_code >= 300) or (resp.status_code < 200):
+                print "Page %s got status code: %s" % (page, resp.status_code,)
+                page += 1  # we can continue?
+                continue
+
             html = etree.HTML(resp.content)
 
             # Loop over all div's containg links to item pages

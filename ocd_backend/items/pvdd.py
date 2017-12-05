@@ -70,7 +70,7 @@ class PVDDItem(BaseItem):
         # location
         if self.source_definition.get('location', None) is not None:
             combined_index_data['location'] = unicode(self.source_definition[
-                'location'])
+                'location'].decode('utf-8'))
 
         return combined_index_data
 

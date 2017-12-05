@@ -59,7 +59,7 @@ class PageItem(BaseItem):
 
         if self.source_definition.get('location', None) is not None:
             combined_index_data['location'] = unicode(self.source_definition[
-                'location'])
+                'location'].decode('utf-8'))
         combined_index_data['date_granularity'] = 12
 
         return combined_index_data

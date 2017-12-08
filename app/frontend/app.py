@@ -6,7 +6,9 @@ from urllib import urlencode
 from pprint import pprint
 import sys
 import time
-from urlparse import urlparse
+from urlparse import urlparse, urljoin
+
+from html5lib.filters.base import Filter
 
 from flask import (
     Flask, abort, jsonify, request, redirect, render_template,
@@ -15,6 +17,7 @@ from flask import (
 from jinja2 import Markup
 
 import bleach
+from bleach.sanitizer import Cleaner
 import iso8601
 import requests
 from redis import StrictRedis
@@ -52,12 +55,24 @@ def allow_src(tag, name, value):
 
 
 @app.template_filter('html_cleanup')
-def do_html_cleanup(s):
-    cleaned = bleach.clean(
-        s, tags=['img', 'a', 'p', 'div'], attributes={
-            '*': allow_src}, strip=True)
-    return cleaned.replace('<img ', '<img class="img-responsive" ')
-
+def do_html_cleanup(s, result):
+    class PflFilter(Filter):
+        def __iter__(self):
+            for token in Filter.__iter__(self):
+                if token['type'] in ['StartTag', 'EmptyTag'] and token['data']:
+                    if token['name'] == 'img':
+                        for attr, value in token['data'].items():
+                            token['data'][attr] = urljoin(
+                                result['meta']['original_object_urls']['html'],
+                                token['data'][attr])
+                yield token
+    ATTRS = {
+        '*': allow_src
+    }
+    TAGS = ['img', 'a', 'p', 'div']
+    cleaner = Cleaner(
+        tags=TAGS, attributes=ATTRS, filters=[PflFilter], strip=True)
+    return cleaner.clean(s).replace('<img ', '<img class="img-responsive" ')
 
 @app.template_filter('active_bucket')
 def do_active_bucket(bucket, facet):

@@ -6,6 +6,7 @@ from urllib import urlencode
 from pprint import pprint
 import sys
 import time
+from urlparse import urlparse
 
 from flask import (
     Flask, abort, jsonify, request, redirect, render_template,
@@ -13,6 +14,7 @@ from flask import (
 
 from jinja2 import Markup
 
+import bleach
 import iso8601
 import requests
 from redis import StrictRedis
@@ -34,6 +36,27 @@ FACETS = (
     ('persons', 'Politici',),
     ('parties', 'Partijen',),
 )
+
+
+def allow_src(tag, name, value):
+    if (tag == 'img') and (name in ('alt', 'height', 'width', 'src')):
+        return True
+    if (tag == 'a') and (name in ('href')):
+        return True
+    if (
+        (tag == 'div') and (name in ('class')) and
+        (value in ("facebook-external-link", "clearfix"))
+    ):
+        return True
+    return False
+
+
+@app.template_filter('html_cleanup')
+def do_html_cleanup(s):
+    cleaned = bleach.clean(
+        s, tags=['img', 'a', 'p', 'div'], attributes={
+            '*': allow_src}, strip=True)
+    return cleaned.replace('<img ', '<img class="img-responsive" ')
 
 
 @app.template_filter('active_bucket')

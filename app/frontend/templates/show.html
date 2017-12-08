@@ -10,7 +10,7 @@
     {% if result.title %}
     <h2>{{ result.title }}</h2>
     {% endif %}
-    <p>{{ result.description |safe }}</p>
+    <p>{{ result.description |html_cleanup |safe }}</p>
     {% if result.date %}
     <p class="pull-left">
       <a href="{{ result.meta.original_object_urls.html }}" target="_blank">

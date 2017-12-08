@@ -259,9 +259,10 @@ def search():
         max_pages=max_pages, search_params=search_params)
 
 
-@app.route("/<location>/<party>/<id>")
+@app.route("/l/<location>/<party>/<id>")
 def show(location, party, id):
-    return 'Coming soon'
+    result = api.get_by_id(id)
+    return render_template('show.html', result=result)
 
 
 def create_app():

@@ -22,7 +22,9 @@ class FrontendAPIExtractor(BaseExtractor, HttpRequestMixin, FrontendAPIMixin):
         while (n_results == n_size):
             print "Getting %s results from %s " % (n_size, n_from,)
             results = self.api_request(
-                self.source_definition['index_name'],
+                self.source_definition.get(
+                    'frontend_index_name', self.source_definition['index_name']
+                ),
                 self.source_definition['frontend_type'], **params)
             n_from += n_results
             n_results = len(results)

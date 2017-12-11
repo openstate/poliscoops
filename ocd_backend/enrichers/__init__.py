@@ -79,3 +79,9 @@ class BaseEnricher(celery_app.Task):
         :returns: a modified enrichments dictionary.
         """
         raise NotImplemented
+
+
+class StaticEnricher(BaseEnricher):
+    def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
+        enrichments['test'] = 'test'
+        return enrichments

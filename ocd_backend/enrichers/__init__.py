@@ -81,7 +81,13 @@ class BaseEnricher(celery_app.Task):
         raise NotImplemented
 
 
-class StaticEnricher(BaseEnricher):
+class NEREnricher(BaseEnricher):
+    def _perform_ner(self, doc_id, doc):
+        return {
+            'parties': doc.get('parties', []) + [],
+            'politicians': doc.get('politicians', []) + [],
+        }
+
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
-        enrichments['test'] = 'test'
+        enrichments.update(self._perform_ner(object_id, combined_index_doc))
         return enrichments

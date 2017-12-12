@@ -33,6 +33,8 @@ REDIS_DB = 0
 
 CHUNK_SIZE = 1024
 
+REWRITE_IMAGE_LINKS_CHECK = 'https:'
+
 FACETS = (
     ('date', 'Datum',),
     ('location', 'Locatie',),
@@ -56,6 +58,13 @@ def allow_src(tag, name, value):
     return False
 
 
+def image_rewrite(url):
+    if not url.startswith('REWRITE_IMAGE_LINKS_CHECK'):
+        return url_for('link_proxy', hash='xx', url=url)
+    else:
+        return url
+
+
 @app.template_filter('html_cleanup')
 def do_html_cleanup(s, result):
     class PflFilter(Filter):
@@ -64,9 +73,9 @@ def do_html_cleanup(s, result):
                 if token['type'] in ['StartTag', 'EmptyTag'] and token['data']:
                     if token['name'] == 'img':
                         for attr, value in token['data'].items():
-                            token['data'][attr] = urljoin(
+                            token['data'][attr] = image_rewrite(urljoin(
                                 result['meta']['original_object_urls']['html'],
-                                token['data'][attr])
+                                token['data'][attr]))
                 yield token
     ATTRS = {
         '*': allow_src

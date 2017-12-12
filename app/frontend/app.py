@@ -31,6 +31,8 @@ REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_DB = 0
 
+CHUNK_SIZE = 1024
+
 FACETS = (
     ('date', 'Datum',),
     ('location', 'Locatie',),
@@ -301,6 +303,24 @@ def search():
 def show(location, party, id):
     result = api.get_by_id(id)
     return render_template('show.html', result=result)
+
+
+@app.route("/r/<hash>")
+def link_proxy(hash):
+    url = request.args.get('url', None)
+    r = get_source_rsp(url)
+    headers = dict(r.headers)
+
+    def generate():
+        for chunk in r.iter_content(CHUNK_SIZE):
+            yield chunk
+
+    return Response(generate(), headers=headers)
+
+
+def get_source_rsp(url):
+    return requests.get(
+        url, stream=True, params=request.args)
 
 
 def create_app():

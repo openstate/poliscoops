@@ -8,6 +8,7 @@ import re
 class PVDDExtractor(BaseExtractor, HttpRequestMixin):
     def get_collection_objects(self):
         url = self.source_definition['file_url']
+        paging = self.source_definition.get('paging', False)
 
         all_links_xpath = ".//article/header/h2"
 
@@ -43,6 +44,10 @@ class PVDDExtractor(BaseExtractor, HttpRequestMixin):
                         link = url.rstrip('/nieuws') + link
 
                     yield link
+
+            if not paging:
+                finished = True
+
             page += 1
 
     def get_object(self, item_url):

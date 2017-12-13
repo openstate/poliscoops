@@ -7,6 +7,7 @@ from pprint import pprint
 import sys
 import time
 from urlparse import urlparse, urljoin
+import hashlib
 
 from html5lib.filters.base import Filter
 
@@ -33,7 +34,7 @@ REDIS_DB = 0
 
 CHUNK_SIZE = 1024
 
-REWRITE_IMAGE_LINKS_CHECK = 'https:'
+REWRITE_IMAGE_LINKS_CHECK = 'http:'
 
 FACETS = (
     ('date', 'Datum',),
@@ -58,9 +59,10 @@ def allow_src(tag, name, value):
     return False
 
 
-def image_rewrite(url):
-    if not url.startswith('REWRITE_IMAGE_LINKS_CHECK'):
-        return url_for('link_proxy', hash='xx', url=url)
+def image_rewrite(url, doc_id):
+    if url.startswith('REWRITE_IMAGE_LINKS_CHECK'):
+        img_hash = hashlib.md5('%s:%s' % (doc_id, url)).hexdigest()
+        return url_for('link_proxy', hash=img_hash, url=url, id=doc_id)
     else:
         return url
 
@@ -75,7 +77,7 @@ def do_html_cleanup(s, result):
                         for attr, value in token['data'].items():
                             token['data'][attr] = image_rewrite(urljoin(
                                 result['meta']['original_object_urls']['html'],
-                                token['data'][attr]))
+                                token['data'][attr]), result['meta']['_id'])
                 yield token
     ATTRS = {
         '*': allow_src
@@ -317,6 +319,18 @@ def show(location, party, id):
 @app.route("/r/<hash>")
 def link_proxy(hash):
     url = request.args.get('url', None)
+    if url is None:
+        abort(404)
+
+    doc_id = request.args.get('id', None)
+    if doc_id is None:
+        abort(404)
+
+    img_hash = hashlib.md5('%s:%s' % (doc_id, url)).hexdigest()
+
+    if hash != img_hash:
+        abort(404)
+
     r = get_source_rsp(url)
     headers = dict(r.headers)
 

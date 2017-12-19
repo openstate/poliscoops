@@ -209,7 +209,7 @@ def format_search_results(results, doc_type=u'item'):
     formatted_results = {}
     for hit in results['hits']['hits']:
         formatted_results.setdefault(hit['_type'], [])
-        for fld in ['_score', '_type', '_index', 'highlight']:
+        for fld in ['_score', '_type', '_index', 'highlight', '_id']:
             try:
                 hit['_source']['meta'][fld] = hit[fld]
             except Exception as e:

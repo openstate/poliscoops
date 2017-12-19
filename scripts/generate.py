@@ -22,6 +22,9 @@ from lxml import etree
 import requests
 
 
+LOCATIONS = []
+
+
 class UTF8Recoder:
     """
     Iterator that reads an encoded stream and reencodes the input to UTF-8
@@ -71,6 +74,26 @@ def command(name=None, cls=None, **attrs):
     return decorator
 
 
+def _get_normalized_locations():
+    loc_path = os.path.join(
+        os.path.dirname(__file__),
+        '../ocd_backend/data/cbs-name2018-mapping.csv')
+    result = {}
+    with open(loc_path) as locations_in:
+        locations = UnicodeReader(locations_in)
+        headers = locations.next()
+        for location in locations:
+            record = dict(zip(headers, location))
+            result[record[u'Key_poliflw']] = record[u'Alt_map']
+    return result
+
+
+def _normalize_location(location):
+    if unicode(location) in LOCATIONS:
+        return LOCATIONS[unicode(location)]
+    return unicode(location)
+
+
 def _generate_for_pvdd(name):
     def _generate_for_pvdd_subsite(name, link):
         m = re.match(r'^https?\:\/\/w?w?w?\.?([^\.]+)', link)
@@ -81,7 +104,7 @@ def _generate_for_pvdd(name):
         url = os.path.join(link, 'nieuws')
         return [{
             "id": "pvdd_" + slug,
-            "location": unicode(name),
+            "location": _normalize_location(name),
             "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
             "transformer": "ocd_backend.transformers.BaseTransformer",
             "item": "ocd_backend.items.pvdd.PVDDItem",
@@ -129,7 +152,7 @@ def _generate_for_groenlinks(name):
         return [
             {
                 "id": "groenlinks_" + slug,
-                "location": unicode(name),
+                "location": _normalize_location(name),
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedFullTextItem",
@@ -158,7 +181,7 @@ def _generate_for_groenlinks(name):
                 "title_xpath": "//title//text()",
                 "date_xpath": "//span[contains(@class, \"submitted-date\")]//text()",
                 "id": "groenlinks_archives_" + slug,
-                "location": unicode(name),
+                "location": _normalize_location(name),
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "file_url": urljoin(link, "/nieuws"),
                 "item": "ocd_backend.items.html.HTMLPageItem",
@@ -195,7 +218,7 @@ def _generate_for_cda(name):
         return [
             {
                 "id": u"cda_%s" % (slug,),
-                "location": unicode(name),
+                "location": _normalize_location(name),
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedItem",
@@ -223,7 +246,7 @@ def _generate_for_cda(name):
                 "title_xpath": "//h1//text()",
                 "date_xpath": "(//div[contains(@class, \"widePhoto-content\")])[1]//span//text()",
                 "id": u"cda_archives_%s" % (slug,),
-                "location": unicode(name),
+                "location": _normalize_location(name),
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 # "file_url": "https://www.cda.nl/overijssel/dinkelland/actueel/nieuws/",
                 "file_url": urljoin('https://www.cda.nl', urljoin(link, 'actueel/nieuws')),
@@ -268,7 +291,7 @@ def _generate_for_cu(name):
             feed_url = u''.join(feed.xpath('./@href'))
             result.append({
                 "id": u"cu_%s_%s" % (slug.replace('-', '_'), feed_idx,),
-                "location": unicode(name),
+                "location": _normalize_location(name),
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedItem",
@@ -311,7 +334,7 @@ def _generate_for_vvd(name):
         result = []
         result.append({
             "id": u"vvd_%s_%s" % (slug.replace('-', '_'), feed_idx,),
-            "location": unicode(name),
+            "location": _normalize_location(name),
             "extractor": "ocd_backend.extractors.feed.FeedExtractor",
             "transformer": "ocd_backend.transformers.BaseTransformer",
             "item": "ocd_backend.items.feed.FeedFullTextItem",
@@ -340,7 +363,7 @@ def _generate_for_vvd(name):
             "title_xpath": "//h1[@class=\"article__heading\"]//text()",
             "date_xpath": "(//span[@item-prop=\"date\"])[1]//text()",
             "id": u"vvd_archives_%s_%s" % (slug.replace('-', '_'), feed_idx,),
-            "location": unicode(name),
+            "location": _normalize_location(name),
             "transformer": "ocd_backend.transformers.BaseTransformer",
             "file_url": urljoin(feed_url, '/'),
             "item": "ocd_backend.items.html.HTMLPageItem",
@@ -395,7 +418,7 @@ def _generate_for_d66(name):
         return [
             {
                 "id": u"d66_%s" % (slug.replace('-', '_'),),
-                "location": unicode(name),
+                "location": _normalize_location(name),
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedItem",
@@ -423,7 +446,7 @@ def _generate_for_d66(name):
                 "title_xpath": "//div[@class=\"content\"]//h1//text()",
                 "date_xpath": "(//span[contains(@class, \"label\")])[1]//text()",
                 "id": u"d66_archives_%s" % (slug.replace('-', '_'),),
-                "location": unicode(name),
+                "location": _normalize_location(name),
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "file_url": urljoin(feed_url, "/actueel/"),
                 "item": "ocd_backend.items.html.HTMLPageItem",
@@ -469,7 +492,8 @@ def _generate_for_sp(name):
         return [
             {
                 "id": "sp_" + slug,
-                "location": unicode(name).replace('SP ', ''),
+                "location": _normalize_location(
+                    unicode(name).replace('SP ', '')),
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedFullTextItem",
@@ -498,7 +522,8 @@ def _generate_for_sp(name):
                 "title_xpath": "//div[@class=\"content\"]//h2[@class=\"title\"]//text()",
                 "date_xpath": "(//div[contains(@class, \"pub-date\")])[1]//text()",
                 "id": "sp_archives_" + slug,
-                "location": unicode(name).replace('SP ', ''),
+                "location": _normalize_location(
+                    unicode(name).replace('SP ', '')),
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "file_url": urljoin(feed_url, "/nieuws"),
                 "item": "ocd_backend.items.html.HTMLPageItem",
@@ -534,7 +559,7 @@ def _generate_for_pvda(name):
         return [
             {
                 "id": "pvda_" + slug,
-                "location": unicode(name),
+                "location": _normalize_location(name),
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedItem",
@@ -562,7 +587,7 @@ def _generate_for_pvda(name):
                 "title_xpath": "//div[contains(@class, \"post\")]//h2//text()",
                 "date_xpath": "//div[contains(@class, \"post\")]//div[@class=\"meta\"]//text()",
                 "id": "pvda_archives_" + slug,
-                "location": unicode(name),
+                "location": _normalize_location(name),
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "file_url": urljoin(feed_url, "/nieuws/"),
                 "item": "ocd_backend.items.html.HTMLPageItem",
@@ -616,7 +641,7 @@ def _generate_for_sgp(name):
         return [
             {
                 "id": "sgp_" + slug,
-                "location": unicode(name).strip(),
+                "location": _normalize_location(name.strip()),
                 "extractor": "ocd_backend.extractors.staticfile.StaticHtmlExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.sgp.SGPItem",
@@ -645,7 +670,7 @@ def _generate_for_sgp(name):
                 "title_xpath": "//h1//text()",
                 "date_xpath": "(//span[@class=\"date\"])[1]//text()",
                 "id": "sgp_archives_" + slug,
-                "location": unicode(name).strip(),
+                "location": _normalize_location(name.strip()),
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "file_url": feed_url,
                 "item": "ocd_backend.items.html.HTMLPageItem",
@@ -737,7 +762,7 @@ def _generate_facebook_for_party(
         },
         "item": "ocd_backend.items.facebook.PageItem",
         "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-        "location": location,
+        "location": _normalize_location(location),
         "hidden": False
     }
 
@@ -925,6 +950,8 @@ def generate_sources_local_party(name):
     param: name: The name of the party
     """
 
+    LOCATIONS = _get_normalized_locations()
+
     method_name = '_generate_for_%s' % (name,)
     possibles = globals().copy()
     possibles.update(locals())
@@ -945,6 +972,8 @@ def generate_facebook_local_party(name):
 
     param: name: The name of the party
     """
+
+    LOCATIONS = _get_normalized_locations()
 
     method_name = '_generate_fb_for_%s' % (name,)
     possibles = globals().copy()

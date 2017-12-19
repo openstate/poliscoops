@@ -83,3 +83,13 @@ class BaseTransformer(OCDBackendTaskFailureMixin, celery_app.Task):
             item.get_combined_index_doc(),
             item.get_index_doc()
         )
+
+
+class NoneTransformer(BaseTransformer):
+    def transform_item(self, raw_item_content_type, raw_item, item):
+        return (
+            item['meta']['_id'],
+            item['meta']['_id'],
+            item,
+            item
+        )

@@ -22,9 +22,6 @@ from lxml import etree
 import requests
 
 
-LOCATIONS = []
-
-
 class UTF8Recoder:
     """
     Iterator that reads an encoded stream and reencodes the input to UTF-8
@@ -56,9 +53,10 @@ class UnicodeReader:
     def __iter__(self):
         return self
 
+
 def _get_normalized_locations():
     loc_path = os.path.join(
-        os.path.dirname(__file__),
+        os.path.abspath(os.path.dirname(__file__)),
         '../ocd_backend/data/cbs-name2018-mapping.csv')
     result = {}
     with open(loc_path) as locations_in:
@@ -70,16 +68,18 @@ def _get_normalized_locations():
     return result
 
 
-def _normalize_location(location):
+def _normalize_location(location, LOCATIONS):
     if unicode(location) in LOCATIONS:
         return LOCATIONS[unicode(location)]
     return unicode(location)
 
 
 def main():
+    LOCATIONS = _get_normalized_locations()
     objects = json.load(sys.stdin)
     for obj in objects:
-        obj[u'location'] = _normalize_location(obj[u'location'])
+        if u'location' in obj:
+            obj[u'location'] = _normalize_location(obj[u'location'], LOCATIONS)
     json.dump(objects, sys.stdout, indent=2)
 
 

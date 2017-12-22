@@ -85,7 +85,12 @@ def do_html_cleanup(s, result):
     TAGS = ['img', 'a', 'p', 'div']
     cleaner = Cleaner(
         tags=TAGS, attributes=ATTRS, filters=[PflFilter], strip=True)
-    return cleaner.clean(s).replace('<img ', '<img class="img-responsive" ')
+    try:
+        return cleaner.clean(s).replace(
+            '<img ', '<img class="img-responsive" ')
+    except TypeError:
+        return u''
+
 
 @app.template_filter('active_bucket')
 def do_active_bucket(bucket, facet):

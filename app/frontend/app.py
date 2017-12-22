@@ -85,10 +85,10 @@ def do_html_cleanup(s, result):
     TAGS = ['img', 'a', 'p', 'div']
     cleaner = Cleaner(
         tags=TAGS, attributes=ATTRS, filters=[PflFilter], strip=True)
-    if s is not None:
+    try:
         return cleaner.clean(s).replace(
             '<img ', '<img class="img-responsive" ')
-    else:
+    except TypeError:
         return u''
 
 

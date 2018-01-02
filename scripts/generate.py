@@ -18,6 +18,7 @@ import click
 from click.core import Command
 from click.decorators import _make_command
 
+from elasticsearch import Elasticsearch
 from lxml import etree
 import requests
 
@@ -986,8 +987,44 @@ def generate_facebook_local_party(name):
 
     print json.dumps(sources, indent=4)
 
+
+@command('locations')
+def generate_locations():
+    """
+    This generates sources for fixing locations
+    """
+    es = Elasticsearch(
+        [{'host': 'elasticsearch', 'port': 9200, 'timeout': 20}])
+    available_indices = [
+        re.split(r'\s+', x) for x in es.cat.indices().split('\n') if x.strip() != u'']
+    selected_indices = [
+        x[2] for x in available_indices if not x[2].startswith('.')]
+    results = []
+    for selected_index in selected_indices:
+        results.append({
+            "extractor": "ocd_backend.extractors.api.FrontendAPIExtractor",
+            "keep_index_on_update": True,
+            "enrichers": [
+            ],
+            "index_name": selected_index,
+            "transformer": "ocd_backend.transformers.NoneTransformer",
+            "loader": "ocd_backend.loaders.ElasticsearchUpsertLoader",
+            "item": "ocd_backend.items.BaseItem",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "id": "loc_%s" % (selected_index,),
+            "hidden": False,
+            "frontend_args": {
+              "from": 0,
+              "size": 10
+            },
+            "frontend_type": "item"
+          })
+    print json.dumps(results, indent=4)
+
+
 sources.add_command(generate_sources_local_party)
 sources.add_command(generate_facebook_local_party)
+sources.add_command(generate_locations)
 
 if __name__ == '__main__':
     cli()

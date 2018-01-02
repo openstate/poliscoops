@@ -24,7 +24,7 @@ class FrontendAPIExtractor(BaseExtractor, HttpRequestMixin, FrontendAPIMixin):
             results = self.api_request(
                 self.source_definition.get(
                     'frontend_index_name', self.source_definition['index_name']
-                ),
+                ).replace('pfl_', ''),
                 self.source_definition['frontend_type'], **params)
             n_from += n_results
             n_results = len(results)

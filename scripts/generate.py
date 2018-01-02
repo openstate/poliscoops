@@ -1006,8 +1006,8 @@ def generate_locations():
             "keep_index_on_update": True,
             "enrichers": [
             ],
-            "index_name": selected_index,
-            "transformer": "ocd_backend.transformers.NoneTransformer",
+            "index_name": selected_index.replace('pfl_', ''),
+            "transformer": "ocd_backend.transformers.LocationTransformer",
             "loader": "ocd_backend.loaders.ElasticsearchUpsertLoader",
             "item": "ocd_backend.items.BaseItem",
             "cleanup": "ocd_backend.tasks.CleanupElasticsearch",

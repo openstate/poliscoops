@@ -103,7 +103,7 @@ class LocationTransformer(NoneTransformer):
             redis = StrictRedis(host='redis')
             lookup = redis.hmget('pfl_locs_norm', item['location'])
             if lookup[0] is not None:
-                item['location'] = lookup
+                item['location'] = lookup[0]
 
         return (
             item['meta']['_id'],

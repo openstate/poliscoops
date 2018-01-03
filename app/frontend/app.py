@@ -292,7 +292,8 @@ api = BackendAPI()
 
 @app.route("/")
 def main():
-    return render_template('index.html')
+    results = api.search(**{"size": 0, "page": 1})
+    return render_template('index.html', results=results)
 
 
 @app.route("/zoeken")

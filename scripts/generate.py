@@ -1002,7 +1002,7 @@ def generate_locations():
     results = []
     for selected_index in selected_indices:
         results.append({
-            "extractor": "ocd_backend.extractors.api.FrontendAPIExtractor",
+            "extractor": "ocd_backend.extractors.es.ElasticsearchExtractor",
             "keep_index_on_update": True,
             "enrichers": [
             ],
@@ -1013,11 +1013,7 @@ def generate_locations():
             "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
             "id": "loc_%s" % (selected_index,),
             "hidden": False,
-            "frontend_args": {
-              "from": 0,
-              "size": 10
-            },
-            "frontend_type": "item"
+            "doc_type": "item"
           })
     print json.dumps(results, indent=4)
 

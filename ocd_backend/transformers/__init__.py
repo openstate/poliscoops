@@ -1,5 +1,6 @@
 import json
 from hashlib import sha1
+from pprint import pprint
 
 from redis import StrictRedis
 from lxml import etree
@@ -89,8 +90,8 @@ class BaseTransformer(OCDBackendTaskFailureMixin, celery_app.Task):
 class NoneTransformer(BaseTransformer):
     def transform_item(self, raw_item_content_type, raw_item, item):
         return (
-            item['meta']['_id'],
-            item['meta']['_id'],
+            item[u'meta'][u'_id'],
+            item[u'meta'][u'_id'],
             item,
             item
         )
@@ -98,6 +99,7 @@ class NoneTransformer(BaseTransformer):
 
 class LocationTransformer(NoneTransformer):
     def transform_item(self, raw_item_content_type, raw_item, item):
+        pprint(item)
         # the lookup table should be (temporarily?) stored into redis)
         if 'location' in item:
             redis = StrictRedis(host='redis')
@@ -108,6 +110,6 @@ class LocationTransformer(NoneTransformer):
         return (
             item['meta']['_id'],
             item['meta']['_id'],
-            item,
-            item
+            {u'location': item['location'], u'meta': {}},
+            {u'location': item['location'], u'meta': {}}
         )

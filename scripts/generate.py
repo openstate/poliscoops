@@ -1001,23 +1001,23 @@ def generate_locations():
         x[2] for x in available_indices if not x[2].startswith('.')]
     results = []
     for selected_index in selected_indices:
+        if selected_index == 'pfl_usage_logs':
+            continue
+        if selected_index == 'pfl_resolver':
+            continue
         results.append({
-            "extractor": "ocd_backend.extractors.api.FrontendAPIExtractor",
+            "extractor": "ocd_backend.extractors.es.ElasticsearchExtractor",
             "keep_index_on_update": True,
             "enrichers": [
             ],
-            "index_name": selected_index.replace('pfl_', ''),
+            "index_name": selected_index.replace('pfl_', '').split('_')[0],
             "transformer": "ocd_backend.transformers.LocationTransformer",
             "loader": "ocd_backend.loaders.ElasticsearchUpsertLoader",
             "item": "ocd_backend.items.BaseItem",
             "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
             "id": "loc_%s" % (selected_index,),
             "hidden": False,
-            "frontend_args": {
-              "from": 0,
-              "size": 10
-            },
-            "frontend_type": "item"
+            "doc_type": "item"
           })
     print json.dumps(results, indent=4)
 

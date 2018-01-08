@@ -43,7 +43,8 @@ class FrontendAPIMixin(object):
 
         r = self.http_session.post(
             api_url,
-            data=json.dumps(api_query)
+            data=json.dumps(api_query),
+            headers=self.source_definition.get('frontend_headers', None)
         )
         r.raise_for_status()
         return r.json()[doc_type]

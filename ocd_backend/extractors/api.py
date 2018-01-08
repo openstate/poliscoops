@@ -1,6 +1,7 @@
 import json
 from pprint import pprint
 import re
+from time import sleep
 
 from ocd_backend.extractors import BaseExtractor, HttpRequestMixin
 from ocd_backend.exceptions import ConfigurationError
@@ -20,6 +21,7 @@ class FrontendAPIExtractor(BaseExtractor, HttpRequestMixin, FrontendAPIMixin):
         n_results = n_size
         params = self.source_definition['frontend_args']
         while (n_results == n_size):
+            sleep(1)
             print "Getting %s results from %s " % (n_size, n_from,)
             results = self.api_request(
                 self.source_definition.get(

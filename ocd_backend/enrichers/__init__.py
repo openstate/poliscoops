@@ -2,6 +2,7 @@ from ocd_backend import celery_app
 from ocd_backend import settings
 from ocd_backend.exceptions import SkipEnrichment
 from ocd_backend.log import get_source_logger
+from ocd_backend.extractors import HttpRequestMixin
 
 from pprint import pprint
 
@@ -81,13 +82,19 @@ class BaseEnricher(celery_app.Task):
         raise NotImplemented
 
 
-class NEREnricher(BaseEnricher):
+class NEREnricher(BaseEnricher, HttpRequestMixin):
     def _perform_ner(self, doc_id, doc):
+        url = 'http://politags_web_1:5000/api/articles/entities'
+        print url
+        r = self.http_session.post(url, data=doc).json()
+        print 'here'
+        print r
         return {
             'parties': doc.get('parties', []) + [],
-            'politicians': doc.get('politicians', []) + [],
+            'politicians': doc.get('politicians', []) + r['politicians'],
         }
 
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
+        print 123123213
         enrichments.update(self._perform_ner(object_id, combined_index_doc))
         return enrichments

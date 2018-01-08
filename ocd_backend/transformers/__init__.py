@@ -99,7 +99,6 @@ class NoneTransformer(BaseTransformer):
 
 class LocationTransformer(NoneTransformer):
     def transform_item(self, raw_item_content_type, raw_item, item):
-        pprint(item)
         # the lookup table should be (temporarily?) stored into redis)
         if 'location' in item:
             redis = StrictRedis(host='redis')
@@ -110,6 +109,6 @@ class LocationTransformer(NoneTransformer):
         return (
             item['meta']['_id'],
             item['meta']['_id'],
-            {u'location': item['location'], u'meta': {}},
-            {u'location': item['location'], u'meta': {}}
+            item,
+            item
         )

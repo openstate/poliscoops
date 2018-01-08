@@ -12,7 +12,9 @@
     {% if result.title %}
     <h2><a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}">{{ result.title }}</a></h2>
     {% endif %}
+    <div class="collapse" id="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
     <p>{{ result.description |html_cleanup(result) |safe }}</p>
+    </div>
     {% if result.date %}
     <p class="pull-left">
       <a href="{{ result.meta.original_object_urls.html }}" target="_blank">
@@ -29,6 +31,9 @@
     </p>
   </div>
   <div class="col-xs-1">
+    <a class="toggle-updown" data-toggle="collapse" href="#description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}" aria-expanded="false" aria-controls="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
+      <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+    </a>
   </div>
 </div>
 {% endfor %}

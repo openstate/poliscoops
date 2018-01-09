@@ -167,11 +167,10 @@ ul.wordcloud li { display: inline-block; }
   min-width: 100px;
   max-width: 200px;
   text-decoration: underline;
-  display: inline-block;
+  margin-bottom: 8px;
 }
 
 .links a {
-  display: inline-block;
   border: 1px solid black;
   border-radius: 4px;
   padding: 4px;

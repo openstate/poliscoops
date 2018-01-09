@@ -30,6 +30,14 @@ Poliflw.init = function() {
     }
     return false;
   });
+
+  $('#sidebarCollapse').on('click', function () {
+    if ($('#sidebar').hasClass('hidden-xs')) {
+      $('#sidebar').removeClass('hidden-xs').addClass('visible-xs-block');
+    } else {
+      $('#sidebar').addClass('hidden-xs').removeClass('visible-xs-block');
+    }
+  });
 };
 
 

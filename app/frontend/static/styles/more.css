@@ -141,3 +141,38 @@ ul.wordcloud li { display: inline-block; }
   float: left;
   margin-right: 10px;
 }
+
+.description-collapse {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: 1px solid black;
+  border-radius: 16px;
+}
+
+.description-collapse span {
+  margin-left: 8px;
+  margin-top: 8px;
+}
+
+.search-result {
+  margin-bottom: 16px;
+}
+
+.search-result h2 {
+  margin-top: 0;
+}
+
+.entities a {
+  min-width: 100px;
+  max-width: 200px;
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.links a {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 4px;
+}

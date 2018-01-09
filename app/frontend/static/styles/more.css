@@ -175,3 +175,15 @@ ul.wordcloud li { display: inline-block; }
   border-radius: 4px;
   padding: 4px;
 }
+
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    transition: all 0.3s;
+}

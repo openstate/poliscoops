@@ -30,4 +30,5 @@ class ElasticsearchExtractor(BaseExtractor):
             for k in [u'combined_index_data', u'source_data']:
                 if k in item[u'_source']:
                     del item[u'_source'][k]
+            item[u'_source'][u'meta'][u'_id'] = item['_id']
             yield 'application/json', json.dumps(item[u'_source'])

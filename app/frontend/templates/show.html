@@ -4,28 +4,33 @@
 {% block content %}
 
 {% include 'search.html' %}
-<section id="data">
-<div class="row">
-  <div class="col-xs-12">
-    {% if result.title %}
-    <h2>{{ result.title }}</h2>
-    {% endif %}
-    <p>{{ result.description |html_cleanup(result) |safe }}</p>
-    {% if result.date %}
-    <p class="pull-left">
-      <a href="{{ result.meta.original_object_urls.html }}" target="_blank">
-      {{ result.date|iso8601_to_str("%d-%m-%Y %H:%M:%S") }}
-      </a>
-    </p>
-    {% endif %}
-    <p class="pull-right">
-      <a href="{{ url_for('search', location=result.location) }}">  <span class="label label-info">{{ result.location }}</span></a>
-      {% for party in result.parties %}
-        <a href="{{ url_for('search', parties=party) }}">  <span class="label label-primary">{{ party }}</span></a>
-      {% endfor %}
-      <a href="{{ result.meta.original_object_urls.html }}" target="_blank"class=" label label-default"><i class="fa fa-external-link" aria-hidden="true"></i> link</a>
-    </p>
+<section id="data" style="margin-top:16px;">
+  <div class="row search-result">
+    <div class="col-xs-1">
+      <img src="/static/images/parties/{{ result.parties.0 |lower }}.png">
+    </div>
+    <div class="col-xs-10">
+      {% if result.title %}
+      <h2>{{ result.title }}</h2>
+      {% endif %}
+      <p class="entities">
+        {% for party in result.parties %}
+          <a href="{{ url_for('search', parties=party) }}">{{ party }}</a>
+        {% endfor %}
+        <a href="{{ url_for('search', location=result.location) }}">{{ result.location }}</a>
+        {% if result.date %}
+        {{ result.date|iso8601_to_str("%d-%m-%Y %H:%M:%S") }}
+        {% endif %}
+      </p>
+  <div>
+      <p>{{ result.description |html_cleanup(result) |safe }}</p>
   </div>
-</div>
+      <p class="pull-right links">
+        <a href="{{ result.meta.original_object_urls.html }}" target="_blank" class="">{{ result.source }} <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+      </p>
+    </div>
+    <div class="col-xs-1">
+    </div>
+  </div>
 </section>
 {% endblock %}

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from ocd_backend import celery_app
 from ocd_backend import settings
 from ocd_backend.exceptions import SkipEnrichment
@@ -85,6 +87,16 @@ class BaseEnricher(celery_app.Task):
 
 class NEREnricher(BaseEnricher, HttpRequestMixin):
     def _perform_ner(self, doc_id, doc):
+        # FIXME: sometimes we use short names for parties and sometimes not
+        parties2names = {
+            u'Christen-Democratisch Appèl': u'CDA',
+            u'Democraten 66': u'D66',
+            u'Partij van de Arbeid': u'PvdA',
+            u'Staatkundig Gereformeerde Partij': u'SGP',
+            u'Socialistische Partij': u'SP',
+            u'Volkspartij voor Vrijheid en Democratie': u'VVD'
+        }
+
         url = 'http://politags_web_1:5000/api/articles/entities'
         # TODO: catch errors
         r = self.http_session.post(
@@ -94,7 +106,7 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
         politicians = doc.get('politicians', [])
         parties = doc.get('parties', [])
         return {
-            'parties': parties + [p['name'] for p in r['parties'] if p['name'] not in parties],
+            'parties': parties + [parties2names.get(p['name'], p['name']) for p in r['parties'] if p['name'] not in parties],
             'politicians': politicians + [
                 u'%s %s' % (p['first_name'], p['last_name'],) for p in r['politicians'] if u'%s %s' % (p['first_name'], p['last_name'],) not in politicians]
         }

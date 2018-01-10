@@ -98,13 +98,18 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
         }
 
         url = 'http://politags_web_1:5000/api/articles/entities'
-        # TODO: catch errors
-        r = self.http_session.post(
-            url, data=json.dumps(doc),
-            headers={'Content-type': 'application/json'}).json()
-        log.info('NER Results : %s' % (json.dumps(r)))
         politicians = doc.get('politicians', [])
         parties = doc.get('parties', [])
+        try:
+            r = self.http_session.post(
+                url, data=json.dumps(doc),
+                headers={'Content-type': 'application/json'}).json()
+        except Exception as e:
+            log.exception('Unexpected NER enrichment error: %s'
+                          % (e.message,))
+
+            r = {'parties': [], 'politicians': []}
+
         return {
             'parties': parties + [parties2names.get(p['name'], p['name']) for p in r['parties'] if p['name'] not in parties],
             'politicians': politicians + [

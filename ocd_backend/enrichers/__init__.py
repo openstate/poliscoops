@@ -4,7 +4,7 @@ from ocd_backend.exceptions import SkipEnrichment
 from ocd_backend.log import get_source_logger
 from ocd_backend.extractors import HttpRequestMixin
 
-from pprint import pprint
+import json
 
 log = get_source_logger('enricher')
 
@@ -51,8 +51,9 @@ class BaseEnricher(celery_app.Task):
             return (combined_object_id, object_id, combined_index_doc, doc)
 
         # Add the modified 'enrichments' dict to the item documents
-        combined_index_doc['enrichments'] = enrichments
-        doc['enrichments'] = enrichments
+        # note updates the entire document for Poliflw
+        combined_index_doc.update(enrichments)
+        doc.update(enrichments)
 
         return (combined_object_id, object_id, combined_index_doc, doc)
 
@@ -85,16 +86,19 @@ class BaseEnricher(celery_app.Task):
 class NEREnricher(BaseEnricher, HttpRequestMixin):
     def _perform_ner(self, doc_id, doc):
         url = 'http://politags_web_1:5000/api/articles/entities'
-        print url
-        r = self.http_session.post(url, data=doc).json()
-        print 'here'
-        print r
+        # TODO: catch errors
+        r = self.http_session.post(
+            url, data=json.dumps(doc),
+            headers={'Content-type': 'application/json'}).json()
+        log.info('NER Results : %s' % (json.dumps(r)))
+        politicians = doc.get('politicians', [])
+        parties = doc.get('parties', [])
         return {
-            'parties': doc.get('parties', []) + [],
-            'politicians': doc.get('politicians', []) + r['politicians'],
+            'parties': parties + [p['name'] for p in r['parties'] if p['name'] not in parties],
+            'politicians': politicians + [
+                u'%s %s' % (p['first_name'], p['last_name'],) for p in r['politicians'] if u'%s %s' % (p['first_name'], p['last_name'],) not in politicians]
         }
 
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
-        print 123123213
         enrichments.update(self._perform_ner(object_id, combined_index_doc))
         return enrichments

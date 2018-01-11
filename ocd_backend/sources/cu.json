@@ -2,7 +2,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://www.christenunie.nl/l/rss/collect/weblog/1043996", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -17,7 +17,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://www.christenunie.nl/l/rss/collect/news/636254.30984", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -32,7 +32,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://aalburg.christenunie.nl/l/rss/collect/news/331797.5987", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -47,7 +47,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://aalten.christenunie.nl/l/rss/collect/news/623552.37000", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -62,7 +62,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://aalten.christenunie.nl/l/rss/collect/news/618863.37000", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -77,7 +77,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://aalten.christenunie.nl/l/rss/collect/news/909661.37000", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -92,7 +92,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://aalten.christenunie.nl/l/rss/collect/news/655241.37000", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -107,7 +107,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://achtkarspelen.christenunie.nl/l/rss/collect/news/420972.5989", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -122,7 +122,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://achtkarspelen.christenunie.nl/l/rss/collect/news/866695.5989", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -137,7 +137,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://alblasserdam.christenunie.nl/l/rss/collect/news/598619.6779", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -152,7 +152,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://alblasserdam.christenunie.nl/l/rss/collect/news/572145.6779", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -167,7 +167,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://albrandswaard.christenunie.nl/l/rss/collect/news/314663.5991", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -182,7 +182,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://alkmaar.christenunie.nl/l/rss/collect/weblog/1129707", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -197,7 +197,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://almelo.christenunie.nl/l/rss/collect/news/173756.5993", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -212,7 +212,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://almelo.christenunie.nl/l/rss/collect/news/583053.5993", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -227,7 +227,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://almere.christenunie.nl/l/rss/collect/news/165846.5994", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -242,7 +242,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://alphenaandenrijn.christenunie.nl/l/rss/collect/news/44443.6234", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -257,7 +257,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://utrechtseheuvelrug.christenunie.nl/l/rss/collect/news/507362.7372", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -272,7 +272,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://amersfoort.christenunie.nl/l/rss/collect/news/69931.5996", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -287,7 +287,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://amstelveen.christenunie.nl/l/rss/collect/news/300566.5997", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -302,7 +302,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://amsterdam.christenunie.nl/l/rss/collect/news/65347.5998", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -317,7 +317,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://amsterdam.christenunie.nl/l/rss/collect/news/645733.5998", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -332,7 +332,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://apeldoorn.christenunie.nl/l/rss/collect/weblog/1129516", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -347,7 +347,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://appingedam.christenunie.nl/l/rss/collect/news/49809.6002", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -362,7 +362,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://appingedam.christenunie.nl/l/rss/collect/news/626315.6002", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -377,7 +377,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://arnhem.christenunie.nl/l/rss/collect/news/43630.6004", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -392,7 +392,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://assen.christenunie.nl/l/rss/collect/news/43631.6005", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -407,7 +407,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://assen.christenunie.nl/l/rss/collect/news/450828.6005", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -422,7 +422,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://assen.christenunie.nl/l/rss/collect/news/873012.6005", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -437,7 +437,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://baarn.christenunie.nl/l/rss/collect/news/43632.6006", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -452,7 +452,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://barendrecht.sgp-christenunie.nl/l/rss/collect/news/355363.23412", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -467,7 +467,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://barneveld.christenunie.nl/l/rss/collect/news/589376.7440", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -482,7 +482,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://barneveld.christenunie.nl/l/rss/collect/weblog/1135068", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -497,7 +497,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://barneveld.christenunie.nl/l/rss/collect/news/50582.7440", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -512,7 +512,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bedum.christenunie.nl/l/rss/collect/news/45364.29443", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -527,7 +527,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://westerwolde.christenunie.nl/l/rss/collect/news/627850.6174", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -542,7 +542,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://haarlem.christenunie.nl/l/rss/collect/news/48317.2342", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -557,7 +557,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://haarlem.christenunie.nl/l/rss/collect/news/391628.6067", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -572,7 +572,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://binnenmaas.christenunie.nl/l/rss/collect/news/398200.11046", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -587,7 +587,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zaltbommel.christenunie.nl/l/rss/collect/weblog/1128375", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -602,7 +602,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zaltbommel.christenunie.nl/l/rss/collect/news/1046610.6189", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -617,7 +617,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bodegraven.christenunie.nl/l/rss/collect/news/1110247.6012", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -632,7 +632,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bodegraven.christenunie.nl/l/rss/collect/news/590761.6012", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -647,7 +647,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bodegraven.christenunie.nl/l/rss/collect/news/1115565.6012", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -662,7 +662,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "http://sgp-christenunie-borsele.nl/feed/", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -677,7 +677,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "http://sgp-christenunie-borsele.nl/comments/feed/", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -692,7 +692,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "http://sgp-christenunie-borsele.nl/home/feed/", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -707,7 +707,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://breda.christenunie.nl/l/rss/collect/news/385388.6015", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -722,7 +722,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bronckhorst.christenunie.nl/l/rss/collect/news/630763.6017", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -737,7 +737,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bunschoten.christenunie.nl/l/rss/collect/news/50529.6018", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -752,7 +752,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bunschoten.christenunie.nl/l/rss/collect/news/577589.6018", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -767,7 +767,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://capelleaandenijssel.christenunie.nl/l/rss/collect/news/43646.22956", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -782,7 +782,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://culemborg.christenunie.nl/l/rss/collect/weblog/1129188", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -797,7 +797,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://culemborg.christenunie.nl/l/rss/collect/news/392758.6021", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -812,7 +812,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://dalfsen.christenunie.nl/l/rss/collect/news/430241.6022", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -827,7 +827,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://dantumadiel.christenunie.nl/l/rss/collect/news/588720.35013", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -842,7 +842,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://debilt.christenunie.nl/l/rss/collect/news/69105.6024", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -857,7 +857,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://debilt.christenunie.nl/l/rss/collect/news/407277.6024", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -872,7 +872,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://defryskemarren.christenunie.nl/l/rss/collect/news/552224.6147", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -887,7 +887,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://defryskemarren.christenunie.nl/l/rss/collect/news/899897.6147", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -902,7 +902,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://delangstraat.christenunie.nl/l/rss/collect/news/66294.5312", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -917,7 +917,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://delfzijl.christenunie.nl/l/rss/collect/news/43652.1235", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -932,7 +932,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://delft.christenunie.nl/l/rss/collect/news/131785.6025", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -947,7 +947,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://delft.christenunie.nl/l/rss/collect/news/905889.6025", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -962,7 +962,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://denhaag.christenunie.nl/l/rss/collect/news/487158.11246", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -977,7 +977,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://denhelder.christenunie.nl/l/rss/collect/news/43656.6030", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -992,7 +992,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://derondevenen.christenunie.nl/l/rss/collect/news/70173.6031", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1007,7 +1007,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://deventer.christenunie.nl/l/rss/collect/news/388025.1397", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1022,7 +1022,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://deventer.christenunie.nl/l/rss/collect/weblog/1135083", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1037,7 +1037,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://deventer.christenunie.nl/l/rss/collect/news/393765.25464", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1052,7 +1052,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://dongeradeel.christenunie.nl/l/rss/collect/news/387982.6037", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1067,7 +1067,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://utrechtseheuvelrug.christenunie.nl/l/rss/collect/news/507362.7372", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1082,7 +1082,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://utrechtseheuvelrug.christenunie.nl/l/rss/collect/news/507362.7372", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1097,7 +1097,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://dronten.christenunie.nl/l/rss/collect/news/380422.6040", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1112,7 +1112,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ede.christenunie.nl/l/rss/collect/weblog/1135251", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1127,7 +1127,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ede.christenunie.nl/l/rss/collect/news/43667.1640", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1142,7 +1142,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ede.christenunie.nl/l/rss/collect/news/420890.1640", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1157,7 +1157,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://eindhoven.christenunie.nl/l/rss/collect/news/1122097.43282", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1172,7 +1172,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://eindhoven.christenunie.nl/l/rss/collect/news/1122624", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1187,7 +1187,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://elburg.christenunie.nl/l/rss/collect/news/67149.1802", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1202,7 +1202,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://eemsmond.christenunie.nl/l/rss/collect/news/69194.6042", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1217,7 +1217,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://noordoostpolder.christenunie-sgp.nl/l/rss/collect/news/448731.12504", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1232,7 +1232,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://emmen.christenunie.nl/l/rss/collect/news/45896.6048", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1247,7 +1247,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://emmen.christenunie.nl/l/rss/collect/news/380482.6048", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1262,7 +1262,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://enkhuizen.christenunie.nl/l/rss/collect/news/63543.6049", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1277,7 +1277,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://enschede.christenunie.nl/l/rss/collect/news/43676.10023", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1292,7 +1292,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ermelo.christenunie.nl/l/rss/collect/news/410433.6052", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1307,7 +1307,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://westbetuwe.christenunie.nl/l/rss/collect/news/1084246.6097", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1322,7 +1322,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://giessenlanden.christenunie.nl/l/rss/collect/news/48909.6059", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1337,7 +1337,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://goereeoverflakkee.christenunie.nl/l/rss/collect/news/519323.29839", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1352,7 +1352,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://goereeoverflakkee.christenunie.nl/l/rss/collect/news/548990.29839", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1367,7 +1367,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://goereeoverflakkee.christenunie.nl/l/rss/collect/news/570702.29839", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1382,7 +1382,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://goes.christenunie.nl/l/rss/collect/news/43687.2180", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1397,7 +1397,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://gooi-noord.christenunie.nl/l/rss/collect/news/660746.38730", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1412,7 +1412,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://gooisemeren.christenunie.nl/l/rss/collect/news/928839.35766", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1427,7 +1427,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://gooisemeren.christenunie.nl/l/rss/collect/news/600238.35766", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1442,7 +1442,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://gouda.christenunie.nl/l/rss/collect/news/64628.6063", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1457,7 +1457,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://gorinchem.christenunie.nl/l/rss/collect/news/43688.42426", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1472,7 +1472,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://grootegast.christenunie.nl/l/rss/collect/news/68793.6066", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1487,7 +1487,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://groningen.christenunie.nl/l/rss/collect/news/130900.7260", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1502,7 +1502,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://haarlem.christenunie.nl/l/rss/collect/news/48317.2342", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1517,7 +1517,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://haarlem.christenunie.nl/l/rss/collect/news/391628.6067", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1532,7 +1532,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://haarlemmermeer.christenunie.nl/l/rss/collect/news/43694.6068", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1547,7 +1547,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://haarlemmermeer.christenunie.nl/l/rss/collect/news/609255.6068", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1562,7 +1562,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hardenberg.christenunie.nl/l/rss/collect/weblog/1128362", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1577,7 +1577,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hardenberg.christenunie.nl/l/rss/collect/news/354349.6069", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1592,7 +1592,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hardenberg.christenunie.nl/l/rss/collect/news/375432.6069", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1607,7 +1607,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://harderwijk.christenunie.nl/l/rss/collect/weblog/1127591", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1622,7 +1622,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://harderwijk.christenunie.nl/l/rss/collect/news/43696.6070", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1637,7 +1637,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://harderwijk.christenunie.nl/l/rss/collect/news/1125842.6070", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1652,7 +1652,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://harderwijk.christenunie.nl/l/rss/collect/news/555150.6070", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1667,7 +1667,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hardinxveld-giessendam.christenunie.nl/l/rss/collect/news/1055390.6071", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1682,7 +1682,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://haren.christenunie.nl/l/rss/collect/news/46935.6072", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1697,7 +1697,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://harlingen.christenunie.nl/l/rss/collect/news/492340.37590", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1712,7 +1712,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hattem.christenunie.nl/l/rss/collect/news/940224.6073", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1727,7 +1727,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://haarlem.christenunie.nl/l/rss/collect/news/48317.2342", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1742,7 +1742,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://haarlem.christenunie.nl/l/rss/collect/news/391628.6067", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1757,7 +1757,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://heerde.christenunie.nl/l/rss/collect/news/595646.19612", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1772,7 +1772,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://heerenveen.christenunie.nl/l/rss/collect/news/184837.2531", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1787,7 +1787,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://heerhugowaard.christenunie.nl/l/rss/collect/news/66848.6075", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1802,7 +1802,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://h-i-ambacht.christenunie.nl/l/rss/collect/news/44957.6414", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1817,7 +1817,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hellendoorn.christenunie.nl/l/rss/collect/news/1117792.6076", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1832,7 +1832,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://s-hertogenbosch.christenunie.nl/l/rss/collect/news/144001.6046", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1847,7 +1847,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hilversum.christenunie.nl/l/rss/collect/news/65655.6080", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1862,7 +1862,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hoogeveen.christenunie.nl/l/rss/collect/news/177769.6081", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1877,7 +1877,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hoogeveen.christenunie.nl/l/rss/collect/news/588028.6081", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1892,7 +1892,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hoogezand-sappemeer.christenunie.nl/l/rss/collect/news/170614.15492", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1907,7 +1907,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hoogezand-sappemeer.christenunie.nl/l/rss/collect/news/170939.15492", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1922,7 +1922,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hoogezand-sappemeer.christenunie.nl/l/rss/collect/news/180233.15492", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1937,7 +1937,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://hoogezand-sappemeer.christenunie.nl/l/rss/collect/news/170680.15492", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1952,7 +1952,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://houten.christenunie.nl/l/rss/collect/news/53259.6083", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1967,7 +1967,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://houten.christenunie.nl/l/rss/collect/news/61245.6083", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1982,7 +1982,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://huizen.christenunie.nl/l/rss/collect/news/43710.6084", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -1997,7 +1997,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ijmond.christenunie.nl/l/rss/collect/news/43799.6173", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2012,7 +2012,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ijsselstein.christenunie.nl/l/rss/collect/news/50706.6085", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2027,7 +2027,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ijsselstein.christenunie.nl/l/rss/collect/news/302321.6085", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2042,7 +2042,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://kampen.christenunie.nl/l/rss/collect/news/631962.37467", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2057,7 +2057,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://katwijk.christenunie.nl/l/rss/collect/news/129959.10755", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2072,7 +2072,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://kollumerland.christenunie.nl/l/rss/collect/news/608818.7668", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2087,7 +2087,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://krimpenaandenijssel.christenunie.nl/l/rss/collect/news/390292.2909", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2102,7 +2102,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://krimpenerwaard.christenunie.nl/l/rss/collect/news/603672.36046", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2117,7 +2117,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://krimpenerwaard.christenunie.nl/l/rss/collect/weblog/1130145", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2132,7 +2132,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://langedijk.christenunie.nl/l/rss/collect/news/162271.13073", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2147,7 +2147,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://lansingerland.christenunie.nl/l/rss/collect/news/113707.10584", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2162,7 +2162,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://leek.christenunie.nl/l/rss/collect/news/43715.6089", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2177,7 +2177,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://leerdam.christenunie.nl/l/rss/collect/news/658871.34903", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2192,7 +2192,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://utrechtseheuvelrug.christenunie.nl/l/rss/collect/news/507362.7372", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2207,7 +2207,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://leeuwarden.christenunie.nl/l/rss/collect/weblog/1132068", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2222,7 +2222,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://leiden.christenunie.nl/l/rss/collect/news/52687.6092", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2237,7 +2237,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://leiderdorp.christenunie.nl/l/rss/collect/news/1122616.43028", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2252,7 +2252,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://leidschendam-voorburg.christenunie.nl/l/rss/collect/news/610090.17888", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2267,7 +2267,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://leidschendam-voorburg.christenunie.nl/l/rss/collect/weblog/1130088", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2282,7 +2282,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://lelystad.christenunie.nl/l/rss/collect/news/179916.16301", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2297,7 +2297,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://molenwaard.christenunie.nl/l/rss/collect/news/1132123.30504", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2312,7 +2312,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://westbetuwe.christenunie.nl/l/rss/collect/news/1084246.6097", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2327,7 +2327,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://lisse.christenunie.nl/l/rss/collect/news/611866.6098", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2342,7 +2342,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://lopik.christenunie.nl/l/rss/collect/news/581065.27527", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2357,7 +2357,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://loppersum.christenunie.nl/l/rss/collect/news/187657.17824", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2372,7 +2372,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://loppersum.christenunie.nl/l/rss/collect/news/349520", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2387,7 +2387,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://utrechtseheuvelrug.christenunie.nl/l/rss/collect/news/507362.7372", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2402,7 +2402,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://maassluis.christenunie.nl/l/rss/collect/news/116160.6102", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2417,7 +2417,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://marum.christenunie.nl/l/rss/collect/news/43729.3314", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2432,7 +2432,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://medemblik.christenunie.nl/l/rss/collect/news/587581.506", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2447,7 +2447,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://menterwolde.christenunie.nl/l/rss/collect/news/502762.6104", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2462,7 +2462,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://meppel.christenunie.nl/l/rss/collect/news/53439.6105", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2477,7 +2477,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://middelburg.christenunie.nl/l/rss/collect/news/567139.6106", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2492,7 +2492,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://midden-groningen.christenunie.nl/l/rss/collect/weblog/1128388", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2507,7 +2507,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://midden-groningen.christenunie.nl/l/rss/collect/news/1124593.43420", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2522,7 +2522,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://derondevenen.christenunie.nl/l/rss/collect/news/70173.6031", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2537,7 +2537,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://westbrabant.christenunie.nl/l/rss/collect/news/1050969.41620", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2552,7 +2552,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://molenwaard.christenunie.nl/l/rss/collect/news/1132123.30504", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2567,7 +2567,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://montfoort.christenunie.nl/l/rss/collect/news/43736.6110", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2582,7 +2582,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://neder-betuwe.christenunie.nl/l/rss/collect/news/303310.3525", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2597,7 +2597,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nieuwegein.christenunie.nl/l/rss/collect/news/65862.6113", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2612,7 +2612,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nieuwegein.christenunie.nl/l/rss/collect/news/471019.6113", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2627,7 +2627,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nieuwkoop.christenunie.nl/l/rss/collect/news/379288.12888", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2642,7 +2642,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nijkerk.christenunie.nl/l/rss/collect/news/899884.37977", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2657,7 +2657,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nijmegen.christenunie.nl/l/rss/collect/news/43741.6115", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2672,7 +2672,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nijmegen.christenunie.nl/l/rss/collect/news/624393.6115", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2687,7 +2687,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nijmegen.christenunie.nl/l/rss/collect/news/43947.6115", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2702,7 +2702,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nissewaard.christenunie.nl/l/rss/collect/news/668317.6152", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2717,7 +2717,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://noordenveld.christenunie.nl/l/rss/collect/news/978073.6117", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2732,7 +2732,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://noordoostpolder.christenunie-sgp.nl/l/rss/collect/news/448731.12504", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2747,7 +2747,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://noordwijk.christenunie.nl/l/rss/collect/news/43786.6160", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2762,7 +2762,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nunspeet.christenunie.nl/l/rss/collect/news/67680.6120", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2777,7 +2777,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://nunspeet.christenunie.nl/l/rss/collect/news/157506.6120", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2792,7 +2792,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://oldambt.christenunie.nl/l/rss/collect/news/339533.22987", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2807,7 +2807,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://oldebroek.christenunie.nl/l/rss/collect/weblog/1130161", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2822,7 +2822,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://oldebroek.christenunie.nl/l/rss/collect/news/58129.6121", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2837,7 +2837,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://oldebroek.christenunie.nl/l/rss/collect/news/62503.6121", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2852,7 +2852,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ommen.christenunie.nl/l/rss/collect/news/375439.23965", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2867,7 +2867,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://opsterland.christenunie.nl/l/rss/collect/news/43751.6125", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2882,7 +2882,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://overbetuwe.christenunie.nl/l/rss/collect/news/43754.6128", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2897,7 +2897,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://papendrecht.christenunie.nl/l/rss/collect/news/43756.12412", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2912,7 +2912,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://putten.christenunie.nl/l/rss/collect/news/867815.39379", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2927,7 +2927,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://pijnacker-nootdorp.christenunie.nl/l/rss/collect/news/43758.6132", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2942,7 +2942,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bodegraven.christenunie.nl/l/rss/collect/news/1110247.6012", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2957,7 +2957,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bodegraven.christenunie.nl/l/rss/collect/news/590761.6012", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2972,7 +2972,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://bodegraven.christenunie.nl/l/rss/collect/news/1115565.6012", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -2987,7 +2987,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://reimerswaal.christenunie.nl/l/rss/collect/news/373217.22748", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3002,7 +3002,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://reimerswaal.christenunie.nl/l/rss/collect/news/363137.22748", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3017,7 +3017,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://reimerswaal.christenunie.nl/l/rss/collect/news/363138.22748", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3032,7 +3032,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://renswoude.christenunie.nl/l/rss/collect/news/1044891.42345", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3047,7 +3047,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://rheden.christenunie.nl/l/rss/collect/news/413248.26891", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3062,7 +3062,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://rheden.christenunie.nl/l/rss/collect/news/442566", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3077,7 +3077,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://rheden.christenunie.nl/l/rss/collect/news/608386.26891", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3092,7 +3092,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://rheden.christenunie.nl/l/rss/collect/news/611583.26891", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3107,7 +3107,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://rheden.christenunie.nl/l/rss/collect/news/611614", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3122,7 +3122,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://rhenen.christenunie.nl/l/rss/collect/news/375272.18099", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3137,7 +3137,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ridderkerk.christenunie.nl/l/rss/collect/news/46020.6138", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3152,7 +3152,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ridderkerk.christenunie.nl/l/rss/collect/news/539524.6138", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3167,7 +3167,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://rijssen-holten.christenunie.nl/l/rss/collect/news/43765.4286", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3182,7 +3182,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://rijssen-holten.christenunie.nl/l/rss/collect/news/66553.4286", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3197,7 +3197,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://schagen.christenunie.nl/l/rss/collect/news/539206.31998", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3212,7 +3212,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://scherpenzeel.christenunie.nl/l/rss/collect/news/588314.11392", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3227,7 +3227,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://schiedam.christenunie-sgp.nl/l/rss/collect/news/636408.6144", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3242,7 +3242,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://schiedam.christenunie-sgp.nl/l/rss/collect/news/637249.6144", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3257,7 +3257,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://schouwen-duiveland.christenunie.nl/l/rss/collect/news/475719.6146", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3272,7 +3272,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://sliedrecht.sgp-christenunie.nl/l/rss/collect/news/639816.37731", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3287,7 +3287,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://sliedrecht.sgp-christenunie.nl/l/rss/collect/news/644080", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3302,7 +3302,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://slochteren.christenunie.nl/l/rss/collect/news/300896.7334", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3317,7 +3317,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://slochteren.christenunie.nl/l/rss/collect/news/128757.7334", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3332,7 +3332,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://smallingerland.christenunie.nl/l/rss/collect/news/520573.6149", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3347,7 +3347,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://soest.christenunie.nl/l/rss/collect/news/43777.6151", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3362,7 +3362,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://stadskanaal.christenunie.nl/l/rss/collect/news/65056.8632", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3377,7 +3377,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://staphorst.christenunie.nl/l/rss/collect/news/448479.6154", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3392,7 +3392,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://staphorst.christenunie.nl/l/rss/collect/weblog/1129465", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3407,7 +3407,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://westbrabant.christenunie.nl/l/rss/collect/news/1050969.41620", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3422,7 +3422,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://steenwijkerland.christenunie.nl/l/rss/collect/news/155984.6156", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3437,7 +3437,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://stichtsevecht.christenunie-sgp.nl/l/rss/collect/news/450154.28038", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3452,7 +3452,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://stichtsevecht.christenunie-sgp.nl/l/rss/collect/news/552841.28038", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3467,7 +3467,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://strijen.christenunie.nl/l/rss/collect/news/571576.26964", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3482,7 +3482,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://sudwestfryslan.christenunie.nl/l/rss/collect/news/450274.23727", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3497,7 +3497,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://tenboer.christenunie.nl/l/rss/collect/news/49581.6158", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3512,7 +3512,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://tenboer.christenunie.nl/l/rss/collect/news/434431.6158", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3527,7 +3527,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://terneuzen.christenunie.nl/l/rss/collect/weblog/1128029", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3542,7 +3542,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://terneuzen.christenunie.nl/l/rss/collect/news/422431.6159", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3557,7 +3557,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://teylingen.christenunie.nl/l/rss/collect/news/43786.6160", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3572,7 +3572,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://tholen.christenunie.nl/l/rss/collect/news/552225.25492", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3587,7 +3587,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://tholen.christenunie.nl/l/rss/collect/news/587678", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3602,7 +3602,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://tholen.christenunie.nl/l/rss/collect/news/588929.25492", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3617,7 +3617,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://tiel.christenunie.nl/l/rss/collect/weblog/1129174", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3632,7 +3632,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://tiel.christenunie.nl/l/rss/collect/news/608106.36396", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3647,7 +3647,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://waalwijk.christenunie.nl/l/rss/collect/news/66294.5312", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3662,7 +3662,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://twenterand.christenunie.nl/l/rss/collect/news/43792.6166", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3677,7 +3677,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://tynaarlo.christenunie.nl/l/rss/collect/news/487507.6168", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3692,7 +3692,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://tytsjerksteradiel.christenunie.nl/l/rss/collect/news/551271.29326", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3707,7 +3707,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://urk.christenunie.nl/l/rss/collect/news/527258.30534", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3722,7 +3722,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://utrecht.christenunie.nl/l/rss/collect/news/43795.6169", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3737,7 +3737,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://utrecht.christenunie.nl/l/rss/collect/news/923395.6169", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3752,7 +3752,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://utrechtseheuvelrug.christenunie.nl/l/rss/collect/news/507362.7372", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3767,7 +3767,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://veendam.christenunie.nl/l/rss/collect/news/71124.6170", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3782,7 +3782,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://veendam.christenunie.nl/l/rss/collect/news/134962.6170", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3797,7 +3797,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://veenendaal.christenunie.nl/l/rss/collect/news/63167.6171", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3812,7 +3812,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://veenendaal.christenunie.nl/l/rss/collect/news/554113", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3827,7 +3827,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://veenendaal.christenunie.nl/l/rss/collect/news/604766.6171", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3842,7 +3842,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://veere.sgp-christenunie.nl/l/rss/collect/news/970120.38638", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3857,7 +3857,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://veere.sgp-christenunie.nl/l/rss/collect/news/973102.38638", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3872,7 +3872,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://eindhoven.christenunie.nl/l/rss/collect/news/1122097.43282", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3887,7 +3887,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://eindhoven.christenunie.nl/l/rss/collect/news/1122624", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3902,7 +3902,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://ijmond.christenunie.nl/l/rss/collect/news/43799.6173", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3917,7 +3917,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://vianen.christenunie.nl/l/rss/collect/news/603922.6818", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3932,7 +3932,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "http://www.christenunie-sgpvlaardingen.nl/rss.xml", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3947,7 +3947,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://westerwolde.christenunie.nl/l/rss/collect/news/627850.6174", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3962,7 +3962,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://vlissingen.christenunie.nl/l/rss/collect/news/590069.6175", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3977,7 +3977,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://www.christenunie.nl/l/rss/collect/weblog/1043996", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -3992,7 +3992,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://www.christenunie.nl/l/rss/collect/news/636254.30984", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4007,7 +4007,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://waalwijk.christenunie.nl/l/rss/collect/news/66294.5312", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4022,7 +4022,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://waddinxveen.christenunie.nl/l/rss/collect/news/51527.6847", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4037,7 +4037,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://waddinxveen.christenunie.nl/l/rss/collect/news/156132.6847", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4052,7 +4052,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://wageningen.christenunie.nl/l/rss/collect/news/49404.5339", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4067,7 +4067,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://wageningen.christenunie.nl/l/rss/collect/news/112357.6177", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4082,7 +4082,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://werkendam.christenunie.nl/l/rss/collect/news/67370.6178", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4097,7 +4097,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://westbetuwe.christenunie.nl/l/rss/collect/news/1084246.6097", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4112,7 +4112,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://westbrabant.christenunie.nl/l/rss/collect/news/1050969.41620", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4127,7 +4127,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://westerwolde.christenunie.nl/l/rss/collect/news/627850.6174", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4142,7 +4142,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "http://www.cusgpwestland.nl/feed/", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4157,7 +4157,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "http://www.cusgpwestland.nl/comments/feed/", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4172,7 +4172,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://wierden.christenunie.nl/l/rss/collect/news/569946.6181", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4187,7 +4187,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://wierden.christenunie.nl/l/rss/collect/news/43838.6181", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4202,7 +4202,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://winsum.christenunie.nl/l/rss/collect/news/44976.6182", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4217,7 +4217,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://woerden.christenunie.nl/l/rss/collect/weblog/1129599", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4232,7 +4232,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://dewolden.christenunie.nl/l/rss/collect/news/590671.6033", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4247,7 +4247,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://dewolden.christenunie.nl/l/rss/collect/news/622494.6033", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4262,7 +4262,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://woudenberg.christenunie.nl/l/rss/collect/weblog/1127973", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4277,7 +4277,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://woudenberg.christenunie.nl/l/rss/collect/news/57909.6185", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4292,7 +4292,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://woudenberg.christenunie.nl/l/rss/collect/news/349143.6185", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4307,7 +4307,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://woudrichem.christenunie.nl/l/rss/collect/news/56167.6186", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4322,7 +4322,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "http://www.christenuniezaanstad.nl/feed/", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4337,7 +4337,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "http://www.christenuniezaanstad.nl/comments/feed/", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4352,7 +4352,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zaltbommel.christenunie.nl/l/rss/collect/weblog/1128375", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4367,7 +4367,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zaltbommel.christenunie.nl/l/rss/collect/news/1046610.6189", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4382,7 +4382,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zederik.christenunie.nl/l/rss/collect/weblog/1129090", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4397,7 +4397,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zederik.christenunie.nl/l/rss/collect/news/43816.5690", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4412,7 +4412,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zeewolde.christenunie.nl/l/rss/collect/news/43818.6192", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4427,7 +4427,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zeist.christenunie.nl/l/rss/collect/news/454523.6193", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4442,7 +4442,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zoetermeer.christenunie.nl/l/rss/collect/news/591308.6776", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4457,7 +4457,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zoetermeer.christenunie.nl/l/rss/collect/news/517797.6776", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4472,7 +4472,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zuid-beveland.christenunie.nl/l/rss/collect/news/513980.30384", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4487,7 +4487,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zuid-beveland.christenunie.nl/l/rss/collect/news/513167.30384", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4502,7 +4502,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zuidhorn.christenunie.nl/l/rss/collect/news/68212.6196", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4517,7 +4517,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zuidhorn.christenunie.nl/l/rss/collect/news/615593", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4532,7 +4532,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zuidplas.christenunie.nl/l/rss/collect/weblog/1131810", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4547,7 +4547,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zwartewaterland.christenunie.nl/l/rss/collect/news/64611.6198", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4562,7 +4562,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zwijndrecht.christenunie.nl/l/rss/collect/news/62926.6199", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4577,7 +4577,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zwijndrecht.christenunie.nl/l/rss/collect/news/66572.6199", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 
@@ -4592,7 +4592,7 @@
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
     "keep_index_on_update": true, 
-    "enrichers": [], 
+    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]], 
     "file_url": "https://zwolle.christenunie.nl/l/rss/collect/news/597681.38119", 
     "index_name": "christenunie", 
     "transformer": "ocd_backend.transformers.BaseTransformer", 

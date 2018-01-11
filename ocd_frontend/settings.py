@@ -130,9 +130,9 @@ COMMON_FACETS = {
             'size': 10
         }
     },
-    'persons': {
+    'politicians': {
         'terms': {
-            'field': 'persons',
+            'field': 'politicians',
             'size': 10
         }
     },

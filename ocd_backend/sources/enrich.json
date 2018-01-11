@@ -10,7 +10,7 @@
     ],
     "index_name": "groenlinks",
     "transformer": "ocd_backend.transformers.NoneTransformer",
-    "loader": "ocd_backend.loaders.DummyLoader",
+    "loader": "ocd_backend.loaders.ElasticsearchUpsertLoader",
     "item": "ocd_backend.items.BaseItem",
     "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
     "id": "enrich_groenlinks",

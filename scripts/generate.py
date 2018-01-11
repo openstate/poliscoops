@@ -95,6 +95,15 @@ def _normalize_location(location):
     return unicode(location)
 
 
+def _enrichments_config():
+    return [
+        [
+            "ocd_backend.enrichers.NEREnricher",
+            {}
+        ]
+    ]
+
+
 def _generate_for_pvdd(name):
     def _generate_for_pvdd_subsite(name, link):
         m = re.match(r'^https?\:\/\/w?w?w?\.?([^\.]+)', link)
@@ -109,8 +118,7 @@ def _generate_for_pvdd(name):
             "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
             "transformer": "ocd_backend.transformers.BaseTransformer",
             "item": "ocd_backend.items.pvdd.PVDDItem",
-            "enrichers": [
-            ],
+            "enrichers": _enrichments_config(),
             "loader": "ocd_backend.loaders.ElasticsearchLoader",
             "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
             "hidden": False,
@@ -157,8 +165,7 @@ def _generate_for_groenlinks(name):
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedFullTextItem",
-                "enrichers": [
-                ],
+                "enrichers": _enrichments_config(),
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
                 "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
                 "hidden": False,
@@ -171,7 +178,7 @@ def _generate_for_groenlinks(name):
             {
                 "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
                 "keep_index_on_update": True,
-                "enrichers": [],
+                "enrichers": _enrichments_config(),
                 "index_name": "groenlinks",
                 "collection": "GroenLinks",
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -223,8 +230,7 @@ def _generate_for_cda(name):
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedItem",
-                "enrichers": [
-                ],
+                "enrichers": _enrichments_config(),
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
                 "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
                 "hidden": False,
@@ -236,7 +242,7 @@ def _generate_for_cda(name):
             {
                 "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
                 "keep_index_on_update": True,
-                "enrichers": [],
+                "enrichers": _enrichments_config(),
                 "index_name": "cda",
                 "collection": "CDA",
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -296,8 +302,7 @@ def _generate_for_cu(name):
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedItem",
-                "enrichers": [
-                ],
+                "enrichers": _enrichments_config(),
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
                 "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
                 "hidden": False,
@@ -339,8 +344,7 @@ def _generate_for_vvd(name):
             "extractor": "ocd_backend.extractors.feed.FeedExtractor",
             "transformer": "ocd_backend.transformers.BaseTransformer",
             "item": "ocd_backend.items.feed.FeedFullTextItem",
-            "enrichers": [
-            ],
+            "enrichers": _enrichments_config(),
             "loader": "ocd_backend.loaders.ElasticsearchLoader",
             "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
             "hidden": False,
@@ -353,7 +357,7 @@ def _generate_for_vvd(name):
         result.append({
             "extractor": "ocd_backend.extractors.vvd.VVDHtmlExtractor",
             "keep_index_on_update": True,
-            "enrichers": [],
+            "enrichers": _enrichments_config(),
             "index_name": "vvd",
             "collection": "VVD",
             "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -423,8 +427,7 @@ def _generate_for_d66(name):
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedItem",
-                "enrichers": [
-                ],
+                "enrichers": _enrichments_config(),
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
                 "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
                 "hidden": False,
@@ -436,7 +439,7 @@ def _generate_for_d66(name):
             {
                 "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
                 "keep_index_on_update": True,
-                "enrichers": [],
+                "enrichers": _enrichments_config(),
                 "index_name": "d66",
                 "collection": "D66",
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -498,8 +501,7 @@ def _generate_for_sp(name):
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedFullTextItem",
-                "enrichers": [
-                ],
+                "enrichers": _enrichments_config(),
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
                 "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
                 "hidden": False,
@@ -512,7 +514,7 @@ def _generate_for_sp(name):
             {
                 "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
                 "keep_index_on_update": True,
-                "enrichers": [],
+                "enrichers": _enrichments_config(),
                 "index_name": "sp",
                 "collection": "SP",
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -564,8 +566,7 @@ def _generate_for_pvda(name):
                 "extractor": "ocd_backend.extractors.feed.FeedExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.feed.FeedItem",
-                "enrichers": [
-                ],
+                "enrichers": _enrichments_config(),
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
                 "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
                 "hidden": False,
@@ -577,7 +578,7 @@ def _generate_for_pvda(name):
             {
                 "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
                 "keep_index_on_update": True,
-                "enrichers": [],
+                "enrichers": _enrichments_config(),
                 "index_name": "pvda",
                 "collection": "PvdA",
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -646,8 +647,7 @@ def _generate_for_sgp(name):
                 "extractor": "ocd_backend.extractors.staticfile.StaticHtmlExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
                 "item": "ocd_backend.items.sgp.SGPItem",
-                "enrichers": [
-                ],
+                "enrichers": _enrichments_config(),
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
                 "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
                 "hidden": False,
@@ -660,7 +660,7 @@ def _generate_for_sgp(name):
             {
                 "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
                 "keep_index_on_update": True,
-                "enrichers": [],
+                "enrichers": _enrichments_config(),
                 "index_name": "sgp",
                 "collection": "SGP",
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -748,7 +748,7 @@ def _generate_facebook_for_party(
     return {
         "extractor": "ocd_backend.extractors.facebook.FacebookExtractor",
         "keep_index_on_update": True,
-        "enrichers": [],
+        "enrichers": _enrichments_config(),
         "index_name": index_name,
         "collection": collection,
         "loader": "ocd_backend.loaders.ElasticsearchLoader",
@@ -1022,9 +1022,48 @@ def generate_locations():
     print json.dumps(results, indent=4)
 
 
+@command('enrichments')
+def generate_enrichments():
+    """
+    This generates sources for enrichments
+    """
+    es = Elasticsearch(
+        [{'host': 'elasticsearch', 'port': 9200, 'timeout': 20}])
+    available_indices = [
+        re.split(r'\s+', x) for x in es.cat.indices().split('\n') if x.strip() != u'']
+    selected_indices = [
+        x[2] for x in available_indices if not x[2].startswith('.')]
+    results = []
+    for selected_index in selected_indices:
+        if selected_index == 'pfl_usage_logs':
+            continue
+        if selected_index == 'pfl_resolver':
+            continue
+        results.append({
+            "extractor": "ocd_backend.extractors.es.ElasticsearchExtractor",
+            "keep_index_on_update": True,
+            "enrichers": [
+              [
+                "ocd_backend.enrichers.NEREnricher",
+                {}
+              ]
+            ],
+            "index_name": selected_index.replace('pfl_', '').split('_')[0],
+            "transformer": "ocd_backend.transformers.NoneTransformer",
+            "loader": "ocd_backend.loaders.ElasticsearchUpsertLoader",
+            "item": "ocd_backend.items.BaseItem",
+            "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
+            "id": "enrich_%s" % (selected_index,),
+            "hidden": False,
+            "doc_type": "item"
+          })
+    print json.dumps(results, indent=4)
+
+
 sources.add_command(generate_sources_local_party)
 sources.add_command(generate_facebook_local_party)
 sources.add_command(generate_locations)
+sources.add_command(generate_enrichments)
 
 if __name__ == '__main__':
     cli()

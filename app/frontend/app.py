@@ -214,7 +214,6 @@ class BackendAPI(object):
                 "location": {},
                 "sources": {},
                 "type": {},
-                "persons": {},
                 "parties": {}
             },
             "sort": "date",
@@ -258,7 +257,6 @@ class BackendAPI(object):
             result = plain_result.json()
         except Exception as e:
             print >>sys.stderr, "ERROR (%s): %s" % (e.__class__, e)
-            print >>sys.stderr, plain_result.content
             result = {
                 'hits': {
                     'hits': [],

@@ -41,7 +41,7 @@ FACETS = (
     ('location', 'Locatie',),
     ('sources', 'Bron',),
     ('type', 'Soort',),
-    ('persons', 'Politici',),
+    ('politicians', 'Politici',),
     ('parties', 'Partijen',),
 )
 
@@ -214,6 +214,7 @@ class BackendAPI(object):
                 "location": {},
                 "sources": {},
                 "type": {},
+                "politicians": {},
                 "parties": {}
             },
             "sort": "date",

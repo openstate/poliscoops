@@ -110,7 +110,7 @@
                 "type": {
                   "type": "keyword"
                 },
-                "persons": {
+                "politicians": {
                   "type": "keyword"
                 },
                 "parties": {

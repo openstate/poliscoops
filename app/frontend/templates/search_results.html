@@ -8,6 +8,12 @@
 
 <div class="wrapper">
   <nav id="sidebar" class="hidden-xs">
+        <div class="navbar-header visible-xs-block">
+          <h2 class="pull-left" style="margin-top:11px;">Filters</h2>
+          <button type="button" class="btn btn-info navbar-btn pull-right sidebar-collapse" style="color: white !important;">
+            X
+          </button>
+        </div>
         {% for key, desc in facets %}
           {% if key in results.facets %}
             {% if results.facets[key].buckets|length > 0 %}

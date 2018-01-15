@@ -186,4 +186,12 @@ ul.wordcloud li { display: inline-block; }
     min-width: 300px;
     max-width: 300px;
     transition: all 0.3s;
+    background: white;
+    z-index: 10000;
+}
+
+.sidebar-mobile {
+  position: absolute;
+  top: 40px;
+  left: 0;
 }

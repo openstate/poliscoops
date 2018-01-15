@@ -31,11 +31,11 @@ Poliflw.init = function() {
     return false;
   });
 
-  $('#sidebarCollapse').on('click', function () {
+  $('.sidebar-collapse').on('click', function () {
     if ($('#sidebar').hasClass('hidden-xs')) {
-      $('#sidebar').removeClass('hidden-xs').addClass('visible-xs-block');
+      $('#sidebar').removeClass('hidden-xs').addClass('visible-xs-block').addClass('sidebar-mobile');
     } else {
-      $('#sidebar').addClass('hidden-xs').removeClass('visible-xs-block');
+      $('#sidebar').addClass('hidden-xs').removeClass('visible-xs-block').removeClass('sidebar-mobile');
     }
   });
 };

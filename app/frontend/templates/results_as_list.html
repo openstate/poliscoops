@@ -1,16 +1,13 @@
 <div class="row">
-  <div class="col-xs-10">
-    <h2>{{ results.meta.total}} documenten</h2>
-  </div>
-  <div class="col-xs-2">
-    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                                    <i class="glyphicon glyphicon-align-left"></i>
-                                    <span>Toggle Sidebar</span>
-                                </button>
+  <div class="col-xs-12">
+    <h3 class="pull-left" style="margin-top: 11px; margin-left: 1em;">{{ results.meta.total}} documenten</h3>
+    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn pull-right">
+      Filters &gt;
+    </button>
   </div>
 </div>
 {% for result in results.item %}
-<div class="search-result">
+<div class="search-result clearfix">
 <div class="row">
   <div class="col-xs-2 col-md-1">
     <img src="/static/images/parties/{{ result.parties.0 |lower }}.png" class="img-responsive">

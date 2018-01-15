@@ -41,7 +41,7 @@ FACETS = (
     ('location', 'Locatie',),
     ('sources', 'Bron',),
     ('type', 'Soort',),
-    ('persons', 'Politici',),
+    ('politicians', 'Politici',),
     ('parties', 'Partijen',),
 )
 
@@ -214,7 +214,7 @@ class BackendAPI(object):
                 "location": {},
                 "sources": {},
                 "type": {},
-                "persons": {},
+                "politicians": {},
                 "parties": {}
             },
             "sort": "date",
@@ -350,6 +350,22 @@ def link_proxy(hash):
 def get_source_rsp(url):
     return requests.get(
         url, stream=True, params=request.args)
+
+
+@app.route("/_question", methods=['POST'])
+def get_question():
+    return jsonify(requests.post(
+        'http://politags_web_1:5000/api/articles/questions',
+        data=request.data, headers={'Content-type': 'application/json'}
+    ).content)
+
+
+@app.route("/_answer/<question_id>", methods=['POST'])
+def put_answer(question_id):
+    return jsonify(requests.post(
+        'http://politags_web_1:5000/api/questions/%s' % (question_id,),
+        data=request.data, headers={'Content-type': 'application/json'}
+    ).content)
 
 
 def create_app():

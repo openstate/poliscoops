@@ -4,6 +4,15 @@
 {% block content %}
 
 {% include 'search.html' %}
+
+<!--politags container-->
+<div class="container" id="counter_container" style="text-align: center">
+    <div class="single_counter">
+        <h3 class="statistic-counter" id="response-counter"><span id="count"></span>&nbsp<i class="fa fa-heart-o text-danger" id="counter-heart"></i></h3>
+        <p>Vragen beantwoord!</p>
+    </div>
+</div>
+
 <section id="data" style="margin-top:16px;">
   <div class="search-result">
   <div class="row">
@@ -23,7 +32,7 @@
         {{ result.date|iso8601_to_str("%d-%m-%Y %H:%M:%S") }}
         {% endif %}
       </p>
-  <div>
+  <div id="article_container">
       <p>{{ result.description |html_cleanup(result) |safe }}</p>
   </div>
     </div>
@@ -39,4 +48,154 @@
   </div>
   </div>
 </section>
+
+<script type="text/javascript">
+"use strict";
+
+let article = document.getElementById("article_container");
+let articleObject = {{ result |tojson|safe }};
+
+//On opening the website we call the API to receive the question
+$(document).ready(function () {
+  getQuestion();
+});
+
+
+function getQuestion() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/_question",
+        data: JSON.stringify(articleObject),
+        dataType: 'json',
+        success: function (data) {
+            let response = JSON.parse(data);
+            console.log(data);
+            console.dir(response);
+            if ($.isEmptyObject(response['error']) === true)  {
+                showQuestion(response)
+            }
+            else {
+                updateCounter(response['count_responses'])
+                console.log(response['error'])
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+
+// this function posts the answer to a certain question
+function postResponse(questionResponse, questionId) {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/_answer/" + questionId,
+        data: JSON.stringify(questionResponse),
+        success: function (response) {
+            console.log(response);
+            updateCounter()
+            showFeedback()
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+
+}
+
+
+function showQuestion(apiresponse) {
+    let question = apiresponse['question'];
+    let questionId = apiresponse['question_id'];
+    let possibleAnswers = apiresponse['possible_answers'];
+    let entityText = apiresponse['text'];
+    let countResponses = apiresponse['count_responses']
+
+    console.log('question id : ' + questionId);
+
+    highlighter(article, entityText, questionId);
+    addQuestionDiv(questionId, question, possibleAnswers)
+    updateCounter(countResponses)
+}
+
+$('body').on('click', '.responseButton', function () {
+    let response = $(this).attr("id");
+    let questionId = $(this).attr("question_id");
+    postResponse(response, questionId)
+    }
+);
+
+
+// this function highlights a word in the text using bootstrap's mark
+function highlighter(element, word, questionId) {
+    var regexp = new RegExp(word);
+    var replace = '<mark id="' + questionId + '" style="background-color: transparent !important;\n' +
+        '            background-image: linear-gradient(to bottom, rgba(189, 228, 255, 1), rgba(189, 228, 255, 1));\n' +
+        '            border-radius: 5px;"><strong>' + word + '</strong></mark>';
+    element.innerHTML = element.innerHTML.replace(regexp, replace)
+}
+
+
+function addQuestionDiv(questionId, question, possibleAnswers) {
+    let buttonsHtml = generateButtons(questionId, possibleAnswers);
+
+    $('#' + questionId).parent().after(
+        '<div id = "question" class="panel panel-danger" style="margin-top: 5px; margin-bottom: 5px; padding-top: 0px; padding-bottom: 15px; border-radius: 1em; text-align: center; box-shadow: none; border-width: 3px">' +
+        '   <div id="text" class="panel-body">' + question +
+        '   </div>' +
+        buttonsHtml +
+        '</div>'
+    )
+}
+
+
+function updateCounter(countResponses) {
+    let count = $('#count').text()
+
+    if ($.isEmptyObject(count)) {
+        $('#count').text(countResponses.toString())
+    }
+    else {
+        let countInt = parseInt(count)
+        $('#count').html((countInt +1).toString())
+    }
+
+    $('#counter-heart').addClass("fa-heart").removeClass("fa-heart-o")
+
+    setTimeout(function() {
+        $('#counter-heart').addClass("fa-heart-o").removeClass("fa-heart")
+    }, 1000)
+}
+
+
+function generateButtons(questionId, possibleAnswers) {
+    let buttonsHtml = '';
+
+    console.dir(possibleAnswers);
+    if (possibleAnswers.length == 2) {
+        buttonsHtml += '<button id='+ possibleAnswers[0]['id'] +' question_id='+ questionId +' type="button" class="btn btn-success responseButton">JA&nbsp</button>\n'
+        buttonsHtml += '<button id='+ possibleAnswers[1]['id'] +' question_id='+ questionId +' type="button" class="btn btn-danger responseButton">NEE</button>\n'
+    }
+
+    return buttonsHtml
+}
+
+
+function showFeedback() {
+    $('#question').removeClass('panel-danger').addClass('panel-success')
+    $('.responseButton').remove()
+    $('#text').html('Awesome! Samen maken we politiek nieuws beter doorzoekbaar!').after('<i class="fa fa-heart-o fa-2x text-danger">')
+    setTimeout(function() {
+        $('mark').contents().unwrap()
+        $('strong').contents().unwrap()
+        $('#question').slideUp("swing", function() {
+            $(this).remove()
+        })
+    }, 4000)
+
+}
+</script>
 {% endblock %}

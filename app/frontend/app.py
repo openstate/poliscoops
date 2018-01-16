@@ -319,6 +319,8 @@ def search():
 @app.route("/l/<location>/<party>/<id>")
 def show(location, party, id):
     result = api.get_by_id(id)
+    if '_id' not in result['meta']:
+        result['meta']['_id'] = id
     return render_template('show.html', result=result)
 
 

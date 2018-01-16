@@ -22,7 +22,7 @@
       {% endfor %}
       <a href="{{ url_for('search', location=result.location) }}" class="visible-xs-block visible-sm-block visible-md-inline-block visible-lg-inline-block visible-md-inline-block">{{ result.location }}</a>
       {% if result.date %}
-      {{ result.date|iso8601_to_str("%d-%m-%Y %H:%M:%S") }}
+      <a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}">{{ result.date|iso8601_to_str("%d-%m-%Y %H:%M:%S") }}</a>
       {% endif %}
     </p>
     <div class="collapse" id="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">

@@ -187,7 +187,7 @@ ul.wordcloud li { display: inline-block; }
     max-width: 300px;
     transition: all 0.3s;
     background: white;
-    z-index: 10000;
+    z-index: 1000;
 }
 
 .sidebar-mobile {

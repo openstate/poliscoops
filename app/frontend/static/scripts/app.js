@@ -12,10 +12,10 @@ Poliflw.init = function() {
   //  });
 
   // make the button disappear
-  // $('.toggle-hide-after[data-toggle="collapse"]').on('click', function() {
-  //   console.log('toggle hide after±');
-  //   $(this).hide();
-  // });
+  $('.toggle-hide-after[data-toggle="collapse"]').on('click', function() {
+    console.log('toggle hide after±');
+    $(this).hide();
+  });
 
   $('.collapse').collapse({toggle: false});
 

@@ -118,6 +118,15 @@
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     Poliflw.gov_slug = "{{ gov_slug }}";
     </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32274817-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-32274817-12');
+    </script>
 
   </body>
 </html>

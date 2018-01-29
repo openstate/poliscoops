@@ -20,14 +20,14 @@
               <h2 id="facet-{{ key }}">{{ desc }}</h2>
               {% for bucket in results.facets[key].buckets %}
                   {% if loop.index == 11 %}
-                  <button class="btn btn-primary btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}">
+                  <button class="btn btn-primary btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
                     Toon meer
                   </button>
                   <div class="collapse" id="collapse-{{ key }}">
                   {% endif %}
                 <a class="btn btn-default btn-category {{ bucket |active_bucket(key) }}" href="{{ bucket |link_bucket(key) }}" role="button">
                   {% if bucket |active_bucket(key) == 'active' %}
-                  <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px; color: white !important;"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px;"><span aria-hidden="true">&times;</span></button>
                   {% endif %}
                   {{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})
                 </a>

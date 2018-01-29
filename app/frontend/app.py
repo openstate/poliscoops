@@ -327,6 +327,20 @@ def show(location, party, id):
     return render_template('show.html', result=result)
 
 
+@app.route("/idea")
+def idea():
+    url = 'http://idea.informer.com/tab6.js?domain=poliflw'
+
+    r = get_source_rsp(url)
+    headers = dict(r.headers)
+
+    def generate():
+        for chunk in r.iter_content(CHUNK_SIZE):
+            yield chunk
+
+    return Response(generate(), headers=headers)
+
+
 @app.route("/r/<hash>")
 def link_proxy(hash):
     url = request.args.get('url', None)

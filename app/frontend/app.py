@@ -331,14 +331,12 @@ def show(location, party, id):
 def idea():
     url = 'http://idea.informer.com/tab6.js?domain=poliflw'
 
-    r = get_source_rsp(url)
+    r = requests.get(url)
     headers = dict(r.headers)
+    idea_text = unicode(r.content)
 
-    def generate():
-        for chunk in r.iter_content(CHUNK_SIZE):
-            yield chunk
-
-    return Response(generate(), headers=headers)
+    return idea_text
+    #    return Response(response=idea_text, headers=headers)
 
 
 @app.route("/r/<hash>")

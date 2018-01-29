@@ -12,11 +12,14 @@
   <div class="col-md-1 hidden-xs">
     <img src="/static/images/parties/{{ result.parties.0 |lower }}.png" class="img-responsive">
   </div>
-  <div class="col-xs-12 col-md-10">
+  <div class="col-xs-10 col-md-10">
     {% if result.title %}
-    <h2><a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}">{{ result.title }}</a></h2>
+    <h2>
+      <a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}">{{ result.title }}</a>
+    </h2>
     {% endif %}
     <p class="entities">
+      <img src="/static/images/parties/{{ result.parties.0 |lower }}.png" class="img-responsive visible-xs-inline">
       {% for party in result.parties %}
         <a href="{{ url_for('search', parties=party) }}" class="visible-xs-block visible-sm-block visible-md-inline-block visible-lg-inline-block visible-md-inline-block">{{ party }}</a>
       {% endfor %}
@@ -31,7 +34,7 @@
 </div>
     </div>
   </div>
-  <div class="col-md-1 hidden-xs">
+  <div class="col-md-1 col-xs-2">
     <a class="description-collapse" role="button" href="#description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}" aria-expanded="false" aria-controls="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
       <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
     </a>

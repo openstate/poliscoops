@@ -68,7 +68,7 @@ function getQuestion() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:5555/api/articles/questions",
+        url: "/_question",
         data: JSON.stringify(apiObject),
         success: function (response) {
             console.dir(response)

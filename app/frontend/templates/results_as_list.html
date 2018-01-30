@@ -29,9 +29,9 @@
       {% endif %}
     </p>
     <div class="collapse" id="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
-<div>
-    <p>{{ result.description |html_cleanup(result) |safe }}</p>
-</div>
+      <div>
+        <p>{{ result.description |html_cleanup(result) |safe }}</p>
+      </div>
     </div>
   </div>
   <div class="col-md-1 col-xs-2">
@@ -41,11 +41,11 @@
   </div>
 </div>
 <div class="row">
-<div class="col-xs-12">
-  <p class="pull-right links">
-    <a href="{{ result.meta.original_object_urls.html }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">{{ result.source }} <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
-  </p>
-</div>
+  <div class="col-xs-12">
+    <p class="pull-right links">
+      <a href="{{ result.meta.original_object_urls.html }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">{{ result.source }} <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+    </p>
+  </div>
 </div>
 </div>
 {% endfor %}

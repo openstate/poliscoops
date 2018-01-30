@@ -161,6 +161,7 @@ ul.wordcloud li { display: inline-block; }
 
 .search-result h2 {
   margin-top: 0;
+  font-size: 20px;
 }
 
 .entities a {

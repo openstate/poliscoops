@@ -299,6 +299,11 @@ def main():
     return render_template('index.html', results=results)
 
 
+@app.route("/over")
+def about():
+    return render_template('about.html')
+
+
 @app.route("/zoeken")
 def search():
     search_params = {

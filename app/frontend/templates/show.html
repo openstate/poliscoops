@@ -214,7 +214,8 @@ function blinkHeart() {
 function generatePolarButtons(questionId, possibleAnswers) {
     let buttonsHtml = '';
 
-    if (possibleAnswers.length <= 2) {
+    console.log(possibleAnswers);
+    if ((typeof(possibleAnswers) !== 'undefined') && (possibleAnswers.length >= 2)) {
       buttonsHtml += '<button id=' + possibleAnswers[0]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-success responseButton">JA&nbsp</button>\n';
       buttonsHtml += '<button id=' + possibleAnswers[1]['id'] + ' question_id=' + questionId + ' type="button" class="btn btn-danger responseButton">NEE</button>\n';
     }

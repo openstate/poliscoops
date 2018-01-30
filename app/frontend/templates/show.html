@@ -70,7 +70,8 @@ function getQuestion() {
         contentType: "application/json",
         url: "/_question",
         data: JSON.stringify(apiObject),
-        success: function (response) {
+        success: function (data) {
+            let response = JSON.parse(data);
             console.dir(response)
 
             if ($.isEmptyObject(response['error']) === true) {

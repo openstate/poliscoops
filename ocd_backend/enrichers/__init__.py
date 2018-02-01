@@ -101,6 +101,10 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
         url = 'http://politags_web_1:5000/api/articles/entities'
         politicians = doc.get('politicians', [])
         parties = doc.get('parties', [])
+
+        doc['id'] = unicode(doc_id)
+        doc['meta']['pfl_url'] = unicode("https://api.poliflw.nl/v0/%s/%s" % (
+            doc['meta']['source_id']. doc_id,))
         try:
             resp = self.http_session.post(
                 url, data=json_encoder.encode(doc),

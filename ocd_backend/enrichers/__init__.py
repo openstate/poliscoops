@@ -118,6 +118,8 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
 
             r = {'parties': [], 'politicians': []}
 
+        log.exception('NER response:')
+        log.exception(r)
         return {
             'parties': parties + [parties2names.get(p['name'], p['name']) for p in r['parties'] if p['name'] not in parties],
             'politicians': politicians + [

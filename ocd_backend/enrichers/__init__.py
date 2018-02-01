@@ -110,6 +110,7 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
             log.exception('Unexpected NER enrichment error: %s'
                           % (e.message,))
             log.exception(resp.content)
+            log.exception(json_encoder.encode(doc))
 
             r = {'parties': [], 'politicians': []}
 

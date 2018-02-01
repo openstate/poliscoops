@@ -87,10 +87,34 @@ def do_html_cleanup(s, result):
         tags=TAGS, attributes=ATTRS, filters=[PflFilter], strip=True)
     try:
         return cleaner.clean(s).replace(
-            '<img ', '<img class="img-responsive" ')
+            '<img ', '<img class="img-responsive" ').replace('&amp;nbsp;', '')
     except TypeError:
         return u''
 
+
+@app.template_filter('html_title_cleanup')
+def do_html_title_cleanup(s, result):
+    class PflFilter(Filter):
+        def __iter__(self):
+            for token in Filter.__iter__(self):
+                if token['type'] in ['StartTag', 'EmptyTag'] and token['data']:
+                    if token['name'] == 'img':
+                        for attr, value in token['data'].items():
+                            token['data'][attr] = image_rewrite(urljoin(
+                                result['meta']['original_object_urls']['html'],
+                                token['data'][attr]), result['meta']['_id'])
+                yield token
+    ATTRS = {
+        '*': allow_src
+    }
+    TAGS = []
+    cleaner = Cleaner(
+        tags=TAGS, attributes=ATTRS, filters=[PflFilter], strip=True)
+    try:
+        return cleaner.clean(s).replace(
+            '<img ', '<img class="img-responsive" ').replace('&amp;nbsp;', '')
+    except TypeError:
+        return u''
 
 @app.template_filter('active_bucket')
 def do_active_bucket(bucket, facet):

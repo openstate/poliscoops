@@ -13,11 +13,15 @@
     <img src="/static/images/parties/{{ result.parties.0 |lower }}.png" class="img-responsive">
   </div>
   <div class="col-xs-10 col-md-10">
-    {% if result.title %}
     <h2>
-      <a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}">{{ result.title }}</a>
+      <a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}">
+        {% if result.title %}
+          {{ result.title }}
+        {% else %}
+          {{ result.description |html_title_cleanup(result) |truncate(40) |safe }}
+        {% endif %}
+      </a>
     </h2>
-    {% endif %}
     <p class="entities">
       <img src="/static/images/parties/{{ result.parties.0 |lower }}.png" class="img-responsive visible-xs-inline">
       {% for party in result.parties %}

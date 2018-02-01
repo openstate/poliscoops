@@ -5,6 +5,7 @@ from ocd_backend import settings
 from ocd_backend.exceptions import SkipEnrichment
 from ocd_backend.log import get_source_logger
 from ocd_backend.extractors import HttpRequestMixin
+from ocd_backend.utils import json_encoder
 
 import json
 
@@ -102,7 +103,7 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
         parties = doc.get('parties', [])
         try:
             r = self.http_session.post(
-                url, data=json.dumps(doc),
+                url, data=json_encoder.encode(doc),
                 headers={'Content-type': 'application/json'}).json()
         except Exception as e:
             log.exception('Unexpected NER enrichment error: %s'

@@ -150,30 +150,27 @@ def _generate_for_groenlinks(name):
             slug = m.group(1)
         else:
             slug = None
-        feed_url = os.path.join(link, 'rss.xml')
-        try:
-            requests.head(feed_url)
-        except (
-            requests.exceptions.HTTPError,
-            requests.exceptions.ConnectionError
-        ):
-            feed_url = os.path.join(link, 'feed')
         return [
             {
                 "id": "groenlinks_" + slug,
                 "location": _normalize_location(name),
-                "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+                "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
                 "transformer": "ocd_backend.transformers.BaseTransformer",
-                "item": "ocd_backend.items.feed.FeedFullTextItem",
+                "file_url": urljoin(link, "/nieuws"),
+                "item": "ocd_backend.items.html.HTMLPageItem",
                 "enrichers": _enrichments_config(),
                 "loader": "ocd_backend.loaders.ElasticsearchLoader",
                 "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
                 "hidden": False,
                 "index_name": "groenlinks",
                 "collection": "GroenLinks",
-                "file_url": feed_url,
                 "keep_index_on_update": True,
-                "content_xpath": "//div[contains(@class, \"intro\")]|//div[@class=\"content\"]"
+                "item_xpath": "//article[contains(@class, \"node-newsarticle\")]",
+                "item_link_xpath": "(.//h1//a/@href)[1]",
+                "content_xpath": "//div[contains(@class, \"intro\")]|//div[@class=\"content\"]",
+                "title_xpath": "//title//text()",
+                "date_xpath": "//span[contains(@class, \"submitted-date\")]//text()",
+
             },
             {
                 "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",

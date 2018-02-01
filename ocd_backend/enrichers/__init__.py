@@ -102,12 +102,14 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
         politicians = doc.get('politicians', [])
         parties = doc.get('parties', [])
         try:
-            r = self.http_session.post(
+            resp = self.http_session.post(
                 url, data=json_encoder.encode(doc),
-                headers={'Content-type': 'application/json'}).json()
+                headers={'Content-type': 'application/json'})
+            r = resp.json()
         except Exception as e:
             log.exception('Unexpected NER enrichment error: %s'
                           % (e.message,))
+            log.exception(resp.content)
 
             r = {'parties': [], 'politicians': []}
 

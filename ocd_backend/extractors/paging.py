@@ -9,19 +9,15 @@ from ocd_backend.exceptions import ConfigurationError
 class PagedStaticHtmlExtractor(StaticHtmlExtractor):
     def __init__(self, *args, **kwargs):
         super(PagedStaticHtmlExtractor, self).__init__(*args, **kwargs)
-        if 'paging_xpath' not in self.source_definition:
-            raise ConfigurationError('Missing \'paging_xpath\' definition')
-
-        if not self.source_definition['paging_xpath']:
-            raise ConfigurationError('The \'paging_xpath\' is empty')
-
-        self.paging_xpath = self.source_definition['paging_xpath']
+        self.paging_xpath = self.source_definition.get('paging_xpath', None)
 
     def _get_next_page(self, static_content):
-        result = self.tree.xpath(self.paging_xpath)
-        if result:
-            return urlparse.urljoin(
-                self.source_definition['file_url'], result[0])
+        if self.paging_xpath is not None:
+            result = self.tree.xpath(self.paging_xpath)
+            if result:
+                return urlparse.urljoin(
+                    self.source_definition['file_url'], result[0])
+        return None
 
     def extract_items(self, static_content):
         self.tree = etree.HTML(static_content)

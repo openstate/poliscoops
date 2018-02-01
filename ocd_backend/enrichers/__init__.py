@@ -123,7 +123,7 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
         return {
             'parties': parties + [parties2names.get(p['name'], p['name']) for p in r['parties'] if p['name'] not in parties],
             'politicians': politicians + [
-                u'%s %s' % (p['first_name'], p['last_name'],) for p in r['politicians'] if u'%s %s' % (p['first_name'], p['last_name'],) not in politicians]
+                u'%s %s' % (p['initials'], p['last_name'],) for p in r['politicians'] if u'%s %s' % (p['initials'], p['last_name'],) not in politicians]
         }
 
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):

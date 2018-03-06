@@ -7,7 +7,7 @@
   </div>
 </div>
 {% for result in results.item %}
-<div class="search-result clearfix">
+<div class="search-result clearfix" id="search-result-{{ result.meta.pfl_url.split('/')[-1]) }}">
 <div class="row">
   <div class="col-md-1 hidden-xs">
     <img src="/static/images/parties/{{ result.parties.0 |lower }}.png" class="img-responsive">
@@ -74,3 +74,9 @@
     </li>
   </ul>
 </nav>
+
+<script type="text/javascript">
+"use strict";
+
+let articleObjects = {{ results.item |tojson|safe }};
+</script>

@@ -51,6 +51,8 @@ class BaseItem(object):
         'media_urls': list,
         'persons': list,
         'parties': list,
+        'topics': list,
+        'sentiment': list,
         'all_text': unicode
     }
 

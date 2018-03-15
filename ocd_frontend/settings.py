@@ -141,6 +141,18 @@ COMMON_FACETS = {
             'field': 'parties',
             'size': 10
         }
+    },
+    'topics': {
+        'terms': {
+            'field': 'topics.name',
+            'size': 20
+        }
+    },
+    'sentiment': {
+        'terms': {
+            'field': 'sentiment.description',
+            'size': 20
+        }
     }
 }
 

@@ -101,6 +101,8 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
         url = 'http://politags_web_1:5000/api/articles/entities'
         politicians = doc.get('politicians', [])
         parties = doc.get('parties', [])
+        topics = doc.get('topics', [])
+        sentiment = doc.get('sentiment', [])
 
         doc['id'] = unicode(doc_id)
         doc['meta']['pfl_url'] = unicode("https://api.poliflw.nl/v0/%s/%s" % (
@@ -116,11 +118,15 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
             log.exception(resp.content)
             log.exception(json_encoder.encode(doc))
 
-            r = {'parties': [], 'politicians': []}
+            r = {
+                'parties': [], 'politicians': [], 'topics': [], 'sentiment': []
+            }
 
         log.exception('NER response:')
         log.exception(r)
         return {
+            'topics': topics,
+            'sentiment': sentiment,
             'parties': parties + [parties2names.get(p['name'], p['name']) for p in r['parties'] if p['name'] not in parties],
             'politicians': politicians + [
                 u'%s %s' % (p['initials'], p['last_name'],) for p in r['politicians'] if u'%s %s' % (p['initials'], p['last_name'],) not in politicians]

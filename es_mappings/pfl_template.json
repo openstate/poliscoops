@@ -116,6 +116,28 @@
                 "parties": {
                   "type": "keyword"
                 },
+                "topics": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "keyword"
+                    }
+                  }
+                },
+                "sentiment": {
+                  "type": "object",
+                  "properties": {
+                    "score": {
+                      "type": "float"
+                    },
+                    "description": {
+                      "type": "keyword"
+                    }
+                  }
+                },
                 "media_urls": {
                     "properties": {
                         "url": {

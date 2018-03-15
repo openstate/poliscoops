@@ -124,6 +124,10 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
 
         log.exception('NER response:')
         log.exception(r)
+        log.exception('Topics:')
+        log.exception(r.get('topics', []));
+        log.exception('Sentiment:')
+        log.exception(r.get('sentiment', {}))
         return {
             'topics': r.get('topics', []),
             'sentiment': r.get('sentiment', {}),

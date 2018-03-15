@@ -102,7 +102,7 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
         politicians = doc.get('politicians', [])
         parties = doc.get('parties', [])
         topics = doc.get('topics', [])
-        sentiment = doc.get('sentiment', [])
+        sentiment = doc.get('sentiment', {})
 
         doc['id'] = unicode(doc_id)
         doc['meta']['pfl_url'] = unicode("https://api.poliflw.nl/v0/%s/%s" % (
@@ -119,7 +119,7 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
             log.exception(json_encoder.encode(doc))
 
             r = {
-                'parties': [], 'politicians': [], 'topics': [], 'sentiment': []
+                'parties': [], 'politicians': [], 'topics': [], 'sentiment': {}
             }
 
         log.exception('NER response:')

@@ -148,9 +148,15 @@ COMMON_FACETS = {
             'size': 20
         }
     },
-    'sentiment': {
+    'polarity': {
         'terms': {
-            'field': 'sentiment.description',
+            'field': 'sentiment.polarity.description',
+            'size': 20
+        }
+    },
+    'subjectivity': {
+        'terms': {
+            'field': 'sentiment.subjectivity.description',
             'size': 20
         }
     }

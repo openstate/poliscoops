@@ -130,11 +130,27 @@
                 "sentiment": {
                   "type": "object",
                   "properties": {
-                    "score": {
-                      "type": "float"
+                    "polarity": {
+                      "type": "object",
+                      "properties": {
+                        "score": {
+                          "type": "float"
+                        },
+                        "description": {
+                          "type": "keyword"
+                        }
+                      }
                     },
-                    "description": {
-                      "type": "keyword"
+                    "subjectivity": {
+                      "type": "object",
+                      "properties": {
+                        "score": {
+                          "type": "float"
+                        },
+                        "description": {
+                          "type": "keyword"
+                        }
+                      }
                     }
                   }
                 },

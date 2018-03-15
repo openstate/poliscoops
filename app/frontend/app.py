@@ -43,9 +43,9 @@ FACETS = (
     ('type', 'Soort',),
     ('politicians', 'Politici',),
     ('parties', 'Partijen',),
-    ('topics', 'Onderwerpend',),
-    ('polarity', 'Polarity',),
-    ('subjectivity', 'Subjectivity',)
+    ('topics', 'Onderwerpen',),
+    ('polarity', 'Polariteit',),
+    ('subjectivity', 'Subjectiviteit',)
 )
 
 

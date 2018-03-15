@@ -55,6 +55,8 @@ class BaseEnricher(celery_app.Task):
 
         # Add the modified 'enrichments' dict to the item documents
         # note updates the entire document for Poliflw
+        log.exception('Indexing updating with: %s' % (enrichments,))
+
         combined_index_doc.update(enrichments)
         doc.update(enrichments)
 
@@ -124,10 +126,8 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
 
         log.exception('NER response:')
         log.exception(r)
-        log.exception('Topics:')
-        log.exception(r.get('topics', []));
-        log.exception('Sentiment:')
-        log.exception(r.get('sentiment', {}))
+        log.exception('Indexing found topics: %s' % (r.get('topics', []),))
+        log.exception('Indexing found sentiment: %s' % (r.get('sentiment', {}),))
         return {
             'topics': r.get('topics', []),
             'sentiment': r.get('sentiment', {}),

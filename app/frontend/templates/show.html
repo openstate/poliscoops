@@ -123,7 +123,8 @@ function getQuestion() {
         url: "/_question",
         data: JSON.stringify(apiObject),
 
-        success: function (response) {
+        success: function (data) {
+            let response = JSON.parse(data);
             if (LOGGING) {
                 console.log("the API response returned by Politags:")
                 console.log(response)
@@ -184,7 +185,9 @@ function postEntityVerification(response, questionLinkingId) {
         contentType: "application/json",
         url: "/_answer/" + questionLinkingId,
         data: JSON.stringify(response),
-        success: function (response) {
+        success: function (data) {
+            let response = JSON.parse(data);
+
             if (LOGGING) {
                 console.log("This API response was sent to politags:");
                 console.dir(response);

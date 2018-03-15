@@ -55,12 +55,12 @@ class BaseEnricher(celery_app.Task):
 
         # Add the modified 'enrichments' dict to the item documents
         # note updates the entire document for Poliflw
-        log.exception('Indexing updating with: %s' % (enrichments,))
+        # log.exception('Indexing updating with: %s' % (enrichments,))
 
         combined_index_doc.update(enrichments)
         doc.update(enrichments)
 
-        log.exception('Indexing combined is now: %s' % (combined_index_doc,))
+        # log.exception('Indexing combined is now: %s' % (combined_index_doc,))
         return (combined_object_id, object_id, combined_index_doc, doc)
 
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):

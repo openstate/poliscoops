@@ -76,10 +76,10 @@ class ElasticsearchLoader(BaseLoader):
         self, combined_object_id, object_id, combined_index_doc, doc
     ):
         log.info('Indexing documents...')
-        log.exception('Indexing topics: %s' % (
-            combined_index_doc.get('topics', []),))
-        log.exception('Indexing sentiment: %s' % (
-            combined_index_doc.get('sentiment', {}),))
+        # log.exception('Indexing topics: %s' % (
+        #     combined_index_doc.get('topics', []),))
+        # log.exception('Indexing sentiment: %s' % (
+        #     combined_index_doc.get('sentiment', {}),))
 
         elasticsearch.index(index=settings.COMBINED_INDEX,
                             doc_type=self.doc_type, id=combined_object_id,

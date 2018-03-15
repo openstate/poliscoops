@@ -52,7 +52,7 @@ class BaseItem(object):
         'persons': list,
         'parties': list,
         'topics': list,
-        'sentiment': list,
+        'sentiment': object,
         'all_text': unicode
     }
 

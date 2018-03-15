@@ -61,53 +61,55 @@ let articleObject = {{ result |tojson|safe }};
 
 let initialTopics;
 
+$(document).ready(function() {
 
-$('#counter_container').html(
-    '    <div class="col-sm-2"></div>\n' +
-    '    <div class="col-sm-8">\n' +
-    '        <div class="col-sm-4">\n' +
-    '            <h3><span id="response-counter-today"></span>&nbsp<i class="fa fa-calendar-o text-danger"></i></h3>\n' +
-    '            <p>Verificaties vandaag door jou gegeven!</p>\n' +
-    '        </div>\n' +
-    '        <div class="col-sm-4 single_counter">\n' +
-    '            <h3><span id="response-counter-personal"></span>&nbsp<i class="fa fa-star-o text-danger"></i></h3>\n' +
-    '            <p>Verificaties totaal door jou gegeven!</p>\n' +
-    '        </div>\n' +
-    '        <div class="col-sm-4 single_counter">\n' +
-    '            <h3><span id="response-counter-total"></span>&nbsp<i class="fa fa-heart-o text-danger"></i></h3>\n' +
-    '            <p>Verificaties totaal door community gegeven!</p>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '    <div class="col-sm-2"></div>')
+  $('#counter_container').html(
+      '    <div class="col-sm-2"></div>\n' +
+      '    <div class="col-sm-8">\n' +
+      '        <div class="col-sm-4">\n' +
+      '            <h3><span id="response-counter-today"></span>&nbsp<i class="fa fa-calendar-o text-danger"></i></h3>\n' +
+      '            <p>Verificaties vandaag door jou gegeven!</p>\n' +
+      '        </div>\n' +
+      '        <div class="col-sm-4 single_counter">\n' +
+      '            <h3><span id="response-counter-personal"></span>&nbsp<i class="fa fa-star-o text-danger"></i></h3>\n' +
+      '            <p>Verificaties totaal door jou gegeven!</p>\n' +
+      '        </div>\n' +
+      '        <div class="col-sm-4 single_counter">\n' +
+      '            <h3><span id="response-counter-total"></span>&nbsp<i class="fa fa-heart-o text-danger"></i></h3>\n' +
+      '            <p>Verificaties totaal door community gegeven!</p>\n' +
+      '        </div>\n' +
+      '    </div>\n' +
+      '    <div class="col-sm-2"></div>')
 
-$('.select2').select2 (
-    {
-        width: 'element',
-        theme: 'bootstrap'
-    }
-);
+  $('.select2').select2 (
+      {
+          width: 'element',
+          theme: 'bootstrap'
+      }
+  );
 
-$('.select2').on('click' , function() {
- $('select[data-customize-setting-link]').select2("close")
-} );
+  $('.select2').on('click' , function() {
+   $('select[data-customize-setting-link]').select2("close")
+  } );
 
-$.fn.select2.amd.require(['select2/selection/search'], function (Search) {
-    var oldRemoveChoice = Search.prototype.searchRemoveChoice;
+  $.fn.select2.amd.require(['select2/selection/search'], function (Search) {
+      var oldRemoveChoice = Search.prototype.searchRemoveChoice;
 
-    Search.prototype.searchRemoveChoice = function () {
-        oldRemoveChoice.apply(this, arguments);
-        this.$search.val('');
-    };
+      Search.prototype.searchRemoveChoice = function () {
+          oldRemoveChoice.apply(this, arguments);
+          this.$search.val('');
+      };
 
-    $('#test').select2({
-        width:'300px'
-    });
+      $('#test').select2({
+          width:'300px'
+      });
+  });
+
+
+  //On opening the website we call the API to receive the question
+  $(getQuestion());
+
 });
-
-
-//On opening the website we call the API to receive the question
-$(getQuestion());
-
 
 /**
  * Gets the question for the current article by calling the Politags API and updates html accordingly

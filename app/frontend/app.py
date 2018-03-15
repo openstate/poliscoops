@@ -420,5 +420,12 @@ def put_answer(question_id):
     ).content)
 
 
+@app.route("/_topic/<article_id>", methods=['POST'])
+def put_topic(article_id):
+    return jsonify(requests.post(
+        'http://politags_web_1:5000/api/topics/%s' % (article_id,),
+        data=request.data, headers={'Content-type': 'application/json'}
+    ).content)
+
 def create_app():
     return app

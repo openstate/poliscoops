@@ -43,6 +43,9 @@ FACETS = (
     ('type', 'Soort',),
     ('politicians', 'Politici',),
     ('parties', 'Partijen',),
+    ('topics', 'Onderwerpend',),
+    ('polarity', 'Polarity',),
+    ('subjectivity', 'Subjectivity',)
 )
 
 
@@ -239,7 +242,10 @@ class BackendAPI(object):
                 "sources": {},
                 "type": {},
                 "politicians": {},
-                "parties": {}
+                "parties": {},
+                "topics": {},
+                "polarity": {},
+                "subjectivity": {}
             },
             "sort": "date",
             "order": "desc",

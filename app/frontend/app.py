@@ -404,6 +404,14 @@ def get_source_rsp(url):
         url, stream=True, params=request.args)
 
 
+@app.route("/_counters", methods=['POST'])
+def get_counters():
+    return jsonify(requests.post(
+        'http://politags_web_1:5000/api/counters',
+        data=request.data, headers={'Content-type': 'application/json'}
+    ).content)
+
+
 @app.route("/_question", methods=['POST'])
 def get_question():
     return jsonify(requests.post(

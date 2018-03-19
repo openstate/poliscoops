@@ -32,7 +32,7 @@
         {{ result.date|iso8601_to_str("%d-%m-%Y %H:%M:%S") }}
         {% endif %}
       </p>
-  <div id="article_container">
+  <div class="article-text" id="article_container">
       <p>{{ result.description |html_cleanup(result) |safe }}</p>
   </div>
 

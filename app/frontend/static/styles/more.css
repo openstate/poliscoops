@@ -1,7 +1,3 @@
-body {
-  text-align: justify;
-}
-
 .counter {
   font-size: 6em;
   text-align: center;
@@ -157,6 +153,10 @@ ul.wordcloud li { display: inline-block; }
 .description-collapse span {
   margin-left: 8px;
   margin-top: 8px;
+}
+
+.article-text {
+  text-align: justify;
 }
 
 .search-result {

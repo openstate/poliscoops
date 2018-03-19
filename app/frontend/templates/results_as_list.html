@@ -33,7 +33,7 @@
       {% endif %}
     </p>
     <div class="collapse" id="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
-      <div>
+      <div class="article-text">
         <p>{{ result.description |html_cleanup(result) |safe }}</p>
       </div>
     </div>

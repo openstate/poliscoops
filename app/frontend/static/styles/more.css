@@ -157,6 +157,10 @@ ul.wordcloud li { display: inline-block; }
   margin-top: 8px;
 }
 
+.article-text {
+  text-align: justify;
+}
+
 .search-result {
   margin-bottom: 16px;
 }

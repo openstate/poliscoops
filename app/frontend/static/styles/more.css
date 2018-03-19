@@ -34,6 +34,8 @@ ul.wordcloud li { display: inline-block; }
   margin-right: 10px;
   margin-bottom: 10px;
   max-width: 260px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
 }
 
@@ -191,6 +193,7 @@ ul.wordcloud li { display: inline-block; }
     transition: all 0.3s;
     background: white;
     z-index: 1000;
+    padding-right: 15px;
 }
 
 .sidebar-mobile {

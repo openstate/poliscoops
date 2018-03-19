@@ -33,6 +33,8 @@ ul.wordcloud li { display: inline-block; }
 .btn-category {
   margin-right: 10px;
   margin-bottom: 10px;
+  max-width: 260px;
+  overflow: hidden;
 }
 
 .wob-id {

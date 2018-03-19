@@ -24,12 +24,12 @@
       <h2>{{ result.title }}</h2>
       {% endif %}
       <p class="entities">
-        {% for party in result.parties %}
-          <a href="{{ url_for('search', parties=party) }}" class="visible-xs-block visible-sm-block visible-md-inline-block visible-lg-inline-block visible-md-inline-block">{{ party }}</a>
+        {% for party in result.parties|unique %}
+          <a href="{{ url_for('search', parties=party) }}" class="btn btn-xs btn-default"><i class="fa fa-group"></i> {{ party }}</a>
         {% endfor %}
-        <a href="{{ url_for('search', location=result.location) }}" class="visible-xs-block visible-sm-block visible-md-inline-block visible-lg-inline-block visible-md-inline-block">{{ result.location }}</a>
+        <a href="{{ url_for('search', location=result.location) }}" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ result.location }}</a>
         {% if result.date %}
-        {{ result.date|iso8601_to_str("%d-%m-%Y %H:%M:%S") }}
+        {{ result.date|iso8601_to_str("%d-%m-%Y") }}
         {% endif %}
       </p>
   <div id="article_container">
@@ -46,7 +46,7 @@
   <div class="row">
   <div class="col-xs-12">
     <p class="pull-right links">
-      <a href="{{ result.meta.original_object_urls.html }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">{{ result.source }} <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+      <a href="{{ result.meta.original_object_urls.html }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">Bron: {{ result.source }} <i class="fa fa-external-link"></i></a>
     </p>
   </div>
   </div>

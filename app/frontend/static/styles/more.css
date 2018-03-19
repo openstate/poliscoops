@@ -1,3 +1,7 @@
+body {
+  text-align: justify;
+}
+
 .counter {
   font-size: 6em;
   text-align: center;

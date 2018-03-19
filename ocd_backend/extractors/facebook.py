@@ -34,8 +34,9 @@ class FacebookExtractor(BaseExtractor, HttpRequestMixin):
         if next_url is not None:
             graph_url = next_url
         else:
+            # TODO: needs to point to posts, but have feecd in the sources config. Now for a quick fix
             graph_url = "https://graph.facebook.com/%s/%s?fields=id,name,message,link,picture,description,created_time&access_token=%s" % (
-                self.fb_api_version, self.fb_graph_url,
+                self.fb_api_version, self.fb_graph_url.replace('/feed', '/posts'),
                 self._fb_get_access_token(),)
         r = self.http_session.get(graph_url)
         # check if we get good status codes

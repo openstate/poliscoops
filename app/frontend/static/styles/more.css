@@ -172,13 +172,6 @@ ul.wordcloud li { display: inline-block; }
   font-size: 20px;
 }
 
-.entities a {
-  min-width: 100px;
-  max-width: 200px;
-  text-decoration: underline;
-  margin-bottom: 8px;
-}
-
 .links a {
   border: 1px solid black;
   border-radius: 4px;

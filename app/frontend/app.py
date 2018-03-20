@@ -70,6 +70,11 @@ def image_rewrite(url, doc_id):
         return url
 
 
+@app.template_filter('unique')
+def do_unique(s):
+    return list(set(s))
+
+
 @app.template_filter('html_cleanup')
 def do_html_cleanup(s, result):
     class PflFilter(Filter):

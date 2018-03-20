@@ -54,6 +54,8 @@
 </div>
 {% endfor %}
 
+{% if results.item %}
+
 <nav id="pager" class="text-center">
   <ul class="pagination">
     {% if page <= 1 %}
@@ -74,6 +76,13 @@
     </li>
   </ul>
 </nav>
+{% else %}
+<div class="row">
+  <div class="col-xs-12">
+    <p>Helaas, je we konden geen documenten vinden die voldeden aan je zoekopdracht.</p>
+  </div>
+</div>
+{% endif %}
 
 <script type="text/javascript">
 "use strict";

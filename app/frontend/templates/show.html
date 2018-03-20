@@ -29,7 +29,7 @@
         {% endfor %}
         <a href="{{ url_for('search', location=result.location) }}" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ result.location }}</a>
         {% if result.date %}
-        {{ result.date|iso8601_to_str("%d-%m-%Y") }}
+        {{ result.date|iso8601_to_str("%d-%m-%Y %H:%M:%S") }}
         {% endif %}
       </p>
   <div class="article-text" id="article_container">

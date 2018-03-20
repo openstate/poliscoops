@@ -78,5 +78,7 @@
 <script type="text/javascript">
 "use strict";
 
+{% if results.item %}
 let articleObjects = {{ results.item |tojson|safe }};
+{% endif %}
 </script>

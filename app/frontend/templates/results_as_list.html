@@ -31,7 +31,7 @@
       {% if result.date %}
       <a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}" class="btn btn-xs btn-default">{{ result.date|iso8601_to_str("%d-%m-%Y %H:%M") }}</a>
       {% endif %}
-      <a class="description-collapse visible-xs-block" role="button" href="#description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}" aria-expanded="false" aria-controls="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
+      <a class="description-collapse visible-xs-inline-block pull-right" role="button" href="#description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}" aria-expanded="false" aria-controls="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
         <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
       </a>
     </p>

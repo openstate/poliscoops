@@ -101,7 +101,7 @@ ul.wordcloud li { display: inline-block; }
 }
 
 .entities a {
-  min-width: 100px;
+/*  min-width: 100px;*/
   max-width: 200px;
   text-decoration: none;
   margin-bottom: 8px;

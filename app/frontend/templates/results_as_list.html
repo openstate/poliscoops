@@ -12,7 +12,7 @@
   <div class="col-md-1 hidden-xs">
     <img src="/static/images/parties/{{ result.parties.0 |lower }}.png" class="img-responsive">
   </div>
-  <div class="col-xs-10 col-md-10">
+  <div class="col-xs-12 col-md-10">
     <h2>
       <a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}">
         {% if result.title %}
@@ -31,6 +31,9 @@
       {% if result.date %}
       <a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}" class="btn btn-xs btn-default">{{ result.date|iso8601_to_str("%d-%m-%Y %H:%M") }}</a>
       {% endif %}
+      <a class="description-collapse visible-xs-block" role="button" href="#description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}" aria-expanded="false" aria-controls="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
+        <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+      </a>
     </p>
     <div class="collapse" id="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
       <div class="article-text">
@@ -38,7 +41,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-1 col-xs-2">
+  <div class="col-md-1 hidden-xs">
     <a class="description-collapse" role="button" href="#description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}" aria-expanded="false" aria-controls="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
       <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
     </a>

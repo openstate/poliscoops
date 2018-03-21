@@ -19,7 +19,7 @@
               <h2 id="facet-{{ key }}">{{ desc }}</h2>
               {% for bucket in results.facets[key].buckets %}
                   {% if loop.index == 11 %}
-                  <button class="btn btn-primary btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
+                  <button class="btn btn-primary btn-category btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
                     Toon meer
                   </button>
                   <div class="collapse" id="collapse-{{ key }}">

@@ -30,7 +30,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Open Raadsinformatie API'
+project = u'PoliFLW API'
 copyright = u'2015, Breyten Ernsting, Sicco van Sas, Bart de Goede and Justin van Wees; documentation is released under Creative Commons Attribution 4.0'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -81,7 +81,7 @@ pygments_style = 'sphinx'
 
 
 extlinks = {
-    'rest_api_v0': ('http://api.openraadsinformatie.nl/%s', None)
+    'rest_api_v0': ('https://api.poliflw.nl/%s', None)
 }
 
 # -- Options for HTML output ----------------------------------------------
@@ -208,7 +208,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'openraadsinformatieapi', u'Open Raadsinformatie API',
+    ('index', 'poliflwapi', u'PoliFLW API',
      [u'Sicco van Sas'], 1)
 ]
 
@@ -222,8 +222,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'OpenRaadsinformatieAPI', u'Open Raadsinformatie API',
-   u'Sicco van Sas', 'OpenRaadsinformatieAPI', 'Documentation of the pen Raadsinformatie API.',
+  ('index', 'PoliFLWAPI', u'PoliFLW API',
+   u'Sicco van Sas', 'PoliFLWAPI', 'Documentation of the PoliFLW API.',
    'documentation'),
 ]
 

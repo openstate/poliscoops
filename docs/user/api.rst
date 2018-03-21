@@ -31,7 +31,7 @@ Collection overview and statistics
 
    .. sourcecode:: http
 
-      $ curl -i -XGET 'http://api.openraadsinformatie.nl/v0/sources'
+      $ curl -i -XGET 'http://api.poliflw.nl/v0/sources'
 
    **Example response**
 
@@ -102,7 +102,7 @@ Searching within multiple collections
 
    .. sourcecode:: http
 
-      $ curl -i -XPOST 'http://api.openraadsinformatie.nl/v0/search' -d '{
+      $ curl -i -XPOST 'http://api.poliflw.nl/v0/search' -d '{
          "query": "vergadering",
          "facets": {
             "collection": {},
@@ -144,7 +144,7 @@ Searching within multiple collections
               "_score": 0.7127553,
               "_type": "events",
               "collection": "Besluitenlijsten RWN",
-              "ocd_url": "http://api.openraadsinformatie.nl/v0/amstelveen_reports/3fa41f082e8ff826ed3652fb6f52834bfe1a761a",
+              "ocd_url": "http://api.poliflw.nl/v0/amstelveen_reports/3fa41f082e8ff826ed3652fb6f52834bfe1a761a",
               "original_object_id": "3f2e7187-09d3-4743-9c3a-5b59dda70f51",
               "original_object_urls": {
                 "html": "https://www.mijnbabs.nl/iBabsWCFService/Public.svc?singleWsdl"
@@ -365,7 +365,7 @@ Retrieving a single object
 
    .. sourcecode:: http
 
-      $ curl -i 'http://api.openraadsinformatie.nl/v0/den_helder/events/4a39c497c7818af9ad6d7d8335a6e951d6a83bd6'
+      $ curl -i 'http://api.poliflw.nl/v0/den_helder/events/4a39c497c7818af9ad6d7d8335a6e951d6a83bd6'
 
    **Example response**
 
@@ -929,7 +929,7 @@ Retrieving a single object
 
    .. sourcecode:: http
 
-      $ curl -i 'http://api.openraadsinformatie.nl/v0/den_helder/events/4a39c497c7818af9ad6d7d8335a6e951d6a83bd6/source'
+      $ curl -i 'http://api.poliflw.nl/v0/den_helder/events/4a39c497c7818af9ad6d7d8335a6e951d6a83bd6/source'
 
    **Example response**
 
@@ -957,7 +957,7 @@ Retrieving a single object
 
    .. sourcecode:: http
 
-      $ curl -i 'http://api.openraadsinformatie.nl/v0/den_helder/events/4a39c497c7818af9ad6d7d8335a6e951d6a83bd6/stats'
+      $ curl -i 'http://api.poliflw.nl/v0/den_helder/events/4a39c497c7818af9ad6d7d8335a6e951d6a83bd6/stats'
 
    **Example response**
 
@@ -993,7 +993,7 @@ Similar items
 
   .. sourcecode:: http
 
-    $ curl -i -XPOST 'http://api.openraadsinformatie.nl/v0/similar/<object_id>' -d '{
+    $ curl -i -XPOST 'http://api.poliflw.nl/v0/similar/<object_id>' -d '{
        "facets": {
           "classification": {}
        },
@@ -1052,13 +1052,13 @@ The Open Raadsinformatie API provides all (media) urls as NPO Backstage Resolver
 
     .. sourcecode:: http
 
-      $ curl -i -Haccept:application/json -XGET http://www.openraadsinformatie.nl/v0/resolve/<url_hash>
+      $ curl -i -Haccept:application/json -XGET http://www.poliflw.nl/v0/resolve/<url_hash>
 
     **Example browser-like request**
 
     .. sourcecode:: http
 
-      $ curl -i -Haccept:text/html -XGET http://www.openraadsinformatie.nl/v0/resolve/<url_hash>
+      $ curl -i -Haccept:text/html -XGET http://www.poliflw.nl/v0/resolve/<url_hash>
 
     **Example success response**
 

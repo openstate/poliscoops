@@ -277,7 +277,7 @@ class BackendAPI(object):
                     kwargs.get(facet, None) or kwargs.get('date_from', None)
                 ) is not None
             else:
-                facet_enabled = (kwargs.get(facet, None) is not None
+                facet_enabled = kwargs.get(facet, None) is not None
             if facet_enabled:
                 if facet == 'date':
                     if 'date_from' in kwargs:

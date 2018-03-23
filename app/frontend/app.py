@@ -359,7 +359,7 @@ def search():
         search_params[facet] = request.args.get(facet, None)
         if facet == 'date':
             for p in ['date_to', 'date_from']:
-            search_params[p] = request.args.get(p, None)
+                search_params[p] = request.args.get(p, None)
 
 
     results = api.search(**search_params)

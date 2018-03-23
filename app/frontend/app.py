@@ -312,6 +312,7 @@ class BackendAPI(object):
                     'total': 0
                 }
             }
+        result['query'] = es_query
         return result
 
     def find_by_id(self, id):

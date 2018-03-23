@@ -274,13 +274,23 @@ class BackendAPI(object):
         for facet, desc in FACETS:
             if kwargs.get(facet, None) is not None:
                 if facet == 'date':
-                    sd = datetime.datetime.fromtimestamp(
-                        int(kwargs[facet]) / 1000)
-                    ed_month = sd.month + 1
-                    ed_year = sd.year
-                    if ed_month > 12:
-                        ed_month = 1
-                        ed_year += 1
+                    if 'date_from' in kwargs:
+                        sd = datetime.datetime.fromtimestamp(
+                            int(kwargs['date_from']) / 1000)
+                    else:
+                        sd = datetime.datetime.fromtimestamp(
+                            int(kwargs['date']) / 1000)
+                    if 'date_to' in kwargs:
+                        ed = datetime.datetime.fromtimestamp(
+                            int(kwargs['date_to']) / 1000)
+                        ed_month = ed.month
+                        ed_year = ed.year
+                    else:
+                        ed_month = sd.month + 1
+                        ed_year = sd.year
+                        if ed_month > 12:
+                            ed_month = 1
+                            ed_year += 1
                     es_query['filters'][facet] = {
                         'from': "%s-%s-01T00:00:00" % (sd.year, sd.month,),
                         'to': "%s-%s-01T00:00:00" % (ed_year, ed_month,)}
@@ -347,6 +357,10 @@ def search():
 
     for facet, desc in FACETS:
         search_params[facet] = request.args.get(facet, None)
+        if facet == 'date':
+            for p in ['date_to', 'date_from']:
+            search_params[p] = request.args.get(p, None)
+
 
     results = api.search(**search_params)
     try:

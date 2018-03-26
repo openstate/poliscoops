@@ -280,13 +280,13 @@ class BackendAPI(object):
                 facet_enabled = kwargs.get(facet, None) is not None
             if facet_enabled:
                 if facet == 'date':
-                    if 'date_from' in kwargs:
+                    if kwargs.get('date_from', None) is not None:
                         sd = datetime.datetime.fromtimestamp(
                             int(kwargs['date_from']) / 1000)
                     else:
                         sd = datetime.datetime.fromtimestamp(
                             int(kwargs['date']) / 1000)
-                    if 'date_to' in kwargs:
+                    if kwargs.get('date_to', None) is not None:
                         ed = datetime.datetime.fromtimestamp(
                             int(kwargs['date_to']) / 1000)
                         ed_month = ed.month

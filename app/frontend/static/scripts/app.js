@@ -38,6 +38,57 @@ Poliflw.init = function() {
       $('#sidebar').addClass('hidden-xs').removeClass('visible-xs-block').removeClass('sidebar-mobile');
     }
   });
+
+  var daterangepickerlocale = {
+    "format": "DD-MM-YYYY",
+    "separator": " - ",
+    "applyLabel":  "Toepassen",
+    "cancelLabel":  "Annuleren",
+    "fromLabel":  "Van",
+    "toLabel":  "Tot",
+    "customRangeLabel":  "Aanpasbaar",
+    "weekLabel": "W",
+    "daysOfWeek":  ["zon","maa","din","woe","don","vri","zat"],
+    "monthNames":  [null,"januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"],
+    "firstDay": 1
+  };
+
+  $('input[name="daterange"]').daterangepicker(
+    {
+      "alwaysShowCalendars": true,
+      "timePicker": false,
+      "timePicker24Hour": false,
+      "timePickerIncrement": 15,
+      "ranges": {
+        "Vandaag": [moment().startOf('day'), moment()],
+        "Gisteren": [moment().subtract(1, 'days').startOf('day'), moment().subtract(1, 'days').endOf('day')],
+        "Laatste 7 dagen": [moment().subtract(6, 'days').startOf('day'), moment()],
+        "Laatste 30 dagen": [moment().subtract(29, 'days').startOf('day'), moment()],
+        "Deze maand": [moment().startOf('month'), moment().endOf('month')],
+        "Vorige maand": [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+      },
+      'locale': daterangepickerlocale,
+      //"startDate": "03/15/2016",
+      //"endDate": "03/21/2016",
+      "minDate": "01/01/1980",
+      "maxDate": moment()
+    }, function(start, end, label) {
+      console.log("New date range selected: " + start.format('x') + ' to ' + end.format('x') + ' (predefined range: ' + label + ')');
+      console.log('?from=' + start.format() + '&end=' + end.format());
+      var new_url = JSON.parse(JSON.stringify(document.location.href));
+      new_url = new_url.replace(/(\?|\&)date_(from|to)\=\d+/g, '');
+      if (new_url.indexOf('?') >= 0) {
+        new_url = new_url + '&';
+      } else {
+        new_url = new_url + '?';
+      }
+      new_url = new_url + 'date_from=' + start.format('x') + '&date_to=' + end.format('x');
+      console.log('take away params: ' + new_url);
+      document.location = new_url;
+      //return false;
+      //document.location = document.location.origin + document.location.pathname + '?from=' + encodeURIComponent(start.format()) + '&to=' + encodeURIComponent(end.format());
+    }
+  );
 };
 
 

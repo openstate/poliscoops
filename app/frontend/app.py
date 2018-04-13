@@ -183,8 +183,8 @@ def do_iso8601_to_str(s, format):
 @app.template_filter('timestamp_to_str')
 def do_timestamp_to_str(s, format):
     try:
-        return datetime.datetime.fromtimestamp((s * 1.0) / 1000).strftime(format)
-    except iso8601.ParseError:
+        return datetime.datetime.fromtimestamp(float(s) / 1000.0).strftime(format)
+    except ValueError:
         return u''
 
 

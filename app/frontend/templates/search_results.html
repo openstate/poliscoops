@@ -18,7 +18,19 @@
             {% if results.facets[key].buckets|length > 0 %}
               <h2 id="facet-{{ key }}">{{ desc }}</h2>
               {% if key == 'date' %}
-              <input type="text" name="daterange" class="form-control btn-category btn-block" value="" />
+              <input type="text" name="daterange" class="form-control btn-category btn-block" value="
+              {% if search_params.date_from %}
+              {{ search_params.date_from |timestamp_to_str('%d-%M-%Y') }}
+              {% else %}
+              01-01-1980
+              {% endif %}
+               -
+              {% if search_params.date_to %}
+              {{ search_params.date_to |timestamp_to_str('%d-%M-%Y') }}
+              {% else %}
+              {{ dt_now.strftime('%d-%m-%Y') }}
+              {% endif %}
+              " />
               {% else %}
                 {% for bucket in results.facets[key].buckets %}
                     {% if loop.index == 11 %}

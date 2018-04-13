@@ -180,6 +180,14 @@ def do_iso8601_to_str(s, format):
         return u''
 
 
+@app.template_filter('timestamp_to_str')
+def do_timestamp_to_str(s, format):
+    try:
+        return datetime.datetime.fromtimestamp((s * 1.0) / 1000).strftime(format)
+    except iso8601.ParseError:
+        return u''
+
+
 @app.template_filter('iso8601_delay_in_days')
 def do_iso8601_delay_in_days(q, a=None):
     s = a or datetime.datetime.now().isoformat()
@@ -377,7 +385,8 @@ def search():
     return render_template(
         'search_results.html', facets=FACETS, results=results,
         query=search_params['query'], page=search_params['page'],
-        max_pages=max_pages, search_params=search_params)
+        max_pages=max_pages, search_params=search_params,
+        dt_now=datetime.datetime.now())
 
 
 @app.route("/l/<location>/<party>/<id>")

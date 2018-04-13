@@ -49,7 +49,7 @@ Poliflw.init = function() {
     "customRangeLabel":  "Aanpasbaar",
     "weekLabel": "W",
     "daysOfWeek":  ["zon","maa","din","woe","don","vri","zat"],
-    "monthNames":  [null,"januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"],
+    "monthNames":  ["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"],
     "firstDay": 1
   };
 

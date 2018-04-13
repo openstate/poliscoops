@@ -37,15 +37,17 @@ CHUNK_SIZE = 1024
 REWRITE_IMAGE_LINKS_CHECK = 'http:'
 
 FACETS = (
-    ('date', 'Datum',),
-    ('location', 'Locatie',),
-    ('sources', 'Bron',),
-    ('type', 'Soort',),
-    ('politicians', 'Politici',),
-    ('parties', 'Partijen',),
-    ('topics', 'Onderwerpen',),
-    ('polarity', 'Polariteit',),
-    ('subjectivity', 'Sentiment',)
+    # facet, label, display?, filter?
+    ('date_from', 'Datum van', False, True,),
+    ('date_to', 'Datum van', False, True,),
+    ('location', 'Locatie', True, True,),
+    ('sources', 'Bron', True, True,),
+    ('type', 'Soort', True, True,),
+    ('politicians', 'Politici', True, True,),
+    ('parties', 'Partijen', True, True,),
+    ('topics', 'Onderwerpen', True, True,),
+    ('polarity', 'Polariteit', True, True,),
+    ('subjectivity', 'Sentiment', True, True,)
 )
 
 
@@ -140,7 +142,7 @@ def do_url_for_search_page(params, gov_slug):
     if 'query' in request.args:
         url_args['query'] = request.args['query']
 
-    for param, title in FACETS:
+    for param, title, is_displayed, is_filter in FACETS:
         if param in request.args:
             url_args[param] = request.args[param]
 
@@ -156,7 +158,7 @@ def do_link_bucket(bucket, facet):
     if 'query' in request.args:
         url_args['query'] = request.args['query']
 
-    for param, title in FACETS:
+    for param, title, is_displayed, is_filter in FACETS:
         if param in request.args:
             url_args[param] = request.args[param]
 
@@ -279,38 +281,25 @@ class BackendAPI(object):
         if kwargs.get('query', None) is not None:
             es_query['query'] = kwargs['query']
 
-        for facet, desc in FACETS:
-            if facet == 'date':
-                facet_enabled = (
-                    kwargs.get(facet, None) or kwargs.get('date_from', None)
-                ) is not None
-            else:
-                facet_enabled = kwargs.get(facet, None) is not None
+        for facet, desc, is_displayed, is_filter in FACETS:
+            try:
+                main_facet, sub_facet = facet.split('_')
+            except ValueError:
+                main_facet = facet
+                sub_facet = None
+            facet_enabled = kwargs.get(facet, None) is not None
             if facet_enabled:
-                if facet == 'date':
-                    if kwargs.get('date_from', None) is not None:
-                        sd = datetime.datetime.fromtimestamp(
-                            int(kwargs['date_from']) / 1000)
-                    else:
-                        sd = datetime.datetime.fromtimestamp(
-                            int(kwargs['date']) / 1000)
-                    if kwargs.get('date_to', None) is not None:
-                        ed = datetime.datetime.fromtimestamp(
-                            int(kwargs['date_to']) / 1000)
-                        ed_month = ed.month
-                        ed_year = ed.year
-                    else:
-                        ed_month = sd.month + 1
-                        ed_year = sd.year
-                        if ed_month > 12:
-                            ed_month = 1
-                            ed_year += 1
-                    es_query['filters'][facet] = {
-                        'from': "%s-%s-01T00:00:00" % (sd.year, sd.month,),
-                        'to': "%s-%s-01T00:00:00" % (ed_year, ed_month,)}
+                if main_facet == 'date':
+                    facet_value = datetime.datetime.fromtimestamp(
+                        int(kwargs[facet]) / 1000)
                 else:
-                    es_query['filters'][facet] = {
-                        'terms': [kwargs[facet]]}
+                    facet_value = kwargs[facet]
+
+                if sub_facet is not None:
+                    es_query['filters'][main_facet][sub_facet] = "%s-%s-01T00:00:00" % (
+                            facet_value.year, facet_value.month,)
+                else:
+                    es_query['filters'][facet] = {'terms': [kwargs[facet]]}
 
         plain_result = requests.post(
             '%s/search' % (self.URL,),
@@ -370,11 +359,8 @@ def search():
         'page': int(request.args.get('page', '1')),
         'query': request.args.get('query', None)}
 
-    for facet, desc in FACETS:
+    for facet, desc, is_displayed, is_filter in FACETS:
         search_params[facet] = request.args.get(facet, None)
-        if facet == 'date':
-            for p in ['date_to', 'date_from']:
-                search_params[p] = request.args.get(p, None)
 
 
     results = api.search(**search_params)

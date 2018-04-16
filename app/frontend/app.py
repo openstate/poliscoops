@@ -252,7 +252,7 @@ class BackendAPI(object):
         es_query = {
             "facets": {
                 "date": {
-                    "order": {"_key": "desc"}
+                    "order": {"_key": "asc"}
                 },
                 "location": {},
                 "sources": {},

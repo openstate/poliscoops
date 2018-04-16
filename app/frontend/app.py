@@ -242,6 +242,7 @@ def redis_client():
 
 class BackendAPI(object):
     URL = 'http://pfl_nginx_1/v0'
+    # URL = 'https://api.poliflw.nl/v0'
     HEADERS = {'Host': 'api.poliflw.nl'}
 
     def sources(self):
@@ -296,8 +297,7 @@ class BackendAPI(object):
                     facet_value = kwargs[facet]
 
                 if sub_facet is not None:
-                    es_query['filters'][main_facet][sub_facet] = "%s-%s-01T00:00:00" % (
-                            facet_value.year, facet_value.month,)
+                    es_query['filters'][main_facet][sub_facet] = facet_value.isoformat()
                 else:
                     es_query['filters'][facet] = {'terms': [kwargs[facet]]}
 

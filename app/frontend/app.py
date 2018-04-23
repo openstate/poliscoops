@@ -39,7 +39,7 @@ REWRITE_IMAGE_LINKS_CHECK = 'http:'
 FACETS = (
     # facet, label, display?, filter?
     ('date_from', 'Datum van', False, True,),
-    ('date_to', 'Datum van', False, True,),
+    ('date_to', 'Datum tot', False, True,),
     ('location', 'Locatie', True, True,),
     ('sources', 'Bron', True, True,),
     ('type', 'Soort', True, True,),
@@ -241,8 +241,8 @@ def redis_client():
 
 
 class BackendAPI(object):
-    URL = 'http://pfl_nginx_1/v0'
-    # URL = 'https://api.poliflw.nl/v0'
+    # URL = 'http://pfl_nginx_1/v0'
+    URL = 'https://api.poliflw.nl/v0'
     HEADERS = {'Host': 'api.poliflw.nl'}
 
     def sources(self):
@@ -254,7 +254,9 @@ class BackendAPI(object):
                 "date": {
                     "order": {"_key": "asc"}
                 },
-                "location": {},
+                "location": {
+                    "size": 1000
+                },
                 "sources": {},
                 "type": {},
                 "politicians": {},
@@ -345,7 +347,11 @@ api = BackendAPI()
 @app.route("/")
 def main():
     results = api.search(**{"size": 0, "page": 1})
-    return render_template('index.html', results=results)
+    return render_template(
+        'index.html',
+        results=results,
+        facets=FACETS,
+        visible_facets=[f for f in FACETS if f[2]])
 
 
 @app.route("/over")

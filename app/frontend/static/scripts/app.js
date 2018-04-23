@@ -89,6 +89,25 @@ Poliflw.init = function() {
       //document.location = document.location.origin + document.location.pathname + '?from=' + encodeURIComponent(start.format()) + '&to=' + encodeURIComponent(end.format());
     }
   );
+
+  $('.js-typeahead').typeahead({
+    order: "asc",
+    source: {
+        groupName: {
+            // Array of Objects / Strings
+            data: Poliflw.data.facets.location.buckets.map(function (i) { return i.key; })
+        }
+    },
+    callback: {
+        onInit: function () { console.log('typeahead inited!'); },
+        onSearch: function (n,q) { console.log('looking for ' + q); },
+        onShowLayout: function(n, q) { console.log('show layout'); },
+        onClickAfter (n, a, item, event) {
+          console.log('item ' + item.display + ' was selected!');
+          window.location = window.location.origin + '/zoeken?location=' + encodeURIComponent(item.display);
+        }
+    }
+  });
 };
 
 

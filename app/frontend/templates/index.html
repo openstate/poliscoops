@@ -3,6 +3,13 @@
 {% block content %}
 
 {% include 'search.html' %}
+<script type="text/javascript">
+var Poliflw = window.Poliflw || {
+  "api_base_url": "https://api.poliflw.nl/v0",
+};
+
+Poliflw.data = {{ results |tojson }};
+</script>
 
 <div class="row" style="margin-top: 3em;">
 <div class="col-xs-12 col-md-6 col-md-offset-3">
@@ -11,4 +18,26 @@
 </p>
 </div>
 </div>
+
+<div class="row" style="margin-top: 3em;">
+<div class="col-xs-12 col-md-6 col-md-offset-3">
+<p>
+<strong style="font-size: 19px;">
+  Of zoek naar een locatie:
+</strong>
+<form id="form-location" name="form-location">
+   <div class="typeahead__container">
+       <div class="typeahead__field">
+
+           <span class="typeahead__query">
+               <input class="js-typeahead form-control" name="location" type="search" placeholder="Amsterdam" autocomplete="off">
+           </span>
+       </div>
+   </div>
+</form>
+
+</p>
+</div>
+</div>
+
 {% endblock %}

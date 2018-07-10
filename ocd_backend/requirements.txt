@@ -17,7 +17,8 @@ python-dateutil==2.6.0
 python-magic==0.4.13
 pyOpenSSL
 translitcodec==0.4.0
-flower
+flower==0.9.2
+tornado==4.5.2
 xlrd
 sendgrid
 Sphinx==1.2.2

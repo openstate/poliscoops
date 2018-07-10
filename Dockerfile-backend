@@ -113,6 +113,7 @@ RUN source /opt/bin/activate \
 # Install poppler for pdfparser
 RUN git clone --depth 1 git://people.freedesktop.org/~cloos/poppler /tmp/poppler
 RUN git clone https://github.com/izderadicka/pdfparser.git /tmp/pdfparser
+RUN cd /tmp/pdfparser && git checkout 92f756b765f8dd5916f29a084f467b61f34f7c25
 WORKDIR /tmp/poppler/
 RUN ./autogen.sh \
   && ./configure --disable-poppler-qt4 --disable-poppler-qt5 --disable-poppler-cpp --disable-gtk-test --disable-splash-output --disable-utils \

@@ -2,7 +2,7 @@
 # Dockerfile-app
 
 
-FROM python:2.7
+FROM python:2.7.15
 MAINTAINER Open State Foundation <developers@openstate.eu>
 
 #Set Timezone

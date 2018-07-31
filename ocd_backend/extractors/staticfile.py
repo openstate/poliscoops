@@ -45,10 +45,18 @@ class StaticFileBaseExtractor(BaseExtractor, HttpRequestMixin):
         # Retrieve the static content from the source
         # TODO: disable ssl verification fro now since the
         # almanak implementation (of ssl) is broken.
-        r = self.http_session.get(self.file_url, verify=False)
-        r.raise_for_status()
 
-        static_content = r.content
+        try:
+            r = self.http_session.get(
+                self.file_url, verify=False,
+                timeout=self.source_definition.get('http_timeout', 10))
+            static_content = r.content
+            # r.raise_for_status()
+        except Exception:
+            static_content = u''
+
+        if static_content == u'':
+            return
 
         # Extract and yield the items
         for item in self.extract_items(static_content):

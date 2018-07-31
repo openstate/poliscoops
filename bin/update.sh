@@ -22,7 +22,9 @@ then
   # Update all sources but not their archives (i.e., only the most recent articles)
   echo "Starting extraction of $PFL_CURRENT_FILE"
   cat $PFL_CURRENT_FILE | xargs -I{} ./manage.py extract start {}
+  echo "Removing $PFL_CURRENT_FILE"
   rm -f $PFL_CURRENT_FILE
+  echo "Removed $PFL_CURRENT_FILE"  
 fi
 
 PFL_NUM_LEFT=`ls -1 .updating-sources-* 2>/dev/null |wc -l`

@@ -19,12 +19,14 @@ PFL_CURRENT_FILE=`ls -1 .updating-sources-* 2>/dev/null |head -1`
 
 if [ -n "$PFL_CURRENT_FILE" ];
 then
+  PFL_BUSY_FILE=`echo -n "$PFL_CURRENT_FILE" |sed -e 's/sources/busy/;'`
+  mv "$PFL_CURRENT_FILE" "$PFL_BUSY_FILE"
   # Update all sources but not their archives (i.e., only the most recent articles)
-  echo "Starting extraction of $PFL_CURRENT_FILE"
-  cat $PFL_CURRENT_FILE | xargs -I{} ./manage.py extract start {}
-  echo "Removing $PFL_CURRENT_FILE"
-  rm -f $PFL_CURRENT_FILE
-  echo "Removed $PFL_CURRENT_FILE"  
+  echo "Starting extraction of $PFL_BUSY_FILE"
+  cat $PFL_BUSY_FILE | xargs -I{} ./manage.py extract start {}
+  echo "Removing $PFL_BUSY_FILE"
+  rm -f $PFL_BUSY_FILE
+  echo "Removed $PFL_BUSY_FILE"
 fi
 
 PFL_NUM_LEFT=`ls -1 .updating-sources-* 2>/dev/null |wc -l`
@@ -32,6 +34,7 @@ if [ $PFL_NUM_LEFT -eq 0 ];
 then
   echo "No spool files left so removing updating indicator"
   rm -f .updating
+  rm -f .updating-busy-*
 fi
 
 # Update archives of all sources (i.e., everything)

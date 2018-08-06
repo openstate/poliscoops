@@ -10,14 +10,14 @@ then
   touch .updating
 
   # split for non FB sources
-  ./manage.py extract list_sources 2>/dev/null | grep -v '_archives_' | |grep -v '_fb_' |awk '{print $2}' | sed 1d >.updating-sources
+  ./manage.py extract list_sources 2>/dev/null | grep -v '_archives_' | grep -v '_fb_' |awk '{print $2}' | sed 1d >.updating-sources
   PFL_NUM_SOURCES=`cat .updating-sources |wc -l`
   # Aim to crawl everything every 6 hours. At 4 times per hour this is 24 cycles
   PFL_BLOCK_SIZE=`expr $PFL_NUM_SOURCES / 24 + 1`
   split -l $PFL_BLOCK_SIZE .updating-sources .updating-sources-
 
   # split for FB sources
-  ./manage.py extract list_sources 2>/dev/null | grep -v '_archives_' | |grep '_fb_' |awk '{print $2}' | sed 1d >.updating-facebook-sources
+  ./manage.py extract list_sources 2>/dev/null | grep -v '_archives_' | grep '_fb_' |awk '{print $2}' | sed 1d >.updating-facebook-sources
   PFL_NUM_SOURCES=`cat .updating-facebook-sources |wc -l`
   # Aim to crawl everything every 6 hours. At 4 times per hour this is 24 cycles
   PFL_BLOCK_SIZE=`expr $PFL_NUM_SOURCES / 24 + 1`

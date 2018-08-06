@@ -53,9 +53,9 @@ class StaticFileBaseExtractor(BaseExtractor, HttpRequestMixin):
             static_content = r.content
             # r.raise_for_status()
         except Exception:
-            static_content = u''
+            static_content = ''
 
-        if static_content == u'':
+        if static_content == '':
             return
 
         # Extract and yield the items

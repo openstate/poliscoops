@@ -41,6 +41,9 @@ def parse_search_request(data, doc_type, mlt=False):
     # Return an error when no query or an empty query string is provied
     query = data.get('query', None)
 
+    scroll = data.get('scroll', None)
+    scroll_id = data.get('scroll_id', None)
+
     # if not query and not mlt:
     #     raise OcdApiError('Missing \'query\'', 400)
 
@@ -181,7 +184,9 @@ def parse_search_request(data, doc_type, mlt=False):
         'order': order,
         'facets': facets,
         'filters': filters,
-        'include_fields': include_fields
+        'include_fields': include_fields,
+        'scroll': scroll,
+        'scroll_id': scroll_id
     }
 
 
@@ -225,6 +230,9 @@ def format_search_results(results, doc_type=u'item'):
         'total': results['hits']['total'],
         'took': results['took']
     }
+
+    if '_scroll_id' in results:
+        formatted_results['meta']['scroll'] = results['_scroll_id']
 
     return formatted_results
 
@@ -371,6 +379,21 @@ def search(doc_type=u'item'):
     es_r = current_app.es.search(body=es_q,
                                  index=current_app.config['COMBINED_INDEX'],
                                  doc_type=request_doc_type)
+    scroll = search_req['scroll']
+    scroll_id = search_req['scroll_id']
+    if scroll is not None:
+        if scroll_id is None:
+            es_r = current_app.es.search(
+                body=es_q,
+                index=current_app.config['COMBINED_INDEX'],
+                doc_type=request_doc_type, scroll=scroll)
+            scroll_id = es_r['_scroll_id']
+        es_r = current_app.es._es.scroll(scroll=scroll, scroll_id=scroll_id)
+    else:
+        es_r = current_app.es.search(
+            body=es_q,
+            index=current_app.config['COMBINED_INDEX'],
+            doc_type=request_doc_type)
 
     # Log a 'search' event if usage logging is enabled
     if current_app.config['USAGE_LOGGING_ENABLED']:
@@ -654,7 +677,7 @@ def get_object_stats(source_id, object_id, doc_type=u'item'):
         search_body.append({
             'index': current_app.config['USAGE_LOGGING_INDEX'],
             'type': query[1],
-            'search_type': 'count'
+            'size': 0
         })
         search_body.append(query[2])
 

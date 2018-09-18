@@ -158,36 +158,29 @@
                     "properties": {
                         "url": {
                             "type": "keyword",
-                            "index": "false",
-                            "copy_to": "media_url"
+                            "index": "false"
                         },
                         "original_url": {
                             "type": "keyword",
-                            "index": "false",
-                            "copy_to": "media_url"
+                            "index": "false"
                         },
                         "width": {
-                            "type": "integer",
-                            "copy_to": "media_url"
+                            "type": "integer"
                         },
                         "height": {
-                            "type": "integer",
-                            "copy_to": "media_url"
+                            "type": "integer"
                         },
                         "content_type": {
-                            "type": "keyword",
-                            "copy_to": "media_url"
+                            "type": "keyword"
                         },
                         "text": {
                           "type" : "text",
                           "analyzer": "text_nl",
-                          "fielddata": true,
-                          "copy_to": "media_url"
+                          "fielddata": true
                         },
                         "label": {
                           "type" : "text",
-                          "analyzer": "text_nl",
-                          "copy_to": "media_url"
+                          "analyzer": "text_nl"
                         }
                     }
                 },

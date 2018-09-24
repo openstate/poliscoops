@@ -21,7 +21,11 @@ class PVDDExtractor(BaseExtractor, HttpRequestMixin):
             # check if we get good status codes
             if (resp.status_code >= 300) or (resp.status_code < 200):
                 print "Page %s (%s) got status code: %s" % (page url, resp.status_code,)
-                page += 1  # we can continue?
+
+                if paging:
+                    page += 1  # we can continue?
+                else:
+                    finished = True
                 continue
 
             html = etree.HTML(resp.content)

@@ -2,7 +2,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://amsterdam.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -17,7 +26,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://apeldoorn.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -32,7 +50,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://arnhem.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -47,7 +74,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://buren.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -62,7 +98,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://denhaag.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -77,7 +122,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://gouda.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -92,7 +146,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://groningenstad.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -107,7 +170,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://leiden.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -122,7 +194,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://pijnacker-nootdorp.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -137,7 +218,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://rotterdam.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -152,7 +242,16 @@
   {
     "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor",
     "keep_index_on_update": true,
-    "enrichers": [["ocd_backend.enrichers.NEREnricher", {}]],
+    "enrichers": [
+      [
+        "ocd_backend.enrichers.NEREnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ]
+    ],
     "file_url": "https://utrechtstad.partijvoordedieren.nl/nieuws",
     "index_name": "pvdd",
     "transformer": "ocd_backend.transformers.BaseTransformer",

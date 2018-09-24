@@ -118,8 +118,8 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
         except Exception as e:
             log.exception('Unexpected NER enrichment error: %s'
                           % (e.message,))
-            log.exception(resp.content)
-            log.exception(json_encoder.encode(doc))
+            # log.exception(resp.content)
+            # log.exception(json_encoder.encode(doc))
 
             r = {
                 'parties': [], 'politicians': [], 'topics': [], 'sentiment': {}
@@ -139,4 +139,25 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
 
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
         enrichments.update(self._perform_ner(object_id, combined_index_doc))
+        return enrichments
+
+
+class BinoasEnricher(BaseEnricher, HttpRequestMixin):
+    def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
+        url = 'http://binoas.openstate.eu/posts/new'
+        r = {}
+        resp = None
+        log.info('sending to binoas: ' + str(doc))
+        try:
+            resp = self.http_session.post(
+                url, data=json_encoder.encode({
+                    'application': 'poliflw',
+                    'payload': doc}))
+            r = resp.json()
+        except Exception as e:
+            log.exception('Unexpected binoas enrichment error: %s'
+                          % (e.message,))
+            log.exception(resp.content)
+            log.exception(doc)
+        log.info('binoas result: ' + str(r))
         return enrichments

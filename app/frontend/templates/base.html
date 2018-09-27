@@ -115,6 +115,52 @@
       </div>
     </footer>
 
+    <!-- modals -->
+    {% if query %}
+
+    <div class="modal fade" id="form-email-subscribe" tabindex="-1" role="dialog" aria-labelledby="form-email-subscribe-label">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="form-email-subscribe-label">Abboneren op zoekopdracht</h4>
+          </div>
+          <div class="modal-body">
+            <p>Kies een van de onderstaande opties en vul je email adres in om je te abboneren op de zoekopdracht &apos;{{ query }}&apos;:</p>
+            <form>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="frequency" id="frequency" value="" checked>
+                  Directe notificatie
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="frequency" id="frequency" value="1h">
+                  Elk uur
+                </label>
+              </div>
+              <div class="radio disabled">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios3" value="6h" disabled>
+                  Elke zes uur
+                </label>
+              </div>
+              <div class="form-group">
+                <label for="form-subscribe-email">Email adres</label>
+                <input type="text" class="form-control" name="email" id="form-subscribe-email" placeholder="jan@example.org">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Abboneren</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
     <!-- SCRIPTS -->
 
     <!-- Bootstrap JS -->

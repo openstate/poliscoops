@@ -50,6 +50,13 @@ $(document).ready(function() {
             X
           </button>
         </div>
+        {% if query %}
+        <div style="margin-top: 9px;">
+          <button class="btn btn-large btn-primary btn-category btn-block" style="color: white !important;"  data-toggle="modal" data-target="#form-email-subscribe">
+            Abboneer op zoekopdracht
+          </button>
+        </div>
+        {% endif %}
         <h2>Periode</h2>
         <div id="graph-monthly" class="graph">
           <svg></svg>

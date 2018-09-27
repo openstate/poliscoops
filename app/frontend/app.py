@@ -462,5 +462,12 @@ def put_topic(article_id):
         data=request.data, headers={'Content-type': 'application/json'}
     ).content)
 
+
+@app.route("/_email_subscribe", methods=['POST'])
+def email_subscribe():
+    return jsonify(requests.post(
+        'http://binoas.openstate.eu/subscriptions/new',
+        data=request.data).content)
+
 def create_app():
     return app

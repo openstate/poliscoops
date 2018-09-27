@@ -17,6 +17,53 @@ Poliflw.init = function() {
     $(this).hide();
   });
 
+  $('#form-email-subscribe form').on('submit', function (e) {
+    console.log('form submitted!!');
+    var $frm = $('#form-email-subscribe form');
+    var uq = $('#form-email-subscribe').attr('data-user-query');
+    var frq = $frm[0].frequency.value;
+    var json = {
+      application: 'poliflw',
+      email: $frm[0].email.value,
+      frequency: frq == '' ? null : frq,
+      description: uq,
+      query: {
+        match: {
+          title: uq
+        }
+      }
+    };
+    // FIXME: send actual call to binoas here ...
+    console.log(JSON.stringify(json));
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/_email_subscribe",
+        data: JSON.stringify(json),
+
+        success: function (data) {
+            let response = JSON.parse(data);
+
+            if (response.status == "error") {
+              console.log('FOUT ' + response.error);
+            } else {
+              console.log("Binoas says:");
+              console.dir(response);
+            }
+        },
+
+        error: function (error) {
+          console.log('FOUT ' + error);
+        }
+    });
+
+    $('#form-email-subscribe').modal('hide');
+    $(".modal-backdrop.in").hide();
+    e.preventDefault();
+    return false;
+  });
+
   $('.collapse').collapse({toggle: false});
 
   $('.description-collapse').on('click', function(e) {
@@ -108,6 +155,7 @@ Poliflw.init = function() {
         }
     }
   });
+
 };
 
 

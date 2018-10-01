@@ -28,12 +28,15 @@ Poliflw.init = function() {
       frequency: frq == '' ? null : frq,
       description: uq,
       query: {
-        match: {
-          title: uq
+        query: {
+          simple_query_string : {
+            query: uq,
+            fields: ['title', 'description', 'data.value'],
+            default_operator: "and"
+          }
         }
       }
     };
-    // FIXME: send actual call to binoas here ...
     console.log(JSON.stringify(json));
 
     $.ajax({

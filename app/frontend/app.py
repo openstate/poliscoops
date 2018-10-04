@@ -471,5 +471,21 @@ def email_subscribe():
         'http://binoas.openstate.eu/subscriptions/new',
         data=request.data).content)
 
+
+@app.route("/unsubscribe", methods=['GET'])
+def email_unsubscribe():
+    data = {
+        'query_id': request.args.get('query_id', None),
+        'user_id': request.args.get('user_id', None),
+    }
+    if data['query_id'] is not None and data['user_id'] is not None:
+        result = requests.delete(
+            'http://binoas.openstate.eu/subscriptions/delete',
+            data=json.dumps(data))
+    else:
+        result = None
+    return render_template('unsubscribe.html', result=result)
+
+
 def create_app():
     return app

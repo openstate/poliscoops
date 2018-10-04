@@ -140,6 +140,14 @@ Poliflw.init = function() {
     }
   );
 
+  $('#form-location').on('submit', function (e) {
+      e.preventDefault();
+      var lower = $('#form-location input[type="search"]').val();
+      var upper = lower.charAt(0).toUpperCase() + lower.substr(1);
+      window.location = window.location.origin + '/zoeken?location=' + encodeURIComponent(upper);
+      return false;
+  });
+
   $('.js-typeahead').typeahead({
     order: "asc",
     source: {

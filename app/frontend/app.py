@@ -371,7 +371,9 @@ def search():
 
     results = api.search(**search_params)
     try:
-        max_pages = int(math.ceil(results['meta']['total'] / PAGE_SIZE))
+        max_pages = int(math.floor(results['meta']['total'] / PAGE_SIZE))
+        if (results['meta']['total'] % PAGE_SIZE) > 0:
+            max_pages += 1
     except LookupError:
         max_pages = 0
     return render_template(

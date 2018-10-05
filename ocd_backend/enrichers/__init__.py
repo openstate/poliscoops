@@ -152,7 +152,8 @@ class BinoasEnricher(BaseEnricher, HttpRequestMixin):
                 'Document has no date information, not enriching for binoas')
             return enrichments
 
-        current_dt = datetime.datetime.now(tz=pytz.utc)
+        amsterdam_tz = pytz.timezone('Europe/Amsterdam')
+        current_dt = datetime.datetime.now(tz=amsterdam_tz)
         try:
             current_tz = doc['date'].tzinfo
         except AttributeError:
@@ -160,7 +161,9 @@ class BinoasEnricher(BaseEnricher, HttpRequestMixin):
         if current_tz is not None:
             delay = current_dt - doc['date']
         else:
-            adjusted_dt = iso8601.parse_date(doc['date'].isoformat())  # UTC
+            # adjust for amsterdam time
+            adjusted_dt = iso8601.parse_date('%s+02:00' % (
+                doc['date'].isoformat()))
             delay = current_dt - adjusted_dt
 
         if delay.total_seconds() > (6 * 3600.0):

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'search.html' %}
+
+<div class="row">
+  <div class="col-xs-12 article-text">
+    {% if result %}
+      {% if result.status_code == 200 %}
+        <p>Uw alert is uitgezet.</p>
+      {% else %}
+        <p>Helaas, er ging iets mis. Probeer het later nog een keer.</p>
+      {% endif %}
+    {% else %}
+      <p>Helaas, er ging iets mis. Probeer het later nog een keer.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

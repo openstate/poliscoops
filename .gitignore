@@ -56,6 +56,7 @@ local_dumps/
 
 # logs
 *.log
+log/
 
 dumps/*
 local_dumps/*
@@ -63,3 +64,6 @@ ocd_frontend/.thumbnail-cache/*
 log/*log*
 log/*err*
 log/*.pid
+
+.updating*
+ocd_backend/sources/*-facebook.json

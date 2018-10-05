@@ -140,7 +140,19 @@
             <h4 class="modal-title" id="form-email-subscribe-label">Abboneren op zoekopdracht</h4>
           </div>
           <div class="modal-body">
-            <p>Kies een van de onderstaande opties en vul je email adres in om je te abboneren op de zoekopdracht &apos;{{ query }}&apos;:</p>
+            <p>Je kan je hier abboneren op de volgende zoekopdracht:
+            <ul id="form-email-subscribe-filters">
+              <li>
+                <em>Zoekterm:</em> &apos;{{ query }}&apos;
+              </li>
+              <li id="form-email-subscribe-filters-location">
+                <em>Locatie:</em> <span>-</span>
+              </li>
+              <li id="form-email-subscribe-filters-parties">
+                <em>Partij:</em> <span>-</span>
+              </li>
+            </ul>
+            <p>Kies een van de onderstaande opties en vul je email adres in om je te abboneren op bovenstaande zoekopdracht</p>
               <div class="radio">
                 <label>
                   <input type="radio" name="frequency" id="frequency" value="" checked>

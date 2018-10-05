@@ -27,6 +27,16 @@ Poliflw.init = function() {
   //    url: window.location.href
   //  });
 
+  $('#form-email-subscribe').on('shown.bs.modal', function () {
+    var qp = Poliflw.queryParams();
+    var possible_filters = ['location', 'parties'];
+    possible_filters.forEach(function (i) {
+      if (i in qp) {
+        console.log('#form-email-subscribe-filters-' + i + ' span');
+        $('#form-email-subscribe-filters-' + i + ' span').html(qp[i]);
+      }
+    });
+  });
   // make the button disappear
   $('.toggle-hide-after[data-toggle="collapse"]').on('click', function() {
     console.log('toggle hide after±');

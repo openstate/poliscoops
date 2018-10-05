@@ -2,6 +2,22 @@ var Poliflw = window.Poliflw || {
   "api_base_url": "https://api.poliflw.nl/v0",
 };
 
+Poliflw.queryParams = function() {
+  var pairs = window.location.search.substring(1).split("&"),
+    obj = {},
+    pair,
+    i;
+
+  for ( i in pairs ) {
+    if ( pairs[i] === "" ) continue;
+
+    pair = pairs[i].split("=");
+    obj[ decodeURIComponent( pair[0].replace(/\+/gm,"%20") ) ] = decodeURIComponent( pair[1].replace(/\+/gm,"%20") );
+  }
+
+  return obj;
+};
+
 Poliflw.init = function() {
   // init here
 
@@ -19,25 +35,59 @@ Poliflw.init = function() {
 
   $('#form-email-subscribe form').on('submit', function (e) {
     console.log('form submitted!!');
+    var qp = Poliflw.queryParams();
+    var possible_filters = ['location', 'parties'];
+    console.dir(qp);
     var $frm = $('#form-email-subscribe form');
     var uq = $('#form-email-subscribe').attr('data-user-query');
     var frq = $frm[0].frequency.value;
+    var sqs = {
+      simple_query_string : {
+        query: uq,
+        fields: ['title', 'description', 'data.value'],
+        default_operator: "and"
+      }
+    };
     var json = {
       application: 'poliflw',
       email: $frm[0].email.value,
       frequency: frq == '' ? null : frq,
       description: uq,
       query: {
-        query: {
-          simple_query_string : {
-            query: uq,
-            fields: ['title', 'description', 'data.value'],
-            default_operator: "and"
-          }
-        }
+        query: sqs
       }
     };
+
+    var num_filters = 0;
+    var active_filters = [];
+    possible_filters.forEach(function (i) {
+      if (i in qp) {
+        num_filters++;
+        active_filters.push({
+          "term": {"data.key": i}
+        });
+        active_filters.push({
+          "term": {"data.value": qp[i].toLowerCase()}
+        });
+      }
+    });
+
+    if (num_filters > 0) {
+      json.query = {
+        query: {
+          bool: {
+            must: sqs,
+            filter: active_filters
+          }
+        }
+      };
+    }
+    console.log('Number of filters active: ' + num_filters);
     console.log(JSON.stringify(json));
+
+    // FIXME: remove the next two lines before deploying
+    // e.preventDefault();
+    // return false;
 
     $.ajax({
         type: "POST",

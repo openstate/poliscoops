@@ -7,7 +7,10 @@ from ocd_backend.log import get_source_logger
 from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.utils import json_encoder
 
+import datetime
 import json
+import pytz
+import iso8601
 
 log = get_source_logger('enricher')
 
@@ -144,6 +147,27 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
 
 class BinoasEnricher(BaseEnricher, HttpRequestMixin):
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
+        if 'date' not in doc:
+            log.info(
+                'Document has no date information, not enriching for binoas')
+            return enrichments
+
+        current_dt = datetime.datetime.now(tz=pytz.utc)
+        try:
+            current_tz = doc['date'].tzinfo
+        except AttributeError:
+            current_tz = None
+        if current_tz is not None:
+            delay = current_dt - doc['date']
+        else:
+            adjusted_dt = iso8601.parse_date(doc['date'].isoformat())  # UTC
+            delay = current_dt - adjusted_dt
+
+        if delay.total_seconds() > (6 * 3600.0):
+            log.info('Document delayed for %s so we have seen it before' % (
+                str(delay),))
+            return enrichments
+
         url = 'http://binoas.openstate.eu/posts/new'
         r = {}
         resp = None

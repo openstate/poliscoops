@@ -147,6 +147,12 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
 
 class BinoasEnricher(BaseEnricher, HttpRequestMixin):
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
+        doc['id'] = unicode(object_id)
+        if 'meta' in doc:
+            doc['meta']['pfl_url'] = unicode(
+                "https://api.poliflw.nl/v0/%s/%s" % (
+                    doc['meta']['source_id'], object_id,))
+
         if 'date' not in doc:
             log.info(
                 'Document has no date information, not enriching for binoas')

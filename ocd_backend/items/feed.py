@@ -9,6 +9,11 @@ from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.items import BaseItem
 
 
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.common.exceptions import WebDriverException
+
+
 class FeedItem(BaseItem):
     def get_original_object_id(self):
         return unicode(self.original_item['link'])
@@ -94,6 +99,54 @@ class FeedFullTextItem(FeedItem, HttpRequestMixin):
         output = u''
         for elem in html.xpath(self.source_definition['content_xpath']):
             output += unicode(etree.tostring(elem))
+
+        if output.strip() != u'':
+            combined_index_data['description'] = output
+
+        return combined_index_data
+
+
+class FeedPhantomJSItem(FeedItem):
+    def get_combined_index_data(self):
+        combined_index_data = super(
+            FeedFullTextItem, self).get_combined_index_data()
+
+        driver = webdriver.Remote(
+            command_executor='http://phantomjs:8910',
+            desired_capabilities=DesiredCapabilities.PHANTOMJS)
+
+        driver.get(self.original_item['link'])
+
+        with open('detect.js') as in_file:
+            detect_js = in_file.read()
+
+        detect_js += """
+        window._html_output = '';
+
+        // define
+        (function() {
+            var _detect = {
+              'callbacks': {
+              'finished': function (_result) { window._html_output = _result._html; },
+             },
+             'window': window,
+             'jQuery': window.jQuery
+            };
+            _detect = initClearlyComponent__detect(_detect);
+            _detect.start();
+        })();
+        """
+
+        try:
+            driver.execute_script(detect_js)
+        except WebDriverException as e:
+            pass
+
+        # print driver.get_log('browser')
+
+        output = driver.execute_script(
+            'return window._html_output;')
+        driver.quit()
 
         if output.strip() != u'':
             combined_index_data['description'] = output

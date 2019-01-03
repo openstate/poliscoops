@@ -3,6 +3,7 @@ import sys
 
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.common.exceptions import WebDriverException
 
 driver = webdriver.Remote(
     command_executor='http://phantomjs:8910',
@@ -18,21 +19,26 @@ with open('detect.js') as in_file:
     detect_js = in_file.read()
 
 detect_js += """
-window._html_output = 'blah';
+window._html_output = '';
 
 // define
-var _detect = {
-  'callbacks': {
-  'finished': function (_result) { window._html_output = _result._html; },
- },
- 'window': window,
- 'jQuery': window.jQuery
-};
-_detect = initClearlyComponent__detect(_detect);
-_detect.start();
+(function() {
+    var _detect = {
+      'callbacks': {
+      'finished': function (_result) { window._html_output = _result._html; },
+     },
+     'window': window,
+     'jQuery': window.jQuery
+    };
+    _detect = initClearlyComponent__detect(_detect);
+    _detect.start();
+})();
 """
 
-driver.execute_script(detect_js)
+try:
+    driver.execute_script(detect_js)
+except WebDriverException as e:
+    pass
 
 # print driver.get_log('browser')
 

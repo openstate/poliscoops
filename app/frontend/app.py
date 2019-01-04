@@ -66,7 +66,8 @@ def allow_src(tag, name, value):
 
 def image_rewrite(url, doc_id):
     if url.startswith(REWRITE_IMAGE_LINKS_CHECK):
-        img_hash = hashlib.md5('%s:%s' % (doc_id, url)).hexdigest()
+        img_hash = hashlib.md5('%s:%s' % (
+            doc_id.encode('utf-8'), url.encode('utf-8'))).hexdigest()
         return url_for('link_proxy', hash=img_hash, url=url, id=doc_id)
     else:
         return url
@@ -413,7 +414,8 @@ def link_proxy(hash):
     if doc_id is None:
         abort(404)
 
-    img_hash = hashlib.md5('%s:%s' % (doc_id, url)).hexdigest()
+    img_hash = hashlib.md5('%s:%s' % (
+        doc_id.encode('utf-8'), url.encode('utf-8'))).hexdigest()
 
     if hash != img_hash:
         abort(404)

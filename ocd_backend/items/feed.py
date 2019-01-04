@@ -107,17 +107,22 @@ class FeedFullTextItem(FeedItem, HttpRequestMixin):
 
 
 class FeedPhantomJSItem(FeedItem):
+    @property
+    def driver(self):
+        driver = getattr(self, '_driver', None)
+        if not driver:
+            self._driver = webdriver.Remote(
+                command_executor='http://phantomjs:8910',
+                desired_capabilities=DesiredCapabilities.PHANTOMJS)
+        return self._driver
+
     def get_combined_index_data(self):
         combined_index_data = super(
-            FeedFullTextItem, self).get_combined_index_data()
+            FeedPhantomJSItem, self).get_combined_index_data()
 
-        driver = webdriver.Remote(
-            command_executor='http://phantomjs:8910',
-            desired_capabilities=DesiredCapabilities.PHANTOMJS)
+        self.driver.get(self.original_item['link'])
 
-        driver.get(self.original_item['link'])
-
-        with open('detect.js') as in_file:
+        with open('/opt/pfl/scripts/detect.js') as in_file:
             detect_js = in_file.read()
 
         detect_js += """
@@ -138,15 +143,15 @@ class FeedPhantomJSItem(FeedItem):
         """
 
         try:
-            driver.execute_script(detect_js)
+            self.driver.execute_script(detect_js)
         except WebDriverException as e:
             pass
 
         # print driver.get_log('browser')
 
-        output = driver.execute_script(
+        output = self.driver.execute_script(
             'return window._html_output;')
-        driver.quit()
+        # self.driver.quit()
 
         if output.strip() != u'':
             combined_index_data['description'] = output

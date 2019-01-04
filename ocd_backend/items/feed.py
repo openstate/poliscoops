@@ -7,7 +7,7 @@ from lxml import etree
 
 from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.items import BaseItem
-
+from ocd_backend.utils.misc import html_cleanup
 
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -106,54 +106,53 @@ class FeedFullTextItem(FeedItem, HttpRequestMixin):
         return combined_index_data
 
 
-class FeedPhantomJSItem(FeedItem):
-    @property
-    def driver(self):
-        driver = getattr(self, '_driver', None)
-        if not driver:
-            self._driver = webdriver.Remote(
-                command_executor='http://phantomjs:8910',
-                desired_capabilities=DesiredCapabilities.PHANTOMJS)
-        return self._driver
+class FeedPhantomJSItem(FeedItem, HttpRequestMixin):
+    def safe_xpath_string(self, strvar):
+        if "'" in strvar:
+            return "',\"'\",'".join(strvar.split("'")).join(("concat('","')"))
+        return strvar.join("''")
 
     def get_combined_index_data(self):
         combined_index_data = super(
             FeedPhantomJSItem, self).get_combined_index_data()
 
-        self.driver.get(self.original_item['link'])
+        r = self.http_session.get(self.original_item['link'])
+        print >>sys.stderr, "Got %s with status code : %s" % (
+            self.original_item['link'], r.status_code)
 
-        with open('/opt/pfl/scripts/detect.js') as in_file:
-            detect_js = in_file.read()
-
-        detect_js += """
-        window._html_output = '';
-
-        // define
-        (function() {
-            var _detect = {
-              'callbacks': {
-              'finished': function (_result) { window._html_output = _result._html; },
-             },
-             'window': window,
-             'jQuery': window.jQuery
-            };
-            _detect = initClearlyComponent__detect(_detect);
-            _detect.start();
-        })();
-        """
+        # only continue if we got the page
+        if r.status_code < 200 or r.status_code >= 300:
+            return combined_index_data
 
         try:
-            self.driver.execute_script(detect_js)
-        except WebDriverException as e:
-            pass
+            html = etree.HTML(r.content)
+        except etree.ElementTree.ParseError as e:
+            return combined_index_data
 
-        # print driver.get_log('browser')
+        clean_desc = html_cleanup(combined_index_data['description']).replace('&nbsp;', '').strip()
+        print >>sys.stderr, "Parsing went ok..., now searching for %s" % (
+            clean_desc[0:20])
 
-        output = self.driver.execute_script(
-            'return window._html_output;')
-        # self.driver.quit()
+        # might need to extract xpath here for better results
+        try:
+            e = html.xpath(
+                '//body//*[starts-with(text(),%s)]' % (
+                    self.safe_xpath_string(
+                        clean_desc[0:20]),))[0]
+        except LookupError as e:
+            print >>sys.stderr, e
+            e = None
+        output = u''
+        if e is not None:
+            p = e  # .getparent()
+            while p is not None and p.tag not in ['div', 'article', 'section']:
+                p = p.getparent()
+
+            if p is not None:
+                output = etree.tostring(p.getparent())
 
         if output.strip() != u'':
-            combined_index_data['description'] = output
+            print >>sys.stderr, output
+            combined_index_data['description'] = unicode(output)
 
         return combined_index_data

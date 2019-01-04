@@ -20,3 +20,4 @@ translitcodec==0.4.0
 uWSGI==2.0.17.1
 virtualenv==15.0.3
 Werkzeug==0.11.10
+html5lib==1.0.1

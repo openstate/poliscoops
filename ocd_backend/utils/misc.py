@@ -5,7 +5,9 @@ import glob
 import translitcodec
 
 from elasticsearch.helpers import scan, bulk
-
+import bleach
+from bleach.sanitizer import Cleaner
+from html5lib.filters.base import Filter
 
 def reindex(client, source_index, target_index, target_client=None, chunk_size=500, scroll='5m', transformation_callable=None):
     """
@@ -160,3 +162,15 @@ def slugify(text, delim=u'-'):
         if word:
             result.append(word)
     return unicode(delim.join(result))
+
+
+def html_cleanup(s):
+    ATTRS = {
+    }
+    TAGS = []
+    cleaner = Cleaner(
+        tags=TAGS, attributes=ATTRS, filters=[Filter], strip=True)
+    try:
+        return cleaner.clean(s).replace('&amp;nbsp;', '')
+    except TypeError:
+        return u''

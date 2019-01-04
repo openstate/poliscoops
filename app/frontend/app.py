@@ -242,8 +242,8 @@ def redis_client():
 
 
 class BackendAPI(object):
-    # URL = 'http://pfl_nginx_1/v0'
-    URL = 'https://api.poliflw.nl/v0'
+    URL = 'http://pfl_nginx_1/v0'
+    # URL = 'https://api.poliflw.nl/v0'
     HEADERS = {'Host': 'api.poliflw.nl'}
 
     def sources(self):

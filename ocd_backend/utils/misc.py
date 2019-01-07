@@ -174,3 +174,28 @@ def html_cleanup(s):
         return cleaner.clean(s).replace('&amp;nbsp;', '')
     except TypeError:
         return u''
+
+
+def allow_src(tag, name, value):
+    if (name in ('id', 'class')):
+        return True
+    if (tag == 'img') and (name in ('alt', 'height', 'width', 'src')):
+        return True
+    if (tag == 'a') and (name in ('href')):
+        return True
+    if (tag in ('script', 'html', 'body', 'head', 'title', 'style')):
+        return True
+    return False
+
+
+def html_cleanup_with_structure(s):
+    ATTRS = {
+        '*': allow_src
+    }
+    TAGS = ['img', 'a', 'p', 'div', 'script', 'html', 'body', 'head', 'title', 'style']
+    cleaner = Cleaner(
+        tags=TAGS, attributes=ATTRS, filters=[Filter], strip=True)
+    try:
+        return cleaner.clean(s).replace('&amp;nbsp;', '')
+    except TypeError:
+        return u''

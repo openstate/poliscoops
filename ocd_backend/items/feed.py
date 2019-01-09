@@ -6,6 +6,8 @@ import iso8601
 
 from lxml import etree
 
+from jparser import PageModel
+
 from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.items import BaseItem
 from ocd_backend.utils.misc import html_cleanup, html_cleanup_with_structure
@@ -107,47 +109,12 @@ class FeedFullTextItem(FeedItem, HttpRequestMixin):
         return combined_index_data
 
 
-def get_node_quantifier(node, target='*', indent=1):
-    children = node.xpath('./%s' % (target))
-    if len(children) > 0:
-        result = []
-        result_len = 0
-        result_content = u''
-        for c in children:
-            result += get_node_quantifier(c, target, indent + 1)
-        result_len = sum([x[3] for x in result if x[0] == indent + 1])
-        result += [(indent, target, result_content, result_len, node.tag, node)]
-        return result
-    else:  # sentinel
-        content = re.sub('\s+', u' ', u' '.join(node.xpath('.//text()')))
-        return [(indent, target, content, len(content), node.tag, node)]
-
-
-def print_node_quantifier_result(results):
-    for indent, target, content, con_len, node_tag, node in results:
-        if node_tag not in ('script', 'style') and con_len > 100 and content.strip() != u'':
-            print >>sys.stderr, "%s%s (%s): %s" % ("*"*indent, target, con_len, content)
-
-
-def get_node_quantifier_as_html(results):
-    result = u''
-    for indent, target, content, con_len, node_tag, node in results:
-        if node_tag not in ('script', 'style') and con_len > 100 and content.strip() != u'':
-            result += etree.tostring(node)
-    return result
-
-
 class FeedPhantomJSItem(FeedItem, HttpRequestMixin):
-    def safe_xpath_string(self, strvar):
-        if "'" in strvar:
-            return "',\"'\",'".join(strvar.split("'")).join(("concat('","')"))
-        return strvar.join("''")
-
     def get_combined_index_data(self):
         combined_index_data = super(
             FeedPhantomJSItem, self).get_combined_index_data()
 
-        r = self.http_session.get(self.original_item['link'])
+        r = self.http_session.get(self.original_item['link'], timeout=5)
         print >>sys.stderr, "Got %s with status code : %s" % (
             self.original_item['link'], r.status_code)
 
@@ -160,52 +127,23 @@ class FeedPhantomJSItem(FeedItem, HttpRequestMixin):
         except etree.ElementTree.ParseError as e:
             return combined_index_data
 
-        clean_content = html_cleanup_with_structure(full_content)
-        html = etree.HTML(clean_content)
-
-        clean_desc = html_cleanup_with_structure(
-            combined_index_data['description']).replace('&nbsp;', '').strip()
-        # print >>sys.stderr, "Parsing went ok..., now searching for %s" % (
-        #     clean_desc[0:20])
-
+        # TODO: Fix byte 0xff problem: 'utf8' codec can't decode byte 0xff in position <x>: invalid start byte
+        # TODO: Fix Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+        # TODO: remove things like: Share on Facebook Share Share on Twitter Tweet Share on Pinterest Share Share on LinkedIn Share Send email Mail Print Print
         try:
-            body = html.xpath('./body')[0]
+            cleaned = PageModel(full_content.decode(r.encoding)).extract()
         except Exception as e:
-            body = None
+            print >>sys.stderr, e
+            cleaned = {}
 
-        if body is None:
-            return combined_index_data
-
-        result = get_node_quantifier(body)
-        combined_index_data['description'] = get_node_quantifier_as_html(result)
-        print_node_quantifier_result(result)
-        # print >>sys.stderr, "Found %s divs (%s)" % (len(divs), ','.join([x.tag for x in divs]))
-        #
-        # lengths = []
-        # for div in divs:
-        #     l = u' '.join(div.xpath('.//text()'))
-        #     lengths.append(len(re.sub('\s+', ' ', l)))
-        # print >>sys.stderr, "Lengths: %s" % (u','.join([str(l) for l in lengths]))
-        # # might need to extract xpath here for better results
-        # try:
-        #     e = html.xpath(
-        #         '//body//*[starts-with(text(),%s)]' % (
-        #             self.safe_xpath_string(
-        #                 clean_desc[0:20]),))[0]
-        # except LookupError as e:
-        #     print >>sys.stderr, e
-        #     e = None
         output = u''
-        # if e is not None:
-        #     p = e  # .getparent()
-        #     while p is not None and p.tag not in ['div', 'article', 'section']:
-        #         p = p.getparent()
-        #
-        #     if p is not None:
-        #         output = etree.tostring(p.getparent())
+        for elem in cleaned.get('content', []):
+            if elem['type'] == 'text':
+                output += '<p>%s</p>' % (elem['data'],)
+            if elem['type'] == 'image':
+                output += '<img src="%s" />' % (elem['data']['src'],)
 
         if output.strip() != u'':
-            # print >>sys.stderr, output
             combined_index_data['description'] = unicode(output)
 
         return combined_index_data

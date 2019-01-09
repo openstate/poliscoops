@@ -28,3 +28,4 @@ sphinx-rtd-theme==0.1.6
 selenium
 bleach==3.0.2
 html5lib==1.0.1
+jparser

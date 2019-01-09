@@ -139,7 +139,9 @@ class FeedPhantomJSItem(FeedItem, HttpRequestMixin):
         output = u''
         for elem in cleaned.get('content', []):
             if elem['type'] == 'text':
-                output += '<p>%s</p>' % (elem['data'],)
+                # if it starts with these words it's probably garbage
+                if re.match('^\s*(Share|Deel|Delen|Send|Print)\s*', elem['data']) is None:
+                    output += '<p>%s</p>' % (elem['data'],)
             if elem['type'] == 'image':
                 output += '<img src="%s" />' % (elem['data']['src'],)
 

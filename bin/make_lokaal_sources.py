@@ -9,11 +9,23 @@ sys.path.insert(0, '.')
 from ocd_backend.utils.misc import slugify
 
 
-def convert_party(party, locations):
+def convert_party(party, feed_type, locations):
     slug = slugify(party['Partij']).replace('-', '_')
     slug_location = slugify(party['RegioNaam']).replace('-', '_')
+
+    feed_type_defs = {
+        'Feed': {
+            "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+            "item": "ocd_backend.items.feed.FeedPhantomJSItem"
+        },
+        'Facebook': {
+            "extractor": "ocd_backend.extractors.facebook.FacebookExtractor",
+            "item": "ocd_backend.items.facebook.PageItem"
+        }
+    }
+
     result = {
-        "extractor": "ocd_backend.extractors.feed.FeedExtractor",
+        "extractor": feed_type_defs[feed_type]['extractor'],
         "keep_index_on_update": True,
         "enrichers": [
           # [
@@ -25,12 +37,12 @@ def convert_party(party, locations):
           #   {}
           # ]
         ],
-        "file_url": party['Feed'],
+        "file_url": party[feed_type],
         "index_name": slug,
         "transformer": "ocd_backend.transformers.BaseTransformer",
         "collection": party['Partij'],
         "loader": "ocd_backend.loaders.ElasticsearchLoader",
-        "item": "ocd_backend.items.feed.FeedPhantomJSItem",
+        "item": feed_type_defs[feed_type]['item'],
         "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
         "location": _normalize_location(party['RegioNaam'], locations),
         "hidden": False,
@@ -61,6 +73,11 @@ def _normalize_location(location, LOCATIONS):
 
 
 def main(argv):
+    if len(argv) > 1:
+        feed_type = argv[1]
+    else:
+        feed_type = 'Feed'
+    print >>sys.stderr, "Looking for %s sources ..." % (feed_type,)
     locations = _get_normalized_locations()
     parties = []
 
@@ -69,8 +86,8 @@ def main(argv):
         parties = json.load(in_file)
 
     for party in parties:
-        if party['Feed'] != '':
-            result.append(convert_party(party, locations))
+        if party[feed_type] != '':
+            result.append(convert_party(party, feed_type, locations))
 
     print json.dumps(result, indent=2)
     return 0

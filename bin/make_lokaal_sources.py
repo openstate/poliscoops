@@ -9,6 +9,16 @@ sys.path.insert(0, '.')
 from ocd_backend.utils.misc import slugify
 
 
+def get_facebook_path(full_url):
+    parts = full_url.replace(
+        "https://www.facebook.com/", "").split("/")
+    first_part = parts[0]
+    if first_part in ['groups', 'pages']:
+        return "%s/%s" % (parts[0], parts[1],)
+    else:
+        return first_part
+
+
 def convert_party(party, feed_type, locations):
     slug = slugify(party['Partij']).replace('-', '_')
     slug_location = slugify(party['RegioNaam']).replace('-', '_')
@@ -16,11 +26,22 @@ def convert_party(party, feed_type, locations):
     feed_type_defs = {
         'Feed': {
             "extractor": "ocd_backend.extractors.feed.FeedExtractor",
-            "item": "ocd_backend.items.feed.FeedPhantomJSItem"
+            "item": "ocd_backend.items.feed.FeedPhantomJSItem",
+            'env': {
+
+            }
         },
         'Facebook': {
             "extractor": "ocd_backend.extractors.facebook.FacebookExtractor",
-            "item": "ocd_backend.items.facebook.PageItem"
+            "item": "ocd_backend.items.facebook.PageItem",
+            'env': {
+                'app_secret': os.environ.get('FACEBOOK_APP_SECRET', None),
+                'app_id': os.environ.get('FACEBOOK_APP_ID', None),
+                "paging": False,
+                "api_version": "v2.11",
+                "graph_url": "%s/posts" % (
+                    get_facebook_path(party[feed_type]),)
+            }
         }
     }
 
@@ -37,6 +58,7 @@ def convert_party(party, feed_type, locations):
           #   {}
           # ]
         ],
+        feed_type.lower(): {},
         "file_url": party[feed_type],
         "index_name": slug,
         "transformer": "ocd_backend.transformers.BaseTransformer",
@@ -49,6 +71,8 @@ def convert_party(party, feed_type, locations):
         "id": "%s_%s_1" % (slug, slug_location,)
     }
 
+    for k, v in feed_type_defs[feed_type]['env'].iteritems():
+        result[feed_type.lower()][k] = v
     return result
 
 

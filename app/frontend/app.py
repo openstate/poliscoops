@@ -76,7 +76,7 @@ def image_rewrite(url, doc_id):
 
 @app.template_filter('party_image')
 def do_party_image(s):
-    if os.path.exists('/opt/app/frontend/static/images/%s.png' % (s,)):
+    if os.path.exists('/opt/app/frontend/static/images/parties/%s.png' % (s,)):
         return s
     else:
         return 'backdrop'

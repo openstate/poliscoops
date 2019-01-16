@@ -8,6 +8,7 @@ import sys
 import time
 from urlparse import urlparse, urljoin
 import hashlib
+import os
 
 from html5lib.filters.base import Filter
 
@@ -71,6 +72,14 @@ def image_rewrite(url, doc_id):
         return url_for('link_proxy', hash=img_hash, url=url, id=doc_id)
     else:
         return url
+
+
+@app.template_filter('party_image')
+def do_party_image(s):
+    if os.path.exists('/opt/app/frontend/static/images/%s.png' % (s,)):
+        return s
+    else:
+        return 'backdrop'
 
 
 @app.template_filter('unique')

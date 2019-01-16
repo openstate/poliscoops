@@ -45,6 +45,12 @@ def convert_party(party, feed_type, locations):
         }
     }
 
+    # whoops
+    if feed_type != 'Feed':
+        feed_id = "%s_%s_1" % (slug, slug_location,)
+    else:
+        feed_id = "%s_%s_fb_1" % (slug, slug_location,)
+
     result = {
         "extractor": feed_type_defs[feed_type]['extractor'],
         "keep_index_on_update": True,
@@ -68,7 +74,7 @@ def convert_party(party, feed_type, locations):
         "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
         "location": _normalize_location(party['RegioNaam'], locations),
         "hidden": False,
-        "id": "%s_%s_1" % (slug, slug_location,)
+        "id": feed_id
     }
 
     for k, v in feed_type_defs[feed_type]['env'].iteritems():

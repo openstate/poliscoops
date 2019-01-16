@@ -40,12 +40,6 @@ services:
     restart: always
     networks:
       - pfl
-  phantomjs:
-    image: "wernight/phantomjs"
-    restart: always
-    networks:
-      - pfl
-    command: phantomjs --webdriver=8910
   redis:
     image: "redis:${REDIS_VERSION}"
     sysctls:

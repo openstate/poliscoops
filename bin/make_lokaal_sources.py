@@ -26,7 +26,7 @@ def convert_party(party, feed_type, locations):
     feed_type_defs = {
         'Feed': {
             "extractor": "ocd_backend.extractors.feed.FeedExtractor",
-            "item": "ocd_backend.items.feed.FeedPhantomJSItem",
+            "item": "ocd_backend.items.feed.FeedContentFromPageItem",
             'env': {
 
             }

@@ -109,10 +109,10 @@ class FeedFullTextItem(FeedItem, HttpRequestMixin):
         return combined_index_data
 
 
-class FeedPhantomJSItem(FeedItem, HttpRequestMixin):
+class FeedContentFromPageItem(FeedItem, HttpRequestMixin):
     def get_combined_index_data(self):
         combined_index_data = super(
-            FeedPhantomJSItem, self).get_combined_index_data()
+            FeedContentFromPageItem, self).get_combined_index_data()
 
         r = self.http_session.get(self.original_item['link'], timeout=5)
         print >>sys.stderr, "Got %s with status code : %s" % (

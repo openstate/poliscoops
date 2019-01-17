@@ -17,15 +17,18 @@
   <div class="search-result">
   <div class="row">
     <div class="col-xs-2 col-md-1">
-      <img src="/static/images/parties/{{ result.parties.0 |lower }}.png" class="img-responsive">
+      <img src="/static/images/parties/{{ result.parties.0 |lower |party_image }}.png" alt="{{ result.parties.0 }}" class="img-responsive">
     </div>
     <div class="col-xs-8 col-md-10">
       {% if result.title %}
       <h2>{{ result.title }}</h2>
       {% endif %}
       <p class="entities">
+        <a href="{{ url_for('search', parties=result.parties.0) }}" class="btn btn-xs btn-primary"><i class="fa fa-group"></i> {{ result.parties.0 }}</a>
         {% for party in result.parties|unique %}
-          <a href="{{ url_for('search', parties=party) }}" class="btn btn-xs btn-default"><i class="fa fa-group"></i> {{ party }}</a>
+          {% if party != result.parties.0 %}
+            <a href="{{ url_for('search', parties=party) }}" class="btn btn-xs btn-default"><i class="fa fa-group"></i> {{ party }}</a>
+          {% endif %}
         {% endfor %}
         <a href="{{ url_for('search', location=result.location) }}" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ result.location }}</a>
         {% if result.date %}

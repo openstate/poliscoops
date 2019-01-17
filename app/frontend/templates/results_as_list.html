@@ -10,7 +10,7 @@
 <div class="search-result clearfix" id="search-result-{{ result.meta.pfl_url.split('/')[-1] }}">
 <div class="row">
   <div class="col-md-1 hidden-xs">
-    <img src="/static/images/parties/{{ result.parties.0 |lower |party_image }}.png" class="img-responsive">
+    <img src="/static/images/parties/{{ result.parties.0 |lower |party_image }}.png" alt="{{ result.parties.0 }}" class="img-responsive">
   </div>
   <div class="col-xs-12 col-md-10">
     <h2>
@@ -23,9 +23,12 @@
       </a>
     </h2>
     <p class="entities">
-      <img src="/static/images/parties/{{ result.parties.0 |lower }}.png" class="img-responsive visible-xs-inline">
+      <img src="/static/images/parties/{{ result.parties.0 |lower |party_image }}.png" alt="{{ result.parties.0 }}" class="img-responsive visible-xs-inline">
+      <a href="{{ url_for('search', parties=result.parties.0) }}" class="btn btn-xs btn-primary"><i class="fa fa-group"></i> {{ result.parties.0 }}</a>
       {% for party in result.parties|unique %}
-        <a href="{{ url_for('search', parties=party) }}" class="btn btn-xs btn-default"><i class="fa fa-group"></i> {{ party }}</a>
+        {% if party != result.parties.0 %}
+          <a href="{{ url_for('search', parties=party) }}" class="btn btn-xs btn-default"><i class="fa fa-group"></i> {{ party }}</a>
+        {% endif %}
       {% endfor %}
       <a href="{{ url_for('search', location=result.location) }}" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ result.location }}</a>
       {% if result.date %}

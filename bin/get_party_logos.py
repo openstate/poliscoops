@@ -27,7 +27,14 @@ def get_party_logo(party):
     if r.status_code < 200 or r.status_code > 300:
         return
 
-    html = etree.HTML(r.content)
+    try:
+        html = etree.HTML(r.content)
+    except Exception as e:
+        html = None
+
+    if html is None:
+        return
+
     image = html.xpath('//meta[@property="og:image"]/@content|//link[contains(@rel, "icon")]/@href')
     if len(image) <= 0:
         image = html.xpath('//img[contains(@src, "logo")]/@src|//img[contains(@alt, "header")]/@src|//header//img/@src')

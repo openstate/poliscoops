@@ -32,13 +32,13 @@ def get_party_logo(party):
     if len(image) <= 0:
         image = html.xpath('//img[contains(@src, "logo")]/@src|//img[contains(@alt, "header")]/@src|//header//img/@src')
 
-    slug = party['Partij'].lower()
+    slug = party['Partij'].lower().replace('/', '_')
 
     if len(image) <= 0:
         return
 
     try:
-        r = requests.get(urljoin(r.url, image[0]))
+        r = requests.get(urljoin(r.url, image[0]), timeout=10)
     except Exception as e:
         r = None
 
@@ -60,7 +60,7 @@ def main(argv):
     with open('/opt/pfl/ocd_backend/data/lokaal.json') as in_file:
         parties = json.load(in_file)
 
-    for party in parties[:20]:
+    for party in parties:
         if party[feed_type] != '':
             get_party_logo(party)
 

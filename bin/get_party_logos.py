@@ -45,12 +45,15 @@ def get_party_logo(party):
     if r is None:
         return
 
-    img = Image.open(BytesIO(r.content))
-    img.thumbnail((60, 60), Image.ANTIALIAS)
-    img.save("%s.png" % (slug), "PNG")
-    print "* %s -> %s" % (urljoin(r.url, image[0]), slug,)
-
-    pass
+    status = "x"
+    try:
+        img = Image.open(BytesIO(r.content))
+        img.thumbnail((60, 60), Image.ANTIALIAS)
+        img.save("%s.png" % (slug), "PNG")
+        status = "."
+    except Exception as e:
+        pass
+    print "%s %s -> %s" % (status, urljoin(r.url, image[0]), slug,)
 
 
 def main(argv):

@@ -3,6 +3,13 @@
 source /opt/bin/activate
 cd /opt/pfl
 
+# controls how often we get things.
+# if we want a different cycle for FB and non-FB we need to redo a part of
+# the script since the logic is now based on a .updating file. could make
+# a FB speciic part of that.
+PFL_FB_CYCLES=24
+PFL_WEB_CYCLES=24
+
 # if we're not updating we should prepare for updating
 if [ ! -e .updating ];
 then
@@ -13,14 +20,14 @@ then
   ./manage.py extract list_sources 2>/dev/null | grep -v '_archives_' | grep -v '_fb_' |awk '{print $2}' | sed 1d >.updating-sources
   PFL_NUM_SOURCES=`cat .updating-sources |wc -l`
   # Aim to crawl everything every 6 hours. At 4 times per hour this is 24 cycles
-  PFL_BLOCK_SIZE=`expr $PFL_NUM_SOURCES / 24 + 1`
+  PFL_BLOCK_SIZE=`expr $PFL_NUM_SOURCES / $PFL_WEB_CYCLES + 1`
   split -l $PFL_BLOCK_SIZE .updating-sources .updating-sources-
 
   # split for FB sources
   ./manage.py extract list_sources 2>/dev/null | grep -v '_archives_' | grep '_fb_' |awk '{print $2}' | sed 1d >.updating-facebook-sources
   PFL_NUM_SOURCES=`cat .updating-facebook-sources |wc -l`
   # Aim to crawl everything every 6 hours. At 4 times per hour this is 24 cycles
-  PFL_BLOCK_SIZE=`expr $PFL_NUM_SOURCES / 24 + 1`
+  PFL_BLOCK_SIZE=`expr $PFL_NUM_SOURCES / $PFL_FB_CYCLES + 1`
   split -l $PFL_BLOCK_SIZE .updating-facebook-sources .updating-facebook-sources-
 fi
 
@@ -49,7 +56,10 @@ then
   mv "$PFL_CURRENT_FILE" "$PFL_BUSY_FILE"
   # Update all sources but not their archives (i.e., only the most recent articles)
   echo "Starting extraction of $PFL_BUSY_FILE"
-  cat $PFL_BUSY_FILE | xargs -I{} ./manage.py extract start {}
+  while read -r PFL_SOURCE; do
+    ./manage.py extract start "$PFL_SOURCE"
+    sleep 1  # FB needs to sleep a little
+  done <$PFL_BUSY_FILE
   echo "Removing $PFL_BUSY_FILE"
   rm -f $PFL_BUSY_FILE
   echo "Removed $PFL_BUSY_FILE"

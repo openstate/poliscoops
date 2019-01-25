@@ -26,6 +26,7 @@ fi
 
 if [ ! -e .updating-facebook ];
 then
+  touch .updating-facebook
   # split for FB sources
   ./manage.py extract list_sources 2>/dev/null | grep -v '_archives_' | grep '_fb_' |awk '{print $2}' | sed 1d >.updating-facebook-sources
   PFL_NUM_SOURCES=`cat .updating-facebook-sources |wc -l`

@@ -265,7 +265,8 @@ class BackendAPI(object):
         es_query = {
             "facets": {
                 "date": {
-                    "order": {"_key": "asc"}
+                    "order": {"_key": "asc"},
+                    "interval": "month"  # for now ...
                 },
                 "location": {
                     "size": 1000

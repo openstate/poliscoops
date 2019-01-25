@@ -7,7 +7,7 @@ cd /opt/pfl
 # if we want a different cycle for FB and non-FB we need to redo a part of
 # the script since the logic is now based on a .updating file. could make
 # a FB speciic part of that.
-PFL_FB_CYCLES=24
+PFL_FB_CYCLES=48
 PFL_WEB_CYCLES=24
 
 # if we're not updating we should prepare for updating
@@ -22,7 +22,10 @@ then
   # Aim to crawl everything every 6 hours. At 4 times per hour this is 24 cycles
   PFL_BLOCK_SIZE=`expr $PFL_NUM_SOURCES / $PFL_WEB_CYCLES + 1`
   split -l $PFL_BLOCK_SIZE .updating-sources .updating-sources-
+fi
 
+if [ ! -e .updating-facebook ];
+then
   # split for FB sources
   ./manage.py extract list_sources 2>/dev/null | grep -v '_archives_' | grep '_fb_' |awk '{print $2}' | sed 1d >.updating-facebook-sources
   PFL_NUM_SOURCES=`cat .updating-facebook-sources |wc -l`
@@ -71,6 +74,14 @@ then
   echo "No spool files left so removing updating indicator"
   rm -f .updating
   rm -f .updating-busy-*
+fi
+
+PFL_NUM_LEFT=`ls -1 .updating-facebook-sources-* 2>/dev/null |wc -l`
+if [ $PFL_NUM_LEFT -eq 0 ];
+then
+  echo "No FB spool files left so removing updating indicator"
+  rm -f .updating-facebook
+  rm -f .updating-facebook-busy-*
 fi
 
 # Update archives of all sources (i.e., everything)

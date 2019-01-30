@@ -58,7 +58,7 @@ class SGPItem(BaseItem):
 
         try:
             datum_orig = unicode(
-                html.xpath('//span[@class="date"]//text()')[0])
+                html.xpath('//span[@class="date"]//text()')[0]).split('|')[0]
             datum_as_string = datum_orig.replace('Publicatiedatum: ', '').replace(
                 ' jan. ', '-01-').replace(' feb. ', '-02-').replace(
                 ' mar. ', '-03-').replace(' apr. ', '-04-').replace(
@@ -66,11 +66,14 @@ class SGPItem(BaseItem):
                 ' jul. ', '-07-').replace(' aug. ', '-07-').replace(
                 ' sep. ', '-09-').replace(' okt. ', '-10-').replace(
                 ' nov. ', '-11-').replace(' dec. ', '-12-')
+            print "Orig: %s, now: %s" % (datum_orig, datum_as_string,)
             prefix = u'' if not datum_as_string.startswith('0') else u'0'
             combined_index_data['date'] = datetime.strptime(
-                '%s%s' % (prefix, datum_as_string,), '%d-%m-%Y')
-        except (ValueError, LookupError):
-            pass
+                ('%s%s' % (prefix, datum_as_string,)).strip(), '%d-%m-%Y')
+        except (ValueError, LookupError) as e:
+            print "Could not find date for item. Original date text: %s" % (
+                datum_orig,)
+            print e
 
         combined_index_data['date_granularity'] = 12
 

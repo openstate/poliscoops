@@ -72,14 +72,14 @@
     "index_name": "partij_voor_de_dieren",
     "collection": "Partij voor de Dieren",
     "loader": "ocd_backend.loaders.ElasticsearchLoader",
-    "item_xpath": "",
     "id": "partij_voor_de_dieren_nederland_1",
     "transformer": "ocd_backend.transformers.BaseTransformer",
     "file_url": "https://www.partijvoordedieren.nl/actueel",
-    "item": "",
+    "item": "ocd_backend.items.pvdd.PVDDFromPageItem",
     "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
     "location": "Nederland",
-    "hidden": false
+    "hidden": false,
+    "item_xpath": "//div[@class=\"article\"]"
   },
   {
     "extractor": "ocd_backend.extractors.feed.FeedExtractor",

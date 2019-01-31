@@ -2,6 +2,7 @@ from datetime import datetime
 import json
 import re
 
+from lxml import etree
 from ocd_backend.items import BaseItem
 
 
@@ -81,3 +82,20 @@ class PVDDItem(BaseItem):
         text_items = []
 
         return u' '.join(text_items)
+
+
+class PVDDFromPageItem(PVDDItem):
+    def get_combined_index_data(self):
+        link = self.original_item.xpath('.//a/@href')[0]
+        r = self.http_session.get(link, timeout=5)
+        print >>sys.stderr, "Got %s with status code : %s" % (
+            link, r.status_code)
+
+        # only continue if we got the page
+        if r.status_code >= 200 or r.status_code < 300:
+            try:
+                self.original_item = etree.HTML(r.content)
+            except Exception:
+                pass
+
+        return super(PVDDFromPageItem, self).get_combined_index_data()

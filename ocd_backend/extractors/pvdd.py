@@ -20,7 +20,7 @@ class PVDDExtractor(BaseExtractor, HttpRequestMixin):
 
             # check if we get good status codes
             if (resp.status_code >= 300) or (resp.status_code < 200):
-                print "Page %s (%s) got status code: %s" % (page url, resp.status_code,)
+                print "Page %s (%s) got status code: %s" % (resp.url, resp.status_code,)
 
                 if paging:
                     page += 1  # we can continue?
@@ -32,7 +32,6 @@ class PVDDExtractor(BaseExtractor, HttpRequestMixin):
 
             # Loop over all div's containg links to item pages
             items = html.xpath(all_links_xpath)
-
             # If there are no items then stop
             if not items:
                 finished = True

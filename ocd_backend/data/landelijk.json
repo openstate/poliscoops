@@ -1,0 +1,119 @@
+[
+  {
+    "collection": "D66",
+    "file_url": "https://d66.nl/feed/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "D66",
+    "file_url": "https://www.facebook.com/D66/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "ChristenUnie",
+    "file_url": "https://www.facebook.com/ChristenUnie/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "ChristenUnie",
+    "file_url": "https://www.christenunie.nl/l/rss/collect/weblog/1043996",
+    "location": "Nederland"
+  },
+  {
+    "collection": "GroenLinks",
+    "file_url": "https://groenlinks.nl/nieuws",
+    "location": "Nederland",
+    "date_xpath": "//span[contains(@class, \"submitted-date\")]//text()",
+    "content_xpath": "//div[contains(@class, \"intro\")]|//div[@class=\"content\"]",
+    "item_link_xpath": "(.//h1//a/@href)[1]",
+    "item_xpath": "//article[contains(@class, \"node-newsarticle\")]",
+    "title_xpath": "//title//text()",
+    "item": "ocd_backend.items.html.HTMLPageItem"
+  },
+  {
+    "collection": "GroenLinks",
+    "file_url": "https://www.facebook.com/groenlinks/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "SGP",
+    "file_url": "https://www.sgp.nl/actueel",
+    "location": "Nederland",
+    "item_xpath": "//a[contains(@class, \"overlay-link\")]",
+    "item": "ocd_backend.items.sgp.SGPItem"
+  },
+  {
+    "collection": "SGP",
+    "file_url": "https://www.facebook.com/SGPnieuws/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "Partij voor de Dieren",
+    "file_url": "https://www.partijvoordedieren.nl/actueel",
+    "location": "Nederland",
+    "item_xpath": "//div[@class=\"article\"]",
+    "item": "ocd_backend.items.pvdd.PVDDItem",
+    "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor"
+
+  },
+  {
+    "collection": "Partij voor de Dieren",
+    "file_url": "https://www.facebook.com/PartijvoordeDieren/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "PvdA",
+    "file_url": "https://www.pvda.nl/nieuws/",
+    "location": "Nederland",
+    "item": "ocd_backend.items.feed.FeedFullTextItem",
+    "content_xpath": "//div[contains(@class, \"content\")]//p"
+  },
+  {
+    "collection": "PvdA",
+    "file_url": "https://www.facebook.com/PartijvandeArbeid/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "SP",
+    "file_url": "https://www.sp.nl/rss.xml",
+    "location": "Nederland"
+  },
+  {
+    "collection": "SP",
+    "file_url": "https://www.facebook.com/SocialistischePartij/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "DENK",
+    "file_url": "https://www.bewegingdenk.nl/actueel/nieuwsberichten/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "DENK",
+    "file_url": "https://www.facebook.com/DenkNL/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "PVV",
+    "file_url": "https://pvv.nl/",
+    "location": "Nederland",
+    "item": "ocd_backend.items.feed.FeedContentFromPageItem"
+  },
+  {
+    "collection": "PVV",
+    "file_url": "https://www.facebook.com/PVV.PartijvoordeVrijheid/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "Forum voor Democratie",
+    "file_url": "https://forumvoordemocratie.nl/api/articles/",
+    "location": "Nederland",
+    "extractor": "ocd_backend.extractors.staticfile.StaticJSONExtractor",
+    "item": "ocd_backend.items.fvd.FVDItem"
+  },
+  {
+    "collection": "Forum voor Democratie",
+    "file_url": "https://www.facebook.com/forumvoordemocratie/",
+    "location": "Nederland"
+  }
+]

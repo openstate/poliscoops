@@ -189,11 +189,18 @@ def get_source_info_from_url(file_url):
     return result
 
 
+def is_facebook(url):
+    return (re.search('\.facebook.com\/', url) is not None)
+
+
 def make_source_for(src, LOCATIONS):
     slug = slugify(src['collection']).replace('-', '_')
     slug_location = slugify(src['location'])
 
-    feed_id = "%s_%s_1" % (slug, slug_location,)
+    if is_facebook(src['file_url']):
+        feed_id = "%s_%s_fb_1" % (slug, slug_location,)
+    else:
+        feed_id = "%s_%s_1" % (slug, slug_location,)
 
     result = {
         "extractor": "",  # depends if feed or not
@@ -219,11 +226,23 @@ def make_source_for(src, LOCATIONS):
         "id": feed_id
     }
 
-    additional = get_source_info_from_url(src['file_url'])
-    for k, v in additional.iteritems():
-        result[k] = v
+    if not is_facebook(src['file_url']):
+        additional = get_source_info_from_url(src['file_url'])
+        for k, v in additional.iteritems():
+            result[k] = v
+    else:
+        result["extractor"] = "ocd_backend.extractors.facebook.FacebookExtractor"
+        result["item"] = "ocd_backend.items.facebook.PageItem"
+        result["facebook"] = {
+            'app_secret': os.environ.get('FACEBOOK_APP_SECRET', None),
+            'app_id': os.environ.get('FACEBOOK_APP_ID', None),
+            "paging": False,
+            "api_version": "v2.11",
+            "graph_url": "%s/posts" % (
+                get_facebook_path(src['file_url']),)
+        }
 
-    for k,v in src.iteritems():
+    for k, v in src.iteritems():
         if k != 'file_url':
             result[k] = v
     return result

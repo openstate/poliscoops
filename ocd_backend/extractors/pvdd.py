@@ -3,6 +3,7 @@ from ocd_backend.extractors import BaseExtractor, HttpRequestMixin
 from lxml import etree
 
 import re
+from urlparse import urljoin
 
 
 class PVDDExtractor(BaseExtractor, HttpRequestMixin):
@@ -10,7 +11,7 @@ class PVDDExtractor(BaseExtractor, HttpRequestMixin):
         url = self.source_definition['file_url']
         paging = self.source_definition.get('paging', False)
 
-        all_links_xpath = ".//article/header/h2"
+        all_links_xpath = ".//article/header/h2|.//div[contains(@class, \"article\")]/div"
 
         # Continue loop until a page contains no items
         page = 1
@@ -39,13 +40,7 @@ class PVDDExtractor(BaseExtractor, HttpRequestMixin):
             for item in items:
                 link = item.xpath("a/@href")
                 if link:
-                    link = link[0]
-
-                    # Add the base url if the link is a path (which is
-                    # always the case afaik)
-                    if not link.startswith('http'):
-                        link = url.rstrip('/nieuws') + link
-
+                    link = urljoin(url, link[0])
                     yield link
 
             if not paging:

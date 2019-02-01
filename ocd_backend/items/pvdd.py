@@ -1,9 +1,13 @@
+import sys
 from datetime import datetime
 import json
 import re
+from pprint import pprint
+from urlparse import urljoin
 
 from lxml import etree
 from ocd_backend.items import BaseItem
+from ocd_backend.extractors import HttpRequestMixin
 
 
 class PVDDItem(BaseItem):
@@ -46,17 +50,24 @@ class PVDDItem(BaseItem):
 
         main = self.original_item.xpath(".")[0]
 
-        self.original_item.xpath('.//article/header/h1')
-
         # title
-        xpath_query = './/article/header/h1/text()'
+        xpath_query = './/article/header/h1/text()|.//div[@class="page"]/div/h1/text()'
         if main.xpath(xpath_query):
             combined_index_data['title'] = unicode(main.xpath(xpath_query)[0])
 
         # date
-        xpath_query = './/article/header/div[@class="date"]//text()'
+        xpath_query = './/article/header/div[@class="pagedate"]//text()|.//div[@class="pagedate"]//text()'
         if main.xpath(xpath_query):
             raw_date = main.xpath(xpath_query)[0]
+
+            raw_date = raw_date.replace(
+                ' januari ', '-01-').replace(' februari ', '-02-').replace(
+                ' maart ', '-03-').replace(' april ', '-04-').replace(
+                ' mei ', '-05-').replace(' juni ', '-06-').replace(
+                ' juli ', '-07-').replace(' augutus ', '-07-').replace(
+                ' september ', '-09-').replace(' oktober ', '-10-').replace(
+                ' november ', '-11-').replace(' december ', '-12-')
+
             pattern = '%d-%m-%y'
             if len(raw_date) == 10:
                 pattern = '%d-%m-%Y'
@@ -64,7 +75,7 @@ class PVDDItem(BaseItem):
             combined_index_data['date_granularity'] = 12
 
         # decription
-        xpath_query = './/article/p//text()'
+        xpath_query = './/article/p//text()|.//div[contains(@class, "content-small")]//p//text()'
         if main.xpath(xpath_query):
             combined_index_data['description'] = unicode(' '.join(main.xpath(xpath_query)))
 
@@ -82,20 +93,3 @@ class PVDDItem(BaseItem):
         text_items = []
 
         return u' '.join(text_items)
-
-
-class PVDDFromPageItem(PVDDItem):
-    def get_combined_index_data(self):
-        link = self.original_item.xpath('.//a/@href')[0]
-        r = self.http_session.get(link, timeout=5)
-        print >>sys.stderr, "Got %s with status code : %s" % (
-            link, r.status_code)
-
-        # only continue if we got the page
-        if r.status_code >= 200 or r.status_code < 300:
-            try:
-                self.original_item = etree.HTML(r.content)
-            except Exception:
-                pass
-
-        return super(PVDDFromPageItem, self).get_combined_index_data()

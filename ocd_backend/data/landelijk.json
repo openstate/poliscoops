@@ -10,6 +10,7 @@
     "location": "Nederland"
   },
   {
+    "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor",
     "collection": "GroenLinks",
     "file_url": "https://groenlinks.nl/nieuws",
     "location": "Nederland",

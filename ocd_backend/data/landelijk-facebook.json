@@ -1,5 +1,15 @@
 [
   {
+    "collection": "VVD",
+    "file_url": "https://www.facebook.com/VVD/",
+    "location": "Nederland"
+  },
+  {
+    "collection": "CDA",
+    "file_url": "https://www.facebook.com/kiesCDA/",
+    "location": "Nederland"
+  },
+  {
     "collection": "D66",
     "file_url": "https://www.facebook.com/D66/",
     "location": "Nederland"

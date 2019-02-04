@@ -117,7 +117,7 @@ def do_html_cleanup(s, result):
 
 @app.template_filter('html_getimage')
 def do_html_getimage(s, result):
-    class PflFilter(Filter):
+    class PflFirstImageFilter(Filter):
         token_count = 0
 
         def __iter__(self):
@@ -136,10 +136,10 @@ def do_html_getimage(s, result):
     }
     TAGS = ['img']
     cleaner = Cleaner(
-        tags=TAGS, attributes=ATTRS, filters=[PflFilter], strip=True)
+        tags=TAGS, attributes=ATTRS, filters=[PflFirstImageFilter], strip=True)
     try:
         return cleaner.clean(s).replace(
-            '<img src="', '').replace('">', '')
+            '<img src="', '').replace('">', '').strip()
     except TypeError:
         return u''
 

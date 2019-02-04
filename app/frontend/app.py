@@ -141,10 +141,10 @@ def do_html_getimage(s, result):
         res = cleaner.clean(s).replace(
             '<img src="', '').replace('">', '').strip()
     except TypeError:
-        res = u'https://poliflw.nl/static/images/logo.svg'
+        res = u'https://poliflw.nl/static/images/mstile-310x310.png'
     if res.startswith('http') and (u' ' not in res):
         return res
-    return u'https://poliflw.nl/static/images/logo.svg'
+    return u'https://poliflw.nl/static/images/mstile-310x310.png'
 
 @app.template_filter('html_title_cleanup')
 def do_html_title_cleanup(s, result):

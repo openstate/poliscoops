@@ -19,11 +19,7 @@
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta._id, _external=True) }}"/>
 <meta property="og:site_name" content="Poliflw"/>
-{% if "<img " in result.description %}
 <meta property="og:image" content="{{ result.description |html_getimage(result) |safe }}"/>
-{% else %}
-<meta property="og:image" content="https://poliflw.nl/static/images/logo.svg" />
-{% endif %}
 {% endblock %}
 
 {% block content %}

@@ -17,9 +17,10 @@
   <meta property="og:title" content="{{ result.description |html_title_cleanup(result) |truncate(40) |safe }}" />
 {% endif %}
 <meta property="og:type" content="article"/>
-<meta property="og:url" content="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta._id, _external=True) }}"/>
+<meta property="og:url" content="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta._id, _external=True).replace('http:', 'https:') }}"/>
 <meta property="og:site_name" content="Poliflw"/>
 <meta property="og:image" content="{{ result.description |html_getimage(result) |safe }}"/>
+<meta property="og:description" content="{{ result.description |html_title_cleanup(result) }}" />
 {% endblock %}
 
 {% block content %}

@@ -49,46 +49,6 @@ def get_facebook_path(full_url):
         return first_part
 
 
-def convert_party(party):
-    slug = slugify(party['partij']).replace('-', '_')
-    slug_location = 'nederland'
-
-    feed_id = "%s_%s_1" % (slug, slug_location,)
-
-    result = {
-        "extractor": "",  # depends if feed or not
-        "keep_index_on_update": True,
-        "enrichers": [
-          # [
-          #   "ocd_backend.enrichers.NEREnricher",
-          #   {}
-          # ],
-          # [
-          #   "ocd_backend.enrichers.BinoasEnricher",
-          #   {}
-          # ]
-        ],
-        "file_url": party['website'],
-        "index_name": slug,
-        "transformer": "ocd_backend.transformers.BaseTransformer",
-        "collection": party['partij'],
-        "loader": "ocd_backend.loaders.ElasticsearchLoader",
-        "item": "",  # html grabber
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
-        "location": 'Nederland',
-        "hidden": False,
-        "id": feed_id
-    }
-
-    if party['feed'] != '':
-        result['extractor'] = "ocd_backend.extractors.feed.FeedExtractor"
-        result['item'] = "ocd_backend.items.feed.FeedContentFromPageItem"
-    else:
-        result['extractor'] = "ocd_backend.extractors.staticfile.StaticHtmlExtractor"
-        result['item_xpath'] = ''
-    return result
-
-
 def get_content_from_page(page_url):
     r = requests.get(page_url, timeout=5)
 
@@ -206,14 +166,14 @@ def make_source_for(src, LOCATIONS):
         "extractor": "",  # depends if feed or not
         "keep_index_on_update": True,
         "enrichers": [
-          # [
-          #   "ocd_backend.enrichers.NEREnricher",
-          #   {}
-          # ],
-          # [
-          #   "ocd_backend.enrichers.BinoasEnricher",
-          #   {}
-          # ]
+          [
+            "ocd_backend.enrichers.NEREnricher",
+            {}
+          ],
+          [
+            "ocd_backend.enrichers.BinoasEnricher",
+            {}
+          ]
         ],
         "file_url": '',
         "index_name": slug,

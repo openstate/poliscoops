@@ -115,6 +115,34 @@ def do_html_cleanup(s, result):
         return u''
 
 
+@app.template_filter('html_getimage')
+def do_html_getimage(s, result):
+    class PflFilter(Filter):
+        token_count = 0
+
+        def __iter__(self):
+            for token in Filter.__iter__(self):
+                if token['type'] in ['StartTag', 'EmptyTag'] and token['data']:
+                    if token['name'] == 'img':
+                        for attr, value in token['data'].items():
+                            token['data'][attr] = image_rewrite(urljoin(
+                                result['meta']['original_object_urls']['html'],
+                                token['data'][attr]), result['meta']['_id'])
+                if self.token_count == 0:
+                    self.token_count += 1
+                    yield token
+    ATTRS = {
+        '*': allow_src
+    }
+    TAGS = ['img']
+    cleaner = Cleaner(
+        tags=TAGS, attributes=ATTRS, filters=[PflFilter], strip=True)
+    try:
+        return cleaner.clean(s).replace(
+            '<img src="', '').replace('">', '')
+    except TypeError:
+        return u''
+
 @app.template_filter('html_title_cleanup')
 def do_html_title_cleanup(s, result):
     class PflFilter(Filter):

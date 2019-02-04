@@ -5,16 +5,6 @@
     "location": "Nederland"
   },
   {
-    "collection": "D66",
-    "file_url": "https://www.facebook.com/D66/",
-    "location": "Nederland"
-  },
-  {
-    "collection": "ChristenUnie",
-    "file_url": "https://www.facebook.com/ChristenUnie/",
-    "location": "Nederland"
-  },
-  {
     "collection": "ChristenUnie",
     "file_url": "https://www.christenunie.nl/l/rss/collect/weblog/1043996",
     "location": "Nederland"
@@ -31,21 +21,11 @@
     "item": "ocd_backend.items.html.HTMLPageItem"
   },
   {
-    "collection": "GroenLinks",
-    "file_url": "https://www.facebook.com/groenlinks/",
-    "location": "Nederland"
-  },
-  {
     "collection": "SGP",
     "file_url": "https://www.sgp.nl/actueel",
     "location": "Nederland",
     "item_xpath": "//a[contains(@class, \"overlay-link\")]",
     "item": "ocd_backend.items.sgp.SGPItem"
-  },
-  {
-    "collection": "SGP",
-    "file_url": "https://www.facebook.com/SGPnieuws/",
-    "location": "Nederland"
   },
   {
     "collection": "Partij voor de Dieren",
@@ -57,11 +37,6 @@
 
   },
   {
-    "collection": "Partij voor de Dieren",
-    "file_url": "https://www.facebook.com/PartijvoordeDieren/",
-    "location": "Nederland"
-  },
-  {
     "collection": "PvdA",
     "file_url": "https://www.pvda.nl/nieuws/",
     "location": "Nederland",
@@ -69,28 +44,13 @@
     "content_xpath": "//div[contains(@class, \"content\")]//p"
   },
   {
-    "collection": "PvdA",
-    "file_url": "https://www.facebook.com/PartijvandeArbeid/",
-    "location": "Nederland"
-  },
-  {
     "collection": "SP",
     "file_url": "https://www.sp.nl/rss.xml",
     "location": "Nederland"
   },
   {
-    "collection": "SP",
-    "file_url": "https://www.facebook.com/SocialistischePartij/",
-    "location": "Nederland"
-  },
-  {
     "collection": "DENK",
     "file_url": "https://www.bewegingdenk.nl/actueel/nieuwsberichten/",
-    "location": "Nederland"
-  },
-  {
-    "collection": "DENK",
-    "file_url": "https://www.facebook.com/DenkNL/",
     "location": "Nederland"
   },
   {
@@ -100,20 +60,10 @@
     "item": "ocd_backend.items.feed.FeedContentFromPageItem"
   },
   {
-    "collection": "PVV",
-    "file_url": "https://www.facebook.com/PVV.PartijvoordeVrijheid/",
-    "location": "Nederland"
-  },
-  {
     "collection": "Forum voor Democratie",
     "file_url": "https://forumvoordemocratie.nl/api/articles/",
     "location": "Nederland",
     "extractor": "ocd_backend.extractors.staticfile.StaticJSONExtractor",
     "item": "ocd_backend.items.fvd.FVDItem"
-  },
-  {
-    "collection": "Forum voor Democratie",
-    "file_url": "https://www.facebook.com/forumvoordemocratie/",
-    "location": "Nederland"
   }
 ]

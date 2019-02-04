@@ -138,13 +138,13 @@ def do_html_getimage(s, result):
     cleaner = Cleaner(
         tags=TAGS, attributes=ATTRS, filters=[PflFirstImageFilter], strip=True)
     try:
-        result = cleaner.clean(s).replace(
+        res = cleaner.clean(s).replace(
             '<img src="', '').replace('">', '').strip()
     except TypeError:
-        result = u''
-    if '<img' not in s:
-        return u''
-    return result
+        res = u''
+    if res.startswith('http') and (u' ' not in res):
+        return res
+    return u''
 
 @app.template_filter('html_title_cleanup')
 def do_html_title_cleanup(s, result):

@@ -45,7 +45,7 @@
       <h2 itemprop="headline">{{ result.title }}</h2>
       {% endif %}
       <p class="entities">
-        <a href="{{ url_for('search', parties=result.parties.0) }}" class="btn btn-xs btn-primary"><i class="fa fa-group"></i> {{ result.parties.0 }}</a>
+        <a href="{{ url_for('search', parties=result.parties.0) }}" class="btn btn-xs btn-primary" itemprop="author" itemscope itemtype="https://schema.org/Organization"><i class="fa fa-group"></i> <span itemprop="name">{{ result.parties.0 }}</span></a>
         {% for party in result.parties|unique %}
           {% if party != result.parties.0 %}
             <a href="{{ url_for('search', parties=party) }}" class="btn btn-xs btn-default"><i class="fa fa-group"></i> {{ party }}</a>
@@ -76,6 +76,12 @@
   </div>
   </div>
   <meta itemprop="datePublished" content="{{ result.date }}"/>
+  <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="display: none;">
+    <meta itemprop="url" content="{{ result.description |html_getimage(result) |truncate(140) |safe }}"/>
+  </div>
+  <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization" style="display: none;">
+    <span itemprop="name">Poliflw</span>
+  </div>
 </section>
 
 

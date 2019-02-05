@@ -21,7 +21,6 @@ Poliflw.data = {{ results |tojson }};
 
 <div class="row" style="margin-top: 3em;">
 <div class="col-xs-12 col-md-6 col-md-offset-3">
-<p>
 <strong style="font-size: 19px;">
   Of zoek naar een locatie:
 </strong>
@@ -30,12 +29,14 @@ Poliflw.data = {{ results |tojson }};
        <div class="typeahead__field">
 
            <span class="typeahead__query">
-               <input class="js-typeahead form-control" name="location" type="search" placeholder="Amsterdam" autocomplete="off">
+               <input class="js-typeahead form-control" name="location" type="search" placeholder="Amsterdam, Noord-Holland, Nederland" autocomplete="off">
            </span>
        </div>
    </div>
 </form>
-
+<p></p>
+<p>
+  <strong>Nieuw:</strong> Je kan nu ook eed provincie of <a href="{{ url_for('search', location='Nederland') }}">Nederland</a> selecteren<./a>.
 </p>
 </div>
 </div>

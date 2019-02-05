@@ -46,6 +46,7 @@ FACETS = (
     ('type', 'Soort', True, True,),
     ('politicians', 'Politici', True, True,),
     ('parties', 'Partijen', True, True,),
+    ('collection', 'Geplaatst door', True, True,),
     ('topics', 'Onderwerpen', True, True,),
     ('polarity', 'Polariteit', True, True,),
     ('subjectivity', 'Sentiment', True, True,)
@@ -304,9 +305,10 @@ class BackendAPI(object):
                 },
                 "sources": {},
                 "type": {},
-                "politicians": {},
-                "parties": {},
-                "topics": {},
+                "politicians": {"size": 100},
+                "parties": {"size": 10000},
+                "collection": {"size": 10000},
+                "topics": {"size": 100},
                 "polarity": {},
                 "subjectivity": {}
             },

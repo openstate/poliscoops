@@ -2,18 +2,23 @@
 
 {% block lead %}
 <p class="lead-text">
-  Nieuws van politieke partijen
+  Nieuws
+  {% if search_params.collection %}
+  van {{ search_params.collection }}
+  {% else %}
+  van politieke partijen
+  {% endif %}
   {% if search_params.location %}
   in {{ search_params.location }}
   {% endif %}
   {% if search_params.parties %}
-  van {{ search_params.parties }}
+  over {{ search_params.parties }}
   {% endif %}
   inzichtelijk</p>
 {% endblock %}
 
 {% block og %}
-<meta property="og:title" content="Nieuws van politieke partijen{% if search_params.location %} in {{ search_params.location }}{% endif %}{% if search_params.parties %} van {{ search_params.parties }}{% endif %} inzichtelijk" />
+<meta property="og:title" content="Nieuws{% if search_params.collection %} van {{ search_params.collection }}{% else %} van politieke partijen{% endif %}{% if search_params.location %} in {{ search_params.location }}{% endif %}{% if search_params.parties %} over {{ search_params.parties }}{% endif %} inzichtelijk" />
 <meta property="og:type" content="article"/>
 <meta property="og:image" content="https://www.poliflw.nl/static/images/mstile-310x310.png"/>
 <meta property="og:description" content="Nieuws van politieke partijen in {{ search_params.location }} inzichtelijk" />

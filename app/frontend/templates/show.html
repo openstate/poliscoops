@@ -33,7 +33,8 @@
     </div>
 </div>
 
-<section id="data" style="margin-top:16px;">
+<section id="data" style="margin-top:16px;" itemscope itemtype="http://schema.org/NewsArticle">
+  <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="{{ request.url }}"/>
   <div class="search-result">
   <div class="row">
     <div class="col-xs-2 col-md-1">
@@ -41,7 +42,7 @@
     </div>
     <div class="col-xs-8 col-md-10">
       {% if result.title %}
-      <h2>{{ result.title }}</h2>
+      <h2 itemprop="headline">{{ result.title }}</h2>
       {% endif %}
       <p class="entities">
         <a href="{{ url_for('search', parties=result.parties.0) }}" class="btn btn-xs btn-primary"><i class="fa fa-group"></i> {{ result.parties.0 }}</a>
@@ -55,7 +56,7 @@
         <a href="#" class="btn btn-xs btn-default">{{ result.date|iso8601_to_str("%d-%m-%Y %H:%M") }}</a>
         {% endif %}
       </p>
-  <div class="article-text" id="article_container">
+  <div class="article-text" id="article_container" itemprop="description">
       <p>{{ result.description |html_cleanup(result) |safe }}</p>
   </div>
 
@@ -74,6 +75,7 @@
   </div>
   </div>
   </div>
+  <meta itemprop="datePublished" content="{{ result.date }}"/>
 </section>
 
 

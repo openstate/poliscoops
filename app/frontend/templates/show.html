@@ -34,6 +34,10 @@
 </div>
 
 <section id="data" style="margin-top:16px;" itemscope itemtype="http://schema.org/NewsArticle">
+  <link itemscope itemprop="identifier" itemptype="http://schema.org/PropertyValue" style="display: none;">
+  <span itemprop="propertyID">Poliflw</span>:
+  <span itemprop="value">{{ result.meta._id }}</span>
+  </link>
   <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="{{ request.url }}"/>
   <div class="search-result">
   <div class="row">

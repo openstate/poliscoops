@@ -227,4 +227,5 @@ ul.wordcloud li { display: inline-block; }
 .carousel-caption {
   color: #c21889;
   background: #fff;
+  text-shadow: none;
 }

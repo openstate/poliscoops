@@ -1,12 +1,20 @@
 <section id="search">
   <div class="row">
-    <form action="/zoeken" method="get" class="form-inline">
+    <form action="/zoeken" method="get" class="form-inline" id="form-location" name="form-location">
       <div class="col-xs-12">
         <div class="form-group">
           <label>
           Zoek <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </label>
-          <input type="text" class="form-control" name="query" value="{{ request.args['query'] }}" placeholder="PGB">
+          <div class="typeahead__container">
+              <div class="typeahead__field">
+
+                  <span class="typeahead__query">
+
+                    <input type="text" class="js-typeahead form-control" name="query" value="{{ request.args['query'] }}" placeholder="PGB of Amsterdam, Noord-Holland, Nederland" autocomplete="off">
+                  </span>
+                </div>
+              </div>
         </div>
       </div>
     </form>

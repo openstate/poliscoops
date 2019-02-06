@@ -15,27 +15,13 @@ Poliflw.data = {{ results |tojson }};
 <div class="row" style="margin-top: 3em;">
 <div class="col-xs-12 col-md-6 col-md-offset-3">
 <p>
-<strong style="font-size: 19px;">Gebruik bovenstaand zoekveld om door {{ results.meta.total }} berichten te zoeken op thema ...</strong>
+<strong style="font-size: 19px;">Gebruik bovenstaand zoekveld om door {{ results.meta.total }} berichten te zoeken op thema of locatie ...</strong>
 </p>
 </div>
 </div>
 
 <div class="row" style="margin-top: 3em;">
 <div class="col-xs-12 col-md-6 col-md-offset-3">
-<strong style="font-size: 19px;">
-  Of zoek naar een locatie:
-</strong>
-<form id="form-location" name="form-location">
-   <div class="typeahead__container">
-       <div class="typeahead__field">
-
-           <span class="typeahead__query">
-               <input class="js-typeahead form-control" name="location" type="search" placeholder="Amsterdam, Noord-Holland, Nederland" autocomplete="off">
-           </span>
-       </div>
-   </div>
-</form>
-<p></p>
 <p>
   <strong>Nieuw:</strong> Je kan nu ook een provincie of <a href="{{ url_for('search', location='Nederland') }}">Nederland</a> selecteren.
 </p>

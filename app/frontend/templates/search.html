@@ -6,12 +6,12 @@
           <label>
           Zoek <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </label>
-          <div class="typeahead__container">
+          <div class="typeahead__container" style="width: 80%; display: inline-block;">
               <div class="typeahead__field">
 
                   <span class="typeahead__query">
 
-                    <input type="text" class="js-typeahead form-control" name="query" value="{{ request.args['query'] }}" placeholder="PGB of Amsterdam, Noord-Holland, Nederland" autocomplete="off">
+                    <input type="search" class="js-typeahead form-control" name="query" value="{{ request.args['query'] }}" placeholder="PGB of Amsterdam, Noord-Holland, Nederland" autocomplete="off">
                   </span>
                 </div>
               </div>

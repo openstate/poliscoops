@@ -202,9 +202,9 @@ Poliflw.init = function() {
 
   $('#form-location').on('submit', function (e) {
       e.preventDefault();
-      var lower = $('#form-location input[type="search"]').val();
-      var upper = lower.charAt(0).toUpperCase() + lower.substr(1);
-      window.location = window.location.origin + '/zoeken?location=' + encodeURIComponent(upper);
+      var qry = $('#form-location input[type="search"]').val();
+      console.log('should do zoeken for [' + qry +'] now!');
+      window.location = window.location.origin + '/zoeken?query=' + encodeURIComponent(qry);
       return false;
   });
 
@@ -220,7 +220,7 @@ Poliflw.init = function() {
         onInit: function () { console.log('typeahead inited!'); },
         onSearch: function (n,q) { console.log('looking for ' + q); },
         onShowLayout: function(n, q) { console.log('show layout'); },
-        onClickAfter (n, a, item, event) {
+        onClickAfter: function(n, a, item, event) {
           console.log('item ' + item.display + ' was selected!');
           window.location = window.location.origin + '/zoeken?location=' + encodeURIComponent(item.display);
         }

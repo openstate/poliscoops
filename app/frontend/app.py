@@ -23,6 +23,7 @@ from bleach.sanitizer import Cleaner
 import iso8601
 import requests
 from redis import StrictRedis
+from lxml import etree
 
 # locale.setlocale(locale.LC_TIME, "nl_NL")
 
@@ -118,34 +119,18 @@ def do_html_cleanup(s, result):
 
 @app.template_filter('html_getimage')
 def do_html_getimage(s, result):
-    class PflFirstImageFilter(Filter):
-        token_count = 0
-
-        def __iter__(self):
-            for token in Filter.__iter__(self):
-                if token['type'] in ['StartTag', 'EmptyTag'] and token['data']:
-                    if token['name'] == 'img':
-                        for attr, value in token['data'].items():
-                            token['data'][attr] = image_rewrite(urljoin(
-                                result['meta']['original_object_urls']['html'],
-                                token['data'][attr]), result['meta']['_id'])
-                if self.token_count == 0:
-                    self.token_count += 1
-                    yield token
-    ATTRS = {
-        '*': allow_src
-    }
-    TAGS = ['img']
-    cleaner = Cleaner(
-        tags=TAGS, attributes=ATTRS, filters=[PflFirstImageFilter], strip=True)
     try:
-        res = cleaner.clean(s).replace(
-            '<img src="', '').replace('">', '').strip()
-    except TypeError:
-        res = u'https://www.poliflw.nl/static/images/mstile-310x310.png'
-    if res.startswith('http') and (u' ' not in res):
-        return res
-    return u'https://www.poliflw.nl/static/images/mstile-310x310.png'
+        html = etree.HTML(s)
+    except Exception as e:
+        print e
+        html = None
+    if html is not None:
+        images = html.xpath('//img/@src')
+        return image_rewrite(urljoin(
+            result['meta']['original_object_urls']['html'],
+            images[0]), result['meta']['_id'])
+    else:
+        return u'https://www.poliflw.nl/static/images/mstile-310x310.png'
 
 @app.template_filter('html_title_cleanup')
 def do_html_title_cleanup(s, result):
@@ -281,6 +266,16 @@ def do_split(s, delim):
     return s.split(delim)
 
 
+@app.template_filter('pfl_link')
+def do_pfl_link(doc):
+    if '_source' in doc:
+        s = doc['_source']
+    else:
+        s = doc
+    return url_for(
+        'show', location=s['location'], party=s['parties'][0],
+        id=s['meta']['_id'])
+
 def redis_client():
     return StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 
@@ -394,9 +389,11 @@ api = BackendAPI()
 @app.route("/")
 def main():
     results = api.search(**{"size": 0, "page": 1})
+    images = api.search(**{"query": "<img ", "sources": 'Partij nieuws', "page": 1})
     return render_template(
         'index.html',
         results=results,
+        images=images,
         facets=FACETS,
         visible_facets=[f for f in FACETS if f[2]])
 

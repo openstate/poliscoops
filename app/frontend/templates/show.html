@@ -17,7 +17,7 @@
   <meta property="og:title" content="{{ result.description |html_title_cleanup(result) |truncate(40) |safe }}" />
 {% endif %}
 <meta property="og:type" content="article"/>
-<meta property="og:image" content="{{ result.description |html_getimage(result) |truncate(140) |safe }}"/>
+<meta property="og:image" content="{{ result.description |html_getimage(result) |safe }}"/>
 <meta property="og:description" content="{{ result.description |html_title_cleanup(result) }}" />
 {% endblock %}
 

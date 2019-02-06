@@ -11,6 +11,7 @@ var Poliflw = window.Poliflw || {
 Poliflw.data = {{ results |tojson }};
 </script>
 
+
 <div class="row" style="margin-top: 3em;">
 <div class="col-xs-12 col-md-6 col-md-offset-3">
 <p>
@@ -39,6 +40,48 @@ Poliflw.data = {{ results |tojson }};
   <strong>Nieuw:</strong> Je kan nu ook een provincie of <a href="{{ url_for('search', location='Nederland') }}">Nederland</a> selecteren.
 </p>
 </div>
+</div>
+
+<div class="row" style="margin-top: 3em;">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+
+    <div id="carousel-images" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        {% for i in images.item %}
+          <li data-target="#carousel-images" data-slide-to="{{ loop.index - 1 }}" {% if loop.index == 1 %}class="active"{% endif %}></li>
+        {% endfor %}
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        {% for i in images.item %}
+        <div class="item {% if loop.index == 1 %}active{% endif %}">
+          <a href="{{ i |pfl_link }}">
+          <img src="{{ i.description |html_getimage(i) }}" class="img-responsive img-full">
+          </a>
+          <div class="carousel-caption">
+            <a href="{{ i |pfl_link }}">
+            <img src="/static/images/parties/{{ i.parties.0 |lower |party_image }}.png" alt="{{ i.parties.0 }}" class="img-responsive">
+            {{ i.title }}
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-images" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Vorige</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-images" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Volgende</span>
+      </a>
+    </div>
+
+  </div>
 </div>
 
 {% endblock %}

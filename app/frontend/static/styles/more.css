@@ -209,3 +209,22 @@ ul.wordcloud li { display: inline-block; }
   top: 70px;
   left: 0;
 }
+
+.carousel img {
+  margin: 0 auto;
+}
+.carousel .img-full {
+  max-height: 200px;
+  min-height: 200px;
+}
+
+#carousel-images {
+  max-width: 750px;
+  margin: 0 auto;
+  background: #ccc;
+}
+
+.carousel-caption {
+  color: #c21889;
+  background: #fff;
+}

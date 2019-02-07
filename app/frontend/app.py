@@ -126,12 +126,13 @@ def do_html_getimage(s, result):
         html = None
     if html is not None:
         images = html.xpath('//img/@src')
-        id = result.get('id', None) or result['meta']['_id']
-        return image_rewrite(urljoin(
-            result['meta']['original_object_urls']['html'],
-            images[0]), id)
-    else:
-        return u'https://www.poliflw.nl/static/images/mstile-310x310.png'
+
+        if len(images) > 0:
+            id = result.get('id', None) or result['meta']['_id']
+            return image_rewrite(urljoin(
+                result['meta']['original_object_urls']['html'],
+                images[0]), id)
+    return u'https://www.poliflw.nl/static/images/mstile-310x310.png'
 
 @app.template_filter('html_title_cleanup')
 def do_html_title_cleanup(s, result):

@@ -126,9 +126,10 @@ def do_html_getimage(s, result):
         html = None
     if html is not None:
         images = html.xpath('//img/@src')
+        id = result.get('id', None) or result['meta']['_id']
         return image_rewrite(urljoin(
             result['meta']['original_object_urls']['html'],
-            images[0]), result['meta']['_id'])
+            images[0]), id)
     else:
         return u'https://www.poliflw.nl/static/images/mstile-310x310.png'
 

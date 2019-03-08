@@ -13,7 +13,7 @@ from sklearn import svm
 
 sys.path.insert(0, '.')
 
-from ocd_ml.interestingness import featurize
+from ocd_ml.interestingness import featurize, class_labels
 
 
 def get_data_from_permalink(permalink):
@@ -37,8 +37,6 @@ def load_data_from_file(file_path):
 
 def main(argv):
     class_files = glob.glob('ocd_backend/data/interestingness/*.txt')
-    class_labels = [c.split('/')[-1].replace('.txt', '') for c in class_files]
-    pprint(class_files)
     classes = {}
     train_data = []
     train_labels = []

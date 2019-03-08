@@ -1,3 +1,5 @@
+class_labels = ['good', 'bad']
+
 def featurize(poliflw_obj):
     result = []
 
@@ -7,4 +9,7 @@ def featurize(poliflw_obj):
 
     for f in data2feature.keys():
         result.append(data2feature[f].index(poliflw_obj[f]))
+
+    result.append(len(poliflw_obj.get(u'description', u'')))
+
     return result

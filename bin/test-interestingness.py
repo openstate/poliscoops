@@ -11,7 +11,7 @@ import requests
 
 sys.path.insert(0, '.')
 
-from ocd_ml.interestingness import featurize
+from ocd_ml.interestingness import featurize, class_labels
 
 
 def main(argv):
@@ -22,7 +22,7 @@ def main(argv):
     print res
 
     for obj, classification in zip(resp['item'], res):
-        print "The following got a prediction of %s" % (classification,)
+        print "The following got a prediction of %s" % (class_labels[classification],)
         print obj.get('description', '')
         print "-"*80
     return 0

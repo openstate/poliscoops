@@ -11,6 +11,10 @@ import requests
 
 from sklearn import svm
 
+sys.path.insert(0, '.')
+
+from ocd_ml.interestingness import featurize
+
 
 def get_data_from_permalink(permalink):
     poliflw_id = permalink.strip().split('/')[-1]
@@ -31,18 +35,6 @@ def load_data_from_file(file_path):
     return ids
 
 
-def featurize(poliflw_obj, labels):
-    result = []
-
-    data2feature = {
-        u'source': [u'Partij nieuws', u'Facebook']
-    }
-
-    for f in data2feature.keys():
-        result.append(data2feature[f].index(poliflw_obj[f]))
-    return result
-
-
 def main(argv):
     class_files = glob.glob('ocd_backend/data/interestingness/*.txt')
     class_labels = [c.split('/')[-1].replace('.txt', '') for c in class_files]
@@ -54,7 +46,7 @@ def main(argv):
         class_name = class_path.split('/')[-1].replace('.txt', '')
         ids = load_data_from_file(class_path)
         classes[class_name] = ids
-        train_data += [featurize(x, class_labels) for x in ids]
+        train_data += [featurize(x) for x in ids]
         train_labels += [class_labels.index(class_name) for x in ids]
     pprint(train_data)
     clf = svm.SVC(gamma='scale')

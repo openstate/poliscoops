@@ -7,12 +7,22 @@ from ocd_backend.log import get_source_logger
 from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.utils import json_encoder
 
+from ocd_ml.interestingness import featurize, class_labels
+
 import datetime
 import json
 import pytz
 import iso8601
+import pickle
+import os
 
 log = get_source_logger('enricher')
+
+interestingness_path = '/opt/pfl/interestingness.model'
+if os.path.exists(interestingness_path):
+    clf = pickle.load(open(interestingness_path, 'rb'))
+else:
+    clf = None
 
 
 class BaseEnricher(celery_app.Task):
@@ -92,7 +102,7 @@ class BaseEnricher(celery_app.Task):
         raise NotImplemented
 
 
-class NEREnricher(BaseEnricher, HttpRequestMixin):
+class PoliTagsEnricher(BaseEnricher, HttpRequestMixin):
     def _perform_ner(self, doc_id, doc):
         # FIXME: sometimes we use short names for parties and sometimes not
         parties2names = {
@@ -143,6 +153,32 @@ class NEREnricher(BaseEnricher, HttpRequestMixin):
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
         enrichments.update(self._perform_ner(object_id, combined_index_doc))
         return enrichments
+
+
+# class InterestingnessEnricher(BaseEnricher, HttpRequestMixin):
+class InterestingnessEnricher(PoliTagsEnricher):
+    def _perform_interestingness(self, object_id, combined_index_doc):
+        log.info('Performing interestingness')
+        res = clf.predict([featurize(combined_index_doc)])
+        log.info('Interestingness score: %s' % (res,))
+        return {
+            'interestingness': class_labels[res[0]]
+        }
+
+    def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
+        enrichments = super(InterestingnessEnricher, self).enrich_item(
+            enrichments, object_id, combined_index_doc, doc)
+
+        enrichments.update(self._perform_interestingness(
+            object_id, combined_index_doc))
+
+        return enrichments
+
+
+# NEREnricher is merely an alias for another class, in order to avoid having
+# to edit all source files.
+class NEREnricher(InterestingnessEnricher):
+    pass
 
 
 class BinoasEnricher(BaseEnricher, HttpRequestMixin):

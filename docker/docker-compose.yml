@@ -15,19 +15,6 @@ services:
     networks:
       - nginx-load-balancer
       - pfl
-  ml:
-    build:
-      context: ..
-      dockerfile: Dockerfile-ml
-    volumes:
-      - ../:/opt/pfl
-    links:
-      - redis:redis
-      - elasticsearch:elasticsearch
-      - frontend:frontend
-    restart: always
-    networks:
-      - pfl
   backend:
     build:
       context: ..

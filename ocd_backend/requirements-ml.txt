@@ -1,8 +1,0 @@
-requests==2.5.1
-elasticsearch>=5.0.0,<6.0.0
-Flask==0.10.1
-#Flask-Testing==0.4.2
-Pillow
-uwsgi
-scipy
-sklearn

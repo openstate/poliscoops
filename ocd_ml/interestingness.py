@@ -4,7 +4,7 @@ import bleach
 from bleach.sanitizer import Cleaner
 from html5lib.filters.base import Filter
 
-class_labels = ['good', 'bad']
+class_labels = ['hoog', 'laag']
 
 
 def html_cleanup(s):

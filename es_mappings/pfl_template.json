@@ -101,6 +101,9 @@
                     "type": "date",
                     "format": "dateOptionalTime"
                 },
+                "interestingness": {
+                  "type": "keyword"
+                },
                 "location": {
                   "type": "keyword"
                 },

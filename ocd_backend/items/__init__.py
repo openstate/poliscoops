@@ -44,6 +44,7 @@ class BaseItem(object):
         'description': unicode,
         'date': datetime,
         'date_granularity': int,
+        'interestingness': unicode,
         'location': unicode,
         'source': unicode,
         'type': unicode,

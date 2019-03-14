@@ -50,7 +50,8 @@ FACETS = (
     ('collection', 'Geplaatst door', True, True,),
     ('topics', 'Onderwerpen', True, True,),
     ('polarity', 'Polariteit', True, True,),
-    ('subjectivity', 'Sentiment', True, True,)
+    ('subjectivity', 'Sentiment', True, True,),
+    ('interestingness', 'Interessantheid', True, True,)
 )
 
 
@@ -307,7 +308,8 @@ class BackendAPI(object):
                 "collection": {"size": 10000},
                 "topics": {"size": 100},
                 "polarity": {},
-                "subjectivity": {}
+                "subjectivity": {},
+                "interestingness": {}
             },
             "sort": "date",
             "order": "desc",

@@ -112,6 +112,12 @@ COMMON_FACETS = {
             'size': 10
         }
     },
+    'interestingness': {
+        'terms': {
+            'field': 'interestingness',
+            'size': 10
+        }
+    },
     'location': {
         'terms': {
             'field': 'location',

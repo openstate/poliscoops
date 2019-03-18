@@ -158,9 +158,7 @@ class PoliTagsEnricher(BaseEnricher, HttpRequestMixin):
 # class InterestingnessEnricher(BaseEnricher, HttpRequestMixin):
 class InterestingnessEnricher(PoliTagsEnricher):
     def _perform_interestingness(self, object_id, combined_index_doc):
-        log.info('Performing interestingness')
         res = clf.predict([featurize(combined_index_doc)])
-        log.info('Interestingness score: %s' % (res,))
         return {
             'interestingness': class_labels[res[0]]
         }

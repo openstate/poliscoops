@@ -36,7 +36,7 @@ def featurize(poliflw_obj):
 
     desc = poliflw_obj.get(u'description', u'')
 
-    if u'<div class="facebook-external-link">' in desc:
+    if '<div class="facebook-external-link">' in desc:
         facebook_external = 1
     else:
         facebook_external = 0

@@ -40,8 +40,10 @@ def regenerate_index(es_index):
                 }
             }
             actions.append(action)
-        bulk(elasticsearch, actions)
-        sleep(5)
+            if len(actions) > 10000:
+                bulk(elasticsearch, actions)
+                sleep(5)
+                actions = []
         print "%s" % (es_index,)
 
 def main():

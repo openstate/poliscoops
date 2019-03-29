@@ -229,3 +229,15 @@ ul.wordcloud li { display: inline-block; }
   background: #fff;
   text-shadow: none;
 }
+
+.btn-email {
+  height: 6em;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em;
+  font-size: 18px;
+  line-height: 18px;
+}

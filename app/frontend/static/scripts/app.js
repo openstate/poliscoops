@@ -27,13 +27,19 @@ Poliflw.init = function() {
   //    url: window.location.href
   //  });
 
-  $('#form-email-subscribe').on('shown.bs.modal', function () {
+  $('#form-email-subscribe').on('shown.bs.modal', function (e) {
+    console.log(typeof(e.relatedTarget));
     var qp = Poliflw.queryParams();
-    var possible_filters = ['location', 'parties'];
+    var possible_filters = ['location', 'parties', 'query'];
     possible_filters.forEach(function (i) {
-      if (i in qp) {
-        console.log('#form-email-subscribe-filters-' + i + ' span');
-        $('#form-email-subscribe-filters-' + i + ' span').html(qp[i]);
+      if (typeof(e.relatedTarget) == "object") {
+        var rt_value = $(e.relatedTarget).attr('data-form-email-subscribe-' + i);
+        $('#form-email-subscribe-filters-' + i + ' span').html(rt_value);        
+      } else {
+        if (i in qp) {
+          console.log('#form-email-subscribe-filters-' + i + ' span');
+          $('#form-email-subscribe-filters-' + i + ' span').html(qp[i]);
+        }
       }
     });
   });

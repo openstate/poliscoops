@@ -1,5 +1,6 @@
 var Poliflw = window.Poliflw || {
   "api_base_url": "https://api.poliflw.nl/v0",
+  "form_email_target": null
 };
 
 Poliflw.queryParams = function() {
@@ -28,20 +29,18 @@ Poliflw.init = function() {
   //  });
 
   $('#form-email-subscribe').on('shown.bs.modal', function (e) {
-    console.log(typeof(e.relatedTarget));
-    var qp = Poliflw.queryParams();
-    var possible_filters = ['location', 'parties', 'query'];
-    possible_filters.forEach(function (i) {
-      if (typeof(e.relatedTarget) == "object") {
-        var rt_value = $(e.relatedTarget).attr('data-form-email-subscribe-' + i);
-        $('#form-email-subscribe-filters-' + i + ' span').html(rt_value);        
-      } else {
-        if (i in qp) {
-          console.log('#form-email-subscribe-filters-' + i + ' span');
-          $('#form-email-subscribe-filters-' + i + ' span').html(qp[i]);
-        }
-      }
-    });
+    if (typeof(e.relatedTarget) == "object") {
+      Poliflw.form_email_target = e.relatedTarget;
+      var possible_filters = ['location', 'parties', 'query', 'user-query'];
+      possible_filters.forEach(function (i) {
+          var rt_value = $(e.relatedTarget).attr('data-form-email-subscribe-' + i);
+          if (rt_value) {
+            $('#form-email-subscribe-filters-' + i + ' span').html(rt_value);
+          } else {
+            $('#form-email-subscribe-filters-' + i + ' span').html('-');            
+          }
+      });
+    }
   });
   // make the button disappear
   $('.toggle-hide-after[data-toggle="collapse"]').on('click', function() {
@@ -50,12 +49,20 @@ Poliflw.init = function() {
   });
 
   $('#form-email-subscribe form').on('submit', function (e) {
+    if (typeof(Poliflw.form_email_target) !== "object") {
+      Poliflw.form_email_target = null;
+      $('#form-email-subscribe').modal('hide');
+      $(".modal-backdrop.in").hide();
+      e.preventDefault();
+      return false;
+    }
+
     console.log('form submitted!!');
     var qp = Poliflw.queryParams();
     var possible_filters = ['location', 'parties'];
     console.dir(qp);
     var $frm = $('#form-email-subscribe form');
-    var uq = $('#form-email-subscribe').attr('data-user-query');
+    var uq = $(Poliflw.form_email_target).attr('data-form-email-subscribe-user-query');
     var frq = $frm[0].frequency.value;
     var sqs = {
       simple_query_string : {
@@ -77,13 +84,15 @@ Poliflw.init = function() {
     var num_filters = 0;
     var active_filters = [];
     possible_filters.forEach(function (i) {
-      if (i in qp) {
+      var rt_value = $(Poliflw.form_email_target).attr('data-form-email-subscribe-' + i);
+      console.log('rt value : ' + rt_value);
+      if (typeof(rt_value) !== "undefined") {
         num_filters++;
         active_filters.push({
           "term": {"data.key": i}
         });
         active_filters.push({
-          "term": {"data.value": qp[i].toLowerCase()}
+          "term": {"data.value": rt_value.toLowerCase()}
         });
       }
     });
@@ -127,6 +136,7 @@ Poliflw.init = function() {
         }
     });
 
+    Poliflw.form_email_target = null;
     $('#form-email-subscribe').modal('hide');
     $(".modal-backdrop.in").hide();
     e.preventDefault();

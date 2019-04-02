@@ -8,18 +8,92 @@
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-4">
-    <button class="btn-email" data-toggle="modal" data-target="#form-email-subscribe" data-form-email-subscribe-query="Amsterdam" data-form-email-subscribe-user-query="amsterdam">
-    Krijg een email als er iets gepost wordt in Amsterdam
+    <button
+      class="btn-email"
+      data-toggle="modal"
+      data-target="#form-email-subscribe"
+      {% if query %}
+      data-form-email-subscribe-query="{{ query }}"
+      data-form-email-subscribe-user-query="{{ query }}"
+      {% elif results.facets.topics.buckets |length > 0  %}
+      data-form-email-subscribe-query="{{ results.facets.topics.buckets.0.key.split()[0] |lower }}"
+      data-form-email-subscribe-user-query="{{ results.facets.topics.buckets.0.key.split()[0] |lower }}"
+      {% elif results.facets.location.buckets |length > 0 %}
+      data-form-email-subscribe-query="{{ results.facets.location.buckets.0.key | lower }}"
+      data-form-email-subscribe-user-query="{{ results.facets.location.buckets.0.key | lower }}"
+      {% else %}
+      data-form-email-subscribe-query="pgb"
+      data-form-email-subscribe-user-query="pgb"
+      {% endif %}
+    >
+    Krijg een email als er iets gepost wordt over
+    {% if query %}
+    {{ query }}
+    {% elif results.facets.topics.buckets |length > 0 %}
+    {{ results.facets.topics.buckets.0.key.split()[0] |lower }}
+    {% elif results.facets.location.buckets |length > 0 %}
+    {{ results.facets.location.buckets.0.key | lower }}
+    {% else %}
+    pgb
+    {% endif %}
     </button>
   </div>
   <div class="col-xs-12 col-sm-6 col-md-4">
-    <button class="btn-email" data-toggle="modal" data-target="#form-email-subscribe">
-    Krijg een email als er iets gepost wordt in Amsterdam
+    <button
+      class="btn-email"
+      data-toggle="modal"
+      data-target="#form-email-subscribe"
+      data-form-email-subscribe-query="{% if query %}{{ query }}{% else %}*{% endif %}"
+      data-form-email-subscribe-user-query="{% if query %}{{ query }}{% else %}*{% endif %}"
+      {% if search_params.location %}
+      data-form-email-subscribe-location="{{ search_params.location }}"
+      {% elif results.facets.location.buckets |length > 0 %}
+      data-form-email-subscribe-location="{{ results.facets.location.buckets.0.key | lower }}"
+      {% else %}
+      data-form-email-subscribe-location="{{ Amsterdam }}"
+      {% endif %}
+    >
+    Krijg een email als er iets gepost wordt
+    {% if query %}
+    over {{ query }}
+    {% endif %}
+    {% if search_params.location %}
+    in {{ search_params.location }}
+    {% elif results.facets.location.buckets |length > 0 %}
+    in {{ results.facets.location.buckets.0.key | lower }}
+    {% else %}
+    in Amsterdam
+    {% endif %}
     </button>
   </div>
   <div class="col-xs-12 col-sm-6 col-md-4">
-    <button class="btn-email" data-toggle="modal" data-target="#form-email-subscribe">
-    Krijg een email als er iets gepost wordt in Amsterdam
+    <button
+      class="btn-email"
+      data-toggle="modal"
+      data-target="#form-email-subscribe"
+      data-form-email-subscribe-query="{% if query %}{{ query }}{% else %}*{% endif %}"
+      data-form-email-subscribe-user-query="{% if query %}{{ query }}{% else %}*{% endif %}"
+      {% if search_params.parties %}
+      data-form-email-subscribe-parties="{{ search_params.parties }}"
+      {% elif results.facets.parties.buckets |length > 0 %}
+      data-form-email-subscribe-parties="{{ results.facets.parties.buckets.0.key | lower }}"
+      {% else %}
+      data-form-email-subscribe-parties="{{ VVD }}"
+      {% endif %}
+    >
+    Krijg een email als er iets gepost wordt
+    {% if query %}
+    over {{ query }}
+    {% endif %}
+    en
+    {% if search_params.parties %}
+    {{ search_params.parties }}
+    {% elif results.facets.parties.buckets |length > 0 %}
+    {{ results.facets.parties.buckets.0.key | lower }}
+    {% else %}
+    VVD
+    {% endif %}
+    bevat
     </button>
   </div>
 </div>

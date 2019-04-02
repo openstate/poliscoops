@@ -231,7 +231,7 @@ ul.wordcloud li { display: inline-block; }
 }
 
 .btn-email {
-  height: 6em;
+  min-height: 8em;
   background-color: black;
   color: white;
   text-align: center;

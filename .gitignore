@@ -67,3 +67,4 @@ log/*.pid
 
 .updating*
 ocd_backend/sources/*-facebook.json
+**/parties/*.png

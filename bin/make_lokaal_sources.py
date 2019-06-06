@@ -55,14 +55,14 @@ def convert_party(party, feed_type, locations):
         "extractor": feed_type_defs[feed_type]['extractor'],
         "keep_index_on_update": True,
         "enrichers": [
-          # [
-          #   "ocd_backend.enrichers.NEREnricher",
-          #   {}
-          # ],
-          # [
-          #   "ocd_backend.enrichers.BinoasEnricher",
-          #   {}
-          # ]
+          [
+            "ocd_backend.enrichers.NEREnricher",
+            {}
+          ],
+          [
+            "ocd_backend.enrichers.BinoasEnricher",
+            {}
+          ]
         ],
         feed_type.lower(): {},
         "file_url": party[feed_type],

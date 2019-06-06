@@ -42,6 +42,7 @@ services:
       - pfl
   redis:
     image: "redis:${REDIS_VERSION}"
+    command: redis-server --appendonly no --save ''
     sysctls:
       - net.core.somaxconn=65535
     restart: always

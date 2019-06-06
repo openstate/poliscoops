@@ -2,7 +2,16 @@
     {
         "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "d66", 
         "collection": "D66", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -15,53 +24,18 @@
         "hidden": false
     }, 
     {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "d66", 
-        "collection": "D66", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "D66/posts"
-        }, 
-        "id": "d66_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "christenunie", 
-        "collection": "ChristenUnie", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "ChristenUnie/posts"
-        }, 
-        "id": "christenunie_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
         "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "christenunie", 
         "collection": "ChristenUnie", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -74,9 +48,18 @@
         "hidden": false
     }, 
     {
-        "extractor": "ocd_backend.extractors.staticfile.StaticHtmlExtractor", 
+        "extractor": "ocd_backend.extractors.paging.PagedStaticHtmlExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "groenlinks", 
         "collection": "GroenLinks", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -94,31 +77,18 @@
         "hidden": false
     }, 
     {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "groenlinks", 
-        "collection": "GroenLinks", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "groenlinks/posts"
-        }, 
-        "id": "groenlinks_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
         "extractor": "ocd_backend.extractors.staticfile.StaticHtmlExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "sgp", 
         "collection": "SGP", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -132,31 +102,18 @@
         "hidden": false
     }, 
     {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "sgp", 
-        "collection": "SGP", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "SGPnieuws/posts"
-        }, 
-        "id": "sgp_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
         "extractor": "ocd_backend.extractors.pvdd.PVDDExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "partij_voor_de_dieren", 
         "collection": "Partij voor de Dieren", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -170,31 +127,18 @@
         "hidden": false
     }, 
     {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "partij_voor_de_dieren", 
-        "collection": "Partij voor de Dieren", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "PartijvoordeDieren/posts"
-        }, 
-        "id": "partij_voor_de_dieren_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
         "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "pvda", 
         "collection": "PvdA", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -208,31 +152,18 @@
         "hidden": false
     }, 
     {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "pvda", 
-        "collection": "PvdA", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "PartijvandeArbeid/posts"
-        }, 
-        "id": "pvda_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
         "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "sp", 
         "collection": "SP", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -245,31 +176,18 @@
         "hidden": false
     }, 
     {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "sp", 
-        "collection": "SP", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "SocialistischePartij/posts"
-        }, 
-        "id": "sp_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
         "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "denk", 
         "collection": "DENK", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -282,31 +200,18 @@
         "hidden": false
     }, 
     {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "denk", 
-        "collection": "DENK", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "DenkNL/posts"
-        }, 
-        "id": "denk_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
         "extractor": "ocd_backend.extractors.feed.FeedExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "pvv", 
         "collection": "PVV", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -319,31 +224,18 @@
         "hidden": false
     }, 
     {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "pvv", 
-        "collection": "PVV", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "PVV.PartijvoordeVrijheid/posts"
-        }, 
-        "id": "pvv_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
         "extractor": "ocd_backend.extractors.staticfile.StaticJSONExtractor", 
         "keep_index_on_update": true, 
-        "enrichers": [], 
+        "enrichers": [
+            [
+                "ocd_backend.enrichers.NEREnricher", 
+                {}
+            ], 
+            [
+                "ocd_backend.enrichers.BinoasEnricher", 
+                {}
+            ]
+        ], 
         "index_name": "forum_voor_democratie", 
         "collection": "Forum voor Democratie", 
         "loader": "ocd_backend.loaders.ElasticsearchLoader", 
@@ -351,28 +243,6 @@
         "transformer": "ocd_backend.transformers.BaseTransformer", 
         "file_url": "https://forumvoordemocratie.nl/api/articles/", 
         "item": "ocd_backend.items.fvd.FVDItem", 
-        "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
-        "location": "Nederland", 
-        "hidden": false
-    }, 
-    {
-        "extractor": "ocd_backend.extractors.facebook.FacebookExtractor", 
-        "keep_index_on_update": true, 
-        "enrichers": [], 
-        "index_name": "forum_voor_democratie", 
-        "collection": "Forum voor Democratie", 
-        "loader": "ocd_backend.loaders.ElasticsearchLoader", 
-        "facebook": {
-            "app_secret": null, 
-            "paging": false, 
-            "app_id": null, 
-            "api_version": "v2.11", 
-            "graph_url": "forumvoordemocratie/posts"
-        }, 
-        "id": "forum_voor_democratie_nederland_fb_1", 
-        "transformer": "ocd_backend.transformers.BaseTransformer", 
-        "file_url": "", 
-        "item": "ocd_backend.items.facebook.PageItem", 
         "cleanup": "ocd_backend.tasks.CleanupElasticsearch", 
         "location": "Nederland", 
         "hidden": false

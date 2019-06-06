@@ -7,7 +7,6 @@ import json
 from pprint import pprint
 from time import sleep
 from collections import defaultdict
-from copy import deep_copy
 
 from elasticsearch.helpers import scan, bulk
 backend_path = os.path.join(
@@ -47,7 +46,7 @@ def main(argv):
         scroll='5m',
         raise_on_error=False, index='pfl_combined_index', doc_type='item')
 
-    print json.dumps(items)
+    print json.dumps(list(items))
     return 0
 
 if __name__ == '__main__':

@@ -7,7 +7,6 @@ import json
 from pprint import pprint
 from time import sleep
 from collections import defaultdict
-from copy import deep_copy
 
 from elasticsearch.helpers import scan, bulk
 backend_path = os.path.join(

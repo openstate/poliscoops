@@ -28,6 +28,13 @@ If you're in development::
 
 Elasticsearch is now accessible locally in the Docker container via http://127.0.0.1:9200, or from the host via http://<CONTAINER IP ADDRESS>:9200 (look up the container's IP address using ``docker inspect`` as shown below).
 
+Furthermore, to make everything ready for getting sources and using it locally, you need to do the following::
+
+   $ docker exec -it pfl_backend_1 bash
+   $ source ../env/bin/activate
+   $ ./manage.py elasticsearch put_template
+   $ ./manage.py elasticsearch create_indexes es_mappings
+
 Some useful Docker commands::
 
    # Show all docker images on your machine

@@ -39,6 +39,33 @@
         }
     },
     "mappings": {
+        "info_*": {
+          "properties": {
+            "name": {
+              "type": "keyword"
+            },
+            "logo": {
+              "type": "keyword"
+            },
+            "links": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "keyword"
+                },
+                "name": {
+                  "type": "keyword"
+                },
+                "source": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "allmanak_url": {
+              "type": "keyword"
+            }
+          }
+        },
         "_default_": {
             "_all": {
                 "enabled": false

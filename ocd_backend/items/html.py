@@ -8,6 +8,7 @@ from lxml import etree
 
 from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.items import BaseItem
+from ocd_backend.utils.html import HTMLContentExtractionMixin
 
 
 class HTMLPageItem(BaseItem, HttpRequestMixin):
@@ -28,38 +29,19 @@ class HTMLPageItem(BaseItem, HttpRequestMixin):
     def get_collection(self):
         return unicode(self.source_definition.get('collection', 'Unknown'))
 
-    def get_combined_index_data(self):
-        combined_index_data = {
-            'hidden': self.source_definition['hidden'],
-            'source': unicode(
-                self.source_definition.get('source', 'Partij nieuws')),
-            'type': unicode(self.source_definition.get('type', 'Partij')),
-            'parties': [unicode(self.source_definition['collection'])]
-        }
-
-        orig_link = self._get_orig_link()
-        r = self.http_session.get(orig_link)
-        print >>sys.stderr, "Got %s with status code : %s" % (
-            orig_link, r.status_code)
-
-        # only continue if we got the page
-        if r.status_code < 200 or r.status_code >= 300:
-            return combined_index_data
-
-        try:
-            html = etree.HTML(r.content)
-        except etree.ElementTree.ParseError:
-            return combined_index_data
-
+    def _extract_content(self, html=None, encoding=None):
         output = u''
         for elem in html.xpath(self.source_definition['content_xpath']):
             output += unicode(etree.tostring(elem))
+        return output
 
-        if output.strip() != u'':
-            combined_index_data['description'] = output
-
-        combined_index_data['title'] = u''.join(html.xpath(
+    def _extract_title(self, html=None):
+        return u''.join(html.xpath(
             self.source_definition['title_xpath']))
+
+    def _extract_date(self, html=None):
+        parsed_date = None
+        parsed_granularity = None
 
         # assumes text
         date_str = u''.join(html.xpath(self.source_definition['date_xpath']))
@@ -87,15 +69,48 @@ class HTMLPageItem(BaseItem, HttpRequestMixin):
                 date_match.group(3), date_conversions[date_match.group(2)],
                 date_prefix, date_match.group(1),)
             try:
-                combined_index_data['date'] = iso8601.parse_date(
+                parsed_date = iso8601.parse_date(
                     date_semi_parsed)
+                parsed_granularity = 12
             except LookupError:
                 pass
+        return parsed_date, parsed_granularity
+
+    def get_combined_index_data(self):
+        combined_index_data = {
+            'hidden': self.source_definition['hidden'],
+            'source': unicode(
+                self.source_definition.get('source', 'Partij nieuws')),
+            'type': unicode(self.source_definition.get('type', 'Partij')),
+            'parties': [unicode(self.source_definition['collection'])]
+        }
+
+        orig_link = self._get_orig_link()
+        r = self.http_session.get(orig_link)
+        print >>sys.stderr, "Got %s with status code : %s" % (
+            orig_link, r.status_code)
+
+        # only continue if we got the page
+        if r.status_code < 200 or r.status_code >= 300:
+            return combined_index_data
+
+        try:
+            html = etree.HTML(r.content)
+        except etree.ElementTree.ParseError:
+            return combined_index_data
+
+        output = self._extract_content(html, r.encoding)
+
+        if output.strip() != u'':
+            combined_index_data['description'] = output
+
+        combined_index_data['title'] = self._extract_title(html)
+
+        combined_index_data['date'], combined_index_data['date_granularity'] = self._extract_date(html)
 
         if self.source_definition.get('location', None) is not None:
             combined_index_data['location'] = unicode(self.source_definition[
                 'location'].decode('utf-8'))
-        combined_index_data['date_granularity'] = 12
 
         return combined_index_data
 
@@ -106,3 +121,16 @@ class HTMLPageItem(BaseItem, HttpRequestMixin):
         text_items = []
 
         return u' '.join(text_items)
+
+
+class HTMLWithContentOnPageItem(HTMLPageItem, HTMLContentExtractionMixin):
+    def _extract_content(self, html=None, encoding=None):
+        return self.extract_content(etree.tostring(html), encoding)
+
+    def _extract_title(self, html=None):
+        return u''.join(html.xpath('//title[0]/text()'))
+
+    def _extract_date(self, html=None):
+        parsed_date = datetime.now()
+        parsed_granularity = 12
+        return parsed_date, parsed_granularity

@@ -15,7 +15,7 @@ services:
       dockerfile: Dockerfile-frontend-dev
     restart: "no"
   redis:
-    mem_limit: 4g
+    mem_limit: 1g
     restart: "no"
   elasticsearch:
     mem_limit: 1g

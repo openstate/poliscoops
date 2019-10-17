@@ -84,6 +84,9 @@ API_URL = 'http://frontend:5000/v0/'
 PDF_TO_TEXT = u'pdftotext'
 PDF_MAX_MEDIABOX_PIXELS = 5000000
 
+# The path of the directory used to store linkmaps
+LINKMAP_PATH = os.path.join(ROOT_PATH, 'data/linkmaps')
+
 # Allow any settings to be defined in local_settings.py which should be
 # ignored in your version control system allowing for settings to be
 # defined per machine.

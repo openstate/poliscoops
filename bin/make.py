@@ -91,9 +91,20 @@ def get_item_transformer_for_feed(feed_url):
     feed = feedparser.parse(feed_url)
     len_feed = 0
     len_page = 0
+    max_entries = 3
+    num_entries = 0
     for entry in feed.entries:
-        clean_desc = clean_content(entry.description).strip()
-        clean_page = get_content_from_page(entry.link).strip()
+        if num_entries >= max_entries:
+            continue
+        num_entries += 1
+        try:
+            clean_desc = clean_content(entry.description).strip()
+        except Exception as e:
+            clean_desc = u''
+        try:
+            clean_page = get_content_from_page(entry.link).strip()
+        except Exception as e:
+            clean_page = u''
         # print "Feed:\n\n"
         # print clean_desc
         # print "\n\nPage:\n\n"
@@ -111,8 +122,8 @@ def get_item_transformer_for_feed(feed_url):
 
 def get_source_info_from_url(file_url):
     result = {
-        'extractor': "ocd_backend.extractors.staticfile.StaticHtmlExtractor",
-        'item': ''
+        'extractor': "ocd_backend.extractors.linkmap.LinkmapExtractor",
+        'item': "ocd_backend.items.html.HTMLWithContentOnPageItem"
     }
 
     try:
@@ -131,18 +142,22 @@ def get_source_info_from_url(file_url):
         return result
 
     # parse the html and try to find the link to the RSS feed
-    html = etree.HTML(content)
-
     try:
-        feed_link = html.xpath('//link[@rel="alternate" and (@type="application/atom+xml" or @type="application/rss+xml")]/@href')[0]
+        html = etree.HTML(content)
     except Exception as e:
-        feed_link = None
+        html = None
 
-    if feed_link is not None:
-        result['file_url'] = urljoin(file_url, feed_link)
-        result['extractor'] = "ocd_backend.extractors.feed.FeedExtractor"
-        result['item'] = get_item_transformer_for_feed(result['file_url'])
-        return result
+    if html is not None:
+        try:
+            feed_link = html.xpath('//link[@rel="alternate" and (@type="application/atom+xml" or @type="application/rss+xml")]/@href')[0]
+        except Exception as e:
+            feed_link = None
+
+        if feed_link is not None:
+            result['file_url'] = urljoin(file_url, feed_link)
+            result['extractor'] = "ocd_backend.extractors.feed.FeedExtractor"
+            result['item'] = get_item_transformer_for_feed(result['file_url'])
+            return result
 
     # Fallback options
     result['file_url'] = file_url
@@ -150,7 +165,9 @@ def get_source_info_from_url(file_url):
 
 
 def is_facebook(url):
-    return (re.search('\.facebook.com\/', url) is not None)
+    if url is not None:
+        return (re.search('\.facebook.com\/', url) is not None)
+    return False
 
 
 def make_source_for(src, LOCATIONS):
@@ -211,7 +228,7 @@ def make_source_for(src, LOCATIONS):
 def make_sources_for(srcs):
     LOCATIONS = _get_normalized_locations()
 
-    sources = [make_source_for(src, LOCATIONS) for src in srcs]
+    sources = [make_source_for(src, LOCATIONS) for src in srcs if src['file_url'] is not None]
     return json.dumps(sources, indent=4)
 
 
@@ -250,7 +267,7 @@ def sources():
 @click.argument('file')
 def generate_source_from_file(file):
     """
-    This generate the  sources a list of urls in a file
+    This generate the sources for a list of urls in a JSON file
 
     param: name: The name of the party
     """

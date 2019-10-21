@@ -14,7 +14,6 @@ class LinkmapExtractor(StaticFileBaseExtractor):
         new_links = []
         if existing is not None and current is not None:
             new_links = set(existing['links'] or []) - set(current['links'] or [])
-        print(new_links)
 
         # if not existing:
         #     save_linkmap(url, linkmap)

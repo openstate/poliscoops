@@ -52,6 +52,19 @@
                             "index": "false"
                         }
                     }
+                  },
+                  {
+                    "basic": {
+                      "path_match": "*",
+                      "mapping": {
+                        "type": "text",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
                 }
             ],
             "properties": {
@@ -87,73 +100,136 @@
                     "type": "text",
                     "analyzer": "text_nl"
                 },
-                "title": {
-                    "type": "text",
-                    "analyzer": "text_nl",
-                    "fielddata": true
+                "hidden": {
+                  "type": "boolean"
                 },
-                "description": {
-                    "type": "text",
-                    "analyzer": "text_nl",
-                    "fielddata": true
-                },
-                "date": {
-                    "type": "date",
-                    "format": "dateOptionalTime"
-                },
-                "interestingness": {
-                  "type": "keyword"
-                },
-                "location": {
-                  "type": "keyword"
-                },
-                "source": {
-                  "type": "keyword"
-                },
-                "type": {
-                  "type": "keyword"
-                },
-                "politicians": {
-                  "type": "keyword"
-                },
-                "parties": {
-                  "type": "keyword"
-                },
-                "topics": {
+                "item": {
                   "type": "object",
                   "properties": {
-                    "id": {
-                      "type": "integer"
+                    "actor": {
+                      "type": "object"
                     },
-                    "name": {
-                      "type": "keyword"
-                    }
-                  }
-                },
-                "sentiment": {
-                  "type": "object",
-                  "properties": {
-                    "polarity": {
-                      "type": "object",
-                      "properties": {
-                        "score": {
-                          "type": "float"
-                        },
-                        "description": {
-                          "type": "keyword"
-                        }
-                      }
+                    "attachment": {
+                      "type": "object"
                     },
-                    "subjectivity": {
-                      "type": "object",
-                      "properties": {
-                        "score": {
-                          "type": "float"
-                        },
-                        "description": {
-                          "type": "keyword"
-                        }
-                      }
+                    "attrubtedTo": {
+                      "type": "object"
+                    },
+                    "audience": {
+                      "type": "object"
+                    },
+                    "bcc": {
+                      "type": "object"
+                    },
+                    "bto": {
+                      "type": "object"
+                    },
+                    "cc": {
+                      "type": "object"
+                    },
+                    "context": {
+                      "type": "object"
+                    },
+                    "current": {
+                      "type": "object"
+                    },
+                    "first": {
+                      "type": "object"
+                    },
+                    "generator": {
+                      "type": "object"
+                    },
+                    "icon": {
+                      "type": "object"
+                    },
+                    "image": {
+                      "type": "object"
+                    },
+                    "inReplyTp": {
+                      "type": "object"
+                    },
+                    "instrument": {
+                      "type": "object"
+                    },
+                    "last": {
+                      "type": "object"
+                    },
+                    "location": {
+                      "type": "object"
+                    },
+                    "items": {
+                      "type": "object"
+                    },
+                    "oneOf": {
+                      "type": "object"
+                    },
+                    "anyOf": {
+                      "type": "object"
+                    },
+                    "origin": {
+                      "type": "object"
+                    },
+                    "next": {
+                      "type": "object"
+                    },
+                    "object": {
+                      "type": "object"
+                    },
+                    "prev": {
+                      "type": "object"
+                    },
+                    "preview": {
+                      "type": "object"
+                    },
+                    "result": {
+                      "type": "object"
+                    },
+                    "replies": {
+                      "type": "object"
+                    },
+                    "tag": {
+                      "type": "object"
+                    },
+                    "target": {
+                      "type": "object"
+                    },
+                    "to": {
+                      "type": "object"
+                    },
+                    "url": {
+                      "type": "object"
+                    },
+                    "partOf": {
+                      "type": "object"
+                    },
+                    "endTime": {
+              				"type": "date",
+              				"format": "strict_date_optional_time||epoch_millis"
+              			},
+                    "published": {
+              				"type": "date",
+              				"format": "strict_date_optional_time||epoch_millis"
+              			},
+                    "startTime": {
+              				"type": "date",
+              				"format": "strict_date_optional_time||epoch_millis"
+              			},
+                    "updated": {
+              				"type": "date",
+              				"format": "strict_date_optional_time||epoch_millis"
+              			},
+                    "deleted": {
+              				"type": "date",
+              				"format": "strict_date_optional_time||epoch_millis"
+              			},
+                    "subject": {
+                      "type": "object"
+                    },
+                    "relationship": {
+                      "type": "object"
+                    },
+                    "describes": {
+                      "type": "object"
                     }
                   }
                 },

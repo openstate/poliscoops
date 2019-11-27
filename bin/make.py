@@ -183,14 +183,14 @@ def make_source_for(src, LOCATIONS):
         "extractor": "",  # depends if feed or not
         "keep_index_on_update": True,
         "enrichers": [
-          [
-            "ocd_backend.enrichers.NEREnricher",
-            {}
-          ],
-          [
-            "ocd_backend.enrichers.BinoasEnricher",
-            {}
-          ]
+          # [
+          #   "ocd_backend.enrichers.NEREnricher",
+          #   {}
+          # ],
+          # [
+          #   "ocd_backend.enrichers.BinoasEnricher",
+          #   {}
+          # ]
         ],
         "file_url": '',
         "index_name": slug,

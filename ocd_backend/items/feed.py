@@ -36,40 +36,54 @@ class FeedItem(BaseItem):
     def get_combined_index_data(self):
         combined_index_data = {
             'hidden': self.source_definition['hidden'],
-            'source': unicode(
-                self.source_definition.get('source', 'Partij nieuws')),
-            'type': unicode(self.source_definition.get('type', 'Partij')),
-            'parties': [unicode(self.source_definition['collection'])]
+            # 'source': unicode(
+            #     self.source_definition.get('source', 'Partij nieuws')),
+            # 'type': unicode(self.source_definition.get('type', 'Partij')),
+            # 'parties': [unicode(self.source_definition['collection'])]
         }
-
+        combined_index_data['item'] = {
+            "@type": "Create",
+            "actor": {
+                "@type": u"Organization",
+                "name": unicode(self.source_definition['collection']),
+                "@id": "https://www.poliflw.nl/ns/#%s" % (
+                    unicode(self.source_definition['collection']))
+            },
+            "object": {
+                "@type": "Note",
+                "name": self.original_item['title'],
+                "@id": unicode(self.original_item['link'])
+            },
+            "@context": "http://www.w3.org/ns/activitystreams"
+        }
         # TODO: provide easier way for default mapping
-        mappings = {
-            'summary': 'description'
-        }
-        mappings.update(self.source_definition.get('mappings', {}))
-
-        for fld in ['title', 'summary']:
-            if self.original_item.get(fld, None) is not None:
-                mapping_fld = mappings.get(fld, fld)
-                combined_index_data[mapping_fld] = self.original_item[fld]
-
-        # try to get the full content, if available
-        try:
-            combined_index_data['description'] = self.original_item[
-                'content'][0]['value']
-        except LookupError:
-                pass
-
-        try:
-            combined_index_data['date'] = iso8601.parse_date(
-                self.original_item['published_parsed'])
-        except LookupError:
-            pass
-
-        if self.source_definition.get('location', None) is not None:
-            combined_index_data['location'] = unicode(self.source_definition[
-                'location'].decode('utf-8'))
-        combined_index_data['date_granularity'] = 12
+        # mappings = {
+        #     'summary': 'description'
+        # }
+        # mappings.update(self.source_definition.get('mappings', {}))
+        #
+        # for fld in ['title', 'summary']:
+        #     if self.original_item.get(fld, None) is not None:
+        #         mapping_fld = mappings.get(fld, fld)
+        #         combined_index_data[mapping_fld] = self.original_item[fld]
+        #
+        # # try to get the full content, if available
+        # try:
+        #     combined_index_data['description'] = self.original_item[
+        #         'content'][0]['value']
+        # except LookupError:
+        #         pass
+        #
+        # try:
+        #     combined_index_data['date'] = iso8601.parse_date(
+        #         self.original_item['published_parsed'])
+        # except LookupError:
+        #     pass
+        #
+        # if self.source_definition.get('location', None) is not None:
+        #     combined_index_data['location'] = unicode(self.source_definition[
+        #         'location'].decode('utf-8'))
+        # combined_index_data['date_granularity'] = 12
 
         return combined_index_data
 

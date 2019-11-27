@@ -6,6 +6,7 @@ from flask import (
 from elasticsearch import NotFoundError
 import os
 from urlparse import urljoin
+import sys
 
 from ocd_frontend import thumbnails
 from ocd_frontend import settings
@@ -376,6 +377,7 @@ def search(doc_type=u'item'):
     else:
         request_doc_type = None
 
+    print >>sys.stderr, es_q
     es_r = current_app.es.search(body=es_q,
                                  index=current_app.config['COMBINED_INDEX'],
                                  doc_type=request_doc_type)

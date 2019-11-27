@@ -40,21 +40,9 @@ class BaseItem(object):
     #: Allowed key-value pairs for the document inserted in the 'combined index'
     combined_index_fields = {
         'hidden': bool,
-        'title': unicode,
-        'description': unicode,
-        'date': datetime,
-        'date_granularity': int,
-        'interestingness': unicode,
-        'location': unicode,
-        'source': unicode,
-        'type': unicode,
-        'authors': list,
         'media_urls': list,
-        'persons': list,
-        'parties': list,
-        'topics': list,
-        'sentiment': dict,
-        'all_text': unicode
+        'all_text': unicode,
+        'item': dict
     }
 
     def __init__(self, source_definition, data_content_type, data, item,

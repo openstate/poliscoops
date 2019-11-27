@@ -21,5 +21,8 @@ class FeedExtractor(StaticFileBaseExtractor):
     """
     def extract_items(self, static_content):
         self.feedparser = feedparser.parse(static_content)
+        e = 0
         for entry in self.feedparser.entries:
             yield 'application/json', json.dumps(entry, cls=FeedDateEncoder)
+            e += 1
+        print "Extracted %s items" % (e,)

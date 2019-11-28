@@ -199,13 +199,14 @@ def format_search_aggregations(aggregations):
         result = {
             "ibmsc:taxonomyId": None,
             "ibmsc:facet": {
-                "@id": a_name.capitalize(),
+                # "@id": a_name.capitalize(),
+                "dc:title": a_name.capitalize(),
                 "ibmsc:facetValue": []
             }
         }
         for b in aggregations[a_name].get('buckets', []):
             result['ibmsc:facet']['ibmsc:facetValue'].append({
-                '@id': b['key'],
+                 #'@id': b['key'],
                 'ibmsc:label': b['key'],
                 'ibmsc:weight': b['doc_count']
             })
@@ -236,8 +237,9 @@ def format_search_results(results, doc_type=u'item'):
 
     formatted_results = {
       "@context": {
-        "as": "https://www.w3.org/ns/activitystreams",
-        "ibmsc": "http://www.ibm.com/search/content/2010"
+        "as": "https://www.w3.org/ns/activitystreams#",
+        "ibmsc": "http://www.ibm.com/search/content/2010#",
+        "dc": "http://purl.org/dc/terms/"
       },
       "as:type": "CollectionPage",
       "as:items": [

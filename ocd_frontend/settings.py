@@ -58,114 +58,120 @@ DOC_TYPE_DEFAULT = u'item'
 # Definition of the ES facets (and filters) that are accessible through
 # the REST API
 COMMON_FACETS = {
-    'processing_started': {
-        'date_histogram': {
-            'field': 'meta.processing_started',
-            'interval': 'month'
-        }
-    },
-    'processing_finished': {
-        'date_histogram': {
-            'field': 'meta.processing_finished',
-            'interval': 'month'
-        }
-    },
-    'source': {
-        'terms': {
-            'field': 'meta.source_id',
-            'size': 10
-        }
-    },
-    'collection': {
-        'terms': {
-            'field': 'meta.collection',
-            'size': 10
-        }
-    },
-    'rights': {
-        'terms': {
-            'field': 'meta.rights',
-            'size': 10
-        }
-    },
-    'index': {
-        'terms': {
-            'field': '_index',
-            'size': 10
-        }
-    },
-    'types': {
-        'terms': {
-            'field': '_type',
-            'size': 10
-        }
-    },
-    'date': {
-        'date_histogram': {
-            'field': 'date',
-            'interval': 'month'
-        }
-    },
-    'id': {
-        'terms': {
-            'field': 'id',
-            'size': 10
-        }
-    },
-    'interestingness': {
-        'terms': {
-            'field': 'interestingness',
-            'size': 10
-        }
-    },
-    'location': {
-        'terms': {
-            'field': 'location',
-            'size': 10
-        }
-    },
-    'sources': {
-        'terms': {
-            'field': 'source',
-            'size': 10
-        }
-    },
+    # 'processing_started': {
+    #     'date_histogram': {
+    #         'field': 'meta.processing_started',
+    #         'interval': 'month'
+    #     }
+    # },
+    # 'processing_finished': {
+    #     'date_histogram': {
+    #         'field': 'meta.processing_finished',
+    #         'interval': 'month'
+    #     }
+    # },
+    # 'source': {
+    #     'terms': {
+    #         'field': 'meta.source_id',
+    #         'size': 10
+    #     }
+    # },
+    # 'collection': {
+    #     'terms': {
+    #         'field': 'meta.collection',
+    #         'size': 10
+    #     }
+    # },
+    # 'rights': {
+    #     'terms': {
+    #         'field': 'meta.rights',
+    #         'size': 10
+    #     }
+    # },
+    # 'index': {
+    #     'terms': {
+    #         'field': '_index',
+    #         'size': 10
+    #     }
+    # },
+    # 'types': {
+    #     'terms': {
+    #         'field': '_type',
+    #         'size': 10
+    #     }
+    # },
+    # 'date': {
+    #     'date_histogram': {
+    #         'field': 'date',
+    #         'interval': 'month'
+    #     }
+    # },
+    # 'id': {
+    #     'terms': {
+    #         'field': 'id',
+    #         'size': 10
+    #     }
+    # },
+    # 'interestingness': {
+    #     'terms': {
+    #         'field': 'interestingness',
+    #         'size': 10
+    #     }
+    # },
+    # 'location': {
+    #     'terms': {
+    #         'field': 'location',
+    #         'size': 10
+    #     }
+    # },
+    # 'sources': {
+    #     'terms': {
+    #         'field': 'source',
+    #         'size': 10
+    #     }
+    # },
     'type': {
         'terms': {
-            'field': 'type',
+            'field': 'item.@type.raw',
             'size': 10
         }
     },
-    'politicians': {
+    'actor': {
         'terms': {
-            'field': 'politicians',
+            'field': 'item.actor.@id.raw',
             'size': 10
         }
     },
-    'parties': {
-        'terms': {
-            'field': 'parties',
-            'size': 10
-        }
-    },
-    'topics': {
-        'terms': {
-            'field': 'topics.name',
-            'size': 20
-        }
-    },
-    'polarity': {
-        'terms': {
-            'field': 'sentiment.polarity.description',
-            'size': 20
-        }
-    },
-    'subjectivity': {
-        'terms': {
-            'field': 'sentiment.subjectivity.description',
-            'size': 20
-        }
-    }
+    # 'politicians': {
+    #     'terms': {
+    #         'field': 'politicians',
+    #         'size': 10
+    #     }
+    # },
+    # 'parties': {
+    #     'terms': {
+    #         'field': 'parties',
+    #         'size': 10
+    #     }
+    # },
+    # 'topics': {
+    #     'terms': {
+    #         'field': 'topics.name',
+    #         'size': 20
+    #     }
+    # },
+    # 'polarity': {
+    #     'terms': {
+    #         'field': 'sentiment.polarity.description',
+    #         'size': 20
+    #     }
+    # },
+    # 'subjectivity': {
+    #     'terms': {
+    #         'field': 'sentiment.subjectivity.description',
+    #         'size': 20
+    #     }
+    # }
 }
 
 AVAILABLE_FACETS = {

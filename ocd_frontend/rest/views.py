@@ -191,6 +191,28 @@ def parse_search_request(data, doc_type, mlt=False):
     }
 
 
+def format_search_aggregations(aggregations):
+    output = {
+        "ibmsc:facets": []
+    }
+    for a_name in aggregations.keys():
+        result = {
+            "ibmsc:taxonomyId": None,
+            "ibmsc:facet": {
+                "@id": a_name.capitalize(),
+                "ibmsc:facetValue": []
+            }
+        }
+        for b in aggregations[a_name].get('buckets', []):
+            result['ibmsc:facet']['ibmsc:facetValue'].append({
+                '@id': b['key'],
+                'ibmsc:label': b['key'],
+                'ibmsc:weight': b['doc_count']
+            })
+        output["ibmsc:facets"].append(result)
+    return output
+
+
 def format_search_results(results, doc_type=u'item'):
     del results['_shards']
     del results['timed_out']
@@ -213,18 +235,22 @@ def format_search_results(results, doc_type=u'item'):
                 pass
 
     formatted_results = {
-      "@context": "https://www.w3.org/ns/activitystreams",
-      "type": "CollectionPage",
-      "items": [
+      "@context": {
+        "as": "https://www.w3.org/ns/activitystreams",
+        "ibmsc": "http://www.ibm.com/search/content/2010"
+      },
+      "as:type": "CollectionPage",
+      "as:items": [
       ],
-      "totalItems": results['hits']['total']
+      "as:totalItems": results['hits']['total']
     }
 
     for hit in results['hits']['hits']:
-        formatted_results["items"].append(hit['_source']['item'])
+        hit['_source']['item']['@context'] = "https://www.w3.org/ns/activitystreams"
+        formatted_results["as:items"].append(hit['_source']['item'])
 
     if results.has_key('aggregations'):
-        formatted_results['facets'] = results['aggregations']
+        formatted_results.update(format_search_aggregations(results['aggregations']))
 
     if '_scroll_id' in results:
         formatted_results['meta']['scroll'] = results['_scroll_id']

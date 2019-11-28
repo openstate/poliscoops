@@ -212,25 +212,19 @@ def format_search_results(results, doc_type=u'item'):
             except KeyError as e:
                 pass
 
-    formatted_results = {}
+    formatted_results = {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "type": "CollectionPage",
+      "items": [
+      ],
+      "totalItems": results['hits']['total']
+    }
+
     for hit in results['hits']['hits']:
-        formatted_results.setdefault(hit['_type'], [])
-        for fld in ['_score', '_type', '_index', '_id', 'highlight']:
-            try:
-                hit['_source']['meta'][fld] = hit[fld]
-            except Exception as e:
-                pass
-        formatted_results[hit['_type']].append(hit['_source'])
-        del hit['_type']
-        del hit['_index']
+        formatted_results["items"].append(hit['_source']['item'])
 
     if results.has_key('aggregations'):
         formatted_results['facets'] = results['aggregations']
-
-    formatted_results['meta'] = {
-        'total': results['hits']['total'],
-        'took': results['took']
-    }
 
     if '_scroll_id' in results:
         formatted_results['meta']['scroll'] = results['_scroll_id']

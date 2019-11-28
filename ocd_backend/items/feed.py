@@ -12,13 +12,14 @@ from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.items import BaseItem
 from ocd_backend.utils.misc import html_cleanup, html_cleanup_with_structure
 from ocd_backend.utils.html import HTMLContentExtractionMixin
+from ocd_backend.utils.voc import VocabularyMixin
 
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.common.exceptions import WebDriverException
 
 
-class FeedItem(BaseItem):
+class FeedItem(BaseItem, VocabularyMixin):
     def get_original_object_id(self):
         return unicode(self.original_item['link'])
 
@@ -41,44 +42,29 @@ class FeedItem(BaseItem):
             # 'type': unicode(self.source_definition.get('type', 'Partij')),
             # 'parties': [unicode(self.source_definition['collection'])]
         }
+        party_name = unicode(self.source_definition['collection'])
+        try:
+            content = self.original_item['content'][0]['value']
+        except LookupError:
+            content = self.original_item.get('summary')
+        try:
+            pub_date = iso8601.parse_date(
+                self.original_item['published_parsed'])
+        except LookupError:
+            pub_date = None
         combined_index_data['item'] = {
             "@type": "Create",
-            "actor": {
-                "@type": u"Organization",
-                "name": unicode(self.source_definition['collection']),
-                "@id": "https://www.poliflw.nl/ns/#%s" % (
-                    unicode(self.source_definition['collection']))
-            },
+            "actor": self.get_organization(party_name),
             "object": {
                 "@type": "Note",
                 "name": self.original_item['title'],
-                "@id": unicode(self.original_item['link'])
+                "content": content,
+                'created': pub_date,
+                "@id": self.get_identifier(
+                    'Note', unicode(self.original_item['link']))
             },
-            "@context": "http://www.w3.org/ns/activitystreams"
+#            "@context": "http://www.w3.org/ns/activitystreams"
         }
-        # TODO: provide easier way for default mapping
-        # mappings = {
-        #     'summary': 'description'
-        # }
-        # mappings.update(self.source_definition.get('mappings', {}))
-        #
-        # for fld in ['title', 'summary']:
-        #     if self.original_item.get(fld, None) is not None:
-        #         mapping_fld = mappings.get(fld, fld)
-        #         combined_index_data[mapping_fld] = self.original_item[fld]
-        #
-        # # try to get the full content, if available
-        # try:
-        #     combined_index_data['description'] = self.original_item[
-        #         'content'][0]['value']
-        # except LookupError:
-        #         pass
-        #
-        # try:
-        #     combined_index_data['date'] = iso8601.parse_date(
-        #         self.original_item['published_parsed'])
-        # except LookupError:
-        #     pass
         #
         # if self.source_definition.get('location', None) is not None:
         #     combined_index_data['location'] = unicode(self.source_definition[

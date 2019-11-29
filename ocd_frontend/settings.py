@@ -142,6 +142,12 @@ COMMON_FACETS = {
             'size': 10
         }
     },
+    'created': {
+        'date_histogram': {
+            'field': 'item.created',
+            'interval': 'month'
+        }
+    },
     # 'politicians': {
     #     'terms': {
     #         'field': 'politicians',

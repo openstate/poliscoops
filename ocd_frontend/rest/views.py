@@ -207,8 +207,9 @@ def format_search_aggregations(aggregations):
         for b in aggregations[a_name].get('buckets', []):
             result['ibmsc:facet']['ibmsc:facetValue'].append({
                  #'@id': b['key'],
-                'ibmsc:label': b['key'],
-                'ibmsc:weight': b['doc_count']
+                 'dc:title': b.get('key_as_string', b['key']),
+                 'ibmsc:label': b['key'],
+                 'ibmsc:weight': b['doc_count']
             })
         output["ibmsc:facets"].append(result)
     return output
@@ -235,6 +236,7 @@ def format_search_results(results, doc_type=u'item'):
             except KeyError as e:
                 pass
 
+    # ibmsc from : https://www.ibm.com/support/knowledgecenter/en/SSYJ99_8.5.0/search-rest-api/facets-spec.html
     formatted_results = {
       "@context": {
         "as": "https://www.w3.org/ns/activitystreams#",

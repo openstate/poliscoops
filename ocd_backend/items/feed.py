@@ -54,12 +54,13 @@ class FeedItem(BaseItem, VocabularyMixin):
             pub_date = None
         combined_index_data['item'] = {
             "@type": "Create",
+            "created": pub_date,
             "actor": self.get_organization(party_name),
             "object": {
                 "@type": "Note",
                 "name": self.original_item['title'],
                 "content": content,
-                'created': pub_date,
+                "created": pub_date,
                 "@id": self.get_identifier(
                     'Note', unicode(self.original_item['link']))
             },

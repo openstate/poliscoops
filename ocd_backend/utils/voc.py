@@ -22,3 +22,12 @@ class VocabularyMixin(object):
             "@id": self.get_identifier(
                 'Organization', identifier, additional=additional)
         }
+
+    def get_person(self, identifier, location=u'NL', additional={}):
+        additional['location'] = location
+        return {
+            "@type": u"Person",
+            "name": identifier,
+            "@id": self.get_identifier(
+                'Person', identifier, additional=additional)
+        }

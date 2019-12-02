@@ -22,6 +22,7 @@ from ocd_backend import settings
 from ocd_backend.es import elasticsearch
 from ocd_backend.utils.as2 import AS2ConverterMixin
 from ocd_backend.utils.voc import VocabularyMixin
+
 class OldDataConverter(AS2ConverterMixin, VocabularyMixin):
     pass
 
@@ -29,7 +30,7 @@ def main(argv):
     if len(argv) > 1:
         url = argv[1]
     else:
-        url = 'https://api.poliflw.nl/v0/search'
+        url = 'https://api.poliflw.nl/v0/search?sort=date&order=desc&size=100'
     data = requests.get(url, verify=False).json()
     output = []
     as2 = OldDataConverter()

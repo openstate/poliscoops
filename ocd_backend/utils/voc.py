@@ -14,8 +14,8 @@ class VocabularyMixin(object):
         identifier_hash = sha1(identifier_key.decode('utf8')).hexdigest()
         return urljoin(urljoin(ns, entity + '/'), identifier_hash)
 
-    def get_organization(self, identifier, additional={}):
-        additional['location'] = self.source_definition.get('Location', u'NL')
+    def get_organization(self, identifier, location=u'NL', additional={}):
+        additional['location'] = location
         return {
             "@type": u"Organization",
             "name": identifier,

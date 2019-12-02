@@ -11,7 +11,6 @@ from jparser import PageModel
 from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.items import BaseItem
 from ocd_backend.utils.misc import html_cleanup, html_cleanup_with_structure
-from ocd_backend.utils.html import HTMLContentExtractionMixin
 from ocd_backend.utils.voc import VocabularyMixin
 
 from selenium import webdriver
@@ -37,40 +36,40 @@ class FeedItem(BaseItem, VocabularyMixin):
     def get_combined_index_data(self):
         combined_index_data = {
             'hidden': self.source_definition['hidden'],
-            # 'source': unicode(
-            #     self.source_definition.get('source', 'Partij nieuws')),
-            # 'type': unicode(self.source_definition.get('type', 'Partij')),
-            # 'parties': [unicode(self.source_definition['collection'])]
+            'source': unicode(
+                self.source_definition.get('source', 'Partij nieuws')),
+            'type': unicode(self.source_definition.get('type', 'Partij')),
+            'parties': [unicode(self.source_definition['collection'])]
         }
-        party_name = unicode(self.source_definition['collection'])
+
+        # TODO: provide easier way for default mapping
+        mappings = {
+            'summary': 'description'
+        }
+        mappings.update(self.source_definition.get('mappings', {}))
+
+        for fld in ['title', 'summary']:
+            if self.original_item.get(fld, None) is not None:
+                mapping_fld = mappings.get(fld, fld)
+                combined_index_data[mapping_fld] = self.original_item[fld]
+
+        # try to get the full content, if available
         try:
-            content = self.original_item['content'][0]['value']
+            combined_index_data['description'] = self.original_item[
+                'content'][0]['value']
         except LookupError:
-            content = self.original_item.get('summary')
+                pass
+
         try:
-            pub_date = iso8601.parse_date(
+            combined_index_data['date'] = iso8601.parse_date(
                 self.original_item['published_parsed'])
         except LookupError:
-            pub_date = None
-        combined_index_data['item'] = {
-            "@type": "Create",
-            "created": pub_date,
-            "actor": self.get_organization(party_name),
-            "object": {
-                "@type": "Note",
-                "name": self.original_item['title'],
-                "content": content,
-                "created": pub_date,
-                "@id": self.get_identifier(
-                    'Note', unicode(self.original_item['link']))
-            },
-#            "@context": "http://www.w3.org/ns/activitystreams"
-        }
-        #
-        # if self.source_definition.get('location', None) is not None:
-        #     combined_index_data['location'] = unicode(self.source_definition[
-        #         'location'].decode('utf-8'))
-        # combined_index_data['date_granularity'] = 12
+            pass
+
+        if self.source_definition.get('location', None) is not None:
+            combined_index_data['location'] = unicode(self.source_definition[
+                'location'].decode('utf-8'))
+        combined_index_data['date_granularity'] = 12
 
         return combined_index_data
 
@@ -111,7 +110,7 @@ class FeedFullTextItem(FeedItem, HttpRequestMixin):
         return combined_index_data
 
 
-class FeedContentFromPageItem(FeedItem, HttpRequestMixin, HTMLContentExtractionMixin):
+class FeedContentFromPageItem(FeedItem, HttpRequestMixin):
     def get_combined_index_data(self):
         combined_index_data = super(
             FeedContentFromPageItem, self).get_combined_index_data()
@@ -129,8 +128,25 @@ class FeedContentFromPageItem(FeedItem, HttpRequestMixin, HTMLContentExtractionM
         except etree.ElementTree.ParseError as e:
             return combined_index_data
 
-        desc = self.extract_content(full_content, r.encoding)
-        if desc is not None:
+        # TODO: Fix byte 0xff problem: 'utf8' codec can't decode byte 0xff in position <x>: invalid start byte
+        # TODO: Fix Unicode strings with encoding declaration are not supported. Please use bytes input or XML fragments without declaration.
+        # TODO: remove things like: Share on Facebook Share Share on Twitter Tweet Share on Pinterest Share Share on LinkedIn Share Send email Mail Print Print
+        try:
+            cleaned = PageModel(full_content.decode(r.encoding)).extract()
+        except Exception as e:
+            print >>sys.stderr, e
+            cleaned = {}
+
+        output = u''
+        for elem in cleaned.get('content', []):
+            if elem['type'] == 'text':
+                # if it starts with these words it's probably garbage
+                if re.match('^\s*(Share|Deel|Delen|Send|Print)\s*', elem['data']) is None:
+                    output += '<p>%s</p>' % (elem['data'],)
+            if elem['type'] == 'image':
+                output += '<img src="%s" />' % (elem['data']['src'],)
+
+        if output.strip() != u'':
             combined_index_data['description'] = unicode(output)
 
         return combined_index_data

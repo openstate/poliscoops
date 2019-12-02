@@ -9,9 +9,10 @@ from lxml import etree
 from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.items import BaseItem
 from ocd_backend.utils.html import HTMLContentExtractionMixin
+from ocd_backend.utils.voc import VocabularyMixin
 
 
-class HTMLPageItem(BaseItem, HttpRequestMixin):
+class HTMLPageItem(BaseItem, HttpRequestMixin, VocabularyMixin):
     def _get_orig_link(self):
         return unicode(self.original_item['link'])
 

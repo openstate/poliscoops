@@ -3,9 +3,14 @@ from datetime import datetime
 from hashlib import sha1
 import json
 
+import iso8601
+
 from ocd_backend.utils import json_encoder
 from ocd_backend.exceptions import (UnableToGenerateObjectId,
                                     FieldNotAvailable)
+from ocd_backend.log import get_source_logger
+
+log = get_source_logger('baseitem')
 
 
 class BaseItem(object):
@@ -42,7 +47,20 @@ class BaseItem(object):
         'hidden': bool,
         'media_urls': list,
         'all_text': unicode,
-        'item': dict
+        'item': dict,
+        'title': unicode,
+        'description': unicode,
+        'date': datetime,
+        'date_granularity': int,
+        'interestingness': unicode,
+        'location': unicode,
+        'source': unicode,
+        'type': unicode,
+        'authors': list,
+        'persons': list,
+        'parties': list,
+        'topics': list,
+        'sentiment': dict,
     }
 
     def __init__(self, source_definition, data_content_type, data, item,
@@ -78,6 +96,48 @@ class BaseItem(object):
                 self.combined_index_data[field] = value
             elif value:
                 self.combined_index_data[field] = value
+        self.combined_index_data = self.convert_index_data(self.combined_index_data)
+
+    def convert_index_data(self, actual_combined_index_data):
+        """Construct a AS2 compatible representation of the combined index
+        doc.
+        """
+        log.info((len(actual_combined_index_data.keys()), actual_combined_index_data.keys(),))
+        if (
+            (len(actual_combined_index_data.keys()) == 2) and
+            ('item' in actual_combined_index_data) and
+            ('hidden' in actual_combined_index_data)
+        ):
+            log.info('New style item, so not gonna rework combined index data')
+            return actual_combined_index_data
+
+        log.info(dict(actual_combined_index_data))
+        combined_index_data = {
+            'hidden': self.source_definition['hidden'],
+            # 'source': unicode(
+            #     self.source_definition.get('source', 'Partij nieuws')),
+            # 'type': unicode(self.source_definition.get('type', 'Partij')),
+            # 'parties': [unicode(self.source_definition['collection'])]
+        }
+        party_name = unicode(actual_combined_index_data['parties'][0])
+        content = actual_combined_index_data.get('description', None)
+        pub_date = actual_combined_index_data.get('date', None)
+        combined_index_data['item'] = {
+            "@type": "Create",
+            "created": pub_date,
+            "actor": self.get_organization(party_name),
+            "object": {
+                "@type": "Note",
+                "name": combined_index_data.get('title', None),
+                "content": content,
+                "created": pub_date,
+                "@id": self.get_identifier(
+                    'Note', unicode(self.original_item['link']))
+            },
+#            "@context": "http://www.w3.org/ns/activitystreams"
+        }
+        return combined_index_data
+
 
     def get_combined_index_doc(self):
         """Construct the document that should be inserted into the 'combined

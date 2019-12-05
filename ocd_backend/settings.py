@@ -87,6 +87,45 @@ PDF_MAX_MEDIABOX_PIXELS = 5000000
 # The path of the directory used to store linkmaps
 LINKMAP_PATH = os.path.join(ROOT_PATH, 'data/linkmaps')
 
+# Activitystram 2.0 objects types
+AS2_OBJECTS = [
+    "actor",
+    "attachment",
+    "attributedTo",
+    "audience",
+    "bcc",
+    "bto",
+    "cc",
+    "context",
+    "current",
+    "first",
+    "generator",
+    "icon",
+    "image",
+    "inReplyTo",
+    "instrument",
+    "last",
+    "location",
+    "items",
+    "oneOf",
+    "anyOf",
+    "origin",
+    "next",
+    "object",
+    "prev",
+    "preview",
+    "result",
+    "replies",
+    "tag",
+    "target",
+    "to",
+    "url",
+    "partOf",
+    "subject",
+    "relationship",
+    "describes"
+]
+
 # Allow any settings to be defined in local_settings.py which should be
 # ignored in your version control system allowing for settings to be
 # defined per machine.

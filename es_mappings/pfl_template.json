@@ -106,102 +106,6 @@
                 "item": {
                   "type": "object",
                   "properties": {
-                    "actor": {
-                      "type": "object"
-                    },
-                    "attachment": {
-                      "type": "object"
-                    },
-                    "attrubtedTo": {
-                      "type": "object"
-                    },
-                    "audience": {
-                      "type": "object"
-                    },
-                    "bcc": {
-                      "type": "object"
-                    },
-                    "bto": {
-                      "type": "object"
-                    },
-                    "cc": {
-                      "type": "object"
-                    },
-                    "context": {
-                      "type": "object"
-                    },
-                    "current": {
-                      "type": "object"
-                    },
-                    "first": {
-                      "type": "object"
-                    },
-                    "generator": {
-                      "type": "object"
-                    },
-                    "icon": {
-                      "type": "object"
-                    },
-                    "image": {
-                      "type": "object"
-                    },
-                    "inReplyTp": {
-                      "type": "object"
-                    },
-                    "instrument": {
-                      "type": "object"
-                    },
-                    "last": {
-                      "type": "object"
-                    },
-                    "location": {
-                      "type": "object"
-                    },
-                    "items": {
-                      "type": "object"
-                    },
-                    "oneOf": {
-                      "type": "object"
-                    },
-                    "anyOf": {
-                      "type": "object"
-                    },
-                    "origin": {
-                      "type": "object"
-                    },
-                    "next": {
-                      "type": "object"
-                    },
-                    "object": {
-                      "type": "object"
-                    },
-                    "prev": {
-                      "type": "object"
-                    },
-                    "preview": {
-                      "type": "object"
-                    },
-                    "result": {
-                      "type": "object"
-                    },
-                    "replies": {
-                      "type": "object"
-                    },
-                    "tag": {
-                      "type": "object"
-                    },
-                    "target": {
-                      "type": "object"
-                    },
-                    "to": {
-                      "type": "object"
-                    },
-                    "url": {
-                      "type": "object"
-                    },
-                    "partOf": {
-                      "type": "object"
-                    },
                     "endTime": {
               				"type": "date",
               				"format": "strict_date_optional_time||epoch_millis"
@@ -225,16 +129,7 @@
                     "deleted": {
               				"type": "date",
               				"format": "strict_date_optional_time||epoch_millis"
-              			},
-                    "subject": {
-                      "type": "object"
-                    },
-                    "relationship": {
-                      "type": "object"
-                    },
-                    "describes": {
-                      "type": "object"
-                    }
+              			}
                   }
                 },
                 "media_urls": {

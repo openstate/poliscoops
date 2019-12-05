@@ -35,7 +35,9 @@ def main(argv):
     output = []
     as2 = OldDataConverter()
     for i in data['item']:
-        output.append(as2.as2_transform_old_object(i))
+        t = as2.as2_transform_old_object(i)
+        output.append(t)
+        output.append(as2.as2_normalize(t))
     pprint(output)
     return 0
 

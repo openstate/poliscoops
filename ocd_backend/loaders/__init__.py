@@ -4,6 +4,7 @@ from pprint import pprint
 
 import requests
 from elasticsearch import ConflictError
+from elasticsearch.helpers import bulk
 
 from ocd_backend import celery_app
 from ocd_backend import settings
@@ -129,6 +130,7 @@ class AS2Loader(ElasticsearchLoader):
     ):
         log.info('Indexing AS2 documents...')
 
+        items_to_index = []
         for d in combined_index_doc['item']['items']:
             log.info('Indexing AS2 document : ' + d['@type'])
             log.info(d)
@@ -136,15 +138,17 @@ class AS2Loader(ElasticsearchLoader):
                 d_id = d['@id'].split('/')[-1]
             except LookupError:
                 d_id = None
-            elasticsearch.index(
-                index=settings.COMBINED_INDEX,
-                doc_type=d['@type'],
-                id=d_id,
-                body={
-                    'hidden': combined_index_doc['hidden'],
-                    'item': d,
-                    'meta': combined_index_doc['meta']
-                })
+            # TODO: deal with ids in the meta object, but copy it over from the
+            # parent for now... (does not seeem to affect anything though)
+            items_to_index.append({
+                '_index': settings.COMBINED_INDEX,
+                '_type': d['@type'],
+                '_id': d_id,
+                'hidden': combined_index_doc['hidden'],
+                'item': d,
+                'meta': combined_index_doc['meta']
+            })
+        bulk(elasticsearch, items_to_index)
 
         self._create_resolvable_media_urls(doc)
 

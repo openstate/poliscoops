@@ -129,42 +129,21 @@ class AS2Loader(ElasticsearchLoader):
     ):
         log.info('Indexing AS2 documents...')
 
-        for k in combined_index_doc['item'].keys():
-            if k in settings.AS2_OBJECTS:
-                if type(combined_index_doc['item'][k]) is list:
-                    ds = combined_index_doc['item'][k]
-                    combined_index_doc['item'][k] = [d['@id'] for d in ds]
-                else:
-                    ds = [combined_index_doc['item'][k]]
-                    combined_index_doc['item'][k] = ds[0]['@id']
-                for d in ds:
-                    log.info('Indexing AS2 document : ' + d['@type'])
-                    log.info(d)
-                    elasticsearch.index(
-                        index=settings.COMBINED_INDEX,
-                        doc_type=d['@type'],
-                        id=d['@id'].split('/')[-1],
-                        body={
-                            'hidden': combined_index_doc['hidden'],
-                            'item': d
-                        })
-
-        elasticsearch.index(index=settings.COMBINED_INDEX,
-                            doc_type=combined_index_doc['item']['@type'],
-                            id=combined_index_doc['item']['@id'].split('/')[-1],
-                            body=combined_index_doc)
-        log.info(combined_index_doc)
-
-        # log.exception('Indexing topics: %s' % (
-        #     combined_index_doc.get('topics', []),))
-        # log.exception('Indexing sentiment: %s' % (
-        #     combined_index_doc.get('sentiment', {}),))
-
-
-        # AS2: disregard different indexes -- they do not make sense
-        # Index documents into new index
-        # elasticsearch.index(index=self.index_name, doc_type=self.doc_type,
-        #                     body=doc, id=object_id)
+        for d in combined_index_doc['item']['items']:
+            log.info('Indexing AS2 document : ' + d['@type'])
+            log.info(d)
+            try:
+                d_id = d['@id'].split('/')[-1]
+            except LookupError:
+                d_id = None
+            elasticsearch.index(
+                index=settings.COMBINED_INDEX,
+                doc_type=d['@type'],
+                id=d_id,
+                body={
+                    'hidden': combined_index_doc['hidden'],
+                    'item': d
+                })
 
         self._create_resolvable_media_urls(doc)
 

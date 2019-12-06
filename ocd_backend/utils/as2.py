@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from ocd_backend import settings
 
 class AS2ConverterMixin(object):
@@ -16,35 +18,29 @@ class AS2ConverterMixin(object):
         content = actual_combined_index_data.get('description', None)
         pub_date = actual_combined_index_data.get('date', None)
         actual_link = actual_combined_index_data.get('link', None) or actual_combined_index_data['meta']['original_object_urls']['html']
-        combined_index_data['item'] = {
+        all_items = []
+        note = {
+            "@type": "Note",
+            "name": actual_combined_index_data.get('title', None),
+            "content": content,
+            "created": pub_date,
+            "@id": self.get_identifier('Note', actual_link),
+            "tag": [p['@id'] for p in parties] + [p['@id'] for p in persons],
+            "url": actual_link
+        }
+        note_creation = {
             "@type": "Create",
             "created": pub_date,
             "actor": self.get_organization(
-                party_name, loc),
-            "object": {
-                "@type": "Note",
-                "name": actual_combined_index_data.get('title', None),
-                "content": content,
-                "created": pub_date,
-                "@id": self.get_identifier('Note', actual_link),
-                "tag": parties + persons,
-                "url": actual_link
-            },
-#            "@context": "http://www.w3.org/ns/activitystreams"
+                party_name, loc)['@id'],
+            "object": note['@id'],
+            #            "@context": "http://www.w3.org/ns/activitystreams"
+        }
+        all_items += parties
+        all_items += persons
+        all_items += [note, note_creation]
+        combined_index_data['item'] = {
+            "@type": "OrderedCollection",
+            "items": all_items
         }
         return combined_index_data
-
-    def as2_normalize(self, combined_index_doc):
-        result = []
-        for k in combined_index_doc['item'].keys():
-            if k in settings.AS2_OBJECTS:
-                if type(combined_index_doc['item'][k]) is list:
-                    ds = combined_index_doc['item'][k]
-                    combined_index_doc['item'][k] = [d['@id'] for d in ds]
-                else:
-                    ds = [combined_index_doc['item'][k]]
-                    combined_index_doc['item'][k] = ds[0]['@id']
-                for d in ds:
-                    result.append(d)
-        result.append(combined_index_doc)
-        return result

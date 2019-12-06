@@ -142,7 +142,8 @@ class AS2Loader(ElasticsearchLoader):
                 id=d_id,
                 body={
                     'hidden': combined_index_doc['hidden'],
-                    'item': d
+                    'item': d,
+                    'meta': combined_index_doc['meta']
                 })
 
         self._create_resolvable_media_urls(doc)

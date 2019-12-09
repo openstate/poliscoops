@@ -36,6 +36,7 @@ def main(argv):
     as2 = OldDataConverter()
     for i in data['item']:
         t = as2.as2_transform_old_object(i)
+        as2.as2_index(t, t['item']['items'])
         output.append(t)
     pprint(output)
     return 0

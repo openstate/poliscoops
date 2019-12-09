@@ -1,11 +1,23 @@
 from copy import deepcopy
-
+import sys
 from ocd_backend import settings
+from ocd_backend.es import elasticsearch
+from ocd_backend.log import get_source_logger
+
+from elasticsearch.helpers import bulk
+
+# weird shit that resolves some utf-8 processing with ES bulk helpers
+# See https://stackoverflow.com/a/17628350
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+log = get_source_logger('as2')
 
 class AS2ConverterMixin(object):
     def as2_transform_old_object(self, actual_combined_index_data):
         combined_index_data = {
             'hidden': actual_combined_index_data.get('hidden', False),
+            'meta': actual_combined_index_data.get('meta', {})
             # 'source': unicode(
             #     self.source_definition.get('source', 'Partij nieuws')),
             # 'type': unicode(self.source_definition.get('type', 'Partij')),
@@ -21,8 +33,8 @@ class AS2ConverterMixin(object):
         all_items = []
         note = {
             "@type": "Note",
-            "name": actual_combined_index_data.get('title', None),
-            "content": content,
+            "name": unicode(actual_combined_index_data.get('title', None)),
+            "content": unicode(content),
             "created": pub_date,
             "@id": self.get_identifier('Note', actual_link),
             "tag": [p['@id'] for p in parties] + [p['@id'] for p in persons],
@@ -44,3 +56,24 @@ class AS2ConverterMixin(object):
             "items": all_items
         }
         return combined_index_data
+
+    def as2_index(self, combined_index_doc, items):
+        items_to_index = []
+        for d in items:
+            log.info('Indexing AS2 document : ' + d['@type'])
+            log.info(d)
+            try:
+                d_id = d['@id'].split('/')[-1]
+            except LookupError:
+                d_id = None
+            # TODO: deal with ids in the meta object, but copy it over from the
+            # parent for now... (does not seeem to affect anything though)
+            items_to_index.append({
+                '_index': settings.COMBINED_INDEX,
+                '_type': d['@type'],
+                '_id': d_id,
+                'hidden': combined_index_doc['hidden'],
+                'item': d,
+                'meta': combined_index_doc['meta']
+            })
+        bulk(elasticsearch, items_to_index)

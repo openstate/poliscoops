@@ -13,6 +13,7 @@ from ocd_backend.exceptions import ConfigurationError
 from ocd_backend.log import get_source_logger
 from ocd_backend.mixins import (OCDBackendTaskSuccessMixin,
                                 OCDBackendTaskFailureMixin)
+from ocd_backend.utils.as2 import AS2ConverterMixin
 
 log = get_source_logger('loader')
 
@@ -121,7 +122,7 @@ class ElasticsearchLoader(BaseLoader):
                     log.debug('Resolver document %s already exists' % url_hash)
 
 
-class AS2Loader(ElasticsearchLoader):
+class AS2Loader(ElasticsearchLoader, AS2ConverterMixin):
     """
     Specific loader for Activitystream 2.0 type objects.
     """
@@ -130,26 +131,7 @@ class AS2Loader(ElasticsearchLoader):
     ):
         log.info('Indexing AS2 documents...')
 
-        items_to_index = []
-        for d in combined_index_doc['item']['items']:
-            log.info('Indexing AS2 document : ' + d['@type'])
-            log.info(d)
-            try:
-                d_id = d['@id'].split('/')[-1]
-            except LookupError:
-                d_id = None
-            # TODO: deal with ids in the meta object, but copy it over from the
-            # parent for now... (does not seeem to affect anything though)
-            items_to_index.append({
-                '_index': settings.COMBINED_INDEX,
-                '_type': d['@type'],
-                '_id': d_id,
-                'hidden': combined_index_doc['hidden'],
-                'item': d,
-                'meta': combined_index_doc['meta']
-            })
-        bulk(elasticsearch, items_to_index)
-
+        self.as2_index(combined_index_doc, combined_index_doc['item']['items'])
         self._create_resolvable_media_urls(doc)
 
 

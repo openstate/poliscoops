@@ -51,12 +51,12 @@ class FeedItem(BaseItem, VocabularyMixin):
         for fld in ['title', 'summary']:
             if self.original_item.get(fld, None) is not None:
                 mapping_fld = mappings.get(fld, fld)
-                combined_index_data[mapping_fld] = self.original_item[fld]
+                combined_index_data[mapping_fld] = unicode(self.original_item[fld])
 
         # try to get the full content, if available
         try:
-            combined_index_data['description'] = self.original_item[
-                'content'][0]['value']
+            combined_index_data['description'] = unicode(self.original_item[
+                'content'][0]['value'])
         except LookupError:
                 pass
 

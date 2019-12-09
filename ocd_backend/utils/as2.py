@@ -35,22 +35,26 @@ class AS2ConverterMixin(object):
                 language: loc
             }
         }
-        generator_url = "https://poliscoops.com/"
+        generator_name = actual_combined_index_data.get('source', 'PoliScoops')
+        generator_url = "https://poliscoops.com/#%s" % (generator_name,)
         generator = {
-            "@id": self.get_identifier('Place', generator_url),
+            "@id": self.get_identifier('Link', generator_url),
             "@type": "Link",
             "href": generator_url,
-            "name": "PoliScoops",
+            "name": generator_name,
             "rel": "canonical"
         }
         party_name = unicode(actual_combined_index_data['parties'][0])
         parties = [self.get_organization(p, loc) for p in actual_combined_index_data.get('parties', [])]
         persons = [self.get_person(p, loc) for p in actual_combined_index_data.get('politicians', [])]
         topics = [self.get_topic(t.get('name', '-'), loc) for t in actual_combined_index_data.get('topics', [])]
+        sentiments = self.get_sentiment(actual_combined_index_data.get('sentiment', {}))
         content = actual_combined_index_data.get('description', None)
         pub_date = actual_combined_index_data.get('date', None)
         actual_link = actual_combined_index_data.get('link', None) or actual_combined_index_data['meta']['original_object_urls']['html']
-        all_items = []
+        interestingness = self.get_interestingness(actual_combined_index_data.get('interestingness', 'laag'))
+        news_type = self.get_type(actual_combined_index_data.get('type', 'Partij'))
+        all_items = [interestingness, news_type, location, generator]
         note = {
             "@type": "Note",
             "nameMap": {
@@ -63,7 +67,7 @@ class AS2ConverterMixin(object):
             "@id": self.get_identifier('Note', actual_link),
             "location": location['@id'],
             "generator": generator['@id'],
-            "tag": [p['@id'] for p in parties] + [p['@id'] for p in persons],
+            "tag": [p['@id'] for p in parties] + [p['@id'] for p in persons] + [s['@id'] for s in sentiments] + [interestingness['@id'], news_type['@id']],
             "origin": [t['@id'] for t in topics],
             "url": actual_link
         }
@@ -75,11 +79,10 @@ class AS2ConverterMixin(object):
             "object": note['@id'],
             #            "@context": "http://www.w3.org/ns/activitystreams"
         }
-        all_items.append(location)
-        all_items.append(generator)
         all_items += parties
         all_items += persons
         all_items += topics
+        all_items += sentiments
         all_items += [note, note_creation]
         combined_index_data['item'] = {
             "@type": "OrderedCollection",

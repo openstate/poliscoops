@@ -46,3 +46,42 @@ class VocabularyMixin(object):
             "@id": ns_identifier,
             "href": ns_identifier
         }
+
+    def get_sentiment(self, sentiments, additional={}):
+        output = []
+        for s, v in sentiments.iteritems():
+            ns_identifier = self.get_identifier(
+                'Link', s, {'classification': 'sentiment'})
+            output.append({
+                "@type": u"Link",
+                "name": v['description'],
+                "@id": ns_identifier,
+                "href": ns_identifier,
+                "nif:taConfidence": v['score'],
+                "rel": s
+            })
+        return output
+
+    def get_interestingness(self, identifier, additional={}):
+        ns_identifier = self.get_identifier(
+            'Link', identifier, additional={
+                'classification': 'interestingness'})
+        return {
+            "@type": u"Link",
+            "name": identifier,
+            "@id": ns_identifier,
+            "href": ns_identifier,
+            'rel': 'interestingness'
+        }
+
+    def get_type(self, identifier, additional={}):
+        ns_identifier = self.get_identifier(
+            'Link', identifier, additional={
+                'classification': 'type'})
+        return {
+            "@type": u"Link",
+            "name": identifier,
+            "@id": ns_identifier,
+            "href": ns_identifier,
+            'rel': 'type'
+        }

@@ -35,3 +35,14 @@ class VocabularyMixin(object):
             "@id": self.get_identifier(
                 'Person', identifier, additional=additional)
         }
+
+    def get_topic(self, identifier, location=u'NL', additional={}):
+        additional['location'] = location
+        ns_identifier = self.get_identifier(
+            'Link', identifier, additional=additional)
+        return {
+            "@type": u"Link",
+            "name": identifier,
+            "@id": ns_identifier,
+            "href": ns_identifier
+        }

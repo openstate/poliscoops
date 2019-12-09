@@ -26,14 +26,30 @@ class AS2ConverterMixin(object):
             # 'type': unicode(self.source_definition.get('type', 'Partij')),
             # 'parties': [unicode(self.source_definition['collection'])]
         }
+        language = actual_combined_index_data.get('language', 'nl')
         loc = actual_combined_index_data.get('location', u'NL')
+        location = {
+            "@id": self.get_identifier('Place', loc),
+            "@type": "Place",
+            "nameMap": {
+                language: loc
+            }
+        }
+        generator_url = "https://poliscoops.com/"
+        generator = {
+            "@id": self.get_identifier('Place', generator_url),
+            "@type": "Link",
+            "href": generator_url,
+            "name": "PoliScoops",
+            "rel": "canonical"
+        }
         party_name = unicode(actual_combined_index_data['parties'][0])
         parties = [self.get_organization(p, loc) for p in actual_combined_index_data.get('parties', [])]
         persons = [self.get_person(p, loc) for p in actual_combined_index_data.get('politicians', [])]
+        topics = [self.get_topic(t.get('name', '-'), loc) for t in actual_combined_index_data.get('topics', [])]
         content = actual_combined_index_data.get('description', None)
         pub_date = actual_combined_index_data.get('date', None)
         actual_link = actual_combined_index_data.get('link', None) or actual_combined_index_data['meta']['original_object_urls']['html']
-        language = actual_combined_index_data.get('language', 'nl')
         all_items = []
         note = {
             "@type": "Note",
@@ -45,7 +61,10 @@ class AS2ConverterMixin(object):
             },
             "created": pub_date,
             "@id": self.get_identifier('Note', actual_link),
+            "location": location['@id'],
+            "generator": generator['@id'],
             "tag": [p['@id'] for p in parties] + [p['@id'] for p in persons],
+            "origin": [t['@id'] for t in topics],
             "url": actual_link
         }
         note_creation = {
@@ -56,8 +75,11 @@ class AS2ConverterMixin(object):
             "object": note['@id'],
             #            "@context": "http://www.w3.org/ns/activitystreams"
         }
+        all_items.append(location)
+        all_items.append(generator)
         all_items += parties
         all_items += persons
+        all_items += topics
         all_items += [note, note_creation]
         combined_index_data['item'] = {
             "@type": "OrderedCollection",

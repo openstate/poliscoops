@@ -106,6 +106,15 @@
                 "item": {
                   "type": "object",
                   "properties": {
+                    "nameMap": {
+                      "type": "object"
+                    },
+                    "contentMap": {
+                      "type": "object"
+                    },
+                    "summaryMap": {
+                      "type": "object"
+                    },
                     "endTime": {
               				"type": "date",
               				"format": "strict_date_optional_time||epoch_millis"

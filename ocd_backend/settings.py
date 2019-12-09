@@ -88,6 +88,7 @@ PDF_MAX_MEDIABOX_PIXELS = 5000000
 LINKMAP_PATH = os.path.join(ROOT_PATH, 'data/linkmaps')
 
 # Activitystram 2.0 objects types
+AS2_NAMESPACE = u'https://www.poliflw.nl/ns/voc/'
 AS2_OBJECTS = [
     "actor",
     "attachment",

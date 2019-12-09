@@ -1,12 +1,16 @@
 from urlparse import urljoin
 from hashlib import sha1
 
+from ocd_backend import settings
+
+
 class VocabularyMixin(object):
     """
     Interface for getting identifiers from vocabulary
     """
 
-    def get_identifier(self, entity, identifier, ns='https://www.poliflw.nl/ns/voc/', additional={}):
+    def get_identifier(self, entity, identifier, additional={}):
+        ns = settings.AS2_NAMESPACE
         identifier_key = identifier
         if len(additional.keys()) > 0:
             identifier_additional = u'&'.join(['%s=%s' % (k, additional[k],) for k in additional.keys()])

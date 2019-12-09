@@ -1,5 +1,8 @@
 from copy import deepcopy
+import datetime
 import sys
+from urlparse import urljoin
+
 from ocd_backend import settings
 from ocd_backend.es import elasticsearch
 from ocd_backend.log import get_source_logger
@@ -30,11 +33,16 @@ class AS2ConverterMixin(object):
         content = actual_combined_index_data.get('description', None)
         pub_date = actual_combined_index_data.get('date', None)
         actual_link = actual_combined_index_data.get('link', None) or actual_combined_index_data['meta']['original_object_urls']['html']
+        language = actual_combined_index_data.get('language', 'nl')
         all_items = []
         note = {
             "@type": "Note",
-            "name": unicode(actual_combined_index_data.get('title', None)),
-            "content": unicode(content),
+            "nameMap": {
+                language: unicode(actual_combined_index_data.get('title', None))
+            },
+            "contentMap": {
+                language: unicode(content)
+            },
             "created": pub_date,
             "@id": self.get_identifier('Note', actual_link),
             "tag": [p['@id'] for p in parties] + [p['@id'] for p in persons],
@@ -61,19 +69,28 @@ class AS2ConverterMixin(object):
         items_to_index = []
         for d in items:
             log.info('Indexing AS2 document : ' + d['@type'])
-            log.info(d)
+            log.info(combined_index_doc.get('meta', {}))
             try:
                 d_id = d['@id'].split('/')[-1]
             except LookupError:
                 d_id = None
-            # TODO: deal with ids in the meta object, but copy it over from the
-            # parent for now... (does not seeem to affect anything though)
             items_to_index.append({
                 '_index': settings.COMBINED_INDEX,
                 '_type': d['@type'],
                 '_id': d_id,
-                'hidden': combined_index_doc['hidden'],
+                'hidden': combined_index_doc.get('hidden', False),
                 'item': d,
-                'meta': combined_index_doc['meta']
+                'meta': {
+                    'processing_started': datetime.datetime.now(),
+                    'processing_finished': datetime.datetime.now(),
+                    'source_id': 'whatever',
+                    'collection': 'whatever',
+                    'rights': u'unknown',
+                    'original_object_id': d_id,
+                    'original_object_urls': {
+                        'html': urljoin(
+                            urljoin(settings.AS2_NAMESPACE, d['@type']), d_id)
+                    },
+                }
             })
         bulk(elasticsearch, items_to_index)

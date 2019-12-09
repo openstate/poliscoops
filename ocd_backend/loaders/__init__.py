@@ -129,8 +129,8 @@ class AS2Loader(ElasticsearchLoader, AS2ConverterMixin):
     def load_item(
         self, combined_object_id, object_id, combined_index_doc, doc
     ):
-        log.info('Indexing AS2 documents...')
-
+        log.info('Indexing AS2 documents.. Meta:')
+        log.info(combined_index_doc)
         self.as2_index(combined_index_doc, combined_index_doc['item']['items'])
         self._create_resolvable_media_urls(doc)
 

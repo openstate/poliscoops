@@ -40,18 +40,19 @@ REWRITE_IMAGE_LINKS_CHECK = 'http:'
 
 FACETS = (
     # facet, label, display?, filter?
-    ('date_from', 'Datum van', False, True,),
-    ('date_to', 'Datum tot', False, True,),
-    ('location', 'Locatie', True, True,),
-    ('sources', 'Bron', True, True,),
-    ('type', 'Soort', True, True,),
-    ('politicians', 'Politici', True, True,),
-    ('parties', 'Partijen', True, True,),
-    ('collection', 'Geplaatst door', True, True,),
-    ('topics', 'Onderwerpen', True, True,),
-    ('polarity', 'Polariteit', True, True,),
-    ('subjectivity', 'Sentiment', True, True,),
-    ('interestingness', 'Interessantheid', True, True,)
+
+    # ('date_from', 'Datum van', False, True,),
+    # ('date_to', 'Datum tot', False, True,),
+    # ('location', 'Locatie', True, True,),
+    # ('sources', 'Bron', True, True,),
+    # ('type', 'Soort', True, True,),
+    # ('politicians', 'Politici', True, True,),
+    # ('parties', 'Partijen', True, True,),
+    # ('collection', 'Geplaatst door', True, True,),
+    # ('topics', 'Onderwerpen', True, True,),
+    # ('polarity', 'Polariteit', True, True,),
+    # ('subjectivity', 'Sentiment', True, True,),
+    # ('interestingness', 'Interessantheid', True, True,)
 )
 
 
@@ -294,34 +295,35 @@ class BackendAPI(object):
     def search(self, *args, **kwargs):
         es_query = {
             "facets": {
-                "date": {
-                    "order": {"_key": "asc"},
-                    "interval": "month"  # for now ...
-                },
-                "location": {
-                    "size": 1000
-                },
-                "sources": {},
-                "type": {},
-                "politicians": {"size": 100},
-                "parties": {"size": 10000},
-                "collection": {"size": 10000},
-                "topics": {"size": 100},
-                "polarity": {},
-                "subjectivity": {},
-                "interestingness": {}
+                # "date": {
+                #     "order": {"_key": "asc"},
+                #     "interval": "month"  # for now ...
+                # },
+                # "location": {
+                #     "size": 1000
+                # },
+                # "sources": {},
+                # "type": {},
+                # "politicians": {"size": 100},
+                # "parties": {"size": 10000},
+                # "collection": {"size": 10000},
+                # "topics": {"size": 100},
+                # "polarity": {},
+                # "subjectivity": {},
+                # "interestingness": {}
             },
-            "sort": "date",
+            #"sort": "date",
+            "sort": "meta.processing_started",
             "order": "desc",
             "from": (kwargs['page'] - 1) * PAGE_SIZE,
             "size": PAGE_SIZE,
             "filters": {
-                'types': {
-                    'terms': ['item']
-                },
-                'date': {
-                    'from': '1980-01-01T00:00:00'
+                'type': {
+                    'terms': ['Create']
                 }
+                # 'date': {
+                #     'from': '1980-01-01T00:00:00'
+                # }
             }
         }
 
@@ -349,12 +351,14 @@ class BackendAPI(object):
                 else:
                     es_query['filters'][facet] = {'terms': [kwargs[facet]]}
 
+        print >>sys.stderr, json.dumps(es_query)
         plain_result = requests.post(
             '%s/search' % (self.URL,),
             headers=self.HEADERS,
             data=json.dumps(es_query))
         try:
             result = plain_result.json()
+            print >>sys.stderr, plain_result.content
         except Exception as e:
             print >>sys.stderr, "ERROR (%s): %s" % (e.__class__, e)
             result = {
@@ -370,8 +374,8 @@ class BackendAPI(object):
         es_query = {
             "filters": {
                 "id": {"terms": [id]},
-                'types': {
-                    'terms': ['item']
+                'type': {
+                    'terms': ['create']
                 }
             },
             "size": 1

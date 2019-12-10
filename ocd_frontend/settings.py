@@ -148,6 +148,12 @@ COMMON_FACETS = {
             'interval': 'month'
         }
     },
+    'id': {
+        'terms': {
+            'field': 'item.@id.raw',
+            'size': 10
+        }
+    }
     # 'politicians': {
     #     'terms': {
     #         'field': 'politicians',

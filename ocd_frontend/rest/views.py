@@ -39,12 +39,14 @@ def validate_from_and_size(data):
 
 
 def parse_search_request(data, doc_type, mlt=False):
+    print >>sys.stderr, data
     # Return an error when no query or an empty query string is provied
     query = data.get('query', None)
 
     scroll = data.get('scroll', None)
     scroll_id = data.get('scroll_id', None)
-
+    expansions = int(data.get('expansions', '0'))
+    print >>sys.stderr, "Expansions: %s" % (expansions,)
     # if not query and not mlt:
     #     raise OcdApiError('Missing \'query\'', 400)
 
@@ -187,7 +189,8 @@ def parse_search_request(data, doc_type, mlt=False):
         'filters': filters,
         'include_fields': include_fields,
         'scroll': scroll,
-        'scroll_id': scroll_id
+        'scroll_id': scroll_id,
+        'expansions': expansions
     }
 
 
@@ -214,8 +217,57 @@ def format_search_aggregations(aggregations):
         output["ibmsc:facets"].append(result)
     return output
 
+def find_ids_in_item(item):
+    result = []
+    for k, v in item.iteritems():
+        if type(v) is list:
+            result += [x for x in v if '/ns/voc/' in x]
+        elif isinstance(v, basestring) and '/ns/voc/' in v:
+            result.append(v)
+    return list(set(result))
 
-def format_search_results(results, doc_type=u'item'):
+def get_objects_for_ids(ids):
+    es_q = {
+        "query": {
+            "bool": {
+                "filter": {
+                    "terms": {
+                        "item.@id.raw": ids
+                    }
+                }
+            }
+        },
+        "size": 500
+    }
+
+    es_r = current_app.es.search(body=es_q)
+    return [e['_source']['item'] for e in es_r['hits']['hits']]
+
+def expand_object(item, all_objects):
+    all_objects_by_id={o['@id']: o for o in all_objects}
+    for k, v in item.iteritems():
+        if k == '@id':
+            continue
+        # if type(v) is list:
+        #     item[k] [all_objects_by_id[x] for x in v if '/ns/voc/' in x]
+        if isinstance(v, basestring) and '/ns/voc/' in v:
+            item[k] = all_objects_by_id[v]
+    return item
+
+def format_search_items(items, expansions=0):
+    print >>sys.stderr, "Going for %s expansions" % (expansions,)
+    # when we do not need to expand
+    if expansions == 0:
+        return items
+
+    ids = []
+    for i in items:
+        ids += find_ids_in_item(i)
+    all_ids = list(set(ids))
+    all_objects = get_objects_for_ids(all_ids)
+    return [expand_object(i, all_objects) for i in items]
+
+def format_search_results(results, doc_type=u'item', expansions=0):
     del results['_shards']
     del results['timed_out']
 
@@ -249,9 +301,11 @@ def format_search_results(results, doc_type=u'item'):
       "as:totalItems": results['hits']['total']
     }
 
+    search_items = []
     for hit in results['hits']['hits']:
         hit['_source']['item']['@context'] = "https://www.w3.org/ns/activitystreams"
-        formatted_results["as:items"].append(hit['_source']['item'])
+        search_items.append(hit['_source']['item'])
+    formatted_results["as:items"] = format_search_items(search_items, expansions)
 
     if results.has_key('aggregations'):
         formatted_results.update(format_search_aggregations(results['aggregations']))
@@ -349,6 +403,7 @@ def list_sources():
 def search(doc_type=u'item'):
     data = request.data or request.args
     search_req = parse_search_request(data, doc_type)
+    print >>sys.stderr, search_req
 
     excluded_fields = validate_included_fields(
         include_fields=search_req['include_fields'],
@@ -444,7 +499,9 @@ def search(doc_type=u'item'):
             query_time_ms=es_r['took']
         )
 
-    return jsonify(format_search_results(es_r, doc_type))
+    print >>sys.stderr, search_req['expansions']
+
+    return jsonify(format_search_results(es_r, doc_type, search_req['expansions']))
 
 
 @bp.route('/<source_id>/search', methods=['POST', 'GET'])

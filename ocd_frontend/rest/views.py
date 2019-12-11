@@ -241,10 +241,9 @@ def get_objects_for_ids(ids):
     }
 
     es_r = current_app.es.search(body=es_q)
-    return [e['_source']['item'] for e in es_r['hits']['hits']]
+    return {e['_source']['item']['@id']: e['_source']['item'] for e in es_r['hits']['hits']}
 
 def expand_object(item, all_objects):
-    all_objects_by_id={o['@id']: o for o in all_objects}
     for k, v in item.iteritems():
         if k == '@id':
             continue

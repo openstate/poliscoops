@@ -220,6 +220,8 @@ def format_search_aggregations(aggregations):
 def find_ids_in_item(item):
     result = []
     for k, v in item.iteritems():
+        if k == '@id':
+            continue
         if type(v) is list:
             result += [x for x in v if '/ns/voc/' in x]
         elif isinstance(v, basestring) and '/ns/voc/' in v:
@@ -247,24 +249,35 @@ def expand_object(item, all_objects):
     for k, v in item.iteritems():
         if k == '@id':
             continue
-        # if type(v) is list:
-        #     item[k] [all_objects_by_id[x] for x in v if '/ns/voc/' in x]
-        if isinstance(v, basestring) and '/ns/voc/' in v:
-            item[k] = all_objects_by_id[v]
+        if type(v) is list:
+            res = []
+            for x in v:
+                if isinstance(x, basestring) and '/ns/voc/' in x:
+                    res.append(all_objects[x])
+                else:
+                    res.append(x)
+            item[k] = res
+        elif isinstance(v, basestring) and '/ns/voc/' in v:
+            item[k] = expand_object(all_objects[v], all_objects)
     return item
 
 def format_search_items(items, expansions=0):
     print >>sys.stderr, "Going for %s expansions" % (expansions,)
-    # when we do not need to expand
-    if expansions == 0:
-        return items
-
-    ids = []
-    for i in items:
-        ids += find_ids_in_item(i)
-    all_ids = list(set(ids))
-    all_objects = get_objects_for_ids(all_ids)
-    return [expand_object(i, all_objects) for i in items]
+    cur_expansion = 0
+    cur_items = items
+    expanded_items = {}
+    while cur_expansion < expansions:
+        ids = []
+        for i in cur_items:
+            ids += find_ids_in_item(i)
+        all_ids = list(set(ids))
+        all_objects = get_objects_for_ids(all_ids)
+        expanded_items.update(all_objects)
+        print >>sys.stderr, "Expansion %s: %s" % (cur_expansion, all_objects.keys())
+        cur_items = all_objects.values()
+        cur_expansion += 1
+    return [expand_object(i, expanded_items) for i in items]
+    # return [expand_object(i, all_objects) for i in items]
 
 def format_search_results(results, doc_type=u'item', expansions=0):
     del results['_shards']

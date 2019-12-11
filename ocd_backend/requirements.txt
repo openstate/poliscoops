@@ -33,3 +33,4 @@ scipy
 sklearn
 bleach==3.0.2
 html5lib==1.0.1
+nose

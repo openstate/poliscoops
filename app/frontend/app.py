@@ -280,9 +280,22 @@ def do_pfl_link(doc):
         'show', location=s['location'], party=s['parties'][0],
         id=s['meta']['_id'])
 
+@app.template_filter('as2_i18n_field')
+def do_as2_i18n_field(s, result, l):
+    map_field = "%sMap" % (s,)
+    lng = "nl"
+    if map_field in result:
+        return result[map_field][lng]
+    else:
+        return result[s]
+
 def redis_client():
     return StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 
+@app.template_filter('pretty_json')
+def do_pretty_json(s):
+    return json.dumps(s, sort_keys=True,
+                      indent=4, separators=(',', ': '))
 
 class BackendAPI(object):
     URL = 'http://pfl_nginx_1/v0'
@@ -313,6 +326,7 @@ class BackendAPI(object):
                 # "interestingness": {}
             },
             #"sort": "date",
+            "expansions": 3,
             "sort": "item.created",
             "order": "desc",
             "from": (kwargs['page'] - 1) * PAGE_SIZE,

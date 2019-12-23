@@ -110,11 +110,7 @@
     <h2>
       <!-- FIXME: link -->
       <a href="#">
-        {% if result.title %}
-          {{ result.title }}
-        {% else %}
-          {{ result.description |html_title_cleanup(result) |truncate(40) |safe }}
-        {% endif %}
+        {{ "name" |as2_i18n_field(result.object, 'nl') }}
       </a>
     </h2>
     <p class="entities">
@@ -137,6 +133,10 @@
     </p>
     <div class="collapse" id="description-collapse-{{ result['@id'] }}">
       <div class="article-text">
+        <code><pre>
+          {{ result |pretty_json }}
+        </pre></code>
+
         <p>{{ result.description |html_cleanup(result) |safe }}</p>
       </div>
     </div>

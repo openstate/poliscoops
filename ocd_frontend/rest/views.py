@@ -45,6 +45,7 @@ def parse_search_request(data, doc_type, mlt=False):
 
     scroll = data.get('scroll', None)
     scroll_id = data.get('scroll_id', None)
+    # expansions:  /v0/search?expansions=2 or {"expansions": 2} when POSTing
     expansions = int(data.get('expansions', '0'))
     print >>sys.stderr, "Expansions: %s" % (expansions,)
     # if not query and not mlt:
@@ -258,11 +259,16 @@ def expand_object(item, all_objects):
                     res.append(x)
             item[k] = res
         elif isinstance(v, basestring) and '/ns/voc/' in v:
-            item[k] = expand_object(all_objects[v], all_objects)
+            if v in all_objects:
+                item[k] = expand_object(all_objects[v], all_objects)
     return item
 
 def format_search_items(items, expansions=0):
     print >>sys.stderr, "Going for %s expansions" % (expansions,)
+
+    if expansions == 0:
+        return items
+
     cur_expansion = 0
     cur_items = items
     expanded_items = {}

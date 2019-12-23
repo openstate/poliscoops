@@ -133,11 +133,11 @@
     </p>
     <div class="collapse" id="description-collapse-{{ result['@id'] }}">
       <div class="article-text">
-        <code><pre>
+        <!--
           {{ result |pretty_json }}
-        </pre></code>
+        -->
 
-        <p>{{ result.description |html_cleanup(result) |safe }}</p>
+        <p>{{ "content" |as2_i18n_field(result.object, 'nl') |html_cleanup(result) |safe }}</p>
       </div>
     </div>
   </div>

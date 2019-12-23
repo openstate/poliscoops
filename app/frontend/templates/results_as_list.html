@@ -99,15 +99,17 @@
   </div>
 </div>
 {% endif %}
-{% for result in results.item %}
-<div class="search-result clearfix" id="search-result-{{ result.meta.pfl_url.split('/')[-1] }}">
+{% for result in results['as:items'] %}
+<div class="search-result clearfix" id="search-result-{{ result['@id'] }}">
 <div class="row">
   <div class="col-md-1 hidden-xs">
-    <img src="/static/images/parties/{{ result.parties.0 |lower |party_image }}.png" alt="{{ result.parties.0 }}" class="img-responsive">
+    <!-- FIXME: party image -->
+    <img src="/static/images/parties/.png" alt="" class="img-responsive">
   </div>
   <div class="col-xs-12 col-md-10">
     <h2>
-      <a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}">
+      <!-- FIXME: link -->
+      <a href="#">
         {% if result.title %}
           {{ result.title }}
         {% else %}
@@ -116,29 +118,31 @@
       </a>
     </h2>
     <p class="entities">
-      <img src="/static/images/parties/{{ result.parties.0 |lower |party_image }}.png" alt="{{ result.parties.0 }}" class="img-responsive visible-xs-inline">
-      <a href="{{ url_for('search', parties=result.parties.0) }}" class="btn btn-xs btn-primary"><i class="fa fa-group"></i> {{ result.parties.0 }}</a>
-      {% for party in result.parties|unique %}
-        {% if party != result.parties.0 %}
-          <a href="{{ url_for('search', parties=party) }}" class="btn btn-xs btn-default"><i class="fa fa-group"></i> {{ party }}</a>
-        {% endif %}
-      {% endfor %}
-      <a href="{{ url_for('search', location=result.location) }}" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ result.location }}</a>
-      {% if result.date %}
-      <a href="{{ url_for('show', location=result.location, party=result.parties[0], id=result.meta.pfl_url.split('/')[-1]) }}" class="btn btn-xs btn-default">{{ result.date|iso8601_to_str("%d-%m-%Y %H:%M") }}</a>
+      <!-- FIXME: party image -->
+      <img src="" alt="" class="img-responsive visible-xs-inline">
+      <!-- FIXME: party link and name -->
+      <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-group"></i></a>
+      <!-- FIXME: all partes in list of links below, same as above-->
+
+      <!-- FIXME: link to location -->
+      <a href="#" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ result.location }}</a>
+
+      {% if result.created %}
+      <!-- FIXME: link to permalink -->
+      <a href="#" class="btn btn-xs btn-default">{{ result.created|iso8601_to_str("%d-%m-%Y %H:%M") }}</a>
       {% endif %}
-      <a class="description-collapse visible-xs-inline-block pull-right" role="button" href="#description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}" aria-expanded="false" aria-controls="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
+      <a class="description-collapse visible-xs-inline-block pull-right" role="button" href="#description-collapse-{{ result['@id'] }}" aria-expanded="false" aria-controls="description-collapse-{{ result['@id'] }}">
         <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
       </a>
     </p>
-    <div class="collapse" id="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
+    <div class="collapse" id="description-collapse-{{ result['@id'] }}">
       <div class="article-text">
         <p>{{ result.description |html_cleanup(result) |safe }}</p>
       </div>
     </div>
   </div>
   <div class="col-md-1 hidden-xs">
-    <a class="description-collapse" role="button" href="#description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}" aria-expanded="false" aria-controls="description-collapse-{{ result.meta.pfl_url.split('/')[-1] }}">
+    <a class="description-collapse" role="button" href="#description-collapse-{{ result['@id'] }}" aria-expanded="false" aria-controls="description-collapse-{{ result['@id'] }}">
       <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
     </a>
   </div>
@@ -146,14 +150,14 @@
 <div class="row">
   <div class="col-xs-12">
     <p class="pull-right links">
-      <a href="{{ result.meta.original_object_urls.html }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">Bron: {{ result.source }} <i class="fa fa-external-link"></i></span></a>
+      <a href="{{ result.url }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">Bron: {{ result.source }} <i class="fa fa-external-link"></i></span></a>
     </p>
   </div>
 </div>
 </div>
 {% endfor %}
 
-{% if results.item %}
+{% if results.items %}
 
 <nav id="pager" class="text-center">
   <ul class="pagination">

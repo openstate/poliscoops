@@ -28,7 +28,7 @@ SORTABLE_FIELDS = {
         'meta.processing_started',
         'meta.processing_finished',
         '_score',
-        'date'
+        'item.created'
     ]
 }
 

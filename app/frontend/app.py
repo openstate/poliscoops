@@ -313,7 +313,7 @@ class BackendAPI(object):
                 # "interestingness": {}
             },
             #"sort": "date",
-            "sort": "meta.processing_started",
+            "sort": "item.created",
             "order": "desc",
             "from": (kwargs['page'] - 1) * PAGE_SIZE,
             "size": PAGE_SIZE,

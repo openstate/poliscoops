@@ -55,7 +55,7 @@ AS2_ENTITIES = [
 
 FACETS = (
     # facet, label, display?, filter?
-
+    ('type', 'Soort', True, True),
     # ('date_from', 'Datum van', False, True,),
     # ('date_to', 'Datum tot', False, True,),
     # ('location', 'Locatie', True, True,),
@@ -352,7 +352,8 @@ class BackendAPI(object):
                 #     "size": 1000
                 # },
                 # "sources": {},
-                # "type": {},
+                "actor": {},
+                "type": {},
                 # "politicians": {"size": 100},
                 # "parties": {"size": 10000},
                 # "collection": {"size": 10000},
@@ -413,7 +414,7 @@ class BackendAPI(object):
             data=json.dumps(es_query))
         try:
             result = plain_result.json()
-            # print >>sys.stderr, plain_result.content
+            print >>sys.stderr, plain_result.content
         except Exception as e:
             print >>sys.stderr, "ERROR (%s): %s" % (e.__class__, e)
             result = {
@@ -486,6 +487,25 @@ def about():
     return render_template('about.html')
 
 
+def get_facets_from_results(results):
+    if "ibmsc:facets" not in results:
+        return {}
+
+    output = {}
+    for f in results["ibmsc:facets"]:
+        k = f["ibmsc:facet"]["dc:title"].lower()
+        output[k] = {
+            'buckets': [
+                {
+                    'key_as_string': x['dc:title'],
+                    'key': x["ibmsc:label"],
+                    'doc_count': x["ibmsc:weight"]
+                } for x in f["ibmsc:facet"]["ibmsc:facetValue"]
+            ]
+        }
+    return output
+
+
 @app.route("/zoeken")
 def search():
     search_params = {
@@ -505,6 +525,7 @@ def search():
         max_pages = 0
     return render_template(
         'search_results.html', facets=FACETS, results=results,
+        result_facets=get_facets_from_results(results),
         query=search_params['query'], page=search_params['page'],
         max_pages=max_pages, search_params=search_params,
         dt_now=datetime.datetime.now())

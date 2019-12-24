@@ -92,10 +92,10 @@ $(document).ready(function() {
         {% endif %}
         " />
         {% for key, desc, is_displayed, is_filter in facets %}
-          {% if key in results.facets %}
-            {% if results.facets[key].buckets|length > 0 %}
+          {% if key in result_facets %}
+            {% if result_facets[key].buckets|length > 0 %}
               <h2 id="facet-{{ key }}">{{ desc }}</h2>
-              {% for bucket in results.facets[key].buckets %}
+              {% for bucket in result_facets[key].buckets %}
                   {% if loop.index == 11 %}
                   <button class="btn btn-primary btn-category btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
                     Toon meer
@@ -109,7 +109,7 @@ $(document).ready(function() {
                   {{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})
                 </a>
               {% endfor %}
-              {% if results.facets[key].buckets|length > 10 %}
+              {% if result_facets[key].buckets|length > 10 %}
                 </div> <!-- collapse-{{ key }} -->
               {% endif %}
             {% endif %}

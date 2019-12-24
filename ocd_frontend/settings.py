@@ -139,7 +139,13 @@ COMMON_FACETS = {
     },
     'actor': {
         'terms': {
-            'field': 'item.actor.@id.raw',
+            'field': 'item.actor.raw',
+            'size': 10
+        }
+    },
+    'object': {
+        'terms': {
+            'field': 'item.object.raw',
             'size': 10
         }
     },

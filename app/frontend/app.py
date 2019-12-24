@@ -9,6 +9,7 @@ import time
 from urlparse import urlparse, urljoin
 import hashlib
 import os
+from copy import deepcopy
 
 from html5lib.filters.base import Filter
 
@@ -320,6 +321,33 @@ class BackendAPI(object):
         return requests.get('%s/sources' % (self.URL,), headers=self.HEADERS).json()
 
     def search(self, *args, **kwargs):
+        results = self.bare_search(*args, **kwargs)
+        print >>sys.stderr, "Got %s results bare search" % (
+            len(results["as:items"]),)
+        if results["as:totalItems"] <= 0:
+            return results
+
+        output = deepcopy(results)
+        output['as:items'] = []
+        o_count = 0
+        o_match = 0
+        for i in results["as:items"]:
+            o = self.find_by_id_and_date(i['@id'], i['created'])
+            if o['as:totalItems'] >= 0:
+                o_count += 1
+                if o["as:items"][0]['object'] == i['@id']:
+                    o_match += 1
+                    r = deepcopy(o['as:items'][0])
+                    r['object'] = deepcopy(i)
+                    output['as:items'].append(r)
+                # print >>sys.stderr, json.dumps([r, i['@id']], indent=2)
+
+        print >>sys.stderr, "Got %s results and %s matches for id & created" % (
+            o_count,o_match,)
+
+        return output
+
+    def bare_search(self, *args, **kwargs):
         es_query = {
             "facets": {
                 # "date": {
@@ -391,7 +419,7 @@ class BackendAPI(object):
             data=json.dumps(es_query))
         try:
             result = plain_result.json()
-            print >>sys.stderr, plain_result.content
+            # print >>sys.stderr, plain_result.content
         except Exception as e:
             print >>sys.stderr, "ERROR (%s): %s" % (e.__class__, e)
             result = {
@@ -409,6 +437,25 @@ class BackendAPI(object):
                 "id": {"terms": [id]},
                 'type': {
                     'terms': ['create']
+                }
+            },
+            "size": 1
+        }
+
+        return requests.post(
+            '%s/search' % (self.URL,),
+            headers=self.HEADERS,
+            data=json.dumps(es_query)).json()
+
+    def find_by_id_and_date(self, id, created_date):
+        es_query = {
+            "filters": {
+                "object": {
+                    "terms":[id]
+                },
+                "created": {
+                    "from": created_date,
+                    "to": created_date
                 }
             },
             "size": 1

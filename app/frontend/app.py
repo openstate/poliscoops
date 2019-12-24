@@ -97,9 +97,9 @@ def image_rewrite(url, doc_id):
 def do_party_image(s):
     if os.path.exists(
         '/opt/app/frontend/static/images/parties/%s.png' % (
-            s.replace('/', '_'),)
+            s.lower().replace('/', '_'),)
     ):
-            return s
+            return s.lower()
     else:
         return 'backdrop'
 
@@ -333,14 +333,8 @@ class BackendAPI(object):
         o_match = 0
         for i in results["as:items"]:
             o = self.find_by_id_and_date(i['@id'], i['created'])
-            if o['as:totalItems'] >= 0:
-                o_count += 1
-                if o["as:items"][0]['object'] == i['@id']:
-                    o_match += 1
-                    r = deepcopy(o['as:items'][0])
-                    r['object'] = deepcopy(i)
-                    output['as:items'].append(r)
-                # print >>sys.stderr, json.dumps([r, i['@id']], indent=2)
+            r = deepcopy(o['as:items'][0])
+            output['as:items'].append(r)
 
         print >>sys.stderr, "Got %s results and %s matches for id & created" % (
             o_count,o_match,)
@@ -368,7 +362,7 @@ class BackendAPI(object):
                 # "interestingness": {}
             },
             #"sort": "date",
-            "expansions": 3,
+            "expansions": 0,
             "sort": "item.created",
             "order": "desc",
             "from": (kwargs['page'] - 1) * PAGE_SIZE,
@@ -458,6 +452,7 @@ class BackendAPI(object):
                     "to": created_date
                 }
             },
+            "expansions": 3,
             "size": 1
         }
 

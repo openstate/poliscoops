@@ -104,17 +104,17 @@
 <div class="row">
   <div class="col-md-1 hidden-xs">
     <!-- FIXME: party image -->
-    <img src="/static/images/parties/.png" alt="" class="img-responsive">
+    <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result.actor, 'nl') |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result.actor, 'nl') }}" class="img-responsive">
   </div>
   <div class="col-xs-12 col-md-10">
     <h2>
       <a href="{{ result.object['@id'] }}">
-        {{ "name" |as2_i18n_field(result.object, 'nl') }}
+        {{ 'name' |as2_i18n_field(result.object, 'nl') }}
       </a>
     </h2>
     <p class="entities">
       <!-- FIXME: party image -->
-      <img src="" alt="" class="img-responsive visible-xs-inline">
+      <img src="/static/images/backdrop.png" alt="" class="img-responsive visible-xs-inline">
       <!-- FIXME: party link and name -->
       <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-group"></i></a>
       <!-- FIXME: all partes in list of links below, same as above-->

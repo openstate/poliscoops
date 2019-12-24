@@ -38,6 +38,20 @@ CHUNK_SIZE = 1024
 
 REWRITE_IMAGE_LINKS_CHECK = 'http:'
 
+AS2_ACTIVITIES = [
+    'Activity', 'InstransitiveActivity', 'Accept', 'Add', 'Announce',
+    'Arrive', 'Block', 'Create', 'Delete', 'Dislike', 'Flag', 'Follow',
+    'Ignore', 'Invite', 'Join', 'Leave', 'Like', 'Listen', 'Move', 'Offer',
+    'Question', 'Reject', 'Read', 'Remove', 'TentativeReject',
+    'TentativeAccept', 'Travel', 'Undo', 'Update', 'View']
+
+AS2_ENTITIES = [
+    'Object', 'Link', 'Collection', 'OrderedCollection', 'CollectionPage',
+    'OrderedCollectionPage', 'Application', 'Group', 'Organization',
+    'Person', 'Service', 'Article', 'Audio', 'Document', 'Event', 'Image',
+    'Note', 'Page', 'Place', 'Profile', 'Relationship', 'Tombstone', 'Video',
+    'Mention']
+
 FACETS = (
     # facet, label, display?, filter?
 
@@ -103,8 +117,8 @@ def do_html_cleanup(s, result):
                     if token['name'] == 'img':
                         for attr, value in token['data'].items():
                             token['data'][attr] = image_rewrite(urljoin(
-                                result['meta']['original_object_urls']['html'],
-                                token['data'][attr]), result['meta']['_id'])
+                                result['object']['url'],
+                                token['data'][attr]), result['object']['@id'])
                 yield token
     ATTRS = {
         '*': allow_src
@@ -333,7 +347,12 @@ class BackendAPI(object):
             "size": PAGE_SIZE,
             "filters": {
                 'type': {
-                    'terms': ['Create']
+                    # FIXME: we cannot limit on this, since the actual object has the content
+                    # thus, query on items that have content (Note, etc.), then find the
+                    # creation events associated?? (find the last event where
+                    # the object property points to the id)
+                    # Alternatively we may need to limit on Note etc.
+                    'terms': AS2_ENTITIES
                 }
                 # 'date': {
                 #     'from': '1980-01-01T00:00:00'
@@ -437,8 +456,8 @@ def search():
 
     results = api.search(**search_params)
     try:
-        max_pages = int(math.floor(results['meta']['total'] / PAGE_SIZE))
-        if (results['meta']['total'] % PAGE_SIZE) > 0:
+        max_pages = int(math.floor(results['as:totalItems'] / PAGE_SIZE))
+        if (results['as:totalItems'] % PAGE_SIZE) > 0:
             max_pages += 1
     except LookupError:
         max_pages = 0

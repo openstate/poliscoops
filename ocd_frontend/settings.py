@@ -50,7 +50,8 @@ ALLOWED_INCLUDE_FIELDS_DEFAULT = []
 ALLOWED_INCLUDE_FIELDS_SEARCH = []
 
 SIMPLE_QUERY_FIELDS = {
-    'item': ['title', 'description', 'enrichments.media_urls.text']
+    'item': [
+        'name', 'content', '*.nl']
 }
 
 DOC_TYPE_DEFAULT = u'item'

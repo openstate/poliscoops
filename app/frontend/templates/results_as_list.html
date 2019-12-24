@@ -149,7 +149,7 @@
 <div class="row">
   <div class="col-xs-12">
     <p class="pull-right links">
-      <a href="{{ result.url }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">Bron: {{ result.source }} <i class="fa fa-external-link"></i></span></a>
+      <a href="{{ result.object.url }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">Bron: {{ result.source }} <i class="fa fa-external-link"></i></span></a>
     </p>
   </div>
 </div>
@@ -189,7 +189,7 @@
 <script type="text/javascript">
 "use strict";
 
-{% if results.item %}
-let articleObjects = {{ results.item |tojson|safe }};
+{% if results['as:items'] %}
+let articleObjects = {{ results['as:items'] |tojson|safe }};
 {% endif %}
 </script>

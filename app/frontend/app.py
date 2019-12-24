@@ -58,7 +58,7 @@ FACETS = (
     ('type', 'Soort', True, True),
     ('date_from', 'Datum van', False, True,),
     ('date_to', 'Datum tot', False, True,),
-    # ('location', 'Locatie', True, True,),
+    ('location', 'Locatie', True, True,),
     # ('sources', 'Bron', True, True,),
     # ('type', 'Soort', True, True,),
     # ('politicians', 'Politici', True, True,),
@@ -348,9 +348,9 @@ class BackendAPI(object):
                     "order": {"_key": "asc"},
                     "interval": "month"  # for now ...
                 },
-                # "location": {
-                #     "size": 1000
-                # },
+                "location": {
+                    "size": 1000
+                },
                 # "sources": {},
                 "actor": {},
                 "type": {},

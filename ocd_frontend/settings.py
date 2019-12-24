@@ -119,12 +119,12 @@ COMMON_FACETS = {
     #         'size': 10
     #     }
     # },
-    # 'location': {
-    #     'terms': {
-    #         'field': 'location',
-    #         'size': 10
-    #     }
-    # },
+    'location': {
+        'terms': {
+            'field': 'item.location.raw',
+            'size': 10
+        }
+    },
     # 'sources': {
     #     'terms': {
     #         'field': 'source',

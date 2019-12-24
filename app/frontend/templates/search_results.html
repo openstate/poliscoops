@@ -34,6 +34,7 @@ var Poliflw = window.Poliflw || {
 };
 
 Poliflw.data = {{ results |tojson }};
+Poliflw.data.facets = {{ result_facets |tojson }};
 
 Poliflw.init_month_graph = function() {
   nv.addGraph(function() {

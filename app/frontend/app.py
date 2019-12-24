@@ -56,8 +56,8 @@ AS2_ENTITIES = [
 FACETS = (
     # facet, label, display?, filter?
     ('type', 'Soort', True, True),
-    # ('date_from', 'Datum van', False, True,),
-    # ('date_to', 'Datum tot', False, True,),
+    ('date_from', 'Datum van', False, True,),
+    ('date_to', 'Datum tot', False, True,),
     # ('location', 'Locatie', True, True,),
     # ('sources', 'Bron', True, True,),
     # ('type', 'Soort', True, True,),
@@ -344,10 +344,10 @@ class BackendAPI(object):
     def bare_search(self, *args, **kwargs):
         es_query = {
             "facets": {
-                # "date": {
-                #     "order": {"_key": "asc"},
-                #     "interval": "month"  # for now ...
-                # },
+                "date": {
+                    "order": {"_key": "asc"},
+                    "interval": "month"  # for now ...
+                },
                 # "location": {
                 #     "size": 1000
                 # },
@@ -448,7 +448,7 @@ class BackendAPI(object):
                 "object": {
                     "terms":[id]
                 },
-                "created": {
+                "date": {
                     "from": created_date,
                     "to": created_date
                 }

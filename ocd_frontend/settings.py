@@ -149,7 +149,7 @@ COMMON_FACETS = {
             'size': 10
         }
     },
-    'created': {
+    'date': {
         'date_histogram': {
             'field': 'item.created',
             'interval': 'month'

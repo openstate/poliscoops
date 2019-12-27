@@ -39,6 +39,8 @@ CHUNK_SIZE = 1024
 
 REWRITE_IMAGE_LINKS_CHECK = 'http:'
 
+AS2_NAMESPACE = u'https://www.poliflw.nl/ns/voc/'
+
 AS2_ACTIVITIES = [
     'Activity', 'InstransitiveActivity', 'Accept', 'Add', 'Announce',
     'Arrive', 'Block', 'Create', 'Delete', 'Dislike', 'Flag', 'Follow',
@@ -118,8 +120,8 @@ def do_html_cleanup(s, result):
                     if token['name'] == 'img':
                         for attr, value in token['data'].items():
                             token['data'][attr] = image_rewrite(urljoin(
-                                result['object']['url'],
-                                token['data'][attr]), result['object']['@id'])
+                                result['url'],
+                                token['data'][attr]), result['@id'])
                 yield token
     ATTRS = {
         '*': allow_src
@@ -251,6 +253,8 @@ def do_format_bucket(bucket, facet):
     output = u''
     if facet == 'date':
         output = bucket['key_as_string'].split('T')[0]
+    elif str(bucket['key']).startswith(AS2_NAMESPACE):
+        output = do_as2_i18n_field('name', bucket['object'], 'nl')
     else:
         output = bucket['key']
     return output
@@ -302,7 +306,19 @@ def do_as2_i18n_field(s, result, l):
     if map_field in result:
         return result[map_field][lng]
     else:
-        return result[s]
+        try:
+            r = result.get(s, None)
+        except AttributeError as e:
+            r = result
+        return r
+
+@app.template_filter('pfl_id_for_html_attr')
+def do_pfl_id_for_html_attr(s):
+    parts = s.split('/')
+    if len(parts) > 1:
+        return '%s-%s' % (parts[-2], parts[-1],)
+    else:
+        return s
 
 def redis_client():
     return StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
@@ -332,8 +348,14 @@ class BackendAPI(object):
         o_count = 0
         o_match = 0
         for i in results["as:items"]:
-            o = self.find_by_id_and_date(i['@id'], i['created'])
-            r = deepcopy(o['as:items'][0])
+            if i['@type'] in AS2_ACTIVITIES:
+                o = self.find_by_id_and_date(i['@id'], i['created'])
+            else:
+                o = {'as:items': []}
+            if len(o['as:items']) > 0:
+                r = deepcopy(o['as:items'][0])
+            else:
+                r = i
             output['as:items'].append(r)
 
         print >>sys.stderr, "Got %s results and %s matches for id & created" % (
@@ -349,7 +371,7 @@ class BackendAPI(object):
                     "interval": "month"  # for now ...
                 },
                 "location": {
-                    "size": 1000
+                    "size": 10
                 },
                 # "sources": {},
                 "actor": {},
@@ -363,7 +385,7 @@ class BackendAPI(object):
                 # "interestingness": {}
             },
             #"sort": "date",
-            "expansions": 0,
+            "expansions": 3,
             "sort": "item.created",
             "order": "desc",
             "from": (kwargs['page'] - 1) * PAGE_SIZE,
@@ -427,15 +449,15 @@ class BackendAPI(object):
         return result
 
     def find_by_id(self, id):
+        return self.find_by_ids([id])
+
+    def find_by_ids(self, ids, **args):
         es_query = {
             "filters": {
-                "id": {"terms": [id]},
-                'type': {
-                    'terms': ['create']
-                }
-            },
-            "size": 1
+                "id": {"terms": ids}
+            }
         }
+        es_query.update(args)
 
         return requests.post(
             '%s/search' % (self.URL,),
@@ -492,6 +514,7 @@ def get_facets_from_results(results):
         return {}
 
     output = {}
+    ids_to_find = []
     for f in results["ibmsc:facets"]:
         k = f["ibmsc:facet"]["dc:title"].lower()
         output[k] = {
@@ -503,6 +526,17 @@ def get_facets_from_results(results):
                 } for x in f["ibmsc:facet"]["ibmsc:facetValue"]
             ]
         }
+        ids_to_find += [x["ibmsc:label"] for x in f["ibmsc:facet"]["ibmsc:facetValue"] if str(x["ibmsc:label"]).startswith(AS2_NAMESPACE)]
+    #print >>sys.stderr, "Should lookup facet buckets now: %s" % (ids_to_find,)
+    result = api.find_by_ids(ids_to_find)
+    #print >>sys.stderr, result
+    id_conversions = {x['@id']: x for x in result['as:items']}
+    for f in results["ibmsc:facets"]:
+        k = f["ibmsc:facet"]["dc:title"].lower()
+        for b in output[k]['buckets']:
+            if str(b["key"]).startswith(AS2_NAMESPACE):
+                b['object'] = id_conversions[b["key"]]
+    #print >>sys.stderr, output
     return output
 
 

@@ -103,51 +103,21 @@
 <div class="search-result clearfix" id="search-result-{{ result['@id'] }}">
 <div class="row">
   <div class="col-md-1 hidden-xs">
+    {% if result.actor %}
     <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result.actor, 'nl') |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result.actor, 'nl') }}" class="img-responsive">
+    {% endif %}
   </div>
-  <div class="col-xs-12 col-md-10">
-    <h2>
-      <a href="{{ result.object['@id'] }}">
-        {{ 'name' |as2_i18n_field(result.object, 'nl') }}
-      </a>
-    </h2>
-    <p class="entities">
-      <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result.actor, 'nl') |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result.actor, 'nl') }}" class="img-responsive visible-xs-inline">
-      <!-- FIXME: party link and name -->
-      <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-group"></i> {{ 'name' |as2_i18n_field(result.actor, 'nl') }}</a>
-      <!-- FIXME: all partes in list of links below, same as above-->
-
-      <!-- FIXME: link to location -->
-      <a href="#" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ 'name' |as2_i18n_field(result.object.location, 'nl') }}</a>
-
-      {% if result.created %}
-      <!-- FIXME: link to permalink -->
-      <a href="#" class="btn btn-xs btn-default">{{ result.created|iso8601_to_str("%d-%m-%Y %H:%M") }}</a>
-      {% endif %}
-      <a class="description-collapse visible-xs-inline-block pull-right" role="button" href="#description-collapse-{{ result['@id'] }}" aria-expanded="false" aria-controls="description-collapse-{{ result['@id'] }}">
-        <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-      </a>
-    </p>
-    <div class="collapse" id="description-collapse-{{ result['@id'] }}">
-      <div class="article-text">
-        <!--
-          {{ result |pretty_json }}
-        -->
-
-        <p>{{ "content" |as2_i18n_field(result.object, 'nl') |html_cleanup(result) |safe }}</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-1 hidden-xs">
-    <a class="description-collapse" role="button" href="#description-collapse-{{ result['@id'] }}" aria-expanded="false" aria-controls="description-collapse-{{ result['@id'] }}">
-      <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-    </a>
-  </div>
+  {% if result.object %}
+    {% set result_object = result.object %}
+  {% else %}
+    {% set result_object = result %}
+  {% endif %}
+  {% include "inner_result.html" %}
 </div>
 <div class="row">
   <div class="col-xs-12">
     <p class="pull-right links">
-      <a href="{{ result.object.url }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">Bron: {{ result.source }} <i class="fa fa-external-link"></i></span></a>
+      <a href="{{ result_object.url }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">Bron: {{ result.source }} <i class="fa fa-external-link"></i></span></a>
     </p>
   </div>
 </div>

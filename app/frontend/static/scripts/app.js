@@ -37,7 +37,7 @@ Poliflw.init = function() {
           if (rt_value) {
             $('#form-email-subscribe-filters-' + i + ' span').html(rt_value);
           } else {
-            $('#form-email-subscribe-filters-' + i + ' span').html('-');            
+            $('#form-email-subscribe-filters-' + i + ' span').html('-');
           }
       });
     }
@@ -147,6 +147,7 @@ Poliflw.init = function() {
 
   $('.description-collapse').on('click', function(e) {
     e.preventDefault();
+    console.log('doing toggle for ' + $(this).attr('href'));
     $($(this).attr('href')).collapse('toggle');
 
     if ($(this).find('span').hasClass('glyphicon-menu-down')) {

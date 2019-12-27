@@ -55,6 +55,8 @@ class AS2ConverterMixin(object):
         interestingness = self.get_interestingness(actual_combined_index_data.get('interestingness', 'laag'))
         news_type = self.get_type(actual_combined_index_data.get('type', 'Partij'))
         all_items = [interestingness, news_type, location, generator]
+        note_actor = self.get_organization(
+            party_name, loc)['@id']
         note = {
             "@type": "Note",
             "nameMap": {
@@ -69,13 +71,13 @@ class AS2ConverterMixin(object):
             "generator": generator['@id'],
             "tag": [p['@id'] for p in parties] + [p['@id'] for p in persons] + [s['@id'] for s in sentiments] + [interestingness['@id'], news_type['@id']],
             "origin": [t['@id'] for t in topics],
-            "url": actual_link
+            "url": actual_link,
+            "attributedTo": note_actor
         }
         note_creation = {
             "@type": "Create",
             "created": pub_date,
-            "actor": self.get_organization(
-                party_name, loc)['@id'],
+            "actor": note_actor,
             "object": note['@id'],
             #            "@context": "http://www.w3.org/ns/activitystreams"
         }

@@ -61,11 +61,11 @@ FACETS = (
     ('date_from', 'Datum van', False, True,),
     ('date_to', 'Datum tot', False, True,),
     ('location', 'Locatie', True, True,),
-    # ('sources', 'Bron', True, True,),
-    # ('type', 'Soort', True, True,),
+    ('sources', 'Bron', True, True,),
+    ('tag', 'Genoemd', True, True,),
     # ('politicians', 'Politici', True, True,),
     # ('parties', 'Partijen', True, True,),
-    # ('collection', 'Geplaatst door', True, True,),
+    ('actor', 'Geplaatst door', True, True,),
     # ('topics', 'Onderwerpen', True, True,),
     # ('polarity', 'Polariteit', True, True,),
     # ('subjectivity', 'Sentiment', True, True,),
@@ -373,9 +373,12 @@ class BackendAPI(object):
                 "location": {
                     "size": 10
                 },
-                # "sources": {},
+                "sources": {},
                 "actor": {},
                 "type": {},
+                "tag": {
+                    "size": 10
+                },
                 # "politicians": {"size": 100},
                 # "parties": {"size": 10000},
                 # "collection": {"size": 10000},
@@ -528,7 +531,7 @@ def get_facets_from_results(results):
         }
         ids_to_find += [x["ibmsc:label"] for x in f["ibmsc:facet"]["ibmsc:facetValue"] if str(x["ibmsc:label"]).startswith(AS2_NAMESPACE)]
     #print >>sys.stderr, "Should lookup facet buckets now: %s" % (ids_to_find,)
-    result = api.find_by_ids(ids_to_find)
+    result = api.find_by_ids(ids_to_find, size=len(ids_to_find))
     #print >>sys.stderr, result
     id_conversions = {x['@id']: x for x in result['as:items']}
     for f in results["ibmsc:facets"]:

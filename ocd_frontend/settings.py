@@ -125,12 +125,12 @@ COMMON_FACETS = {
             'size': 10
         }
     },
-    # 'sources': {
-    #     'terms': {
-    #         'field': 'source',
-    #         'size': 10
-    #     }
-    # },
+    'sources': {
+        'terms': {
+            'field': 'item.generator.raw',
+            'size': 10
+        }
+    },
     'type': {
         'terms': {
             'field': 'item.@type.raw',
@@ -139,7 +139,7 @@ COMMON_FACETS = {
     },
     'actor': {
         'terms': {
-            'field': 'item.actor.raw',
+            'field': 'item.attributedTo.raw',
             'size': 10
         }
     },
@@ -160,13 +160,13 @@ COMMON_FACETS = {
             'field': 'item.@id.raw',
             'size': 10
         }
-    }
-    # 'politicians': {
-    #     'terms': {
-    #         'field': 'politicians',
-    #         'size': 10
-    #     }
-    # },
+    },
+    'tag': {
+        'terms': {
+            'field': 'item.tag.raw',
+            'size': 10
+        }
+    },
     # 'parties': {
     #     'terms': {
     #         'field': 'parties',

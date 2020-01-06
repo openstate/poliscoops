@@ -56,16 +56,16 @@ AS2_ENTITIES = [
     'Mention']
 
 FACETS = (
-    # facet, label, display?, filter?
-    ('type', 'Soort', True, True),
-    ('date_from', 'Datum van', False, True,),
-    ('date_to', 'Datum tot', False, True,),
-    ('location', 'Locatie', True, True,),
-    ('sources', 'Bron', True, True,),
-    ('tag', 'Genoemd', True, True,),
+    # facet, label, display?, filter?, sub filter attribute
+    ('type', 'Soort', True, True, False,),
+    ('date_from', 'Datum van', False, True, False,),
+    ('date_to', 'Datum tot', False, True, False,),
+    ('location', 'Locatie', True, True, False,),
+    ('sources', 'Bron', True, True, False,),
+    ('tag', 'Genoemd', True, True, 'object.rel',),
     # ('politicians', 'Politici', True, True,),
     # ('parties', 'Partijen', True, True,),
-    ('actor', 'Geplaatst door', True, True,),
+    ('actor', 'Geplaatst door', True, True, False,),
     # ('topics', 'Onderwerpen', True, True,),
     # ('polarity', 'Polariteit', True, True,),
     # ('subjectivity', 'Sentiment', True, True,),
@@ -193,7 +193,7 @@ def do_url_for_search_page(params, gov_slug):
     if 'query' in request.args:
         url_args['query'] = request.args['query']
 
-    for param, title, is_displayed, is_filter in FACETS:
+    for param, title, is_displayed, is_filter, sub_attr in FACETS:
         if param in request.args:
             url_args[param] = request.args[param]
 
@@ -209,7 +209,7 @@ def do_link_bucket(bucket, facet):
     if 'query' in request.args:
         url_args['query'] = request.args['query']
 
-    for param, title, is_displayed, is_filter in FACETS:
+    for param, title, is_displayed, is_filter, sub_attr in FACETS:
         if param in request.args:
             url_args[param] = request.args[param]
 
@@ -413,7 +413,7 @@ class BackendAPI(object):
         if kwargs.get('query', None) is not None:
             es_query['query'] = kwargs['query']
 
-        for facet, desc, is_displayed, is_filter in FACETS:
+        for facet, desc, is_displayed, is_filter, sub_attr in FACETS:
             try:
                 main_facet, sub_facet = facet.split('_')
             except ValueError:
@@ -549,7 +549,7 @@ def search():
         'page': int(request.args.get('page', '1')),
         'query': request.args.get('query', None)}
 
-    for facet, desc, is_displayed, is_filter in FACETS:
+    for facet, desc, is_displayed, is_filter, sub_attr in FACETS:
         search_params[facet] = request.args.get(facet, None)
 
 

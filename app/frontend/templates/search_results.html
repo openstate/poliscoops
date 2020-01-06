@@ -92,7 +92,7 @@ $(document).ready(function() {
         {{ dt_now.strftime('%d-%m-%Y') }}
         {% endif %}
         " />
-        {% for key, desc, is_displayed, is_filter in facets %}
+        {% for key, desc, is_displayed, is_filter, sub_attr in facets %}
           {% if key in result_facets %}
             {% if result_facets[key].buckets|length > 0 %}
               <h2 id="facet-{{ key }}">{{ desc }}</h2>

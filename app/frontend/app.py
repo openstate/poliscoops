@@ -10,6 +10,7 @@ from urlparse import urlparse, urljoin
 import hashlib
 import os
 from copy import deepcopy
+from operator import itemgetter, attrgetter
 
 from html5lib.filters.base import Filter
 
@@ -62,7 +63,10 @@ FACETS = (
     ('date_to', 'Datum tot', False, True, False,),
     ('location', 'Locatie', True, True, False,),
     ('sources', 'Bron', True, True, False,),
-    ('tag', 'Genoemd', True, True, 'object.rel',),
+    # TODO: magic sorting shit (see Joplin) below
+    ('tag', 'Genoemd', True, True, {
+        'rel': ['type', 'interestingness', 'polarity', 'subjectivity']
+    },),
     # ('politicians', 'Politici', True, True,),
     # ('parties', 'Partijen', True, True,),
     ('actor', 'Geplaatst door', True, True, False,),
@@ -542,6 +546,20 @@ def get_facets_from_results(results):
     #print >>sys.stderr, output
     return output
 
+def order_facets(facets):
+    # for facet, desc, is_displayed, is_filter, sort_func in FACETS:
+    #     if facet not in facets:
+    #         continue
+    #
+    #     if not sort_func:
+    #         continue
+    #
+    #     print >>sys.stderr, "Should do something interesting now for %s facet" % (facet,)
+    #     print >>sys.stderr, facets[facet]
+    #     facets[facet]['buckets'] = sort_func(facets[facet].get('buckets', []))
+    #     print >>sys.stderr, facets[facet]
+    return facets
+
 
 @app.route("/zoeken")
 def search():
@@ -562,7 +580,7 @@ def search():
         max_pages = 0
     return render_template(
         'search_results.html', facets=FACETS, results=results,
-        result_facets=get_facets_from_results(results),
+        result_facets=order_facets(get_facets_from_results(results)),
         query=search_params['query'], page=search_params['page'],
         max_pages=max_pages, search_params=search_params,
         dt_now=datetime.datetime.now())

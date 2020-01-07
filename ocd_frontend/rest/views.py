@@ -208,6 +208,7 @@ def format_search_aggregations(aggregations):
                 "ibmsc:facetValue": []
             }
         }
+        bucket_ids = []
         for b in aggregations[a_name].get('buckets', []):
             result['ibmsc:facet']['ibmsc:facetValue'].append({
                  #'@id': b['key'],
@@ -215,6 +216,12 @@ def format_search_aggregations(aggregations):
                  'ibmsc:label': b['key'],
                  'ibmsc:weight': b['doc_count']
             })
+            bucket_ids += find_ids_in_item(b)
+        print >>sys.stderr, "bucket ids: %s" % (bucket_ids,)
+        if len(bucket_ids) > 0:
+            bucket_expanded = get_objects_for_ids(bucket_ids)
+            for b in result['ibmsc:facet']['ibmsc:facetValue']:
+                b['as:object'] = bucket_expanded[b['ibmsc:label']]
         output["ibmsc:facets"].append(result)
     return output
 

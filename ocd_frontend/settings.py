@@ -167,6 +167,18 @@ COMMON_FACETS = {
             'size': 10
         }
     },
+    'interestingness': {
+        'terms': {
+            'field': 'item.tag.raw',
+            'size': 10
+        }
+    },
+    'rel': {
+        'terms': {
+            'field': 'item.rel.raw',
+            'size': 10
+        }
+    },
     # 'parties': {
     #     'terms': {
     #         'field': 'parties',

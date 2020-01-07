@@ -96,6 +96,21 @@ $(document).ready(function() {
           {% if key in result_facets %}
             {% if result_facets[key].buckets|length > 0 %}
               <h2 id="facet-{{ key }}">{{ desc }}</h2>
+              {% if sub_attr %}
+                <p>{{ sub_attr.keys() }}</p>
+                {% for obj_attr in sub_attr.keys() %}
+                  {% for sub_facet in sub_attr[obj_attr] %}
+                    <h2>{{ sub_facet }}</h2>
+                    <ul>
+                    {% for bucket in result_facets[key].buckets %}
+                      {% if bucket.object[obj_attr] == sub_facet %}
+                        <li>{{ bucket.object.name }} ({{ bucket.doc_count }})</li>
+                      {% endif %}
+                    {% endfor %}
+                    </ul>
+                  {% endfor %}
+                {% endfor %}
+              {% endif %}
               {% for bucket in result_facets[key].buckets %}
                   {% if loop.index == 11 %}
                   <button class="btn btn-primary btn-category btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">

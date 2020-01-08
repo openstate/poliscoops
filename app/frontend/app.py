@@ -59,6 +59,7 @@ AS2_ENTITIES = [
 FACETS = (
     # facet, label, display?, filter?, sub filter attribute
     ('type', 'Soort', True, True, False,),
+    ('generator', 'Afkomstig van', True, True, False,),
     ('date_from', 'Datum van', False, True, False,),
     ('date_to', 'Datum tot', False, True, False,),
     ('location', 'Locatie', True, True, False,),
@@ -380,6 +381,7 @@ class BackendAPI(object):
                 "sources": {},
                 "actor": {},
                 "type": {},
+                "generator": {},
                 "tag": {
                     "size": 10
                 },

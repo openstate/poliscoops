@@ -179,6 +179,12 @@ COMMON_FACETS = {
             'size': 10
         }
     },
+    'generator': {
+        'terms': {
+            'field': 'item.generator.raw',
+            'size': 10
+        }
+    },
     # 'parties': {
     #     'terms': {
     #         'field': 'parties',

@@ -71,9 +71,9 @@ FACETS = (
     # ('parties', 'Partijen', True, True,),
     ('actor', 'Geplaatst door', True, True, False,),
     # ('topics', 'Onderwerpen', True, True,),
-    # ('polarity', 'Polariteit', True, True,),
-    # ('subjectivity', 'Sentiment', True, True,),
-    # ('interestingness', 'Interessantheid', True, True,)
+    ('polarity', 'Polariteit', False, False, False,),
+    ('subjectivity', 'Sentiment',False, False, False,),
+    ('interestingness', 'Interessantheid', False, False, False,)
 )
 
 

@@ -95,22 +95,26 @@ $(document).ready(function() {
         {% for key, desc, is_displayed, is_filter, sub_attr in facets %}
           {% if key in result_facets %}
             {% if result_facets[key].buckets|length > 0 %}
-              <h2 id="facet-{{ key }}">{{ desc }}</h2>
               {% if sub_attr %}
-                <p>{{ sub_attr.keys() }}</p>
                 {% for obj_attr in sub_attr.keys() %}
                   {% for sub_facet in sub_attr[obj_attr] %}
-                    <h2>{{ sub_facet }}</h2>
-                    <ul>
-                    {% for bucket in result_facets[key].buckets %}
-                      {% if bucket.object[obj_attr] == sub_facet %}
-                        <li>{{ bucket.object.name }} ({{ bucket.doc_count }})</li>
+                    {% for k,d,i,f,s in facets %}
+                      {% if k == sub_facet %}
+                      <h2>{{ d }}</h2>
                       {% endif %}
                     {% endfor %}
-                    </ul>
+                    {% for bucket in result_facets[key].buckets %}
+                      {% if bucket.object[obj_attr] == sub_facet %}
+                          {% include "inner_facet_button.html" %}
+                      {% endif %}
+                    {% endfor %}
                   {% endfor %}
                 {% endfor %}
               {% endif %}
+              {% if sub_attr %}
+                {% set obj_attr = sub_attr.keys()[0] %}
+              {% endif %}
+              <h2 id="facet-{{ key }}">{{ desc }}</h2>
               {% for bucket in result_facets[key].buckets %}
                   {% if loop.index == 11 %}
                   <button class="btn btn-primary btn-category btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
@@ -118,12 +122,13 @@ $(document).ready(function() {
                   </button>
                   <div class="collapse" id="collapse-{{ key }}">
                   {% endif %}
-                <a class="btn btn-default btn-category btn-block {{ bucket |active_bucket(key) }}" href="{{ bucket |link_bucket(key) }}" title="{{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})" role="button">
-                  {% if bucket |active_bucket(key) == 'active' %}
-                  <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px; padding: 0 !important;"><span aria-hidden="true">&times;</span></button>
+                  {% if sub_attr %}
+                    {% if bucket.object[obj_attr] not in sub_attr[obj_attr] %}
+                      {% include "inner_facet_button.html" %}
+                    {% endif %}
+                  {% else %}
+                    {% include "inner_facet_button.html" %}
                   {% endif %}
-                  {{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})
-                </a>
               {% endfor %}
               {% if result_facets[key].buckets|length > 10 %}
                 </div> <!-- collapse-{{ key }} -->

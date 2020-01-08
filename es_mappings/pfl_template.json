@@ -54,8 +54,8 @@
                     }
                   },
                   {
-                    "basic": {
-                      "path_match": "*",
+                    "nl": {
+                      "path_match": "*.nl",
                       "mapping": {
                         "type": "text",
                         "analyzer": "text_nl",
@@ -66,7 +66,246 @@
                         }
                       }
                     }
-                }
+                  },
+                  {
+                    "de": {
+                      "path_match": "*.de",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "german",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "fr": {
+                      "path_match": "*.fr",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "french",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "es": {
+                      "path_match": "*.es",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "spanish",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "pt": {
+                      "path_match": "*.pt",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "portuguese",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "en": {
+                      "path_match": "*.en",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "english",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "bg": {
+                      "path_match": "*.bg",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "bulgarian",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "cz": {
+                      "path_match": "*.cz",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "czech",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "dk": {
+                      "path_match": "*.dk",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "danish",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "fi": {
+                      "path_match": "*.fi",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "finnish",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "gr": {
+                      "path_match": "*.gr",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "greek",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "hu": {
+                      "path_match": "*.hu",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "hungarian",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "ie": {
+                      "path_match": "*.ie",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "irish",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "it": {
+                      "path_match": "*.it",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "italian",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "lv": {
+                      "path_match": "*.lv",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "latvian",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "lt": {
+                      "path_match": "*.lt",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "lithuanian",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "ro": {
+                      "path_match": "*.ro",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "romanian",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "se": {
+                      "path_match": "*.se",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "swedish",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
+                  }
+
             ],
             "properties": {
                 "meta": {

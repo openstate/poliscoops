@@ -1,0 +1,6 @@
+<a class="btn btn-default btn-category btn-block {{ bucket |active_bucket(key) }}" href="{{ bucket |link_bucket(key) }}" title="{{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})" role="button">
+  {% if bucket |active_bucket(key) == 'active' %}
+  <button type="button" class="close" aria-label="Close" style="float:left; margin-right: 10px; padding: 0 !important;"><span aria-hidden="true">&times;</span></button>
+  {% endif %}
+  {{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})
+</a>

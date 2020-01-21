@@ -104,7 +104,6 @@ class BaseItem(AS2ConverterMixin):
         """Construct a AS2 compatible representation of the combined index
         doc.
         """
-        log.info((len(actual_combined_index_data.keys()), actual_combined_index_data.keys(),))
         if (
             (len(actual_combined_index_data.keys()) == 2) and
             ('item' in actual_combined_index_data) and
@@ -116,7 +115,6 @@ class BaseItem(AS2ConverterMixin):
         # quick hack to make link avaiable
         actual_combined_index_data['link'] = self.original_item['link']
 
-        log.info(dict(actual_combined_index_data))
         return self.as2_transform_old_object(actual_combined_index_data)
 
     def get_combined_index_doc(self):

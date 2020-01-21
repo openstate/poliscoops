@@ -95,18 +95,27 @@ class AS2ConverterMixin(object):
     def as2_index(self, combined_index_doc, items):
         items_to_index = []
         for d in items:
-            log.info('Indexing AS2 document : ' + d['@type'])
-            log.info(combined_index_doc.get('meta', {}))
             try:
                 d_id = d['@id'].split('/')[-1]
             except LookupError:
                 d_id = None
+            #print >>sys.stderr, combined_index_doc['translations']
+            translations = combined_index_doc.get('translations', {}).get(d.get('@id', ''), [])
+            if len(translations) == 0:
+                translation_keys = {}
+            if len(translations) == 1:
+                translation_keys = {0: 'contentMap'}
+            if len(translations) == 2:
+                translation_keys = {0: 'nameMap', 1: 'contentMap'}
+            for t_idx, t_key in translation_keys.iteritems():
+                d[t_key] = {x['to']: x['text'] for x in translations[t_idx]['translations']}
             items_to_index.append({
                 '_index': settings.COMBINED_INDEX,
                 '_type': d['@type'],
                 '_id': d_id,
                 'hidden': combined_index_doc.get('hidden', False),
                 'item': d,
+                'enrichments': {'translations': translations},
                 'meta': {
                     'processing_started': datetime.datetime.now(),
                     'processing_finished': datetime.datetime.now(),

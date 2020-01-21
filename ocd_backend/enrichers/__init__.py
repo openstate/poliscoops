@@ -6,6 +6,8 @@ from ocd_backend.exceptions import SkipEnrichment
 from ocd_backend.log import get_source_logger
 from ocd_backend.extractors import HttpRequestMixin
 from ocd_backend.utils import json_encoder
+from ocd_backend.utils.azure import AzureTranslationMixin
+from ocd_backend.utils.misc import html_cleanup
 
 from ocd_ml.interestingness import featurize, class_labels
 
@@ -15,6 +17,7 @@ import pytz
 import iso8601
 import pickle
 import os
+import sys
 
 log = get_source_logger('enricher')
 
@@ -177,6 +180,29 @@ class InterestingnessEnricher(PoliTagsEnricher):
 # to edit all source files.
 class NEREnricher(InterestingnessEnricher):
     pass
+
+
+class AS2TranslationEnricher(BaseEnricher, AzureTranslationMixin):
+    def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
+        print >>sys.stderr, "Combined index doc has %s items" % (
+            len(combined_index_doc.get('item', {}).get('items', [])),)
+        enrichments['translations'] = {}
+        for item in combined_index_doc.get('item', {}).get('items', []):
+            # TODO: Maybe determine the type of object, if translation is needed
+            # TODO: check if item exists to prevent unecesary retranslation of text we already have
+            # print >>sys.stderr, item
+            docs_for_translation = []
+            if item.get('nameMap', {}).get('nl', None) is not None:
+                docs_for_translation.append(item['nameMap']['nl'])
+            # print >>sys.stderr, "Combined doc before translation: %s" % (combined_index_doc,)
+            if item.get('contentMap', {}).get('nl', None) is not None:
+                docs_for_translation.append(html_cleanup(item['contentMap']['nl']))
+            if len(docs_for_translation) > 0:
+                translations = self.translate(
+                    docs_for_translation, to_lang=['en', 'de', 'fr'])
+                enrichments['translations'][item['@id']] = translations
+                #print >>sys.stderr, "Enrichments: %s" % (enrichments,)
+        return enrichments
 
 
 class BinoasEnricher(BaseEnricher, HttpRequestMixin):

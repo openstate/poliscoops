@@ -304,6 +304,20 @@
                         }
                       }
                     }
+                  },
+                  {
+                    "def": {
+                      "path_match": "*",
+                      "mapping": {
+                        "type": "text",
+                        "analyzer": "text_nl",
+                        "fields": {
+                          "raw": {
+                            "type": "keyword"
+                          }
+                        }
+                      }
+                    }
                   }
 
             ],

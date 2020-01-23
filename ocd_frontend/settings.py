@@ -185,6 +185,12 @@ COMMON_FACETS = {
             'size': 10
         }
     },
+    'language': {
+        'terms': {
+            'field': 'item.@language.raw',
+            'size': 10
+        }
+    },
     # 'parties': {
     #     'terms': {
     #         'field': 'parties',

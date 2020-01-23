@@ -62,6 +62,7 @@ FACETS = (
     ('generator', 'Afkomstig van', True, True, False,),
     ('date_from', 'Datum van', False, True, False,),
     ('date_to', 'Datum tot', False, True, False,),
+    ('language', 'Taal', True, True, False,),
     ('location', 'Locatie', True, True, False,),
     ('sources', 'Bron', True, True, False,),
     # TODO: magic sorting shit (see Joplin) below
@@ -77,6 +78,7 @@ FACETS = (
     ('interestingness', 'Interessantheid', False, False, False,)
 )
 
+DEFAULT_LANGUAGE = 'en'
 
 def allow_src(tag, name, value):
     if (tag == 'img') and (name in ('alt', 'height', 'width', 'src')):
@@ -259,7 +261,7 @@ def do_format_bucket(bucket, facet):
     if facet == 'date':
         output = bucket['key_as_string'].split('T')[0]
     elif str(bucket['key']).startswith(AS2_NAMESPACE):
-        output = do_as2_i18n_field('name', bucket['object'], 'nl')
+        output = do_as2_i18n_field('name', bucket['object'], DEFAULT_LANGUAGE)
     else:
         output = bucket['key']
     return output
@@ -307,9 +309,14 @@ def do_pfl_link(doc):
 @app.template_filter('as2_i18n_field')
 def do_as2_i18n_field(s, result, l):
     map_field = "%sMap" % (s,)
-    lng = "nl"
+    lng = l
     if map_field in result:
-        return result[map_field][lng]
+        if lng in result[map_field]:
+            return result[map_field][lng]
+        if DEFAULT_LANGUAGE in result[map_field]:
+            return result[map_field][DEFAULT_LANGUAGE]
+        k = result[map_field].keys()[-1]
+        return result[map_field][k]
     else:
         try:
             r = result.get(s, None)
@@ -385,6 +392,7 @@ class BackendAPI(object):
                 "tag": {
                     "size": 10
                 },
+                "language": {},
                 # "politicians": {"size": 100},
                 # "parties": {"size": 10000},
                 # "collection": {"size": 10000},

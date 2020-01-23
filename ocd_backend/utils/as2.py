@@ -109,7 +109,12 @@ class AS2ConverterMixin(object):
                 translation_keys = {0: 'nameMap', 1: 'contentMap'}
             for t_idx, t_key in translation_keys.iteritems():
                 d[t_key] = {x['to']: x['text'] for x in translations[t_idx]['translations']}
-            # TODO: how to fret detected language in here? (@context)
+
+                # always take the language of the content, since content tends to
+                # be longer than the title
+                d['@language'] = translations[-1]['detectedLanguage']['language']
+
+            print >>sys.stderr, translations
             items_to_index.append({
                 '_index': settings.COMBINED_INDEX,
                 '_type': d['@type'],

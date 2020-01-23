@@ -65,6 +65,15 @@
           <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="/">Home</a></li>
+              <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Taal <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{ modify_query(hl='nl') }}">nl</a></li>
+                          <li><a href="{{ modify_query(hl='en') }}">en</a></li>
+                          <li><a href="{{ modify_query(hl='fr') }}">fr</a></li>
+                          <li><a href="{{ modify_query(hl='de') }}">de</a></li>
+                        </ul>
+                      </li>
               <li><a href="/over">Over</a></li>
               <li><a href="https://docs.poliflw.nl">API</a></li>
               <li><a href="http://poliflw.idea.informer.com/proj/" target="_blank">Feedback</a></li>

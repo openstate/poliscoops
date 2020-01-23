@@ -144,6 +144,7 @@ Poliflw.init = function() {
   });
 
   $('.collapse').collapse({toggle: false});
+  $('.dropdown-toggle').dropdown();
 
   $('.description-collapse').on('click', function(e) {
     e.preventDefault();

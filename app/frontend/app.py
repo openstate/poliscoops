@@ -17,6 +17,7 @@ from html5lib.filters.base import Filter
 from flask import (
     Flask, abort, jsonify, request, redirect, render_template,
     stream_with_context, Response, url_for)
+from werkzeug.urls import url_encode
 
 from jinja2 import Markup
 
@@ -100,6 +101,16 @@ def image_rewrite(url, doc_id):
         return url_for('link_proxy', hash=img_hash, url=url, id=doc_id)
     else:
         return url
+
+
+@app.template_global()
+def modify_query(**new_values):
+    args = request.args.copy()
+
+    for key, value in new_values.items():
+        args[key] = value
+
+    return '{}?{}'.format(request.path, url_encode(args))
 
 
 @app.template_filter('party_image')

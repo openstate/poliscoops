@@ -1,22 +1,22 @@
 <div class="col-xs-12 col-md-10">
   <h2>
     <a href="{{ result_object['@id'] }}">
-      {{ 'name' |as2_i18n_field(result_object, 'nl') }}
+      {{ 'name' |as2_i18n_field(result_object, hl) }}
     </a>
   </h2>
   <p class="entities">
     {% if result_object.attributedTo %}
-    <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result_object.attributedTo, 'nl') |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result_object.attributedTo, 'nl') }}" class="img-responsive visible-xs-inline">
+    <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}" class="img-responsive visible-xs-inline">
     {% endif %}
     <!-- FIXME: party link and name -->
     {% if result_object.attributedTo %}
-    <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-group"></i> {{ 'name' |as2_i18n_field(result_object.attributedTo, 'nl') }}</a>
+    <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-group"></i> {{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}</a>
     {% endif %}
     <!-- FIXME: all partes in list of links below, same as above-->
 
     <!-- FIXME: link to location -->
     {% if result_object.location %}
-    <a href="#" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ 'name' |as2_i18n_field(result_object.location, 'nl') }}</a>
+    <a href="#" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ 'name' |as2_i18n_field(result_object.location, hl) }}</a>
     {% endif %}
 
     {% if result_object.created %}
@@ -33,7 +33,7 @@
         {{ result |pretty_json }}
       -->
 
-      <p>{{ "content" |as2_i18n_field(result_object, 'nl') |html_cleanup(result) |safe }}</p>
+      <p>{{ "content" |as2_i18n_field(result_object, hl) |html_cleanup(result) |safe }}</p>
     </div>
   </div>
 </div>

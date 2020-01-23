@@ -59,7 +59,7 @@ AS2_ENTITIES = [
 
 FACETS = (
     # facet, label, display?, filter?, sub filter attribute
-    ('hl', 'Display taal', False, False, False,),
+    # ('hl', 'Display taal', False, False, False,),
     ('type', 'Soort', True, True, False,),
     ('generator', 'Afkomstig van', True, True, False,),
     ('date_from', 'Datum van', False, True, False,),
@@ -225,8 +225,9 @@ def do_url_for_search_page(params, gov_slug):
 def do_link_bucket(bucket, facet):
     url_args = {
     }
-    if 'query' in request.args:
-        url_args['query'] = request.args['query']
+    for a in ['query', 'hl']:
+        if a in request.args:
+            url_args[a] = request.args[a]
 
     for param, title, is_displayed, is_filter, sub_attr in FACETS:
         if param in request.args:
@@ -593,6 +594,8 @@ def search():
         search_params[facet] = request.args.get(facet, None)
 
 
+    hl = request.args.get('hl', DEFAULT_LANGUAGE)
+
     results = api.search(**search_params)
     try:
         max_pages = int(math.floor(results['as:totalItems'] / PAGE_SIZE))
@@ -605,7 +608,7 @@ def search():
         result_facets=order_facets(get_facets_from_results(results)),
         query=search_params['query'], page=search_params['page'],
         max_pages=max_pages, search_params=search_params,
-        dt_now=datetime.datetime.now())
+        dt_now=datetime.datetime.now(), hl=hl)
 
 
 @app.route("/l/<location>/<party>/<id>")

@@ -59,6 +59,7 @@ AS2_ENTITIES = [
 
 FACETS = (
     # facet, label, display?, filter?, sub filter attribute
+    ('hl', 'Display taal', False, False, False,),
     ('type', 'Soort', True, True, False,),
     ('generator', 'Afkomstig van', True, True, False,),
     ('date_from', 'Datum van', False, True, False,),

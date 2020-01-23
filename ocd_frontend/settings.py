@@ -51,7 +51,7 @@ ALLOWED_INCLUDE_FIELDS_SEARCH = []
 
 SIMPLE_QUERY_FIELDS = {
     'item': [
-        'name', 'content', '*.nl']
+        'name', 'content', '*.nl', '*.en', '*.fr', '*.de']
 }
 
 DOC_TYPE_DEFAULT = u'item'
@@ -186,6 +186,12 @@ COMMON_FACETS = {
         }
     },
     'language': {
+        'terms': {
+            'field': 'item.@language.raw',
+            'size': 10
+        }
+    },
+    'hl': {
         'terms': {
             'field': 'item.@language.raw',
             'size': 10

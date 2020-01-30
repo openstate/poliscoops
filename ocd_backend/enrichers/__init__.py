@@ -188,7 +188,12 @@ class AS2TranslationEnricher(BaseEnricher, AzureTranslationMixin):
             len(combined_index_doc.get('item', {}).get('items', [])),)
         enrichments['translations'] = {}
         for item in combined_index_doc.get('item', {}).get('items', []):
-            # TODO: Maybe determine the type of object, if translation is needed
+            if item.get('@type', 'Note') not in settings.AS2_TRANSLATION_TYPES:
+                log.info(
+                    'Document %s is not a translatable type (%s)' % (
+                        item['@id'], item['@type'],))
+                continue
+
             # TODO: check if item exists to prevent unecesary retranslation of text we already have
             # print >>sys.stderr, item
             docs_for_translation = []

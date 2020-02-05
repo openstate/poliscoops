@@ -114,7 +114,6 @@ class AS2ConverterMixin(object):
                 # be longer than the title
                 d['@language'] = translations[-1]['detectedLanguage']['language']
 
-            print >>sys.stderr, translations
             items_to_index.append({
                 '_index': settings.COMBINED_INDEX,
                 '_type': d['@type'],

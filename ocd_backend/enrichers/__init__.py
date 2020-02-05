@@ -192,6 +192,7 @@ class AS2TranslationEnricher(BaseEnricher, AzureTranslationMixin, HttpRequestMix
                 #         item.get('@id', '???'), item['@type'],))
                 continue
 
+            translated = False
             try:
                 resp = self.http_session.post(
                     'http://frontend:5000/v0/search',
@@ -202,24 +203,26 @@ class AS2TranslationEnricher(BaseEnricher, AzureTranslationMixin, HttpRequestMix
                             }
                         })).json()
                 if resp['as:totalItems'] > 0:
-                    log.info('Found %s existing document(s) for  %s' % (resp['as:totalItems'], item['@id'],))
+                    first_item = resp['as:items'][0]
+                    log.info('Found %s existing document(s) for  %s, translated into %s' % (
+                        resp['as:totalItems'], item['@id'], first_item['contentMap'].keys(),))
+                    translated = sorted(first_item['contentMap'].keys()) == sorted(settings.AS2_TRANSLATION_LANGUAGES)
+                    if translated:
+                        # if doc is already translated, use the translation we used before.
+                        docs = []
+                        for fld in ['nameMap', 'contentMap']:
+                            if fld in first_item:
+                                docs.append({
+                                    # FIXME: hould copy the source langueage from the doc!!!
+                                    'detectedLanguage': {"language": first_item.get('@language', 'nl'), "score": 1.0},
+                                    'translations': [{'text': v, 'to': k} for k, v in first_item[fld].iteritems()]
+                                })
+                        enrichments['translations'][item['@id']] = docs
                 else:
                     resp = None
             except Exception as e:
                 log.error(e)
                 resp = None
-
-
-            translated = (resp is not None)
-            if resp is not None:
-                # log.info('Found item:')
-                # log.info(resp['as:items'][0])
-                translated = True
-                for fld in ['name', 'content']:
-                    for lng in settings.AS2_TRANSLATION_LANGUAGES:
-                        translated_content = resp['as:items'][0]['%sMap' % (fld,)].get(lng, None)
-                        # log.info('Found translation content for %s in %s: %s' % (fld, lng, translated_content))
-                        translated = translated and (translated_content is not None)
 
             if translated:
                 log.info('Document %s was already translated' % (item['@id'],))
@@ -241,10 +244,7 @@ class AS2TranslationEnricher(BaseEnricher, AzureTranslationMixin, HttpRequestMix
                 enrichments['translations'][item['@id']] = translations
                 #print >>sys.stderr, "Enrichments: %s" % (enrichments,)
 
-        # TODO: currently enrichments get overwritten becuase in ES the entire
-        # object is replaced, This can be migitated by using upsert instead
-        # of insert which it is now. Or in ths case, make the translations
-        # return the translations from the api request, if they were there.
+        #log.info(enrichments)
         return enrichments
 
 

@@ -114,10 +114,7 @@ class AS2ConverterMixin(object):
                 # be longer than the title
                 d['@language'] = translations[-1]['detectedLanguage']['language']
 
-            items_to_index.append({
-                '_index': settings.COMBINED_INDEX,
-                '_type': d['@type'],
-                '_id': d_id,
+            item_doc = {
                 'hidden': combined_index_doc.get('hidden', False),
                 'item': d,
                 #'enrichments': {'translations': translations},
@@ -133,5 +130,21 @@ class AS2ConverterMixin(object):
                             urljoin(settings.AS2_NAMESPACE, d['@type']), d_id)
                     },
                 }
-            })
+            }
+
+            if d_id is not None:
+                items_to_index.append({
+                    '_op_type': 'update',
+                    '_index': settings.COMBINED_INDEX,
+                    '_type': d['@type'],
+                    '_id': d_id,
+                    'doc': item_doc,
+                    "doc_as_upsert" : True
+                })
+            else:
+                item_doc.update({
+                    '_index': settings.COMBINED_INDEX,
+                    '_type': d['@type'],
+                    '_id': d_id,})
+                items_to_index.append(item_doc)
         bulk(elasticsearch, items_to_index)

@@ -14,7 +14,7 @@ services:
     restart: always
     networks:
       - nginx-load-balancer
-      - pfl
+      - pls
   backend:
     build:
       context: ..
@@ -27,7 +27,7 @@ services:
       - frontend:frontend
     restart: always
     networks:
-      - pfl
+      - pls
     command: /opt/pfl/bin/backend.sh
   frontend:
     build:
@@ -39,7 +39,7 @@ services:
       - ../ocd_frontend:/opt/pfl/ocd_frontend
     restart: always
     networks:
-      - pfl
+      - pls
   redis:
     image: "redis:${REDIS_VERSION}"
     command: redis-server --appendonly no --save ''
@@ -47,7 +47,7 @@ services:
       - net.core.somaxconn=65535
     restart: always
     networks:
-      - pfl
+      - pls
   elasticsearch:
     image: "docker.elastic.co/elasticsearch/elasticsearch:${ES_VERSION}"
     environment:
@@ -67,7 +67,7 @@ services:
       - esdata:/usr/share/elasticsearch/data
     restart: always
     networks:
-      - pfl
+      - pls
   app:
     build:
       context: ../app
@@ -76,12 +76,12 @@ services:
       - ../app:/opt/app
     restart: always
     networks:
-      - pfl
+      - pls
 volumes:
   esdata:
     driver: local
 networks:
-  pfl:
+  pls:
   nginx-load-balancer:
     external:
       name: docker_nginx-load-balancer

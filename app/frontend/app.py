@@ -354,7 +354,7 @@ def do_pretty_json(s):
                       indent=4, separators=(',', ': '))
 
 class BackendAPI(object):
-    URL = 'http://pfl_nginx_1/v0'
+    URL = 'http://nginx/v0'
     # URL = 'https://api.poliflw.nl/v0'
     HEADERS = {'Host': 'api.poliflw.nl'}
 

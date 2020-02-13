@@ -311,13 +311,8 @@ def do_split(s, delim):
 
 @app.template_filter('pfl_link')
 def do_pfl_link(doc):
-    if '_source' in doc:
-        s = doc['_source']
-    else:
-        s = doc
     return url_for(
-        'show', location=s['location'], party=s['parties'][0],
-        id=s['meta']['_id'])
+        'show', as2_type=doc['@type'], id=doc['@id'].split('/')[-1])
 
 @app.template_filter('as2_i18n_field')
 def do_as2_i18n_field(s, result, l):
@@ -515,8 +510,7 @@ class BackendAPI(object):
             data=json.dumps(es_query)).json()
 
     def get_by_id(self, id):
-        return requests.get(
-            '%s/combined_index/item/%s' % (self.URL, id,), headers=self.HEADERS).json()
+        return self.find_by_id(id)
 
 
 api = BackendAPI()
@@ -611,12 +605,12 @@ def search():
         dt_now=datetime.datetime.now(), hl=hl)
 
 
-@app.route("/l/<location>/<party>/<id>")
-def show(location, party, id):
-    result = api.get_by_id(id)
-    if '_id' not in result['meta']:
-        result['meta']['_id'] = id
-    return render_template('show.html', result=result)
+@app.route("/<as2_type>/<id>")
+def show(as2_type, id):
+    ns_link = urljoin(urljoin(AS2_NAMESPACE, '%s/' % (as2_type,)), id)
+    result = api.get_by_id(ns_link)
+    return render_template(
+        'show.html', result=result, results=result, ns_link=ns_link)
 
 
 @app.route("/idea")

@@ -1,6 +1,6 @@
 <div class="col-xs-12 col-md-10">
   <h2>
-    <a href="{{ result_object['@id'] }}">
+    <a href="{{ result_object |pfl_link }}">
       {{ 'name' |as2_i18n_field(result_object, hl) }}
     </a>
   </h2>

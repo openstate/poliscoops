@@ -25,9 +25,3 @@ services:
       context: ../app
       dockerfile: Dockerfile-app-dev
     restart: "no"
-volumes:
-  esdata:
-    driver: local
-networks:
-  pfl:
-  nginx-load-balancer:

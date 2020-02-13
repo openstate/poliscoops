@@ -356,7 +356,7 @@ def do_pretty_json(s):
 class BackendAPI(object):
     URL = 'http://nginx/v0'
     # URL = 'https://api.poliflw.nl/v0'
-    HEADERS = {'Host': 'api.poliflw.nl'}
+    HEADERS = {'Host': 'api.polscoops.com'}
 
     def sources(self):
         return requests.get('%s/sources' % (self.URL,), headers=self.HEADERS).json()

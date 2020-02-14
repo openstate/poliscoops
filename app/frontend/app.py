@@ -15,9 +15,10 @@ from operator import itemgetter, attrgetter
 from html5lib.filters.base import Filter
 
 from flask import (
-    Flask, abort, jsonify, request, redirect, render_template,
+    Flask, abort, jsonify, g, request, redirect, render_template,
     stream_with_context, Response, url_for)
 from werkzeug.urls import url_encode
+from flask.ext.babel import Babel, format_datetime
 
 from jinja2 import Markup
 
@@ -31,6 +32,7 @@ from lxml import etree
 # locale.setlocale(locale.LC_TIME, "nl_NL")
 
 app = Flask(__name__)
+babel = Babel(app)
 
 PAGE_SIZE = 10
 REDIS_HOST = 'redis'
@@ -81,6 +83,29 @@ FACETS = (
 )
 
 DEFAULT_LANGUAGE = 'en'
+BABEL_DEFAULT_LOCALE = 'en'
+
+@babel.localeselector
+def get_locale():
+    # if a user is logged in, use the locale from the user settings
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.locale
+
+    hl = request.args.get('hl', DEFAULT_LANGUAGE)
+    return hl
+    # otherwise try to guess the language from the user accept
+    # header the browser transmits.  We support de/fr/en in this
+    # example.  The best match wins.
+    #return request.accept_languages.best_match(['de', 'fr', 'en'])
+
+
+@babel.timezoneselector
+def get_timezone():
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.timezone
+
 
 def allow_src(tag, name, value):
     if (tag == 'img') and (name in ('alt', 'height', 'width', 'src')):
@@ -248,7 +273,7 @@ def do_link_bucket(bucket, facet):
 @app.template_filter('iso8601_to_str')
 def do_iso8601_to_str(s, format):
     try:
-        return iso8601.parse_date(s).strftime(format)
+        return format_datetime(iso8601.parse_date(s))
     except iso8601.ParseError:
         return u''
 

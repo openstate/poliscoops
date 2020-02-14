@@ -127,7 +127,7 @@ def get_source_info_from_url(file_url):
     }
 
     try:
-        req_res = requests.get(file_url)
+        req_res = requests.get(file_url, verify=False)
         content = req_res.content
     except Exception as e:
         print(e)
@@ -183,6 +183,10 @@ def make_source_for(src, LOCATIONS):
         "extractor": "",  # depends if feed or not
         "keep_index_on_update": True,
         "enrichers": [
+            [
+                "ocd_backend.enrichers.AS2TranslationEnricher",
+                {}
+            ]
           # [
           #   "ocd_backend.enrichers.NEREnricher",
           #   {}
@@ -195,7 +199,7 @@ def make_source_for(src, LOCATIONS):
         "file_url": '',
         "index_name": slug,
         "transformer": "ocd_backend.transformers.BaseTransformer",
-        "loader": "ocd_backend.loaders.ElasticsearchLoader",
+        "loader": "ocd_backend.loaders.AS2Loader",
         "item": "",  # html grabber
         "cleanup": "ocd_backend.tasks.CleanupElasticsearch",
         "location": _normalize_location(src['location'], LOCATIONS),

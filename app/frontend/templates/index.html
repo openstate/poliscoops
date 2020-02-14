@@ -15,15 +15,7 @@ Poliflw.data = {{ results |tojson }};
 <div class="row" style="margin-top: 3em;">
 <div class="col-xs-12 col-md-6 col-md-offset-3" style="text-align: center;">
 <p>
-<strong style="font-size: 19px;">Gebruik bovenstaand zoekveld om door {{ results["as:totalItems"] }} berichten te zoeken op thema of locatie ...</strong>
-</p>
-</div>
-</div>
-
-<div class="row" style="margin-top: 3em;">
-<div class="col-xs-12 col-md-6 col-md-offset-3" style="text-align: center;">
-<p>
-  <strong>Nieuw:</strong> Je kan nu ook een provincie of <a href="{{ url_for('search', location='Nederland') }}">Nederland</a> selecteren.
+<strong style="font-size: 19px;">{% trans num_results=results["as:totalItems"] %}Use the field to search in {{ num_results }} messages ...{% endtrans %}</strong>
 </p>
 </div>
 </div>
@@ -59,11 +51,11 @@ Poliflw.data = {{ results |tojson }};
       <!-- Controls -->
       <a class="left carousel-control" href="#carousel-images" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Vorige</span>
+        <span class="sr-only">{%trans%}Previous{%endtrans%}</span>
       </a>
       <a class="right carousel-control" href="#carousel-images" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Volgende</span>
+        <span class="sr-only">{%trans%}Next{%endtrans%}</span>
       </a>
     </div>
 

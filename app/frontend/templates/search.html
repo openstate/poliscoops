@@ -4,14 +4,14 @@
       <div class="col-xs-12">
         <div class="form-group">
           <label>
-          Zoek <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          {%trans%}Search{%endtrans%} <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </label>
           <div class="typeahead__container" style="width: 80%; display: inline-block;">
               <div class="typeahead__field">
 
                   <span class="typeahead__query">
 
-                    <input type="search" class="js-typeahead form-control" name="query" value="{{ request.args['query'] }}" placeholder="PGB of Amsterdam, Noord-Holland, Nederland" autocomplete="off">
+                    <input type="search" class="js-typeahead form-control" name="query" value="{{ request.args['query'] }}" placeholder="{%trans%}Word, location or party ...{%endtrans%}" autocomplete="off">
                   </span>
                 </div>
               </div>

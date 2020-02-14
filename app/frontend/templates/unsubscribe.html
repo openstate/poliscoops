@@ -8,12 +8,12 @@
   <div class="col-xs-12 article-text">
     {% if result %}
       {% if result.status_code == 200 %}
-        <p>Uw alert is uitgezet.</p>
+        <p>{%trans%}You were succesfully unsubscribed.{%endtrans%}</p>
       {% else %}
-        <p>Helaas, er ging iets mis. Probeer het later nog een keer.</p>
+        <p>{%trans%}Something went wrong. Please try again{%endtrans%}</p>
       {% endif %}
     {% else %}
-      <p>Helaas, er ging iets mis. Probeer het later nog een keer.</p>
+      <p>{%trans%}Something went wrong. Please try again{%endtrans%}</p>
     {% endif %}
   </div>
 </div>

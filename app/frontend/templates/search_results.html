@@ -70,12 +70,12 @@ $(document).ready(function() {
 <div class="wrapper">
   <nav id="sidebar" class="hidden-xs">
         <div class="navbar-header visible-xs-block">
-          <h2 class="pull-left" style="margin-top:11px;">Filters</h2>
+          <h2 class="pull-left" style="margin-top:11px;">{%trans%}Filters{%endtrans%}</h2>
           <button type="button" class="btn btn-info navbar-btn pull-right sidebar-collapse" style="color: white !important;">
             X
           </button>
         </div>
-        <h2>Periode</h2>
+        <h2>{%trans%}Period{%endtrans%}</h2>
         <div id="graph-monthly" class="graph">
           <svg></svg>
         </div>
@@ -118,7 +118,7 @@ $(document).ready(function() {
               {% for bucket in result_facets[key].buckets %}
                   {% if loop.index == 11 %}
                   <button class="btn btn-primary btn-category btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
-                    Toon meer
+                    {%trans%}Show more{%endtrans%}
                   </button>
                   <div class="collapse" id="collapse-{{ key }}">
                   {% endif %}

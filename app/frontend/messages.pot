@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-14 14:43+0000\n"
+"POT-Creation-Date: 2020-02-14 17:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,217 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: frontend/templates/base.html:77
+#: app.py:65
+msgid "Kind"
+msgstr ""
+
+#: app.py:66
+msgid "Origin"
+msgstr ""
+
+#: app.py:67
+msgid "Date from"
+msgstr ""
+
+#: app.py:68
+msgid "Date until"
+msgstr ""
+
+#: app.py:69
+msgid "Language"
+msgstr ""
+
+#: app.py:70
+msgid "Location"
+msgstr ""
+
+#: app.py:71
+msgid "Source"
+msgstr ""
+
+#: app.py:73
+msgid "Mentions"
+msgstr ""
+
+#: app.py:78
+msgid "Created by"
+msgstr ""
+
+#: app.py:80
+msgid "Polarity"
+msgstr ""
+
+#: app.py:81
+msgid "Sentiment"
+msgstr ""
+
+#: app.py:82
+msgid "Interestingness"
+msgstr ""
+
+#: templates/base.html:7 templates/base.html:37 templates/base.html:93
+msgid "Poliscoops"
+msgstr ""
+
+#: templates/base.html:59
+msgid "Toggle navigation"
+msgstr ""
+
+#: templates/base.html:60
+msgid "Menu"
+msgstr ""
+
+#: templates/base.html:67
+msgid "Home"
+msgstr ""
+
+#: templates/base.html:69
+msgid "Taal"
+msgstr ""
+
+#: templates/base.html:71
+msgid "nl"
+msgstr ""
+
+#: templates/base.html:72
+msgid "en"
+msgstr ""
+
+#: templates/base.html:73
+msgid "fr"
+msgstr ""
+
+#: templates/base.html:74
+msgid "de"
+msgstr ""
+
+#: templates/base.html:77
 msgid "About"
+msgstr ""
+
+#: templates/base.html:78
+msgid "API"
+msgstr ""
+
+#: templates/base.html:79
+msgid "Feedback"
+msgstr ""
+
+#: templates/base.html:80
+msgid "Contact"
+msgstr ""
+
+#: templates/base.html:97
+msgid "Make poltical news searchable"
+msgstr ""
+
+#: templates/base.html:130
+msgid "An initiative from:"
+msgstr ""
+
+#: templates/base.html:159
+msgid "Subscribe to search"
+msgstr ""
+
+#: templates/base.html:162
+msgid "You can subscribe to the following query:"
+msgstr ""
+
+#: templates/base.html:165
+msgid "Search query:"
+msgstr ""
+
+#: templates/base.html:168
+msgid "Location:"
+msgstr ""
+
+#: templates/base.html:171
+msgid "Party:"
+msgstr ""
+
+#: templates/base.html:174
+msgid ""
+"Choose one of the following options and enter your email to subscribe to "
+"the search query above"
+msgstr ""
+
+#: templates/base.html:178
+msgid "Direct notification"
+msgstr ""
+
+#: templates/base.html:184
+msgid "Hourly"
+msgstr ""
+
+#: templates/base.html:190
+msgid "6 hours"
+msgstr ""
+
+#: templates/base.html:194
+msgid "Email address"
+msgstr ""
+
+#: templates/base.html:199
+msgid "Subscribe"
+msgstr ""
+
+#: templates/base.html:200
+msgid "Cancel"
+msgstr ""
+
+#: templates/index.html:18
+#, python-format
+msgid "Use the field to search in %(num_results)s messages ..."
+msgstr ""
+
+#: templates/index.html:54 templates/results_as_list.html:133
+#: templates/results_as_list.html:136
+msgid "Previous"
+msgstr ""
+
+#: templates/index.html:58 templates/results_as_list.html:141
+#: templates/results_as_list.html:144
+msgid "Next"
+msgstr ""
+
+#: templates/results_as_list.html:3
+#, python-format
+msgid "%(num_results)s documenten"
+msgstr ""
+
+#: templates/results_as_list.html:5 templates/search_results.html:73
+msgid "Filters"
+msgstr ""
+
+#: templates/results_as_list.html:120
+msgid "Bron:"
+msgstr ""
+
+#: templates/results_as_list.html:152
+msgid "Unfortunately we were not able to find any documents matching your query."
+msgstr ""
+
+#: templates/search.html:7
+msgid "Search"
+msgstr ""
+
+#: templates/search.html:14
+msgid "Word, location or party ..."
+msgstr ""
+
+#: templates/search_results.html:78
+msgid "Period"
+msgstr ""
+
+#: templates/search_results.html:121
+msgid "Show more"
+msgstr ""
+
+#: templates/unsubscribe.html:11
+msgid "You were succesfully unsubscribed."
+msgstr ""
+
+#: templates/unsubscribe.html:13 templates/unsubscribe.html:16
+msgid "Something went wrong. Please try again"
 msgstr ""
 

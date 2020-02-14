@@ -18,7 +18,7 @@ from flask import (
     Flask, abort, jsonify, g, request, redirect, render_template,
     stream_with_context, Response, url_for)
 from werkzeug.urls import url_encode
-from flask.ext.babel import Babel, format_datetime, gettext, ngettext
+from flask.ext.babel import Babel, format_datetime, gettext, ngettext, lazy_gettext
 
 from jinja2 import Markup
 
@@ -62,24 +62,24 @@ AS2_ENTITIES = [
 FACETS = (
     # facet, label, display?, filter?, sub filter attribute
     # ('hl', 'Display taal', False, False, False,),
-    ('type', 'Soort', True, True, False,),
-    ('generator', 'Afkomstig van', True, True, False,),
-    ('date_from', 'Datum van', False, True, False,),
-    ('date_to', 'Datum tot', False, True, False,),
-    ('language', 'Taal', True, True, False,),
-    ('location', 'Locatie', True, True, False,),
-    ('sources', 'Bron', True, True, False,),
+    ('type', lazy_gettext('Kind'), True, True, False,),
+    ('generator', lazy_gettext('Origin'), True, True, False,),
+    ('date_from', lazy_gettext('Date from'), False, True, False,),
+    ('date_to', lazy_gettext('Date until'), False, True, False,),
+    ('language', lazy_gettext('Language'), True, True, False,),
+    ('location', lazy_gettext('Location'), True, True, False,),
+    ('sources', lazy_gettext('Source'), True, True, False,),
     # TODO: magic sorting shit (see Joplin) below
-    ('tag', 'Genoemd', True, True, {
+    ('tag', lazy_gettext('Mentions'), True, True, {
         'rel': ['type', 'interestingness', 'polarity', 'subjectivity']
     },),
     # ('politicians', 'Politici', True, True,),
     # ('parties', 'Partijen', True, True,),
-    ('actor', 'Geplaatst door', True, True, False,),
+    ('actor', lazy_gettext('Created by'), True, True, False,),
     # ('topics', 'Onderwerpen', True, True,),
-    ('polarity', 'Polariteit', False, False, False,),
-    ('subjectivity', 'Sentiment',False, False, False,),
-    ('interestingness', 'Interessantheid', False, False, False,)
+    ('polarity', lazy_gettext('Polarity'), False, False, False,),
+    ('subjectivity', lazy_gettext('Sentiment'),False, False, False,),
+    ('interestingness', lazy_gettext('Interestingness'), False, False, False,)
 )
 
 DEFAULT_LANGUAGE = 'en'

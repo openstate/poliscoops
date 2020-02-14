@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-xs-12">
-    <h3 class="pull-left" style="margin-top: 11px; margin-left: 1em;">{{ results["as:totalItems"]}} documenten</h3>
+    <h3 class="pull-left" style="margin-top: 11px; margin-left: 1em;">{% trans num_results=results["as:totalItems"] %}{{ num_results }} documenten{%endtrans%}</h3>
     <button type="button" class="btn btn-info navbar-btn pull-right visible-xs-inline-block sidebar-collapse">
-      Filters &gt;
+      {%trans%}Filters{%endtrans%} &gt;
     </button>
   </div>
 </div>
@@ -117,7 +117,7 @@
 <div class="row">
   <div class="col-xs-12">
     <p class="pull-right links">
-      <a href="{{ result_object.url }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">Bron: {{ result.source }} <i class="fa fa-external-link"></i></span></a>
+      <a href="{{ result_object.url }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">{%trans%}Bron:{%endtrans%} {{ result.source }} <i class="fa fa-external-link"></i></span></a>
     </p>
   </div>
 </div>
@@ -130,18 +130,18 @@
   <ul class="pagination">
     {% if page <= 1 %}
     <li class="prev previous_page disabled">
-      <a href="#" rel="prev">Vorige</a>
+      <a href="#" rel="prev">{%trans%}Previous{%endtrans%}</a>
     {% else %}
     <li class="prev previous_page">
-      <a href="{{ dict(page=(page - 1)) |url_for_search_page(gov_slug) }}" rel="prev">Vorige</a>
+      <a href="{{ dict(page=(page - 1)) |url_for_search_page(gov_slug) }}" rel="prev">{%trans%}Previous{%endtrans%}</a>
     {% endif %}
     </li>
     {% if page >= max_pages %}
     <li class="next next_page disabled">
-      <a href="#" rel="next">Volgende</a>
+      <a href="#" rel="next">{%trans%}Next{%endtrans%}</a>
     {% else %}
     <li class="next next_page">
-      <a href="{{ dict(page=(page + 1)) |url_for_search_page(gov_slug) }}" rel="next">Volgende</a>
+      <a href="{{ dict(page=(page + 1)) |url_for_search_page(gov_slug) }}" rel="next">{%trans%}Next{%endtrans%}</a>
     {% endif %}
     </li>
   </ul>
@@ -149,7 +149,7 @@
 {% else %}
 <div class="row">
   <div class="col-xs-12">
-    <p>Helaas, je we konden geen documenten vinden die voldeden aan je zoekopdracht.</p>
+    <p>{%trans%}Unfortunately we were not able to find any documents matching your query.{%endtrans%}</p>
   </div>
 </div>
 {% endif %}

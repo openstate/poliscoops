@@ -130,8 +130,8 @@ def get_source_info_from_url(file_url):
         req_res = requests.get(file_url, verify=False)
         content = req_res.content
     except Exception as e:
-        print(e)
-        raise
+        result['file_url'] = file_url
+        return result
 
     res = feedparser.parse(content)
 

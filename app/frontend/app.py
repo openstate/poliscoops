@@ -18,7 +18,7 @@ from flask import (
     Flask, abort, jsonify, g, request, redirect, render_template,
     stream_with_context, Response, url_for)
 from werkzeug.urls import url_encode
-from flask.ext.babel import Babel, format_datetime
+from flask.ext.babel import Babel, format_datetime, gettext, ngettext
 
 from jinja2 import Markup
 

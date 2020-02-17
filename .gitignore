@@ -70,3 +70,4 @@ ocd_backend/sources/*-facebook.json
 **/parties/*.png
 data/linkmaps/
 ocd_backend/data/linkmaps
+app/frontend/static/node_modules

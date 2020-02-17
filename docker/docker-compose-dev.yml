@@ -25,3 +25,5 @@ services:
       context: ../app
       dockerfile: Dockerfile-app-dev
     restart: "no"
+  node:
+    restart: "no"

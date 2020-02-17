@@ -8,9 +8,6 @@ services:
       - ./nginx-start/:/opt/nginx/
       - ./nginx/:/etc/nginx/
       - ../docs/_build/html/:/usr/share/nginx/html/docs/
-    links:
-      - frontend:frontend
-      - app:app
     restart: always
     networks:
       - nginx-load-balancer
@@ -21,10 +18,6 @@ services:
       dockerfile: Dockerfile-backend
     volumes:
       - ../:/opt/pfl
-    links:
-      - redis:redis
-      - elasticsearch:elasticsearch
-      - frontend:frontend
     restart: always
     networks:
       - pls
@@ -33,8 +26,6 @@ services:
     build:
       context: ../ocd_frontend
       dockerfile: Dockerfile-frontend
-    links:
-      - elasticsearch:elasticsearch
     volumes:
       - ../ocd_frontend:/opt/pfl/ocd_frontend
     restart: always
@@ -78,6 +69,16 @@ services:
     restart: always
     networks:
       - pls
+  node:
+    image: node:12.9.1
+    working_dir: /opt/app/static
+    networks:
+      - pls
+    volumes:
+      - ../app/frontend:/opt/app
+    restart: always
+    # Use this to keep the container running
+    tty: true
 volumes:
   esdata:
     driver: local

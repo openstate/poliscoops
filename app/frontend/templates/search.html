@@ -1,22 +1,12 @@
-<section id="search">
-  <div class="row">
-    <form action="/zoeken" method="get" class="form-inline" id="form-location" name="form-location">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <label>
-          {%trans%}Search{%endtrans%} <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-          </label>
-          <div class="typeahead__container" style="width: 80%; display: inline-block;">
-              <div class="typeahead__field">
-
-                  <span class="typeahead__query">
-
-                    <input type="search" class="js-typeahead form-control" name="query" value="{{ request.args['query'] }}" placeholder="{%trans%}Word, location or party ...{%endtrans%}" autocomplete="off">
-                  </span>
-                </div>
-              </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</section>
+<div class="row">
+   <div class="col-md-12">
+       <form action="" accept-charset="UTF-8" method="get">
+           <div class="input-group">
+             <span class="input-group-btn">
+                 <input type="button" name="commit" value="Search" class="btn btn-primary" data-disable-with="{%trans%}Search{%endtrans%}">
+              </span>
+               <input type="text" name="search" id="search" value="" placeholder="{%trans%}Search articles and topics{%endtrans%}" class="form-control">
+           </div>
+       </form>
+   </div>
+</div>

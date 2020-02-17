@@ -543,12 +543,10 @@ api = BackendAPI()
 
 @app.route("/")
 def main():
-    results = api.search(**{"size": 0, "page": 1})
-    images = api.search(**{"query": "<img ", "sources": 'Partij nieuws', "page": 1})
+    results = api.search(**{"size": 6, "page": 1})
     return render_template(
         'index.html',
         results=results,
-        images=images,
         facets=FACETS,
         visible_facets=[f for f in FACETS if f[2]])
 

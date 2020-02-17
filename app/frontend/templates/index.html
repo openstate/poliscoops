@@ -2,63 +2,85 @@
 
 {% block content %}
 
-{% include 'search.html' %}
-<script type="text/javascript">
-var Poliflw = window.Poliflw || {
-  "api_base_url": "https://api.poliflw.nl/v0",
-};
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-lg-6">
+    <div class="jumbotron">
+      <p class="lead-text">
+        {%trans%}find and <span>collect</span>{%endtrans%}<br>
+        {%trans%}european <span>local</span>{%endtrans%}<br>
+        {%trans%}policital <span>news</span>{%endtrans%}
+      </p>
 
-Poliflw.data = {{ results |tojson }};
-</script>
+      <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">{%trans%}Discover{%endtrans%}</a>
+    </div>
+  </div>
 
-
-<div class="row" style="margin-top: 3em;">
-<div class="col-xs-12 col-md-6 col-md-offset-3" style="text-align: center;">
-<p>
-<strong style="font-size: 19px;">{% trans num_results=results["as:totalItems"] %}Use the field to search in {{ num_results }} messages ...{% endtrans %}</strong>
-</p>
+  <div class="col-xs-12 col-md-4 col-lg-6">
+    <h1>{%trans%}What can this do?{%endtrans%}</h1>
+    <h2>{%trans%}Find local news{%endtrans%}</h2>
+    <ol>
+      <li>{%trans%}Choose your language for articles and topics{%endtrans%}</li>
+      <li>{%trans%}Find local news across Europe. Setup your source country{%endtrans%}</li>
+      <li>{%trans%}Collect the content of your selected articles and topics{%endtrans%}</li>
+    </ol>
+  </div>
 </div>
-</div>
 
-<div class="row" style="margin-top: 3em;">
-  <div class="col-xs-12 col-md-6 col-md-offset-3">
+<div class="row">
+  <div class="col-xs-12 col-md-3 col-lg-4">
+    <h1>{%trans%}Contribute{%endtrans%}</h1>
+    <h2>{%trans%}Your opinion matters{%endtrans%}</h2>
+    <ol>
+      <li>{%trans%}Verify articles and help keep articles up to date{%endtrans%}</li>
+      <li>{%trans%}Collect the content of your selected articles and topics{%endtrans%}</li>
+    </ol>
 
-    <div id="carousel-images" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        {% for i in images.item %}
-          <li data-target="#carousel-images" data-slide-to="{{ loop.index - 1 }}" {% if loop.index == 1 %}class="active"{% endif %}></li>
-        {% endfor %}
-      </ol>
+    <h2>{%trans%}Collect local news{%endtrans%}</h2>
+    <div>
+      <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">{%trans%}Collect{%endtrans%}</a>
+    </div>
+  </div>
 
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        {% for i in images.item %}
-        <div class="item {% if loop.index == 1 %}active{% endif %}">
-          <a href="{{ i |pfl_link }}">
-          <img src="{{ i.description |html_getimage(i) }}" class="img-responsive img-full">
-          </a>
-          <div class="carousel-caption">
-            <a href="{{ i |pfl_link }}">
-            <img src="/static/images/parties/{{ i.parties.0 |lower |party_image }}.png" alt="{{ i.parties.0 }}" class="img-responsive">
-            {{ i.title }}
-            </a>
+  <div class="col-xs-12 col-md-9 col-lg-8">
+    <ul class="nav nav-pills">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{%trans%}Most relevant{%endtrans%}</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">{%trans%}Most relevant{%endtrans%}</a>
+          <a class="dropdown-item" href="#">{%trans%}Most recent{%endtrans%} action</a>
+        </div>
+      </li>
+    </ul>
+
+    {% include "search.html" %}
+
+    <div class="row">
+
+      {% for result in results['as:items'] %}
+        <div class="col-xs-12 col-md-6">
+          <h1>{{ 'name' |as2_i18n_field(result, hl) }}</h1>
+          <div class="byline">
+            <ul class="tags list-inline">
+              <li class="list-inline-item"><a class="btn btn-sm btn-link" href="#">CDA</a></li>
+              <li class="list-inline-item"><a class="btn btn-sm btn-link" href="#">OP1</a></li>
+              <li class="list-inline-item"><a class="btn btn-sm btn-link" href="#">Jos Zandvliet</a></li>
+              <li class="list-inline-item"><a class="btn btn-sm btn-link" href="#">Vlagtwedde</a></li>
+            </ul>
+            <ul class="actions list-inline">
+              <li class="list-inline-item"><a class="btn btn-lg btn-primary" href="#">CDA</a></li>
+              <li class="list-inline-item"><a class="btn btn-lg btn-secondary" href="#">{%trans%}Collect{%endtrans%}</a></li>
+              <li class="list-inline-item"><a class="btn btn-lg btn-secondary" href="#">{%trans%}Source{%endtrans%}</a></li>
+              <li class="list-inline-item"><a class="btn btn-lg btn-link" href="#">{%trans%}Read more{%endtrans%}</a></li>
+            </ul>
           </div>
         </div>
-        {% endfor %}
-      </div>
+      {% endfor %}
 
-      <!-- Controls -->
-      <a class="left carousel-control" href="#carousel-images" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">{%trans%}Previous{%endtrans%}</span>
-      </a>
-      <a class="right carousel-control" href="#carousel-images" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">{%trans%}Next{%endtrans%}</span>
-      </a>
     </div>
 
+    <div class="d-flex justify-content-center">
+      <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">{%trans%}Collect{%endtrans%}</a>
+    </div>
   </div>
 </div>
 

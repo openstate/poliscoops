@@ -1,0 +1,43 @@
+//@import "common/variables";
+
+/**
+ * Import npm dependencies
+ *
+ * Prefix your imports with `~` to grab from node_modules/
+ * @see https://github.com/webpack-contrib/sass-loader#imports
+ */
+// @import "~some-node-module";
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+/* set the overriding variables */
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1400px
+);
+@import 'bootstrap';
+@import '~bootstrap-table/dist/bootstrap-table.min.css';
+@import '~bootstrap-table/dist/extensions/sticky-header/bootstrap-table-sticky-header.min.css';
+@import "~@openfonts/lexend-deca_latin/index.css";
+@import "~@openfonts/dosis_latin/index.css";
+@import "~ekko-lightbox/dist/ekko-lightbox.css";
+
+/** Import theme styles */
+// @import "common/global";
+// @import "components/buttons";
+// @import "components/forms";
+// @import "components/grid";
+// @import "layouts/footer";
+// @import "layouts/header";
+// @import "layouts/index";
+// @import "layouts/payment-table";

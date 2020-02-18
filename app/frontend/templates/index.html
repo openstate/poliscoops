@@ -65,29 +65,16 @@
     <div class="row">
 
       {% for result in results['as:items'] %}
+        {% set result_object = result %}
         <div class="col-xs-12 col-md-6">
-          <h1>{{ 'name' |as2_i18n_field(result, hl) }}</h1>
-          <div class="byline">
-            <ul class="tags list-inline">
-              <li class="list-inline-item"><a class="btn btn-sm btn-link" href="#">CDA</a></li>
-              <li class="list-inline-item"><a class="btn btn-sm btn-link" href="#">OP1</a></li>
-              <li class="list-inline-item"><a class="btn btn-sm btn-link" href="#">Jos Zandvliet</a></li>
-              <li class="list-inline-item"><a class="btn btn-sm btn-link" href="#">Vlagtwedde</a></li>
-            </ul>
-            <ul class="actions list-inline">
-              <li class="list-inline-item"><a class="btn btn-lg btn-primary" href="#">CDA</a></li>
-              <li class="list-inline-item"><a class="btn btn-lg btn-secondary" href="#">{%trans%}Collect{%endtrans%}</a></li>
-              <li class="list-inline-item"><a class="btn btn-lg btn-secondary" href="#">{%trans%}Source{%endtrans%}</a></li>
-              <li class="list-inline-item"><a class="btn btn-lg btn-link" href="#">{%trans%}Read more{%endtrans%}</a></li>
-            </ul>
-          </div>
+          {%include "inner_result.html" %}
         </div>
       {% endfor %}
 
     </div>
 
     <div class="d-flex justify-content-center">
-      <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">{%trans%}Collect{%endtrans%}</a>
+      <a class="btn btn-lg btn-primary" href="{{ url_for('search') }}" role="button">{%trans%}Collect{%endtrans%}</a>
     </div>
   </div>
 </div>

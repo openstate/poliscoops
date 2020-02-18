@@ -1,44 +1,39 @@
-<div class="col-xs-12 col-md-10">
   <h2>
     <a href="{{ result_object |pfl_link }}">
       {{ 'name' |as2_i18n_field(result_object, hl) }}
     </a>
   </h2>
-  <p class="entities">
-    {% if result_object.attributedTo %}
-    <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}" class="img-responsive visible-xs-inline">
-    {% endif %}
-    <!-- FIXME: party link and name -->
-    {% if result_object.attributedTo %}
-    <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-group"></i> {{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}</a>
-    {% endif %}
-    <!-- FIXME: all partes in list of links below, same as above-->
 
-    <!-- FIXME: link to location -->
-    {% if result_object.location %}
-    <a href="#" class="btn btn-xs btn-default"><i class="fa fa-map-marker"></i> {{ 'name' |as2_i18n_field(result_object.location, hl) }}</a>
-    {% endif %}
-
-    {% if result_object.created %}
-    <!-- FIXME: link to permalink -->
-    <a href="#" class="btn btn-xs btn-default">{{ result_object.created|iso8601_to_str("%d-%m-%Y %H:%M") }}</a>
-    {% endif %}
-    <a class="description-collapse visible-xs-inline-block pull-right" role="button" href="#description-collapse-{{ result_object['@id']  |pfl_id_for_html_attr }}" aria-expanded="false" aria-controls="description-collapse-{{ result_object['@id']  |pfl_id_for_html_attr }}">
-      <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-    </a>
-  </p>
-  <div class="collapse" id="description-collapse-{{ result_object['@id'] |pfl_id_for_html_attr }}">
-    <div class="article-text">
-      <!--
-        {{ result |pretty_json }}
-      -->
-
-      <p>{{ "content" |as2_i18n_field(result_object, hl) |html_cleanup(result) |safe }}</p>
-    </div>
+  <div class="byline">
+    <ul class="tags list-inline">
+      {% for t in result_object.tag %}
+      <li class="list-inline-item">
+        <a class="btn btn-sm btn-link" href="{{t |pfl_link }}">
+          {{ 'name' |as2_i18n_field(t, hl) }}
+        </a>
+      </li>
+      {% endfor %}
+      {% if result_object.location %}
+      <li class="list-inline-item">
+        <a class="btn btn-sm btn-link" href="{{result_object.location |pfl_link }}">
+          {{ 'name' |as2_i18n_field(result_object.location, hl) }}
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+    <ul class="actions list-inline">
+      {% if result_object.attributedTo %}
+      <li class="list-inline-item">
+        <a class="btn btn-lg btn-primary" href="{{ result_object.attributedTo |pfl_link }}">
+          <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}" class="img-responsive visible-xs-inline">
+          {{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}
+        </a>
+      </li>
+      {% endif %}
+      <li class="list-inline-item"><a class="btn btn-lg btn-secondary" href="#">{%trans%}Collect{%endtrans%}</a></li>
+      {% if result_object.url %}
+      <li class="list-inline-item"><a class="btn btn-lg btn-secondary" href="{{ result_object.url }}" target="_blank">{%trans%}Source{%endtrans%}</a></li>
+      {% endif %}
+      <li class="list-inline-item"><a class="btn btn-lg btn-link" href="{{ result_object |pfl_link }}">{%trans%}Read more{%endtrans%}</a></li>
+    </ul>
   </div>
-</div>
-<div class="col-md-1 hidden-xs">
-  <a class="description-collapse" role="button" href="#description-collapse-{{ result_object['@id']  |pfl_id_for_html_attr }}" aria-expanded="false" aria-controls="description-collapse-{{ result_object['@id'] |pfl_id_for_html_attr }}">
-    <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-  </a>
-</div>

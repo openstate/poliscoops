@@ -551,7 +551,7 @@ def main():
         visible_facets=[f for f in FACETS if f[2]])
 
 
-@app.route("/over")
+@app.route("/about")
 def about():
     return render_template('about.html')
 
@@ -601,7 +601,7 @@ def order_facets(facets):
     return facets
 
 
-@app.route("/zoeken")
+@app.route("/search")
 def search():
     search_params = {
         'page': int(request.args.get('page', '1')),
@@ -634,18 +634,6 @@ def show(as2_type, id):
     result = api.get_by_id(ns_link)
     return render_template(
         'show.html', result=result, results=result, ns_link=ns_link)
-
-
-@app.route("/idea")
-def idea():
-    url = 'http://idea.informer.com/tab6.js?domain=poliflw'
-
-    r = requests.get(url)
-    headers = dict(r.headers)
-    idea_text = unicode(r.content)
-
-    return idea_text
-    #    return Response(response=idea_text, headers=headers)
 
 
 @app.route("/r/<hash>")

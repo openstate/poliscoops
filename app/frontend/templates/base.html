@@ -27,6 +27,7 @@
 
     <meta name="google-site-verification" content="YvPuaR2sNzCGEcQQIWhoDkN0HE6yD8Z3c3A4yRW-erY" />
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/font-awesome.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/dist/styles/poliscoops.css') }}" />
   </head>
   <body>
@@ -95,47 +96,48 @@
       </nav>
     -->
   </header>
-    <div class="container"role="main">
+    <div class="container" role="main">
     {% block content %}
     {% endblock %}
     </div>
 
     <footer>
       <div class="container">
-        <div class="row header">
-          <div class="footer-item col-xs-12 col-sm-4 col-md-3 footer-logo">
-            <a href="/{{ gov_slug}}">
-              <img class="img-responsive" src="/static/images/logo.svg" alt="logo">
-            </a>
-          </div>
-          <div id="contact" class="footer-item col-xs-12 col-sm-4 col-md-3 col-md-offset-3">
-            <ul class="list-inline text-grey right-footer-list-padding" style="margin-top: 15px;">
-                      <li><a class="right-footer-padding" href="https://www.facebook.com/openstatefoundation/?fref=ts" target="_blank"><i class="fa fa-facebook fa-2x text-grey"></i></a></li>
-                      <li><a class="right-footer-padding" href="https://twitter.com/OpenStateEU" target="_blank"><i class="fa fa-twitter fa-2x text-grey"></i></a></li>
-                      <li><a class="right-footer-padding" href="https://github.com/openstate" target="_blank"><i class="fa fa-github fa-2x text-grey"></i></a></li>
-                      <li><a class="right-footer-padding" href="http://openstate.eu/contact"><i class="fa fa-envelope-o fa-2x text-grey"></i></a></li>
-                    </ul>
-          </div>
+        <div id="footer-logos" class="d-flex justify-content-center">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="https://newsinitiative.withgoogle.com/dnifund/" target="_blank">
+                <img class="img-responsive pull-left" src="{{ url_for('static', filename='dist/images/dni-logo.png') }}" alt="{%trans%}DNI Fund{%endtrans%}" style="max-height: 75px;">
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.sidnfonds.nl/" target="_blank">
+                <img class="img-responsive pull-left" src="{{ url_for('static', filename='dist/images/sidnfonds-logo.svg') }}" alt="{%trans%}SIDN Fonds{%endtrans%}" style="margin-top: 22px; max-height: 75px;">
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://openstate.eu" target="_blank">
+                <img class="img-responsive pull-left" src="{{ url_for('static', filename='dist/images/logo-open-state-foundation.svg') }}" alt="{%trans%}Open State Foundation{%endtrans%}" style="max-height: 75px;">
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://nlnet.nl" target="_blank">
+                <img class="img-responsive pull-left" src="{{ url_for('static', filename='dist/images/nl-ned-logo.png') }}" alt="{%trans%}NL Net{%endtrans%}" style="max-height: 75px;">
+              </a>
+            </li>
+          </ul>
         </div>
 
-        {%trans%}An initiative from:{%endtrans%}
-              <div class="row">
-                <div class="col-xs-12 col-sm-2 footer-item">
-                  <a href="https://newsinitiative.withgoogle.com/dnifund/" target="_blank">
-                    <img class="img-responsive pull-left" src="/static/images/dni-logo.png" style="max-height: 75px;">
-                  </a>
-                </div>
-                <div class="col-xs-12 col-sm-2 footer-item">
-                  <a href="https://www.sidnfonds.nl/" target="_blank">
-                    <img class="img-responsive pull-left" src="/static/images/sidnfonds-logo.svg" style="margin-top: 22px; max-height: 75px;">
-                  </a>
-                </div>
-                <div class="col-xs-12 col-sm-3 footer-item">
-                  <a href="https://openstate.eu" target="_blank">
-                    <img class="img-responsive pull-left" src="/static/images/logo-open-state-foundation.svg" style="max-height: 75px;">
-                  </a>
-                </div>
-              </div>
+        <div id="footer-actions" class="d-flex justify-content-center">
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="/privacy">{%trans%}Privacy{%endtrans%}</a></li>
+              <li class="list-inline-item"><a class="right-footer-padding" href="https://www.facebook.com/openstatefoundation/?fref=ts" target="_blank"><i class="fa fa-facebook fa-2x text-grey"></i></a></li>
+              <li class="list-inline-item"><a class="right-footer-padding" href="https://twitter.com/OpenStateEU" target="_blank"><i class="fa fa-twitter fa-2x text-grey"></i></a></li>
+              <li class="list-inline-item"><a class="right-footer-padding" href="https://github.com/openstate" target="_blank"><i class="fa fa-github fa-2x text-grey"></i></a></li>
+              <li class="list-inline-item"><a class="right-footer-padding" href="http://openstate.eu/contact"><i class="fa fa-envelope-o fa-2x text-grey"></i></a></li>
+              <li class="list-inline-item"><a href="/disclaimer">{%trans%}Disclaimer{%endtrans%}</a></li>
+            </ul>
+        </div>
       </div>
     </footer>
 

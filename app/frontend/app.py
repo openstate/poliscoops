@@ -85,6 +85,8 @@ FACETS = (
 DEFAULT_LANGUAGE = 'en'
 BABEL_DEFAULT_LOCALE = 'en'
 
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
 @babel.localeselector
 def get_locale():
     # if a user is logged in, use the locale from the user settings
@@ -505,7 +507,8 @@ class BackendAPI(object):
         es_query = {
             "filters": {
                 "id": {"terms": ids}
-            }
+            },
+            "expansions": 3
         }
         es_query.update(args)
 
@@ -632,8 +635,10 @@ def search():
 def show(as2_type, id):
     ns_link = urljoin(urljoin(AS2_NAMESPACE, '%s/' % (as2_type,)), id)
     result = api.get_by_id(ns_link)
+    results_as_json = json.dumps(result, indent=4)
     return render_template(
-        'show.html', result=result, results=result, ns_link=ns_link)
+        'show.html', result=result, results=result,
+        results_as_json=results_as_json, ns_link=ns_link)
 
 
 @app.route("/r/<hash>")

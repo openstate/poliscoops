@@ -6,7 +6,7 @@ cd /opt/pfl
 # controls how often we get things. one cycle is 15 minutens
 PFL_FB_CYCLES=48
 PFL_WEB_CYCLES=24
-PFL_EXTA_OPTS="--sources_config=ocd_backend/sources/eu/eu.json "
+PFL_EXTRA_OPTS="--sources_config=ocd_backend/sources/eu/eu.json "
 # if we're not updating we should prepare for updating
 if [ ! -e .updating ];
 then

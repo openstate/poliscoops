@@ -23,20 +23,26 @@
 
 {% block content %}
 
-{% include 'search.html' %}
-
 <!--politags container-->
+<!--
 <div class="container" id="counter_container" style="text-align: center">
     <div class="single_counter">
         <h3 class="statistic-counter" id="response-counter"><span id="count"></span>&nbsp<i class="fa fa-heart-o text-danger" id="counter-heart"></i></h3>
         <p>Vragen beantwoord!</p>
     </div>
 </div>
+-->
 
-<code><pre>
-  {{ results_as_json }}
-</pre></code>
 {% for result in results['as:items'] %}
+<article>
+  <div class="veirifcation">
+    {% set result_object = result %}
+    {% include "inner_result.html" %}
+  </div>
+  <div>
+    {{ 'content' |as2_i18n_field(result_object, hl) |html_cleanup(result_object) |safe }}
+  </div>
+</article>
 {% endfor %}
 
 <script type="text/javascript">

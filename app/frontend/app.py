@@ -450,10 +450,10 @@ class BackendAPI(object):
                     # the object property points to the id)
                     # Alternatively we may need to limit on Note etc.
                     'terms': AS2_ENTITIES
+                },
+                "date": {
+                    "to": "now"
                 }
-                # 'date': {
-                #     'from': '1980-01-01T00:00:00'
-                # }
             }
         }
 
@@ -512,10 +512,11 @@ class BackendAPI(object):
         }
         es_query.update(args)
 
-        return requests.post(
+        result = requests.post(
             '%s/search' % (self.URL,),
             headers=self.HEADERS,
-            data=json.dumps(es_query)).json()
+            data=json.dumps(es_query))
+        return result.json()
 
     def find_by_id_and_date(self, id, created_date):
         es_query = {

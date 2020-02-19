@@ -255,7 +255,7 @@ def get_objects_for_ids(ids):
 
 def expand_object(item, all_objects):
     for k, v in item.iteritems():
-        if k == '@id':
+        if k in ['@id', 'href']:
             continue
         if type(v) is list:
             res = []

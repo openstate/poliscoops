@@ -100,27 +100,15 @@
 </div>
 {% endif %}
 {% for result in results['as:items'] %}
-<div class="search-result clearfix" id="search-result-{{ result['@id'] }}">
 <div class="row">
-  <div class="col-md-1 hidden-xs">
-    {% if result.actor %}
-    <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result.actor, 'nl') |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result.actor, 'nl') }}" class="img-responsive">
-    {% endif %}
-  </div>
+  <div class="col-xs-12">
   {% if result.object %}
     {% set result_object = result.object %}
   {% else %}
     {% set result_object = result %}
   {% endif %}
   {% include "inner_result.html" %}
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p class="pull-right links">
-      <a href="{{ result_object.url }}" target="_blank" class="visible-xs-block visible-sm-block visible-lg-block visible-md-block">{%trans%}Bron:{%endtrans%} {{ result.source }} <i class="fa fa-external-link"></i></span></a>
-    </p>
   </div>
-</div>
 </div>
 {% endfor %}
 

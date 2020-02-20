@@ -76,9 +76,6 @@ $(document).ready(function() {
           </button>
         </div>
         <h2>{%trans%}Period{%endtrans%}</h2>
-        <div id="graph-monthly" class="graph">
-          <svg></svg>
-        </div>
         <input type="text" name="daterange" class="form-control btn-category btn-block" value="
         {% if search_params.date_from %}
         {{ search_params.date_from |timestamp_to_str('%d-%m-%Y') }}
@@ -103,11 +100,15 @@ $(document).ready(function() {
                       <h2>{{ d }}</h2>
                       {% endif %}
                     {% endfor %}
+                    <ul class="list-group">
                     {% for bucket in result_facets[key].buckets %}
                       {% if bucket.object[obj_attr] == sub_facet %}
+                          <li class="list-group-item">
                           {% include "inner_facet_button.html" %}
+                          </li>
                       {% endif %}
                     {% endfor %}
+                    </ul>
                   {% endfor %}
                 {% endfor %}
               {% endif %}
@@ -115,6 +116,7 @@ $(document).ready(function() {
                 {% set obj_attr = sub_attr.keys()[0] %}
               {% endif %}
               <h2 id="facet-{{ key }}">{{ desc }}</h2>
+              <ul class="list-group">
               {% for bucket in result_facets[key].buckets %}
                   {% if loop.index == 11 %}
                   <button class="btn btn-primary btn-category btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
@@ -124,12 +126,17 @@ $(document).ready(function() {
                   {% endif %}
                   {% if sub_attr %}
                     {% if bucket.object[obj_attr] not in sub_attr[obj_attr] %}
+                      <li class="list-group-item">
                       {% include "inner_facet_button.html" %}
+                      </li>
                     {% endif %}
                   {% else %}
+                    <li class="list-group-item">
                     {% include "inner_facet_button.html" %}
+                    </li>
                   {% endif %}
               {% endfor %}
+              </ul>
               {% if result_facets[key].buckets|length > 10 %}
                 </div> <!-- collapse-{{ key }} -->
               {% endif %}

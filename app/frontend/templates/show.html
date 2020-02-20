@@ -40,7 +40,7 @@
     {% include "inner_result.html" %}
   </div>
   <div>
-    {{ 'content' |as2_i18n_field(result_object, hl) |html_cleanup(result_object) |safe }}
+    {{ 'content' |as2_i18n_field(result_object, rl) |html_cleanup(result_object) |safe }}
   </div>
 </article>
 {% endfor %}

@@ -1,6 +1,6 @@
   <h2>
     <a href="{{ result_object |pfl_link }}">
-      {{ 'name' |as2_i18n_field(result_object, hl) }}
+      {{ 'name' |as2_i18n_field(result_object, rl) }}
     </a>
   </h2>
 
@@ -9,14 +9,14 @@
       {% for t in result_object.tag %}
       <li class="list-inline-item">
         <a class="btn btn-sm btn-link" href="{{t |pfl_link }}">
-          {{ 'name' |as2_i18n_field(t, hl) }}
+          {{ 'name' |as2_i18n_field(t, rl) }}
         </a>
       </li>
       {% endfor %}
       {% if result_object.location %}
       <li class="list-inline-item">
         <a class="btn btn-sm btn-link" href="{{result_object.location |pfl_link }}">
-          {{ 'name' |as2_i18n_field(result_object.location, hl) }}
+          {{ 'name' |as2_i18n_field(result_object.location, rl) }}
         </a>
       </li>
       {% endif %}
@@ -26,7 +26,7 @@
       <li class="list-inline-item">
         <a class="btn btn-lg btn-primary" href="{{ result_object.attributedTo |pfl_link }}">
           <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}" class="img-responsive visible-xs-inline">
-          {{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}
+          {{ 'name' |as2_i18n_field(result_object.attributedTo, rl) }}
         </a>
       </li>
       {% endif %}

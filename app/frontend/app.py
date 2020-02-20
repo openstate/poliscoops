@@ -16,7 +16,7 @@ from html5lib.filters.base import Filter
 
 from flask import (
     Flask, abort, jsonify, g, request, redirect, render_template,
-    stream_with_context, Response, url_for)
+    make_response, stream_with_context, Response, url_for)
 from werkzeug.urls import url_encode
 from flask_babel import Babel, format_datetime, gettext, ngettext, lazy_gettext
 
@@ -85,16 +85,26 @@ FACETS = (
 DEFAULT_LANGUAGE = 'en'
 BABEL_DEFAULT_LOCALE = 'en'
 
+INTERFACE_LANGUAGES = {
+    'en': lazy_gettext('English'),
+    'de': lazy_gettext('German'),
+    'fr': lazy_gettext('French')}
+ARTICLE_LANGUAGES = {
+    None: lazy_gettext('Original'),
+    'en': lazy_gettext('English'),
+    'de': lazy_gettext('German'),
+    'fr': lazy_gettext('French')}
+
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
+def get_languages():
+    hl = request.cookies.get('hl') or request.args.get('hl', DEFAULT_LANGUAGE)
+    rl = request.cookies.get('rl') or request.args.get('rl', None)
+    return hl, rl
 
 @babel.localeselector
 def get_locale():
-    # if a user is logged in, use the locale from the user settings
-    user = getattr(g, 'user', None)
-    if user is not None:
-        return user.locale
-
-    hl = request.args.get('hl', DEFAULT_LANGUAGE)
+    hl, rl = get_languages()
     return hl
     # otherwise try to guess the language from the user accept
     # header the browser transmits.  We support de/fr/en in this
@@ -548,16 +558,39 @@ api = BackendAPI()
 @app.route("/")
 def main():
     results = api.search(**{"size": 6, "page": 1})
+    hl,rl = get_languages()
     return render_template(
         'index.html',
         results=results,
         facets=FACETS,
-        visible_facets=[f for f in FACETS if f[2]])
+        visible_facets=[f for f in FACETS if f[2]], hl=hl, rl=rl)
 
 
 @app.route("/about")
 def about():
-    return render_template('about.html')
+    hl,rl = get_languages()
+    return render_template('about.html', hl=hl, rl=rl)
+
+
+@app.route("/languages")
+def languages():
+    hl,rl = get_languages()
+    return render_template(
+        'languages.html', hl=hl, rl=rl,
+        interface_languages=INTERFACE_LANGUAGES,
+        article_languages=ARTICLE_LANGUAGES)
+
+@app.route("/set_language")
+def set_language():
+    hl = request.args.get('hl', DEFAULT_LANGUAGE)
+    rl = request.args.get('rl', None)
+    resp = make_response(redirect(url_for('languages')))
+    resp.set_cookie('hl', hl)
+    if rl is not None:
+        resp.set_cookie('rl', rl)
+    else:
+        resp.set_cookie('rl', '', expires=0)
+    return resp
 
 
 def get_facets_from_results(results):
@@ -615,7 +648,7 @@ def search():
         search_params[facet] = request.args.get(facet, None)
 
 
-    hl = request.args.get('hl', DEFAULT_LANGUAGE)
+    hl, rl = get_languages()
 
     results = api.search(**search_params)
     try:
@@ -629,7 +662,7 @@ def search():
         result_facets=order_facets(get_facets_from_results(results)),
         query=search_params['query'], page=search_params['page'],
         max_pages=max_pages, search_params=search_params,
-        dt_now=datetime.datetime.now(), hl=hl)
+        dt_now=datetime.datetime.now(), hl=hl, rl=rl)
 
 
 @app.route("/<as2_type>/<id>")
@@ -637,9 +670,12 @@ def show(as2_type, id):
     ns_link = urljoin(urljoin(AS2_NAMESPACE, '%s/' % (as2_type,)), id)
     result = api.get_by_id(ns_link)
     results_as_json = json.dumps(result, indent=4)
+
+    hl, rl = get_languages()
+
     return render_template(
         'show.html', result=result, results=result,
-        results_as_json=results_as_json, ns_link=ns_link)
+        results_as_json=results_as_json, ns_link=ns_link, hl=hl, rl=rl)
 
 
 @app.route("/r/<hash>")

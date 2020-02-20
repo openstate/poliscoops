@@ -36,8 +36,8 @@
     <![endif]-->
 
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <a class="navbar-brand" href="#">{%trans%}Poliscoops{%endtrans%}</a>
+      <nav class="navbar navbar-expand-md mb-4">
+        <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='dist/images/logo-desktop.svg') }}" alt="{%trans%}Poliscoops{%endtrans%}" style="width: 200px;" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="{%trans%}Toggle navigation{%endtrans%}">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -61,10 +61,33 @@
                 {%trans%}Source countries{%endtrans%}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="">{%trans%}Austria{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Belgium{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Bulgaria{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Croatia{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Cyprus{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Czech Republic{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Denmark{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Estonia{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Finland{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}France{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Germany{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Greece{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Hungary{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Italy{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Ireland{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Latvia{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Lithuania{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Luxembourg{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Malta{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Netherlands{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Poland{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Portugal{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Romania{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Spain{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Slovakia{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Slovenia{%endtrans%}</a>
+                <a class="dropdown-item" href="">{%trans%}Sweden{%endtrans%}</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -76,10 +99,6 @@
                 <a class="dropdown-item" href="{{ modify_query(hl='en') }}">en</a>
                 <a class="dropdown-item" href="{{ modify_query(hl='fr') }}">fr</a>
                 <a class="dropdown-item" href="{{ modify_query(hl='de') }}">de</a>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
               </div>
             </li>
             <li class="nav-item">
@@ -89,39 +108,8 @@
         </div>
       </nav>
 
-      <!--
-      <nav class="navbar navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">{%trans%}Toggle navigation{%endtrans%}</span>
-              {%trans%}Menu{%endtrans%}
-            </button>
-            <a id="small-brand" class="navbar-brand visible-xs-inline" href="/{{ gov_slug }}"><img src="/static/images/logo.svg"></a>
-            <a id="large-brand" class="navbar-brand hidden-xs hidden" href="/{{ gov_slug }}"><img src="/static/images/logo.svg"></a>
-          </div>
-          <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="/">{%trans%}Home{%endtrans%}</a></li>
-              <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{%trans%}Taal{%endtrans%} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="{{ modify_query(hl='nl') }}">{%trans%}nl{%endtrans%}</a></li>
-                          <li><a href="{{ modify_query(hl='en') }}">{%trans%}en{%endtrans%}</a></li>
-                          <li><a href="{{ modify_query(hl='fr') }}">{%trans%}fr{%endtrans%}</a></li>
-                          <li><a href="{{ modify_query(hl='de') }}">{%trans%}de{%endtrans%}</a></li>
-                        </ul>
-                      </li>
-              <li><a href="/over">{%trans%}About{%endtrans%}</a></li>
-              <li><a href="https://docs.poliflw.nl">{%trans%}API{%endtrans%}</a></li>
-              <li><a href="http://poliflw.idea.informer.com/proj/" target="_blank">{%trans%}Feedback{%endtrans%}</a></li>
-              <li><a href="#contact">{%trans%}Contact{%endtrans%}</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    -->
   </header>
+
     <div class="container" role="main">
     {% block content %}
     {% endblock %}

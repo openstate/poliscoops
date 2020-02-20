@@ -37,7 +37,7 @@
 
     <header>
       <nav class="navbar navbar-expand-md navbar-light mb-4" style="background-color: #ffffff;">
-        <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='dist/images/logo-desktop.svg') }}" alt="{%trans%}Poliscoops{%endtrans%}" style="width: 200px;" /></a>
+        <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='dist/images/logo-desktop.svg') }}" alt="{%trans%}Poliscoops{%endtrans%}" style="width: 200px;" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="{%trans%}Toggle navigation{%endtrans%}">
           <span class="navbar-toggler-icon"></span> {%trans%}Menu{%endtrans%}
         </button>
@@ -51,6 +51,9 @@
               <a class="nav-link" href="{{ url_for('languages') }}">{%trans%}Languages{%endtrans%}</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('countries') }}">{%trans%}Countries{%endtrans%}</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#">{%trans%}Subscribe{%endtrans%}</a>
             </li>
             <li class="nav-item">
@@ -58,51 +61,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">{%trans%}Feedback{%endtrans%}</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {%trans%}Source countries{%endtrans%}
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="">{%trans%}Austria{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Belgium{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Bulgaria{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Croatia{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Cyprus{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Czech Republic{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Denmark{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Estonia{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Finland{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}France{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Germany{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Greece{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Hungary{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Italy{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Ireland{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Latvia{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Lithuania{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Luxembourg{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Malta{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Netherlands{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Poland{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Portugal{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Romania{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Spain{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Slovakia{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Slovenia{%endtrans%}</a>
-                <a class="dropdown-item" href="">{%trans%}Sweden{%endtrans%}</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {%trans%}Language articles{%endtrans%}
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ modify_query(hl='nl') }}">nl</a>
-                <a class="dropdown-item" href="{{ modify_query(hl='en') }}">en</a>
-                <a class="dropdown-item" href="{{ modify_query(hl='fr') }}">fr</a>
-                <a class="dropdown-item" href="{{ modify_query(hl='de') }}">de</a>
-              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">{%trans%}About{%endtrans%}</a>

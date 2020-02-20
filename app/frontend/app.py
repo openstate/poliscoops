@@ -95,6 +95,35 @@ ARTICLE_LANGUAGES = {
     'de': lazy_gettext('German'),
     'fr': lazy_gettext('French')}
 
+COUNTRIES = {
+    'AT': lazy_gettext('Austria'),
+    'BE': lazy_gettext('Belgium'),
+    'BG': lazy_gettext('Bulgaria'),
+    'HR': lazy_gettext('Croatia'),
+    'CY': lazy_gettext('Cyprus'),
+    'CZ': lazy_gettext('Czech Republic'),
+    'DK': lazy_gettext('Denmark'),
+    'EE': lazy_gettext('Estonia'),
+    'FI': lazy_gettext('Finland'),
+    'FR': lazy_gettext('France'),
+    'DE': lazy_gettext('Germany'),
+    'GR': lazy_gettext('Greece'),
+    'HU': lazy_gettext('Hungary'),
+    'IT': lazy_gettext('Italy'),
+    'IE': lazy_gettext('Ireland'),
+    'LV': lazy_gettext('Latvia'),
+    'LT': lazy_gettext('Lithuania'),
+    'LU': lazy_gettext('Luxembourg'),
+    'MT': lazy_gettext('Malta'),
+    'NL': lazy_gettext('Netherlands'),
+    'PL': lazy_gettext('Poland'),
+    'PT': lazy_gettext('Portugal'),
+    'RO': lazy_gettext('Romania'),
+    'ES': lazy_gettext('Spain'),
+    'SK': lazy_gettext('Slovakia'),
+    'SL': lazy_gettext('Slovenia'),
+    'SE': lazy_gettext('Sweden')}
+
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 def get_languages():
@@ -580,6 +609,14 @@ def languages():
         interface_languages=INTERFACE_LANGUAGES,
         article_languages=ARTICLE_LANGUAGES)
 
+@app.route("/countries")
+def countries():
+    hl,rl = get_languages()
+    selected_countries = request.cookies.get('countries', [])  # huh, splits automatically?
+    return render_template(
+        'countries.html', hl=hl, rl=rl,
+        countries=COUNTRIES, selected_countries=selected_countries)
+
 @app.route("/set_language")
 def set_language():
     hl = request.args.get('hl', DEFAULT_LANGUAGE)
@@ -590,6 +627,13 @@ def set_language():
         resp.set_cookie('rl', rl)
     else:
         resp.set_cookie('rl', '', expires=0)
+    return resp
+
+@app.route("/set_countries", methods=['POST'])
+def set_countries():
+    countries = ','.join(request.form.getlist('countries'))
+    resp = make_response(redirect(url_for('countries')))
+    resp.set_cookie('countries', countries)
     return resp
 
 

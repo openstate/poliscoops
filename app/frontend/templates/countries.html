@@ -9,7 +9,7 @@
 <form method="post" action="{{ url_for('set_countries') }}">
   {% for k, v in countries.iteritems() %}
   <div class="custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" name="countries" value="{{ k }}" id="check-country-{{ k }}" {%if k in selected_countries %}checked{%endif%}>
+    <input type="checkbox" class="custom-control-input" name="countries" value="{{ locations[k] }}" id="check-country-{{ k }}" {%if locations[k] in selected_countries %}checked{%endif%}>
     <label class="custom-control-label" for="check-country-{{ k }}">{{ v }}</label>
   </div>
   {% endfor %}
@@ -17,4 +17,6 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+<p>{{ selected_countries }}</p>
+<p>{{ locations }}</p>
 {%endblock%}

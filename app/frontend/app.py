@@ -122,14 +122,21 @@ COUNTRIES = {
     'ES': lazy_gettext('Spain'),
     'SK': lazy_gettext('Slovakia'),
     'SL': lazy_gettext('Slovenia'),
-    'SE': lazy_gettext('Sweden')}
+    'SE': lazy_gettext('Sweden'),
+    'EU': lazy_gettext('Eurpean Union')}
 
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
 
 def get_languages():
     hl = request.cookies.get('hl') or request.args.get('hl', DEFAULT_LANGUAGE)
     rl = request.cookies.get('rl') or request.args.get('rl', None)
     return hl, rl
+
+
+def get_locations():
+    return request.cookies.get('countries', '').split(',')
+
 
 @babel.localeselector
 def get_locale():
@@ -415,8 +422,8 @@ def do_pretty_json(s):
                       indent=4, separators=(',', ': '))
 
 class BackendAPI(object):
-    URL = 'http://nginx/v0'
-    # URL = 'https://api.poliflw.nl/v0'
+    #URL = 'http://nginx/v0'
+    URL = 'https://api.poliscoops.com/v0'
     HEADERS = {'Host': 'api.poliscoops.com'}
 
     def sources(self):
@@ -518,7 +525,10 @@ class BackendAPI(object):
                 if sub_facet is not None:
                     es_query['filters'][main_facet][sub_facet] = facet_value.isoformat()
                 else:
-                    es_query['filters'][facet] = {'terms': [kwargs[facet]]}
+                    if isinstance(kwargs[facet], list):
+                        es_query['filters'][facet] = {'terms': kwargs[facet]}
+                    else:
+                        es_query['filters'][facet] = {'terms': [kwargs[facet]]}
 
         print >>sys.stderr, json.dumps(es_query)
         plain_result = requests.post(
@@ -527,7 +537,7 @@ class BackendAPI(object):
             data=json.dumps(es_query))
         try:
             result = plain_result.json()
-            print >>sys.stderr, plain_result.content
+            # print >>sys.stderr, plain_result.content
         except Exception as e:
             print >>sys.stderr, "ERROR (%s): %s" % (e.__class__, e)
             result = {
@@ -538,6 +548,22 @@ class BackendAPI(object):
             }
         result['query'] = es_query
         return result
+
+    def locations(self, **args):
+        es_query = {
+            "filters": {
+                "type": {"terms": ["Place"]}
+            },
+            "expansions": 3,
+            "size": 100  # FIXME: increase size in the future
+        }
+        es_query.update(args)
+
+        result = requests.post(
+            '%s/search' % (self.URL,),
+            headers=self.HEADERS,
+            data=json.dumps(es_query))
+        return result.json()
 
     def find_by_id(self, id):
         return self.find_by_ids([id])
@@ -612,10 +638,16 @@ def languages():
 @app.route("/countries")
 def countries():
     hl,rl = get_languages()
-    selected_countries = request.cookies.get('countries', [])  # huh, splits automatically?
+    selected_countries = get_locations()
+    api_locations = api.locations()
+    locations = {}
+    for l in api_locations.get('as:items', []):
+        first_key = l.get('nameMap', {}).keys()[0]
+        locations[l['nameMap'][first_key]] = l['@id'].split('/')[-1]
     return render_template(
         'countries.html', hl=hl, rl=rl,
-        countries=COUNTRIES, selected_countries=selected_countries)
+        countries=COUNTRIES, selected_countries=selected_countries,
+        locations=locations)
 
 @app.route("/set_language")
 def set_language():
@@ -684,13 +716,14 @@ def order_facets(facets):
 
 @app.route("/search")
 def search():
+    locations = [urljoin(urljoin(AS2_NAMESPACE, 'Place/'), l) for l in  get_locations()]
     search_params = {
         'page': int(request.args.get('page', '1')),
         'query': request.args.get('query', None)}
 
     for facet, desc, is_displayed, is_filter, sub_attr in FACETS:
         search_params[facet] = request.args.get(facet, None)
-
+    search_params['location'] = locations
 
     hl, rl = get_languages()
 
@@ -706,7 +739,7 @@ def search():
         result_facets=order_facets(get_facets_from_results(results)),
         query=search_params['query'], page=search_params['page'],
         max_pages=max_pages, search_params=search_params,
-        dt_now=datetime.datetime.now(), hl=hl, rl=rl)
+        dt_now=datetime.datetime.now(), hl=hl, rl=rl, locations=locations)
 
 
 @app.route("/<as2_type>/<id>")

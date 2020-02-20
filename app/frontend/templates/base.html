@@ -45,20 +45,20 @@
         <div class="collapse navbar-collapse" id="navbarsExample04">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('search') }}">search  <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ url_for('search') }}">{%trans%}Search{%endtrans%}  <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">subscribe</a>
+              <a class="nav-link" href="#">{%trans%}Subscribe{%endtrans%}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">contribute</a>
+              <a class="nav-link" href="#">{%trans%}Contribute{%endtrans%}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">feedback</a>
+              <a class="nav-link" href="#">{%trans%}Teedback{%endtrans%}</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {%trans%}source countries{%endtrans%}
+                {%trans%}Source countries{%endtrans%}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Action</a>
@@ -69,7 +69,7 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {%trans%}language articles{%endtrans%}
+                {%trans%}Language articles{%endtrans%}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ modify_query(hl='nl') }}">nl</a>

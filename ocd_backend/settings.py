@@ -132,6 +132,9 @@ AS2_TRANSLATION_TYPES = [
 AS2_TRANSLATION_LANGUAGES = [
     'en', 'de', 'fr'
 ]
+
+AZURE_TEXT_MAX_LENGTH = 5000
+
 # Allow any settings to be defined in local_settings.py which should be
 # ignored in your version control system allowing for settings to be
 # defined per machine.

@@ -7,9 +7,9 @@
 # You may need to install requests and uuid.
 # Run: pip install requests uuid
 
-import os, requests, uuid, json, codecs, urllib
+import sys, os, requests, uuid, json, codecs, urllib
 
-from ocd_backend.settings import AZURE_TEXT_TRANSLATOR_KEY
+from ocd_backend.settings import AZURE_TEXT_TRANSLATOR_KEY, AZURE_TEXT_MAX_LENGTH
 
 class BaseAzureMixin(object):
     pass
@@ -34,11 +34,15 @@ class AzureTranslationMixin(BaseAzureMixin):
         }
         body = []
         if isinstance(text, list):
-            body = [{'text': t} for t in text]
+            tl = AZURE_TEXT_MAX_LENGTH - 250  # shorter because of title
+            body = [{'text': t[:tl]} for t in text]
         else:
-            body = [{'text': text}]
+            body = [{'text': text[:AZURE_TEXT_MAX_LENGTH]}]
         request = requests.post(constructed_url, headers=headers, data=json.dumps(body))
         response = request.json()
+        #print >>sys.stderr, "r: %s" % (response,)
         for b, d in zip(body, response):
+            #print >>sys.stderr, "b: %s" % (b,)
+            #print >>sys.stderr, "d: %s" % (d,)
             d[u'translations'].append({u'text': b[u'text'], u'to': d[u'detectedLanguage'][u'language']})
         return response

@@ -206,7 +206,8 @@ class AS2TranslationEnricher(BaseEnricher, AzureTranslationMixin, HttpRequestMix
                     first_item = resp['as:items'][0]
                     log.info('Found %s existing document(s) for  %s, translated into %s' % (
                         resp['as:totalItems'], item['@id'], first_item['contentMap'].keys(),))
-                    translated = sorted(first_item['contentMap'].keys()) == sorted(settings.AS2_TRANSLATION_LANGUAGES)
+                    #translated = sorted(first_item['contentMap'].keys()) == sorted(settings.AS2_TRANSLATION_LANGUAGES)
+                    translated = set(settings.AS2_TRANSLATION_LANGUAGES).issubset(set(first_item['contentMap'].keys()))
                     if translated:
                         # if doc is already translated, use the translation we used before.
                         docs = []

@@ -131,7 +131,10 @@ class AS2Loader(ElasticsearchLoader, AS2ConverterMixin):
     ):
         # log.info('Indexing AS2 documents.. Meta:')
         # log.info(combined_index_doc)
-        self.as2_index(combined_index_doc, combined_index_doc['item']['items'])
+        try:
+            self.as2_index(combined_index_doc, combined_index_doc['item']['items'])
+        except Exception as e:
+            log.error('Unexpected error: %s' % (e,)) 
         self._create_resolvable_media_urls(doc)
 
 

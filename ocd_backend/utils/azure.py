@@ -39,4 +39,6 @@ class AzureTranslationMixin(BaseAzureMixin):
             body = [{'text': text}]
         request = requests.post(constructed_url, headers=headers, data=json.dumps(body))
         response = request.json()
+        for b, d in zip(body, response):
+            d[u'translations'].append({u'text': b[u'text'], u'to': d[u'detectedLanguage'][u'language']})
         return response

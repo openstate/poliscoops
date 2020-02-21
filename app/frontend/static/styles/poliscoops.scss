@@ -45,12 +45,52 @@ $container-max-widths: (
 // Typography
 $font-default: "Open Sans", sans-serif;
 $color-default: #0603A6;
+$color-bg-default:#EBF3F7;
+$color-footer-bg: white;
 
 body {
   font-family: $font-default;
   font-size: 13px;
   line-height: 21px;
   color: $color-default;
+  background: $color-bg-default;
   word-wrap: break-word;
   hyphens: manual;
+}
+
+a {
+  color: $color-default;
+}
+
+footer {
+    background: $color-footer-bg;
+    margin-bottom: 5em;
+
+}
+
+#footer-actions {
+  padding-top: 2em;
+  margin-bottom: 2em;
+  background: $color-bg-default;
+  width: 100%;
+}
+
+#footer-actions a {
+  line-height: 18px;
+}
+
+#footer-actions .list-inline-item:first-child { margin-right: 4em !important; }
+#footer-actions .list-inline-item:last-child { margin-left: 4em !important; }
+
+#footer-logos {
+  padding: 2em;
+}
+#footer-logos ul {
+  width: 100%;
+}
+#footer-logos img {
+  max-height: 75px;
+}
+.fa-2x {
+  vertical-align: middle;
 }

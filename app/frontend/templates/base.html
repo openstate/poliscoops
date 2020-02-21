@@ -36,7 +36,7 @@
     <![endif]-->
 
     <header>
-      <nav class="navbar navbar-expand-md navbar-light mb-4" style="background-color: #ffffff;">
+      <nav class="navbar navbar-expand-md navbar-light mb-4 container" style="background-color: #ffffff;">
         <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='dist/images/logo-desktop.svg') }}" alt="{%trans%}Poliscoops{%endtrans%}" style="width: 200px;" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="{%trans%}Toggle navigation{%endtrans%}">
           <span class="navbar-toggler-icon"></span> {%trans%}Menu{%endtrans%}
@@ -77,8 +77,8 @@
     </div>
 
     <footer>
-        <div id="footer-logos" class="d-flex justify-content-around">
-          <ul class="list-inline d-flex justify-content-around">
+        <div id="footer-logos" class="d-flex flex-wrap justify-content-around">
+          <ul class="list-inline d-flex justify-content-around flex-wrap">
             <li class="list-inline-item">
               <a href="https://www.sidnfonds.nl/" target="_blank">
                 <img class="img-responsive pull-left" src="{{ url_for('static', filename='dist/images/sidnfonds-logo.svg') }}" alt="{%trans%}SIDN Fonds{%endtrans%}">

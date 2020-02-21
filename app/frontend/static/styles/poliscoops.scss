@@ -44,9 +44,10 @@ $container-max-widths: (
 
 // Typography
 $font-default: "Open Sans", sans-serif;
+$font-nav: "Open Sans script=all rev=1", sans-serif;
 $color-default: #0603A6;
 $color-bg-default:#EBF3F7;
-$color-footer-bg: white;
+$color-bg-alt: white;
 
 body {
   font-family: $font-default;
@@ -62,8 +63,11 @@ a {
   color: $color-default;
 }
 
+header {
+  background: $color-bg-alt;
+}
 footer {
-    background: $color-footer-bg;
+    background: $color-bg-alt;
     margin-bottom: 5em;
 
 }
@@ -93,4 +97,11 @@ footer {
 }
 .fa-2x {
   vertical-align: middle;
+}
+
+nav.navbar .nav-link {
+  font-family: $font-default;
+  font-size: 28px;
+  font-weight: 800;
+  color: #9EC3DA !important;
 }

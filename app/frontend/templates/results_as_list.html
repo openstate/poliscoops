@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-xs-12">
     <h3 class="pull-left" style="margin-top: 11px; margin-left: 1em;">{% trans num_results=results["as:totalItems"] %}{{ num_results }} documenten{%endtrans%}</h3>
-    <button type="button" class="btn btn-info navbar-btn pull-right visible-xs-inline-block sidebar-collapse">
-      {%trans%}Filters{%endtrans%} &gt;
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-filters">
+      {%trans%}Filters{%endtrans%}
     </button>
   </div>
 </div>

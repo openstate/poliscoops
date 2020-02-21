@@ -66,15 +66,17 @@ $(document).ready(function() {
   Poliflw.init_month_graph();
 });
 </script>
-<section id="data">
-<div class="wrapper">
-  <nav id="sidebar" class="hidden-xs">
-        <div class="navbar-header visible-xs-block">
-          <h2 class="pull-left" style="margin-top:11px;">{%trans%}Filters{%endtrans%}</h2>
-          <button type="button" class="btn btn-info navbar-btn pull-right sidebar-collapse" style="color: white !important;">
-            X
-          </button>
-        </div>
+
+<div class="modal fade" id="modal-filters" tabindex="-1" role="dialog" aria-labelledby="modal-filters" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{%trans%}Filters{%endtrans%}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
         <h2>{%trans%}Period{%endtrans%}</h2>
         <input type="text" name="daterange" class="form-control btn-category btn-block" value="
         {% if search_params.date_from %}
@@ -143,8 +145,17 @@ $(document).ready(function() {
             {% endif %}
           {% endif %}
         {% endfor %}
-  </nav>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<section>
+  <div>
   <div id="content-search-results">
     <div class="row">
       <div class="col-xs-12">

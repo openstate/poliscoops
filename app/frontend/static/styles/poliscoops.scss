@@ -115,6 +115,11 @@ nav.navbar .nav-link {
   background: url(/static/images/local-news-bg-2x.png) no-repeat;
 }
 
+.jumbotron img {
+  margin: 2em;
+  width: 100%
+}
+
 .lead-text {
   color: white;
   font-family: $font-nav;
@@ -176,6 +181,10 @@ h2 {
 
 .info-box-bg-alt {
   background-image: url(/static/images/bg-alt.png);
+}
+
+.info-box-bg-alt-2 {
+  background-image: url(/static/images/bg-alt-2.png);
 }
 
 .info-box ol {

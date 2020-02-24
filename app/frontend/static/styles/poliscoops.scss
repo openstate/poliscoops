@@ -6,9 +6,14 @@
  * Prefix your imports with `~` to grab from node_modules/
  * @see https://github.com/webpack-contrib/sass-loader#imports
  */
+
+@use "sass:map";
+
 // @import "~some-node-module";
 @import "~bootstrap/scss/_functions.scss";
 @import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
 /* set the overriding variables */
 $grid-breakpoints: (
   xs: 0,
@@ -100,8 +105,26 @@ footer {
 }
 
 nav.navbar .nav-link {
-  font-family: $font-default;
+  font-family: $font-nav;
   font-size: 28px;
   font-weight: 800;
   color: #9EC3DA !important;
+}
+
+
+/* media queris */
+@media (max-width: 440px) {
+  .nav-main-link {
+    display: none !important;
+  }
+}
+
+@media (min-width: 440px) and (max-width: 480px) {
+  .navbar-brand {
+    width: 100%;
+    text-align: center !important;
+  }
+  .navbar-toggler, .nav-main-link {
+    margin-top: -50px;
+  }
 }

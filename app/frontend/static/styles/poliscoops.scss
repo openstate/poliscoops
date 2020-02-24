@@ -209,6 +209,23 @@ h2 {
     line-height: 18px;
 }
 
+.nav-filtering {
+  background: url(/static/images/bg-filter.png) repeat-x;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 600;
+  padding: 1em;
+}
+
+.nav-filtering a.nav-link {
+  color: white !important;
+}
+
+.search-box {
+  padding: 1em;
+  background: url(/static/images/bar.svg) no-repeat bottom center / auto auto white;
+}
+
 /* media queris */
 @media (max-width: 440px) {
   .nav-main-link {

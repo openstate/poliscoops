@@ -60,31 +60,33 @@
   </div>
 
   <div class="col-xs-12 col-md-9 col-lg-8">
-    <ul class="nav nav-pills">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{%trans%}Most relevant{%endtrans%}</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">{%trans%}Most relevant{%endtrans%}</a>
-          <a class="dropdown-item" href="#">{%trans%}Most recent{%endtrans%} action</a>
-        </div>
-      </li>
-    </ul>
+    <div class="search-box">
+      <ul class="nav nav-pills nav-filtering">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{%trans%}Most relevant{%endtrans%}</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">{%trans%}Most relevant{%endtrans%}</a>
+            <a class="dropdown-item" href="#">{%trans%}Most recent{%endtrans%} action</a>
+          </div>
+        </li>
+      </ul>
 
-    {% include "search.html" %}
+      {% include "search.html" %}
 
-    <div class="row">
+      <div class="row">
 
-      {% for result in results['as:items'] %}
-        {% set result_object = result %}
-        <div class="col-xs-12 col-md-6">
-          {%include "inner_result.html" %}
-        </div>
-      {% endfor %}
+        {% for result in results['as:items'] %}
+          {% set result_object = result %}
+          <div class="col-xs-12 col-md-6">
+            {%include "inner_result.html" %}
+          </div>
+        {% endfor %}
 
-    </div>
+      </div>
 
-    <div class="d-flex justify-content-center">
-      <a class="btn btn-lg btn-primary" href="{{ url_for('search') }}" role="button">{%trans%}Collect{%endtrans%}</a>
+      <div class="d-flex justify-content-center">
+        <a class="btn btn-lg btn-primary" href="{{ url_for('search') }}" role="button">{%trans%}Collect{%endtrans%}</a>
+      </div>
     </div>
   </div>
 </div>

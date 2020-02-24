@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row">
-  <div class="col-xs-12 col-md-8 col-lg-6">
+  <div class="col-xs-12 col-md-8 col-lg-8">
     <div class="jumbotron">
       <p class="lead-text">
         {%trans%}find and <span>collect</span>{%endtrans%}<br>
@@ -15,38 +15,46 @@
     </div>
   </div>
 
-  <div class="col-xs-12 col-md-4 col-lg-6">
+  <div class="col-xs-12 col-md-4 col-lg-4 info-box">
     <h1>{%trans%}What can this do?{%endtrans%}</h1>
-    <h2>{%trans%}Find local news{%endtrans%}</h2>
-    <ol>
-      <li>{%trans%}Choose your language for articles and topics{%endtrans%}</li>
-      <li>{%trans%}Find local news across Europe. Setup your source country{%endtrans%}</li>
-      <li>{%trans%}Collect the content of your selected articles and topics{%endtrans%}</li>
-    </ol>
-  </div>
+    <div class="info-box-contents">
+      <h2>{%trans%}Find local news{%endtrans%}</h2>
+      <ol class="info-box-bg-alt">
+        <li><span>{%trans%}Choose your language for articles and topics{%endtrans%}</span></li>
+        <li><span>{%trans%}Find local news across Europe. Setup your source country{%endtrans%}</span></li>
+        <li><span>{%trans%}Collect the content of your selected articles and topics{%endtrans%}</span></li>
+      </ol>
+    </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-md-3 col-lg-4">
+  <div class="col-xs-12 col-md-3 col-lg-4 info-box">
     <h1>{%trans%}Contribute{%endtrans%}</h1>
-    <h2>{%trans%}Your opinion matters{%endtrans%}</h2>
-    <ol>
-      <li>{%trans%}Verify articles and help keep articles up to date{%endtrans%}</li>
-      <li>{%trans%}Collect the content of your selected articles and topics{%endtrans%}</li>
-    </ol>
 
-    <h2>{%trans%}Collect local news{%endtrans%}</h2>
-    <div>
-      <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">{%trans%}Collect{%endtrans%}</a>
+    <div class="info-box-contents">
+      <h2>{%trans%}Your opinion matters{%endtrans%}</h2>
+      <ol class="info-box-bg">
+        <li><span>{%trans%}Verify articles and help keep articles up to date{%endtrans%}</span></li>
+        <li><span>{%trans%}Collect the content of your selected articles and topics{%endtrans%}</span></li>
+      </ol>
     </div>
 
-    <h1>{%trans%}Contact{%endtrans%}</h1>
-    <h2>{%trans%}Feedback{%endtrans%}</h2>
-    <ol>
-      <li>{%trans%}Help to keep the municipalities innovative and informed{%endtrans%}</li>
-      <li>{%trans%}Any questions? We are curious about your opinion{%endtrans%}</li>
-    </ol>
+    <div class="info-box-contents">
+      <h2>{%trans%}Collect local news{%endtrans%}</h2>
+      <div>
+        <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">{%trans%}Collect{%endtrans%}</a>
+      </div>
+    </div>
 
+
+    <h1>{%trans%}Contact{%endtrans%}</h1>
+    <div class="info-box-contents">
+      <h2>{%trans%}Feedback{%endtrans%}</h2>
+      <ol>
+        <li><span>{%trans%}Help to keep the municipalities innovative and informed{%endtrans%}</span></li>
+        <li><span>{%trans%}Any questions? We are curious about your opinion{%endtrans%}</span></li>
+      </ol>
+    </div>
   </div>
 
   <div class="col-xs-12 col-md-9 col-lg-8">

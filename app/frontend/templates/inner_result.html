@@ -1,3 +1,4 @@
+<div class="search-result">
   <h2>
     <a href="{{ result_object |pfl_link }}">
       {{ 'name' |as2_i18n_field(result_object, rl) }}
@@ -21,19 +22,20 @@
       </li>
       {% endif %}
     </ul>
-    <ul class="actions list-inline">
+    <ul class="actions list-inline d-flex align-items-center">
       {% if result_object.attributedTo %}
       <li class="list-inline-item">
-        <a class="btn btn-lg btn-primary" href="{{ result_object.attributedTo |pfl_link }}">
+        <a class="btn" href="{{ result_object.attributedTo |pfl_link }}">
           <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}" class="img-responsive visible-xs-inline">
-          {{ 'name' |as2_i18n_field(result_object.attributedTo, rl) }}
+          <span class="sr-only">{{ 'name' |as2_i18n_field(result_object.attributedTo, rl) }}</span>
         </a>
       </li>
       {% endif %}
-      <li class="list-inline-item"><a class="btn btn-lg btn-secondary" href="#">{%trans%}Collect{%endtrans%}</a></li>
+      <li class="list-inline-item"><a class="btn" href="#"><img src="/static/images/btn-collect.svg" /><span class="sr-only">{%trans%}Collect{%endtrans%}<span class="sr-only"></a></li>
       {% if result_object.url %}
-      <li class="list-inline-item"><a class="btn btn-lg btn-secondary" href="{{ result_object.url }}" target="_blank">{%trans%}Source{%endtrans%}</a></li>
+      <li class="list-inline-item"><a class="btn" href="{{ result_object.url }}" target="_blank"><img src="/static/images/btn-source.svg" /><span class="sr-only">{%trans%}Source{%endtrans%}<span class="sr-only"></a></li>
       {% endif %}
-      <li class="list-inline-item"><a class="btn btn-lg btn-link" href="{{ result_object |pfl_link }}">{%trans%}Read more{%endtrans%}</a></li>
+      <li class="list-inline-item ml-auto"><a class="read-more-link" href="{{ result_object |pfl_link }}">{%trans%}Read more{%endtrans%}  <i class="fa fa-chevron-down"></i></a></li>
     </ul>
   </div>
+</div>

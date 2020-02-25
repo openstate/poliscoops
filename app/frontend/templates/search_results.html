@@ -28,6 +28,15 @@
 {% include 'search.html' %}
 {% endblock %}
 
+{%block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb ml-4">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Library</li>
+  </ol>
+</nav>
+{%endblock%}
+
 {% block content %}
 
 <script type="text/javascript">

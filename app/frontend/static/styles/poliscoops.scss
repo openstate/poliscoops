@@ -30,6 +30,7 @@ $container-max-widths: (
   xl: 1140px,
   xxl: 1400px
 );
+$breadcrumb-divider: quote(">");
 @import 'bootstrap';
 @import '~bootstrap-table/dist/bootstrap-table.min.css';
 @import '~bootstrap-table/dist/extensions/sticky-header/bootstrap-table-sticky-header.min.css';
@@ -325,6 +326,23 @@ h2 {
   }
 }
 
+.breadcrumb {
+  .breadcrumb-item {
+    color: #000055 !important;
+    a {
+      color: #000055 !important;
+    }
+    .active {
+      color: #000055 !important;
+    }
+  }
+  background: #EBF3F7;
+  padding: 0.5em;
+  fint-size: 10px;
+  line-height: 14px;
+  font-wieght: 600;
+  border-radius: 0;
+}
 /* media queris */
 @media (max-width: 440px) {
   .nav-main-link {

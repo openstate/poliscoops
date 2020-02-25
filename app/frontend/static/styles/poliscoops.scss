@@ -240,12 +240,15 @@ h3 {
   background: url(/static/images/bar.svg) repeat-x bottom center / auto auto white;
 }
 
+.search-box div.search-result h2 {
+  background: #EBF3F7;
+}
+
 .search-result h2 {
   font-size: 26px;
   line-height: 32px;
-  background: #EBF3F7;
+  background: white;
   margin-top: 1em;
-
   a {
     color: #000055;
   }

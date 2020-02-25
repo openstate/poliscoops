@@ -61,16 +61,7 @@
 
   <div class="col-xs-12 col-md-9 col-lg-8">
     <div class="search-box">
-      <ul class="nav nav-pills nav-filtering">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{%trans%}Most relevant{%endtrans%}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">{%trans%}Most relevant{%endtrans%}</a>
-            <a class="dropdown-item" href="#">{%trans%}Most recent{%endtrans%} action</a>
-          </div>
-        </li>
-      </ul>
-
+      {% include "filter_bar.html" %}
       <div class="mt-4" id="form-search-fp">
       {% include "search.html" %}
       </div>

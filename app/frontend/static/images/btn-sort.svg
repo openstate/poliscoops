@@ -1,0 +1,5 @@
+<svg id="Sort_-_Button" data-name="Sort - Button" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <path id="Path_195" data-name="Path 195" d="M11.163,0H28.837A11.163,11.163,0,0,1,40,11.163V28.837A11.163,11.163,0,0,1,28.837,40H11.163A11.163,11.163,0,0,1,0,28.837V11.163A11.163,11.163,0,0,1,11.163,0Z" fill="#fff"/>
+  <text id="sort" transform="translate(13 34.138)" fill="#0603a6" font-size="8" font-family="OpenSans-Light, Open Sans" font-weight="300"><tspan x="0" y="0">sort</tspan></text>
+  <path id="Icon_material-sort" data-name="Icon material-sort" d="M4.5,22.159h6.579V19.965H4.5ZM4.5,9v2.193H24.238V9Zm0,7.676H17.659V14.483H4.5Z" transform="translate(5.5 1.729)" fill="#0603a6"/>
+</svg>

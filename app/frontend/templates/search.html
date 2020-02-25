@@ -1,12 +1,10 @@
-<div class="row">
-   <div class="col-md-12">
-       <form action="" accept-charset="UTF-8" method="get">
-           <div class="input-group">
-             <span class="input-group-btn">
-                 <input type="button" name="commit" value="Search" class="btn btn-primary" data-disable-with="{%trans%}Search{%endtrans%}">
+    <form action="{{ url_for('search') }}" method="get" class="form-inline w-100 mt-4" id="form-search" name="form-search">
+        <div class="input-group w-100">
+              <input class="form-control py-2" type="search" value="" name="query" placeholder="{%trans%}Find articles, parties, locations...{%endtrans%}">
+              <span class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
               </span>
-               <input type="text" name="search" id="search" value="" placeholder="{%trans%}Search articles and topics{%endtrans%}" class="form-control">
-           </div>
-       </form>
-   </div>
-</div>
+        </div>
+    </form>

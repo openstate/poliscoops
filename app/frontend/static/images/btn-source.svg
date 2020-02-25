@@ -1,0 +1,9 @@
+<svg id="Group_115" data-name="Group 115" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <path id="Path_180" data-name="Path 180" d="M11.163,0H28.837A11.163,11.163,0,0,1,40,11.163V28.837A11.163,11.163,0,0,1,28.837,40H11.163A11.163,11.163,0,0,1,0,28.837V11.163A11.163,11.163,0,0,1,11.163,0Z" fill="#fff"/>
+  <g id="Icon_feather-external-link" data-name="Icon feather-external-link" transform="translate(13.79 7.241)">
+    <path id="Path_176" data-name="Path 176" d="M16.457,14.58v4.783a1.594,1.594,0,0,1-1.594,1.594H6.094A1.594,1.594,0,0,1,4.5,19.363V10.594A1.594,1.594,0,0,1,6.094,9h4.783" transform="translate(-4.5 -6.609)" fill="none" stroke="#0603a6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_177" data-name="Path 177" d="M22.5,4.5h4.783V9.283" transform="translate(-12.934 -4.5)" fill="none" stroke="#0603a6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_178" data-name="Path 178" d="M15,13.268,23.768,4.5" transform="translate(-9.42 -4.5)" fill="none" stroke="#0603a6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+  <text id="source" transform="translate(8 34.138)" fill="#0603a6" font-size="8" font-family="OpenSans-Light, Open Sans" font-weight="300"><tspan x="0" y="0">source</tspan></text>
+</svg>

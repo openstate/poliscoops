@@ -280,6 +280,30 @@ h2 {
     color: white;
 }
 
+#form-search {
+  color: $color-default;
+  font-size: 26px;
+  line-height: 28px;
+
+  input {
+    color: $color-default !important;
+    font-size: 26px;
+    line-height: 28px;
+    border: 0;
+    border-bottom: 1px solid $color-default;
+  }
+
+  input::placeholder {
+    color: $color-default;
+  }
+
+  .btn {
+    color: $color-default !important;
+    font-size: 26px;
+    line-height: 28px;
+    border: 0;
+  }
+}
 /* media queris */
 @media (max-width: 440px) {
   .nav-main-link {

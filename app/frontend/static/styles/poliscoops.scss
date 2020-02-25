@@ -372,7 +372,29 @@ h3 {
 }
 
 article .byline {
-  background-color: #ECF248;
+  background: url(/static/images/bg-default.png) repeat-x #ECF248;
+}
+
+article .lead {
+  font-family: $font-nav;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+.byline-alt {
+  font-family: $font-default;
+  font-size: 10px;
+  line-height: 14px;
+  color: #E1383A;
+
+  a {
+    color: #E1383A;
+  }
+
+  span {
+    font-style: italic;
+  }
 }
 
 /* media queris */

@@ -187,6 +187,24 @@ def modify_query(**new_values):
     return '{}?{}'.format(request.path, url_encode(args))
 
 
+@app.template_filter('pls_hostname')
+def do_get_hostname(s):
+    h = ''
+    try:
+        r = urlparse(s)
+        h = r.netloc
+    except Exception as e:
+        pass
+    return h.replace('www.', '')
+
+
+@app.template_filter('pls_generate_article_template')
+def do_generate_article_template(s):
+    lead, rest_of_content = re.split(r'\.\s+', s, 1)
+    return u'<p class="lead">%s.</p><p class="text">%s</p>' % (
+        lead, rest_of_content,)
+
+
 @app.template_filter('party_image')
 def do_party_image(s):
     if os.path.exists(

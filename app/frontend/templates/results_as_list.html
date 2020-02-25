@@ -1,9 +1,12 @@
 <div class="row">
   <div class="col-xs-12">
-    <h3 class="pull-left" style="margin-top: 11px; margin-left: 1em;">{% trans num_results=results["as:totalItems"] %}{{ num_results }} documenten{%endtrans%}</h3>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-filters">
-      {%trans%}Filters{%endtrans%}
-    </button>
+    <h3 class="ml-4">
+      {% if query %}
+      {% trans query=query, num_results=results["as:totalItems"] %}{{ num_results }} results for:  {{ query }}{%endtrans%}
+      {% else %}
+      {% trans query=query, num_results=results["as:totalItems"] %}{{ num_results }} results:{%endtrans%}
+      {% endif %}
+    </h3>
   </div>
 </div>
 {% if results.facets %}

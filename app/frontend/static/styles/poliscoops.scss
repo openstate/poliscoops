@@ -167,6 +167,15 @@ h2 {
   margin: 0;
 }
 
+h3 {
+  font-family: $font-default;
+  font-size: 14px;
+  line-height:19px;
+  font-weight: 800;
+  padding: 0.5em;
+  margin: 0;
+}
+
 .info-box {
   padding: 1em;
   color: #000055;
@@ -342,6 +351,7 @@ h2 {
   line-height: 14px;
   font-wieght: 600;
   border-radius: 0;
+  margin-bottom: 0;
 }
 /* media queris */
 @media (max-width: 440px) {

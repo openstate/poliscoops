@@ -30,7 +30,7 @@
 
 {%block breadcrumb %}
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb ml-4">
+  <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Library</li>
   </ol>
@@ -38,46 +38,6 @@
 {%endblock%}
 
 {% block content %}
-
-<script type="text/javascript">
-var Poliflw = window.Poliflw || {
-  "api_base_url": "https://api.poliflw.nl/v0",
-};
-
-Poliflw.data = {{ results |tojson }};
-Poliflw.data.facets = {{ result_facets |tojson }};
-
-Poliflw.init_month_graph = function() {
-  nv.addGraph(function() {
-    var chart = nv.models.discreteBarChart()
-        .x(function(d) { return d.key_as_string.slice(0, 7); })    //Specify the data accessors.
-        .y(function(d) { return d.doc_count; })
-        .color(['#c21889'])
-        .showYAxis(false)
-        .showXAxis(false)
-        .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
-        .tooltips(true)        //Don't show tooltips
-        .showValues(false)       //...instead, show the bar value right on top of each bar.
-        ;
-
-    d3.select('#graph-monthly svg')
-        .datum([
-          {
-            key: 'Posts', values: Poliflw.data.facets.date.buckets}])
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(chart.update);
-
-    return chart;
-  });
-};
-
-$(document).ready(function() {
-  console.log('could set up the graph now!');
-  Poliflw.init_month_graph();
-});
-</script>
-
 <div class="modal fade" id="modal-filters" tabindex="-1" role="dialog" aria-labelledby="modal-filters" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

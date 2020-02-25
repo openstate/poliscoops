@@ -73,10 +73,14 @@
   </header>
   {% block search %}
   {% endblock %}
-  {% block breadcrumb %}
-  {% endblock %}
 
-    <div class="container mt-4" role="main">
+    <div class="container" role="main">
+      <div class="row">
+        <div class="col-xs-12 ml-4">
+          {% block breadcrumb %}
+          {% endblock %}
+        </div>
+      </div>
     {% block content %}
     {% endblock %}
     </div>

@@ -36,7 +36,7 @@
     <![endif]-->
 
     <header>
-      <nav class="navbar navbar-expand-md navbar-light mb-4 container" style="background-color: #ffffff;">
+      <nav class="navbar navbar-expand-md navbar-light container" style="background-color: #ffffff;">
         <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='dist/images/logo-desktop.svg') }}" alt="{%trans%}Poliscoops{%endtrans%}" style="width: 200px;" /></a>
         <a class="nav-main-link nav-link d-flex d-none d-xs-none d-sm-block d-md-none" href="#">{%trans%}About{%endtrans%}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="{%trans%}Toggle navigation{%endtrans%}">
@@ -71,8 +71,10 @@
       </nav>
 
   </header>
+  {% block search %}
+  {% endblock %}
 
-    <div class="container" role="main">
+    <div class="container mt-4" role="main">
     {% block content %}
     {% endblock %}
     </div>

@@ -280,30 +280,51 @@ h2 {
     color: white;
 }
 
-#form-search {
-  color: $color-default;
+.form-search {
+  color: white;
   font-size: 26px;
   line-height: 28px;
-
+  background: #9EC3DA;
+  padding: 0.5em;
   input {
-    color: $color-default !important;
+    color: white !important;
+    background: inherit !important;
     font-size: 26px;
     line-height: 28px;
     border: 0;
-    border-bottom: 1px solid $color-default;
+    border-bottom: 1px solid white;
   }
 
   input::placeholder {
-    color: $color-default;
+    color: white;
   }
 
   .btn {
-    color: $color-default !important;
+    color: white !important;
     font-size: 26px;
     line-height: 28px;
     border: 0;
   }
 }
+
+#form-search-fp .form-search {
+  color: $color-default;
+  background: white;
+
+  input {
+    color: $color-default !important;
+    border-bottom: 1px solid $color-default;
+  }
+
+  input::placeholder {
+    color: $color-default !important;
+  }
+
+  .btn {
+    color: $color-default !important;
+  }
+}
+
 /* media queris */
 @media (max-width: 440px) {
   .nav-main-link {

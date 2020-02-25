@@ -24,10 +24,12 @@
 <meta property="og:description" content="Nieuws van politieke partijen in {{ search_params.location }} inzichtelijk" />
 {% endblock %}
 
+{% block search %}
+{% include 'search.html' %}
+{% endblock %}
 
 {% block content %}
 
-{% include 'search.html' %}
 <script type="text/javascript">
 var Poliflw = window.Poliflw || {
   "api_base_url": "https://api.poliflw.nl/v0",

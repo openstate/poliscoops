@@ -4,18 +4,23 @@
 
 <h1>{%trans%}Source countries{%endtrans%}</h1>
 
-<h2>{%trans%}Set the source{%endtrans%}</h2>
+<div class="info-box-contents mb-4 language-selection">
 
-<form method="post" action="{{ url_for('set_countries') }}">
+<h3 class="">{%trans%}Set the source{%endtrans%}:</h3>
+
+<form method="post" action="{{ url_for('set_countries') }}" class="form-countries">
   {% for k, v in countries.iteritems() %}
-  <div class="custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" name="countries" value="{{ locations[k] }}" id="check-country-{{ k }}" {%if locations[k] in selected_countries %}checked{%endif%}>
-    <label class="custom-control-label" for="check-country-{{ k }}">{{ v }}</label>
+  <div class="form-check mb-4">
+    <input type="checkbox" class="form-check-input" name="countries" value="{{ locations[k] }}" id="check-country-{{ k }}" {%if locations[k] in selected_countries %}checked{%endif%}>
+    <label class="form-check-label w-100  d-flex align-items-center" for="check-country-{{ k }}">
+      {{ v }} <i class="fa fa-{%if locations[k] in selected_countries %}check-{%endif%}square-o ml-auto" aria-hidden="true"></i>
+    </label>
   </div>
   {% endfor %}
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
 
 <p>{{ selected_countries }}</p>
 <p>{{ locations }}</p>

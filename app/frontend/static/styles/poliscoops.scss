@@ -460,6 +460,23 @@ article .lead {
   }
 }
 
+.form-countries {
+    font-size: 16px;
+    line-height: 22px;
+
+    label {
+      margin-bottom: 1em;
+      padding: 10px;
+      border: 1px solid #0603A6;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    .form-check-input {
+      display: none;
+    }
+}
+
 /* media queris */
 @media (max-width: 440px) {
   .nav-main-link {

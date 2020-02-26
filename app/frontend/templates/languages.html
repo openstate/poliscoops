@@ -1,27 +1,37 @@
 {% extends 'base.html' %}
 
+{%block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">{%trans%}Home{%endtrans%}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{%trans%}Languages{%endtrans%}</li>
+  </ol>
+</nav>
+{%endblock%}
+
 {% block content %}
 
 <h1>{%trans%}Set your language{%endtrans%}</h1>
 
-<h2>{%trans%}Website{%endtrans%}</h2>
+<div class="info-box-contents mb-4 language-selection">
+  <h3 class="">{%trans%}Website{%endtrans%}</h3>
 
-<ul class="nav nav-pills">
-  {% for k, v in interface_languages.iteritems() %}
-    <li class="nav-item">
-      <a class="nav-link {% if k == hl %}active{% endif %}" href="{{ url_for('set_language', hl=k, rl=rl)}}">{{ v }}</a>
-    </li>
-  {% endfor %}
-</ul>
+  <ul class="nav nav-pills">
+    {% for k, v in interface_languages %}
+      <li class="nav-item mr-4">
+        <a class="nav-link {% if k == hl %}active{% endif %}" href="{{ url_for('set_language', hl=k, rl=rl)}}">{{ v }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <hr>
+  <h3 class="">{%trans%}News articles{%endtrans%}</h3>
 
-<h2>{%trans%}News articles{%endtrans%}</h2>
-
-<ul class="nav nav-pills">
-  {% for k, v in article_languages.iteritems() %}
-    <li class="nav-item">
-      <a class="nav-link {% if k == rl %}active{% endif %}" href="{{ url_for('set_language', rl=k, hl=hl)}}">{{ v }}</a>
-    </li>
-  {% endfor %}
-</ul>
-
+  <ul class="nav nav-pills">
+    {% for k, v in article_languages %}
+      <li class="nav-item mr-4 mb-4">
+        <a class="nav-link {% if k == rl %}active{% endif %}" href="{{ url_for('set_language', rl=k, hl=hl)}}">{{ v }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 {%endblock%}

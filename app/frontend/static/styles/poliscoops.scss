@@ -31,6 +31,9 @@ $container-max-widths: (
   xxl: 1400px
 );
 $breadcrumb-divider: quote(">");
+$nav-pills-link-active-color: #000055;
+$nav-pills-link-active-bg: #FFFFFF;
+
 @import 'bootstrap';
 @import '~bootstrap-table/dist/bootstrap-table.min.css';
 @import '~bootstrap-table/dist/extensions/sticky-header/bootstrap-table-sticky-header.min.css';
@@ -334,6 +337,33 @@ h3 {
     border: 0;
   }
 }
+
+.language-selection {
+  padding: 1em;
+
+  h3 {
+    padding-top: 2em;
+  }
+  .nav-item {
+    border: 1px solid #0603A6 !important;
+    border-radius: 5px;
+  }
+}
+
+.nav-link {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #9EC3DA;
+}
+
+.nav-item {
+  background-color: #EBF3F7;
+}
+
+/*.nav-pills .nav-link.active {
+    background-color: #FFFFFF;
+}*/
 
 #form-search-fp .form-search {
   color: $color-default;

@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import datetime
 import math
 import simplejson as json
@@ -11,6 +14,7 @@ import hashlib
 import os
 from copy import deepcopy
 from operator import itemgetter, attrgetter
+from collections import OrderedDict
 
 from html5lib.filters.base import Filter
 
@@ -85,15 +89,15 @@ FACETS = (
 DEFAULT_LANGUAGE = 'en'
 BABEL_DEFAULT_LOCALE = 'en'
 
-INTERFACE_LANGUAGES = {
-    'en': lazy_gettext('English'),
-    'de': lazy_gettext('German'),
-    'fr': lazy_gettext('French')}
-ARTICLE_LANGUAGES = {
-    None: lazy_gettext('Original'),
-    'en': lazy_gettext('English'),
-    'de': lazy_gettext('German'),
-    'fr': lazy_gettext('French')}
+INTERFACE_LANGUAGES = OrderedDict([
+    ('en', lazy_gettext('English')),
+    ('de', lazy_gettext('German')),
+    ('fr', lazy_gettext('French'))])
+ARTICLE_LANGUAGES = OrderedDict([
+    ('en', lazy_gettext('English')),
+    ('de', lazy_gettext('German')),
+    ('fr', lazy_gettext('French')),
+    (None, lazy_gettext('Original language'))])
 
 COUNTRIES = {
     'AT': lazy_gettext('Austria'),
@@ -650,8 +654,8 @@ def languages():
     hl,rl = get_languages()
     return render_template(
         'languages.html', hl=hl, rl=rl,
-        interface_languages=INTERFACE_LANGUAGES,
-        article_languages=ARTICLE_LANGUAGES)
+        interface_languages=INTERFACE_LANGUAGES.items(),
+        article_languages=ARTICLE_LANGUAGES.items())
 
 @app.route("/countries")
 def countries():

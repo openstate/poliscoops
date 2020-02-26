@@ -1,67 +1,16 @@
 {% extends 'base.html' %}
 
+{%block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">{%trans%}Home{%endtrans%}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{%trans%}About{%endtrans%}</li>
+  </ol>
+</nav>
+{%endblock%}
+
 {% block content %}
 
-{% include 'search.html' %}
+{% include sub_template %}
 
-<div class="row">
-  <div class="col-xs-12 article-text">
-
-    <h2>Wat is PoliFLW?</h2>
-    <p>De lokale politiek krijgt steeds minder aandacht in de media, onder andere vanwege bezuinigingen. Tegelijkertijd worden gemeenten door decentralisaties steeds belangrijker. Met PoliFLW kost het journalisten (en andere belangstellenden) minder tijd om de uitlatingen van lokale politieke partijen en politici te volgen.</p>
-
-    <p>
-    Info over PoliFLW:
-    <ul>
-    <li>Meer dan 500.000 artikelen, daterend van vandaag tot decennia geleden</li>
-    <li>Meer dan 3.000 bronnen, bestaande uit websites en Facebookpagina's van lokale politieke partijen</li>
-    <li>Filter op datum, locatie, bron, politicus en politieke partij of doorzoek de artikelen op tekst</li>
-    <li>Vier keer per dag worden de meest recente artikelen toegevoegd</li>
-    <li>Hergebruik alle data voor je eigen website of toepassing op geautomatiseerde wijze via onze API</li>
-    </ul>
-    </p>
-
-    <h2>Zoeken en filteren</h2>
-    <p>
-    Je kunt zoeken door gebruik te maken van de zoekbalk. Je kunt zoekresultaten ook filteren. De volgende tips helpen je daarbij.</p>
-
-    <table class="table table-hover table-striped table-bordered">
-   	<tr><td></br><strong>Zoeken</strong></td><td></td></tr>
-    <tr><td>zorg ziekenhuizen</td><td>artikelen met zowel de term “zorg” als “ziekenhuizen”</td></tr>
-    <tr><td>woningmarkt | onderwijs </td><td>artikelen bevatten minstens een van de termen “woningmarkt” of “onderwijs”</td></tr>
-    <tr><td>zorg -ziekenhuizen</td><td>artikelen met de term “zorg”, maar niet “ziekenhuizen”</td></tr>
-    <tr><td>“frisse blik”</td><td>artikelen met exact de term "frisse blik”</td></tr>
-    <tr><td>euro* </td><td>artikelen met termen die beginnen met “euro” (euro, Europa, Europees)</td></tr>
-    <tr><td></br><strong>Filters</strong></td><td></td></tr>
-   	<tr><td>Datum</td><td>artikelen die zijn gepubliceerd in deze maand.</td>
-   	<tr><td>Locatie</td><td>artikelen met als bron deze locatie en artikelen waarin deze locatie wordt genoemd.</td>
-   	<tr><td>Politici</td><td>artikelen waarin deze politicus wordt genoemd.</td>
-   	<tr><td>Partijen</td><td>artikelen met als bron deze partij en artikelen waarin deze partij wordt genoemd.</td>
-   	<tr><td>Onderwerpen</td><td>artikelen kunnen meerdere onderwerpen bevatten.</td>
-   	<tr><td>Polariteit</td><td>artikelen die overwegend positief of negatief zijn.</td>
-   	<tr><td>Subjectiviteit</td><td>artikelen met of zonder een mening.</td>
-   	</table>
-
-    <p>
-    Om het filteren op politici en politieke partijen mogelijk te maken gebruiken wij een <a href="https://en.wikipedia.org/wiki/Named-entity_recognition" target="_blank">named-entity recognition algoritme</a>. Dit zorgt er voor dat je kan filteren op een politicus of politieke partij, ook al wordt de term op verschillende wijze gespeld in de artikelen. Om dit algoritme beter te maken zie je soms een melding in een artikel met de vraag of we de juiste persoon of partij hebben herkend in de tekst. Door op deze vragen te reageren maak je het filteren op politici accurater. Dit vragen we ook bij de herkenning van het onderwerp. Je kunt dan zelf een onderwerp toevoegen of verwijderen. Daarnaast maken we gebruik van <a href="https://en.wikipedia.org/wiki/Sentiment_analysis" target="_blank">sentiment analyse</a> waarmee polariteit en subjectiviteit wordt gemeten.
-    </p>
-
-
-    <h2>Wij horen graag jouw feedback!</h2>
-    <p>
-    PoliFLW wordt gemaakt door <a href="https://openstate.eu" target="_blank">Open State Foundation</a> en is nog volop in ontwikkeling. Wij zijn niet onbekend met journalistiek, maar we zijn zelf geen journalisten. Daarom hebben wij jullie feedback nodig! Hoe kunnen wij PoliFLW verbeteren zodat het jou zo goed mogelijk kan helpen met je werk? Welke functionaliteiten mis je? Wat kan handiger? Laat het ons weten, via het contactformulier onderaan <a href="https://openstate.eu/nl/contact/" target="_blank">deze pagina</a>.
-    </p>
-
-    <h2>Work in progress</h2>
-    <p>Op dit moment verzamelen we de artikelen van de lokale afdelingen van deze 9 nationale politieke partijen: VVD, CDA, D66, GroenLinks, SP, PvdA, ChristenUnie, Partij voor de Dieren en de SGP. Binnenkort breiden we het aantal politieke bronnen uit met andere nationale en lokale politieke partijen.</p>
-
-    <h2>Verantwoording</h2>
-    <p>Dit project wordt gesteund door het <a href="https://digitalnewsinitiative.com/" target="_blank">Digital News Initiative Innovation Fund</a>. Het concept van <a href="https://poliflw.nl">PoliFLW</a> en de uitvoering liggen volledig bij <a href="https://openstate.eu/" target="_blank">Open State Foundation</a>.</p>
-
-    <h2>Disclaimer</h2>
-    <p>Om PoliFLW te kunnen verbeteren verzamelen wij geanonimiseerde gebruikersdata door middel van een cookie. Deze data wordt nooit gekoppeld aan identiteit of locatie.</p>
-
-
-  </div>
-</div>
 {% endblock %}

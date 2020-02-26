@@ -646,7 +646,8 @@ def main():
 @app.route("/about")
 def about():
     hl,rl = get_languages()
-    return render_template('about.html', hl=hl, rl=rl)
+    return render_template(
+        'about.html', hl=hl, rl=rl, sub_template='about.%s.html' % (hl,))
 
 
 @app.route("/languages")

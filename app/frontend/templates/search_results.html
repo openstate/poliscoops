@@ -48,7 +48,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <h2>{%trans%}Period{%endtrans%}</h2>
+        <h3>{%trans%}Period{%endtrans%}</h3>
         <input type="text" name="daterange" class="form-control btn-category btn-block" value="
         {% if search_params.date_from %}
         {{ search_params.date_from |timestamp_to_str('%d-%m-%Y') }}
@@ -70,7 +70,7 @@
                   {% for sub_facet in sub_attr[obj_attr] %}
                     {% for k,d,i,f,s in facets %}
                       {% if k == sub_facet %}
-                      <h2>{{ d }}</h2>
+                      <h3>{{ d }}</h3>
                       {% endif %}
                     {% endfor %}
                     <ul class="list-group">
@@ -88,8 +88,7 @@
               {% if sub_attr %}
                 {% set obj_attr = sub_attr.keys()[0] %}
               {% endif %}
-              <h2 id="facet-{{ key }}">{{ desc }}</h2>
-              <ul class="list-group">
+              <h3 id="facet-{{ key }}">{{ desc }}</h3>
               {% for bucket in result_facets[key].buckets %}
                   {% if loop.index == 11 %}
                   <button class="btn btn-primary btn-category btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
@@ -99,14 +98,10 @@
                   {% endif %}
                   {% if sub_attr %}
                     {% if bucket.object[obj_attr] not in sub_attr[obj_attr] %}
-                      <li class="list-group-item">
                       {% include "inner_facet_button.html" %}
-                      </li>
                     {% endif %}
                   {% else %}
-                    <li class="list-group-item">
                     {% include "inner_facet_button.html" %}
-                    </li>
                   {% endif %}
               {% endfor %}
               </ul>

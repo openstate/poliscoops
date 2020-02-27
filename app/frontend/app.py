@@ -86,6 +86,11 @@ FACETS = (
     ('interestingness', lazy_gettext('Interestingness'), False, False, False,)
 )
 
+FACETS_MAPPING = {
+    'language': lambda x: LANGUAGES.get(x.upper(), x),
+    'location': lambda x: COUNTRIES.get(x.upper(), x)
+}
+
 DEFAULT_LANGUAGE = 'en'
 BABEL_DEFAULT_LOCALE = 'en'
 
@@ -127,7 +132,39 @@ COUNTRIES = {
     'SK': lazy_gettext('Slovakia'),
     'SL': lazy_gettext('Slovenia'),
     'SE': lazy_gettext('Sweden'),
-    'EU': lazy_gettext('Eurpean Union')}
+    'EU': lazy_gettext('Eurpean Union'),
+    'EN': lazy_gettext('United Kingdom')}
+
+LANGUAGES = {
+    'AT': lazy_gettext('German'),
+    'BE': lazy_gettext('Dutch'),
+    'BG': lazy_gettext('Bulgarian'),
+    'HR': lazy_gettext('Croatian'),
+    'CY': lazy_gettext('Greek'),
+    'CZ': lazy_gettext('Czech'),
+    'DK': lazy_gettext('Danish'),
+    'EE': lazy_gettext('Estonian'),
+    'FI': lazy_gettext('Finnish'),
+    'FR': lazy_gettext('French'),
+    'DE': lazy_gettext('German'),
+    'GR': lazy_gettext('Greek'),
+    'HU': lazy_gettext('Hungarian'),
+    'IT': lazy_gettext('Italan'),
+    'IE': lazy_gettext('Irish'),
+    'LV': lazy_gettext('Latvian'),
+    'LT': lazy_gettext('Lithuanian'),
+    'LU': lazy_gettext('Luxembourgish'),
+    'MT': lazy_gettext('Maltese'),
+    'NL': lazy_gettext('Dutch'),
+    'PL': lazy_gettext('Polish'),
+    'PT': lazy_gettext('Portugese'),
+    'RO': lazy_gettext('Romanian'),
+    'ES': lazy_gettext('Spanish'),
+    'SK': lazy_gettext('Slovakian'),
+    'SL': lazy_gettext('Slovenian'),
+    'SE': lazy_gettext('Swedish'),
+    'EU': lazy_gettext('Eurpean Unionish'),
+    'EN': lazy_gettext('English')}
 
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
@@ -370,8 +407,13 @@ def do_format_bucket(bucket, facet):
         output = bucket['key_as_string'].split('T')[0]
     elif str(bucket['key']).startswith(AS2_NAMESPACE):
         output = do_as2_i18n_field('name', bucket['object'], DEFAULT_LANGUAGE)
+        if facet in FACETS_MAPPING.keys():
+            output = FACETS_MAPPING[facet](output)        
     else:
-        output = bucket['key']
+        if facet in FACETS_MAPPING.keys():
+            output = FACETS_MAPPING[facet](bucket['key'])
+        else:
+            output = bucket['key']
     return output
 
 

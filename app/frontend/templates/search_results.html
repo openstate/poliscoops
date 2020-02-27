@@ -73,15 +73,11 @@
                       <h3>{{ d }}</h3>
                       {% endif %}
                     {% endfor %}
-                    <ul class="list-group">
                     {% for bucket in result_facets[key].buckets %}
                       {% if bucket.object[obj_attr] == sub_facet %}
-                          <li class="list-group-item">
                           {% include "inner_facet_button.html" %}
-                          </li>
                       {% endif %}
                     {% endfor %}
-                    </ul>
                   {% endfor %}
                 {% endfor %}
               {% endif %}

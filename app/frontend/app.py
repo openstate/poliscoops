@@ -241,9 +241,13 @@ def do_get_hostname(s):
 
 @app.template_filter('pls_generate_article_template')
 def do_generate_article_template(s):
-    lead, rest_of_content = re.split(r'\.\s+', s, 1)
-    return u'<p class="lead">%s.</p><p class="text">%s</p>' % (
-        lead, rest_of_content,)
+    parts = re.split(r'\.\s+', s, 1)
+    if len(parts) > 1:
+        lead, rest_of_content = parts
+        return u'<p class="lead">%s.</p><p class="text">%s</p>' % (
+            lead, rest_of_content,)
+    else:
+        return u'<p class="text">%s</p>' % (s,)
 
 
 @app.template_filter('party_image')

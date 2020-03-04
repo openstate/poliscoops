@@ -801,7 +801,8 @@ def search():
 
     for facet, desc, is_displayed, is_filter, sub_attr in FACETS:
         search_params[facet] = request.args.get(facet, None)
-    search_params['location'] = locations
+    if search_params['location'] is None:
+        search_params['location'] = locations
 
     hl, rl = get_languages()
 

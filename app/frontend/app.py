@@ -458,7 +458,10 @@ def do_pfl_link(doc):
 @app.template_filter('as2_i18n_field')
 def do_as2_i18n_field(s, result, l):
     map_field = "%sMap" % (s,)
-    lng = l
+    if l is not None:
+        lng = l
+    else:  # use language of article
+        lng = result.get('@language', None)
     if map_field in result:
         if lng in result[map_field]:
             return result[map_field][lng]

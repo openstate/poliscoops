@@ -24,7 +24,7 @@
         {% if result_object.location %}
         <li class="list-inline-item">
           <a class="btn btn-sm btn-link" href="{{result_object.location |pfl_link }}">
-            {{ 'name' |as2_i18n_field(result_object.location, rl) }}
+            {{ 'name' |as2_i18n_field(result_object.location, rl) |pls_location }}
           </a>
         </li>
         {% endif %}

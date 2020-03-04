@@ -236,10 +236,14 @@ h3 {
   .btn {
     padding: 0;
   }
+
+  .nav-item {
+    background: transparent;
+  }
 }
 
 .nav-filtering a.nav-link {
-  color: white !important;
+  color: white;
 }
 
 .search-box {

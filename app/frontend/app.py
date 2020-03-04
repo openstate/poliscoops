@@ -408,7 +408,7 @@ def do_format_bucket(bucket, facet):
     elif str(bucket['key']).startswith(AS2_NAMESPACE):
         output = do_as2_i18n_field('name', bucket['object'], DEFAULT_LANGUAGE)
         if facet in FACETS_MAPPING.keys():
-            output = FACETS_MAPPING[facet](output)        
+            output = FACETS_MAPPING[facet](output)
     else:
         if facet in FACETS_MAPPING.keys():
             output = FACETS_MAPPING[facet](bucket['key'])
@@ -484,6 +484,15 @@ def redis_client():
 def do_pretty_json(s):
     return json.dumps(s, sort_keys=True,
                       indent=4, separators=(',', ': '))
+
+@app.template_filter('pls_location')
+def do_pls_location(s):
+    try:
+        result = COUNTRIES[s.upper()]
+    except LookupError as e:
+        result = s
+    return result
+
 
 class BackendAPI(object):
     #URL = 'http://nginx/v0'

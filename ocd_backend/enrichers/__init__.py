@@ -251,50 +251,54 @@ class AS2TranslationEnricher(BaseEnricher, AzureTranslationMixin, HttpRequestMix
 
 class BinoasEnricher(BaseEnricher, HttpRequestMixin):
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
-        doc['id'] = unicode(object_id)
-        if 'meta' in doc:
-            doc['meta']['pfl_url'] = unicode(
-                "https://api.poliflw.nl/v0/%s/%s" % (
-                    doc['meta']['source_id'], object_id,))
+        for item in combined_index_doc.get('item', {}).get('items', []):
+            if item.get('@type', 'Note') not in settings.AS2_TRANSLATION_TYPES:
+                # log.info(
+                #     'Document %s is not a translatable type (%s)' % (
+                #         item.get('@id', '???'), item['@type'],))
+                continue
 
-        if 'date' not in doc:
-            log.info(
-                'Document has no date information, not enriching for binoas')
-            return enrichments
+            if 'created' not in item:
+                log.info(
+                    'Document has no date information, not enriching for binoas')
+                return enrichments
+            log.info('created: %s' % (item['created'],))
+            amsterdam_tz = pytz.timezone('Europe/Amsterdam')
+            current_dt = datetime.datetime.now(tz=amsterdam_tz)
+            adjusted_dt = item['created']
+            try:
+                current_tz = item['created'].tzinfo
+            except AttributeError:
+                current_tz = None
+            if current_tz is not None:
+                delay = current_dt - item['created']
+            else:
+                # adjust for amsterdam time
+                adjusted_dt = iso8601.parse_date('%s+02:00' % (
+                    item['created'].isoformat()))
+                delay = current_dt - adjusted_dt
 
-        amsterdam_tz = pytz.timezone('Europe/Amsterdam')
-        current_dt = datetime.datetime.now(tz=amsterdam_tz)
-        try:
-            current_tz = doc['date'].tzinfo
-        except AttributeError:
-            current_tz = None
-        if current_tz is not None:
-            delay = current_dt - doc['date']
-        else:
-            # adjust for amsterdam time
-            adjusted_dt = iso8601.parse_date('%s+02:00' % (
-                doc['date'].isoformat()))
-            delay = current_dt - adjusted_dt
+            #log.info('Delay: %s (%s vs %s)' % (delay, current_dt, adjusted_dt))
+            if delay.total_seconds() > (6 * 3600.0):
+                log.info('Document delayed for %s so we have seen it before' % (
+                    str(delay),))
+                return enrichments
 
-        if delay.total_seconds() > (6 * 3600.0):
-            log.info('Document delayed for %s so we have seen it before' % (
-                str(delay),))
-            return enrichments
-
-        url = 'http://binoas.openstate.eu/posts/new'
-        r = {}
-        resp = None
-        log.info('sending to binoas: ' + str(doc))
-        try:
-            resp = self.http_session.post(
-                url, data=json_encoder.encode({
-                    'application': 'poliflw',
-                    'payload': doc}))
-            r = resp.json()
-        except Exception as e:
-            log.exception('Unexpected binoas enrichment error: %s'
-                          % (e.message,))
-            log.exception(resp.content)
-            log.exception(doc)
+            url = 'http://binoas.openstate.eu/posts/new'
+            #url = 'http://binoas_app-binoas_1:5000/posts/new'
+            r = {}
+            resp = None
+            log.info('sending to binoas: ' + str(item))
+            try:
+                resp = self.http_session.post(
+                    url, data=json_encoder.encode({
+                        'application': 'poliscoops',
+                        'payload': item}))
+                r = resp.json()
+            except Exception as e:
+                log.exception('Unexpected binoas enrichment error: %s'
+                              % (e.message,))
+                log.exception(resp.content)
+                log.exception(doc)
         log.info('binoas result: ' + str(r))
         return enrichments

@@ -170,8 +170,8 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 
 def get_languages():
-    hl = request.cookies.get('hl') or request.args.get('hl', DEFAULT_LANGUAGE)
-    rl = request.cookies.get('rl') or request.args.get('rl', None)
+    hl = request.args.get('hl', None) or request.cookies.get('hl', None) or DEFAULT_LANGUAGE
+    rl = request.args.get('rl', None) or request.cookies.get('rl', None) 
     return hl, rl
 
 

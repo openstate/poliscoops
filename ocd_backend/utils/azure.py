@@ -10,6 +10,10 @@
 import sys, os, requests, uuid, json, codecs, urllib
 
 from ocd_backend.settings import AZURE_TEXT_TRANSLATOR_KEY, AZURE_TEXT_MAX_LENGTH
+from ocd_backend.log import get_source_logger
+from ocd_backend.utils.as2 import AS2ConverterMixin
+
+log = get_source_logger('azure')
 
 class BaseAzureMixin(object):
     pass
@@ -40,7 +44,7 @@ class AzureTranslationMixin(BaseAzureMixin):
             body = [{'text': text[:AZURE_TEXT_MAX_LENGTH]}]
         request = requests.post(constructed_url, headers=headers, data=json.dumps(body))
         response = request.json()
-        print >>sys.stderr, "r: %s" % (response,)
+        log.info("r:", response)
         for b, d in zip(body, response):
             #print >>sys.stderr, "b: %s" % (b,)
             #print >>sys.stderr, "d: %s" % (d,)

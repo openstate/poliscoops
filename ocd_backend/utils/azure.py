@@ -40,7 +40,7 @@ class AzureTranslationMixin(BaseAzureMixin):
             body = [{'text': text[:AZURE_TEXT_MAX_LENGTH]}]
         request = requests.post(constructed_url, headers=headers, data=json.dumps(body))
         response = request.json()
-        #print >>sys.stderr, "r: %s" % (response,)
+        print >>sys.stderr, "r: %s" % (response,)
         for b, d in zip(body, response):
             #print >>sys.stderr, "b: %s" % (b,)
             #print >>sys.stderr, "d: %s" % (d,)

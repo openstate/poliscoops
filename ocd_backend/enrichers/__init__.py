@@ -284,6 +284,20 @@ class BinoasEnricher(BaseEnricher, HttpRequestMixin):
                     str(delay),))
                 return enrichments
 
+            translations = enrichments.get('translations', {}).get(item.get('@id', ''), [])
+            if len(translations) == 0:
+                translation_keys = {}
+            if len(translations) == 1:
+                translation_keys = {0: 'contentMap'}
+            if len(translations) == 2:
+                translation_keys = {0: 'nameMap', 1: 'contentMap'}
+            for t_idx, t_key in translation_keys.iteritems():
+                item[t_key] = {x['to']: x['text'] for x in translations[t_idx]['translations']}
+
+                # always take the language of the content, since content tends to
+                # be longer than the title
+                item['@language'] = translations[-1]['detectedLanguage']['language']
+
             url = 'http://binoas.openstate.eu/posts/new'
             #url = 'http://binoas_app-binoas_1:5000/posts/new'
             r = {}

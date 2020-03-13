@@ -91,6 +91,11 @@ FACETS_MAPPING = {
     'location': lambda x: COUNTRIES.get(x.upper(), x)
 }
 
+INTERVALS = OrderedDict([
+    ('', lazy_gettext('Direct')),
+    ('1d', lazy_gettext('Daily')),
+    ('1w', lazy_gettext('Weekly'))])
+
 DEFAULT_LANGUAGE = 'en'
 BABEL_DEFAULT_LOCALE = 'en'
 
@@ -171,7 +176,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 def get_languages():
     hl = request.args.get('hl', None) or request.cookies.get('hl', None) or DEFAULT_LANGUAGE
-    rl = request.args.get('rl', None) or request.cookies.get('rl', None) 
+    rl = request.args.get('rl', None) or request.cookies.get('rl', None)
     return hl, rl
 
 
@@ -217,6 +222,10 @@ def image_rewrite(url, doc_id):
     else:
         return url
 
+
+@app.context_processor
+def inject_intervals():
+    return dict(intervals=INTERVALS)
 
 @app.template_global()
 def modify_query(**new_values):
@@ -902,9 +911,15 @@ def put_topic(article_id):
 
 @app.route("/_email_subscribe", methods=['POST'])
 def email_subscribe():
+    request_data = {
+        'application': 'poliscoops',
+        'email': request.form.get('email', None),
+        'frequency': request.form.get('interval', '1h'),
+        'description': request.form.get('query', None)
+    }
     return jsonify(requests.post(
         'http://binoas.openstate.eu/subscriptions/new',
-        data=request.data).content)
+        data=request_data).content)
 
 
 @app.route("/unsubscribe", methods=['GET'])

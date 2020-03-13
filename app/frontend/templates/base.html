@@ -126,49 +126,59 @@
     <!-- modals -->
 
     <div class="modal fade" id="modal-subscribe" tabindex="-1" role="dialog" aria-labelledby="modal-subscribe-label" aria-hidden="true" data-user-query="{{ query }}">
-      <form>
+      <form action="{{ url_for('email_subscribe') }}" method="post">
+        <input type="hidden" name="query" value="{{ query }}" />
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
+            <h5 class="modal-title" id="form-email-subscribe-label">{%trans%}Collect &amp; Subscribe{%endtrans%}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="form-email-subscribe-label">{%trans%}Subscribe to search{%endtrans%}</h4>
           </div>
           <div class="modal-body">
-            <p>{%trans%}You can subscribe to the following query:{%endtrans%}
-            <ul id="form-email-subscribe-filters">
-              <li id="form-email-subscribe-filters-query">
-                <em>{%trans%}Search query:{%endtrans%}</em> &apos;<span>{{ query }}</span>&apos;
-              </li>
-              <li id="form-email-subscribe-filters-location">
-                <em>{%trans%}Location:{%endtrans%}</em> <span>-</span>
-              </li>
-              <li id="form-email-subscribe-filters-parties">
-                <em>{%trans%}Party:{%endtrans%}</em> <span>-</span>
-              </li>
-            </ul>
-            <p>{%trans%}Choose one of the following options and enter your email to subscribe to the search query above{%endtrans%}</p>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="frequency" id="frequency" value="" checked>
-                  {%trans%}Direct notification{%endtrans%}
-                </label>
+            <div class="info-box">
+              <div class="info-box-contents">
+                <ol class="info-box-bg-alt-2">
+                  <li><span>{%trans%}Select which of the content you will receive{%endtrans%}</span></li>
+                </ol>
               </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="frequency" id="frequency" value="1h">
-                  {%trans%}Hourly{%endtrans%}
-                </label>
+            </div>
+
+            <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="#" title="{{ query }}" role="button">
+              <i class="fa fa-circle" aria-hidden="true"></i> {{ query }}
+              <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
+            </a>
+
+            <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="{{ location }}" role="button">
+              <i class="fa fa-map" aria-hidden="true"></i> {{ location }}
+              <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
+            </a>
+
+            <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="{{ party }}" title="{{ party }}" role="button">
+              <i class="fa fa-circle" aria-hidden="true"></i> {{ party }}
+              <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
+            </a>
+
+            <div class="info-box-contents mb-4 language-selection">
+              <h3 class="">{%trans%}Interval{%endtrans%}:</h3>
+              <!--
+              <ul class="nav nav-pills">
+                {% for k, v in intervals.iteritems() %}
+                  <li class="nav-item mr-4">
+                    <a class="nav-link {% if k == hl %}active{% endif %}" href="{{ url_for('set_language', hl=k, rl=rl)}}">{{ v }}</a>
+                  </li>
+                {% endfor %}
+              </ul> -->
+              {% for k, v in intervals.iteritems() %}
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="interval-{{ k }}" name="interval" class="custom-control-input" value="{{ k }}">
+                <label class="custom-control-label" for="interval-{{ k }}">{{ v }}</label>
               </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="frequency" id="frequency" value="6h">
-                  {%trans%}6 hours{%endtrans%}
-                </label>
-              </div>
+              {% endfor %}
               <div class="form-group">
                 <label for="form-subscribe-email">{%trans%}Email address{%endtrans%}</label>
                 <input type="text" class="form-control" name="email" id="form-subscribe-email" placeholder="jan@example.org" required>
               </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="submit" id="email-subscribe-btn-ok" class="btn btn-primary">{%trans%}Subscribe{%endtrans%}</button>
@@ -176,7 +186,7 @@
           </div>
         </div>
       </div>
-      </form>
+    </form>
     </div>
     <!-- SCRIPTS -->
 

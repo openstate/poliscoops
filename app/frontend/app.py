@@ -225,7 +225,9 @@ def image_rewrite(url, doc_id):
 
 @app.context_processor
 def inject_intervals():
-    return dict(intervals=INTERVALS)
+    hl,rl = get_languages()
+    return dict(
+        intervals=INTERVALS, hl=hl, rl=rl)
 
 @app.template_global()
 def modify_query(**new_values):
@@ -702,32 +704,28 @@ api = BackendAPI()
 @app.route("/")
 def main():
     results = api.search(**{"size": 6, "page": 1})
-    hl,rl = get_languages()
     return render_template(
         'index.html',
         results=results,
         facets=FACETS,
-        visible_facets=[f for f in FACETS if f[2]], hl=hl, rl=rl)
+        visible_facets=[f for f in FACETS if f[2]])
 
 
 @app.route("/about")
 def about():
-    hl,rl = get_languages()
     return render_template(
-        'about.html', hl=hl, rl=rl, sub_template='about.%s.html' % (hl,))
+        'about.html', sub_template='about.%s.html' % (hl,))
 
 
 @app.route("/languages")
 def languages():
-    hl,rl = get_languages()
     return render_template(
-        'languages.html', hl=hl, rl=rl,
+        'languages.html',
         interface_languages=INTERFACE_LANGUAGES.items(),
         article_languages=ARTICLE_LANGUAGES.items())
 
 @app.route("/countries")
 def countries():
-    hl,rl = get_languages()
     selected_countries = get_locations()
     api_locations = api.locations()
     locations = {}
@@ -735,7 +733,7 @@ def countries():
         first_key = l.get('nameMap', {}).keys()[0]
         locations[l['nameMap'][first_key]] = l['@id'].split('/')[-1]
     return render_template(
-        'countries.html', hl=hl, rl=rl,
+        'countries.html',
         countries=COUNTRIES, selected_countries=selected_countries,
         locations=locations)
 
@@ -816,8 +814,6 @@ def search():
     if search_params['location'] is None:
         search_params['location'] = locations
 
-    hl, rl = get_languages()
-
     results = api.search(**search_params)
     try:
         max_pages = int(math.floor(results['as:totalItems'] / PAGE_SIZE))
@@ -830,7 +826,7 @@ def search():
         result_facets=order_facets(get_facets_from_results(results)),
         query=search_params['query'], page=search_params['page'],
         max_pages=max_pages, search_params=search_params,
-        dt_now=datetime.datetime.now(), hl=hl, rl=rl, locations=locations)
+        dt_now=datetime.datetime.now(), locations=locations)
 
 
 @app.route("/<as2_type>/<id>")
@@ -839,11 +835,9 @@ def show(as2_type, id):
     result = api.get_by_id(ns_link)
     results_as_json = json.dumps(result, indent=4)
 
-    hl, rl = get_languages()
-
     return render_template(
         'show.html', result=result, results=result,
-        results_as_json=results_as_json, ns_link=ns_link, hl=hl, rl=rl)
+        results_as_json=results_as_json, ns_link=ns_link)
 
 
 @app.route("/r/<hash>")
@@ -911,15 +905,20 @@ def put_topic(article_id):
 
 @app.route("/_email_subscribe", methods=['POST'])
 def email_subscribe():
+    # TODO: add other query components here (location, party)
+    query = {
+        'query': request.form.get('query', None)
+    }
     request_data = {
         'application': 'poliscoops',
         'email': request.form.get('email', None),
         'frequency': request.form.get('interval', '1h'),
         'description': request.form.get('query', None)
     }
-    return jsonify(requests.post(
-        'http://binoas.openstate.eu/subscriptions/new',
-        data=request_data).content)
+    return jsonify(request_data)
+    # return jsonify(requests.post(
+    #     'http://binoas.openstate.eu/subscriptions/new',
+    #     data=request_data).content)
 
 
 @app.route("/unsubscribe", methods=['GET'])

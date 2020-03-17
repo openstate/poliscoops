@@ -905,15 +905,40 @@ def put_topic(article_id):
 
 @app.route("/_email_subscribe", methods=['POST'])
 def email_subscribe():
-    # TODO: add other query components here (location, party)
-    query = {
-        'query': request.form.get('query', None)
+    # See https://github.com/openstate/poliflw/blob/master/app/frontend/static/scripts/app.js#L60
+    possible_filters = ['location', 'parties']  # country filter for location?
+    active_filters = []
+    for f in possible_filters:
+        if request.form.get(f, None) is None:
+            continue
+        active_filters += [
+            {"term": {"data.key": f}},
+            {"term": {"data.value": request.form[f].lower()}}]
+
+    sqs = {
+      'simple_query_string' : {
+        'query': request.form.get('query', None),
+        'fields': ['title', 'description', 'data.value'],
+        'default_operator': "and"
+      }
     }
+    if len(active_filters) > 0:
+        query = {
+            'query': {
+                'bool': {
+                    'must': sqs,
+                    'filter': active_filters
+                }
+            }
+        }
+    else:
+        query = {'query': sqs}
     request_data = {
         'application': 'poliscoops',
         'email': request.form.get('email', None),
         'frequency': request.form.get('interval', '1h'),
-        'description': request.form.get('query', None)
+        'description': request.form.get('query', None),
+        'query': query
     }
     return jsonify(request_data)
     # return jsonify(requests.post(

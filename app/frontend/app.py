@@ -239,6 +239,11 @@ def modify_query(**new_values):
     return '{}?{}'.format(request.path, url_encode(args))
 
 
+@app.template_filter('pls_location')
+def do_pls_location(s):
+    return FACETS_MAPPING['location'](s)
+
+
 @app.template_filter('pls_hostname')
 def do_get_hostname(s):
     h = ''
@@ -906,33 +911,44 @@ def put_topic(article_id):
 @app.route("/_email_subscribe", methods=['POST'])
 def email_subscribe():
     # See https://github.com/openstate/poliflw/blob/master/app/frontend/static/scripts/app.js#L60
-    possible_filters = ['location', 'parties']  # country filter for location?
+    # actor is not registered in bones, hence use "tag"
+    possible_filters = {
+        'location': lambda x: {'terms': {'data.value': x.split(',')}},
+        'actor': lambda x: {'term': {'data.value': x if x.startswith(AS2_NAMESPACE) else x.lower()}}}  # country filter for location?
     active_filters = []
     for f in possible_filters:
         if request.form.get(f, None) is None:
             continue
         active_filters += [
             {"term": {"data.key": f}},
-            {"term": {"data.value": request.form[f].lower()}}]
+            possible_filters[f](request.form[f])]
+    hl,rl = get_languages()
+    #search_fields = ['title', 'description', 'data.value']
+    search_fields = ['nameMap.%s' % (rl,), 'contentMap.%s' % (rl,)]
 
-    sqs = {
-      'simple_query_string' : {
-        'query': request.form.get('query', None),
-        'fields': ['title', 'description', 'data.value'],
-        'default_operator': "and"
+    query = {
+      "query": {
+        "nested": {
+          "path": "data",
+          "query": {
+            "bool": {
+              "must": [
+                {"terms":{"data.key":search_fields}},
+                {"simple_query_string":{
+                  "fields": ["data.value"],
+                  "query": request.form.get('query', None),
+                  "default_operator": "and"
+                }}
+              ]
+            }
+          }
+        }
       }
     }
+
     if len(active_filters) > 0:
-        query = {
-            'query': {
-                'bool': {
-                    'must': sqs,
-                    'filter': active_filters
-                }
-            }
-        }
-    else:
-        query = {'query': sqs}
+        query['query']['nested']['query']['bool']['filter'] = active_filters
+
     request_data = {
         'application': 'poliscoops',
         'email': request.form.get('email', None),

@@ -128,6 +128,8 @@
     <div class="modal fade" id="modal-subscribe" tabindex="-1" role="dialog" aria-labelledby="modal-subscribe-label" aria-hidden="true" data-user-query="{{ query }}">
       <form action="{{ url_for('email_subscribe') }}" method="post">
         <input type="hidden" name="query" value="{{ query }}" />
+        <input type="hidden" name="location" value="{{ search_params.location }}" /> <!-- TODO: countries! -->
+        <input type="hidden" name="actor" value="{{ search_params.actor }}" />
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -148,13 +150,14 @@
               <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
             </a>
 
-            <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="{{ location }}" role="button">
-              <i class="fa fa-map" aria-hidden="true"></i> {{ location }}
+            <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="{{ search_params.location }}" role="button">
+              <!-- TODO: locaton is either a list or string and contrains full links to places. resolve. -->
+              <i class="fa fa-map" aria-hidden="true"></i> {{ search_params.location }}
               <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
             </a>
 
-            <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="{{ party }}" title="{{ party }}" role="button">
-              <i class="fa fa-circle" aria-hidden="true"></i> {{ party }}
+            <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="{{ actor }}" title="{{ actor }}" role="button">
+              <i class="fa fa-circle" aria-hidden="true"></i> {{ search_params.actor }}
               <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
             </a>
 

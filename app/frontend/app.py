@@ -980,10 +980,10 @@ def email_subscribe():
         'description': request.form.get('query', None),
         'query': query
     }
-    #return jsonify(request_data['query'])
-    return jsonify(requests.post(
-        'http://binoas.openstate.eu/subscriptions/new',
-        data=request_data).content)
+    return jsonify(request_data)
+    # return jsonify(requests.post(
+    #     'http://binoas.openstate.eu/subscriptions/new',
+    #     data=request_data).content)
 
 
 @app.route("/unsubscribe", methods=['GET'])

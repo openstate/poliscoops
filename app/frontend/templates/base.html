@@ -131,7 +131,7 @@
         <input type="hidden" name="query" value="{{ query }}" />
         {% endif %}
         {% if search_params.location %}
-        <input type="hidden" name="location" value="{{ search_params.location }}" /> <!-- TODO: countries! -->
+        <input type="hidden" name="location" value="{{ search_params.location |join(',') }}" /> <!-- TODO: countries! -->
         {% endif %}
         {% if search_params.actor %}
         <input type="hidden" name="actor" value="{{ search_params.actor }}" />

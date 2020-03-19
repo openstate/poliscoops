@@ -651,7 +651,7 @@ class BackendAPI(object):
                 "type": {"terms": ["Place"]}
             },
             "expansions": 3,
-            "size": 100  # FIXME: increase size in the future
+            "size": 400  # FIXME: increase size in the future
         }
         es_query.update(args)
 

@@ -227,7 +227,7 @@ def image_rewrite(url, doc_id):
 def inject_intervals():
     hl,rl = get_languages()
     return dict(
-        intervals=INTERVALS, hl=hl, rl=rl)
+        intervals=INTERVALS, hl=hl, rl=rl, search_params={})
 
 @app.template_global()
 def modify_query(**new_values):
@@ -913,41 +913,65 @@ def email_subscribe():
     # See https://github.com/openstate/poliflw/blob/master/app/frontend/static/scripts/app.js#L60
     # actor is not registered in bones, hence use "tag"
     possible_filters = {
-        'location': lambda x: {'terms': {'data.value': x.split(',')}},
-        'actor': lambda x: {'term': {'data.value': x if x.startswith(AS2_NAMESPACE) else x.lower()}}}  # country filter for location?
+        'location': lambda x: {'terms': {'data.value.raw': x.split(',')}},
+        'actor': lambda x: {'term': {'data.value.raw': x if x.startswith(AS2_NAMESPACE) else x.lower()}}}  # country filter for location?
+    param2filter = {'location': 'location', 'actor': 'tag'}
     active_filters = []
     for f in possible_filters:
         if request.form.get(f, None) is None:
             continue
-        active_filters += [
-            {"term": {"data.key": f}},
-            possible_filters[f](request.form[f])]
+        # filters as nested queries do not work for some reason ...
+        active_filters.append({
+            "nested": {
+                "path": "data",
+                "query": {
+                    "bool": {
+                        "must": [
+                            {"term": {"data.key": param2filter[f]}},
+                            possible_filters[f](request.form[f])
+                        ]
+                    }
+                }
+            }
+        })
+
+
+    # todo rl may be restricted to the original language...
+    # we should be able to put a notification on it ...
     hl,rl = get_languages()
     #search_fields = ['title', 'description', 'data.value']
     search_fields = ['nameMap.%s' % (rl,), 'contentMap.%s' % (rl,)]
 
-    query = {
-      "query": {
+    search_query = {
         "nested": {
-          "path": "data",
-          "query": {
-            "bool": {
-              "must": [
-                {"terms":{"data.key":search_fields}},
-                {"simple_query_string":{
-                  "fields": ["data.value"],
-                  "query": request.form.get('query', None),
-                  "default_operator": "and"
-                }}
-              ]
+            "path": "data",
+            "query": {
+                "bool": {
+                    "must": [
+                        {"terms":{"data.key":search_fields}},
+                        {"simple_query_string":{
+                            "fields": ["data.value"],
+                            "query": request.form.get('query', None),
+                            "default_operator": "and"
+                        }}
+                    ]
+                }
             }
-          }
         }
-      }
     }
 
+    query = {
+        "query": {
+            "bool": {
+                "must": [search_query]
+            }
+        }
+    }
+
+
+
     if len(active_filters) > 0:
-        query['query']['nested']['query']['bool']['filter'] = active_filters
+        query['query']['bool']['must'] += active_filters
 
     request_data = {
         'application': 'poliscoops',
@@ -956,10 +980,10 @@ def email_subscribe():
         'description': request.form.get('query', None),
         'query': query
     }
-    return jsonify(request_data)
-    # return jsonify(requests.post(
-    #     'http://binoas.openstate.eu/subscriptions/new',
-    #     data=request_data).content)
+    #return jsonify(request_data['query'])
+    return jsonify(requests.post(
+        'http://binoas.openstate.eu/subscriptions/new',
+        data=request_data).content)
 
 
 @app.route("/unsubscribe", methods=['GET'])

@@ -127,9 +127,15 @@
 
     <div class="modal fade" id="modal-subscribe" tabindex="-1" role="dialog" aria-labelledby="modal-subscribe-label" aria-hidden="true" data-user-query="{{ query }}">
       <form action="{{ url_for('email_subscribe') }}" method="post">
+        {%if query %}
         <input type="hidden" name="query" value="{{ query }}" />
+        {% endif %}
+        {% if search_params.location %}
         <input type="hidden" name="location" value="{{ search_params.location }}" /> <!-- TODO: countries! -->
+        {% endif %}
+        {% if search_params.actor %}
         <input type="hidden" name="actor" value="{{ search_params.actor }}" />
+        {% endif %}
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">

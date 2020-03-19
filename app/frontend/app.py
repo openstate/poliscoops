@@ -913,7 +913,7 @@ def email_subscribe():
     # See https://github.com/openstate/poliflw/blob/master/app/frontend/static/scripts/app.js#L60
     # actor is not registered in bones, hence use "tag"
     possible_filters = {
-        'location': lambda x: {'terms': {'data.value.raw': x.split(',')}},
+        'location': lambda x: {'terms': {'data.value.raw': [y for y in x.split(',') if not y.endswith('Place/')]}},
         'actor': lambda x: {'term': {'data.value.raw': x if x.startswith(AS2_NAMESPACE) else x.lower()}}}  # country filter for location?
     param2filter = {'location': 'location', 'actor': 'tag'}
     active_filters = []

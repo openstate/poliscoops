@@ -661,6 +661,22 @@ class BackendAPI(object):
             data=json.dumps(es_query))
         return result.json()
 
+    def countries(self, **args):
+        es_query = {
+            "filters": {
+                "type": {"terms": ["Place"]}
+            },
+            "expansions": 3,
+            "size": 400  # FIXME: increase size in the future
+        }
+        es_query.update(args)
+
+        result = requests.post(
+            '%s/search' % (self.URL,),
+            headers=self.HEADERS,
+            data=json.dumps(es_query))
+        return result.json()
+
     def find_by_id(self, id):
         return self.find_by_ids([id])
 
@@ -980,10 +996,10 @@ def email_subscribe():
         'description': request.form.get('query', None),
         'query': query
     }
-    return jsonify(request_data)
-    # return jsonify(requests.post(
-    #     'http://binoas.openstate.eu/subscriptions/new',
-    #     data=request_data).content)
+    # return jsonify(json.dumps(request_data))
+    return jsonify(requests.post(
+        'http://binoas.openstate.eu/subscriptions/new',
+        data=json.dumps(request_data)).content)
 
 
 @app.route("/unsubscribe", methods=['GET'])

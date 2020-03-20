@@ -664,7 +664,8 @@ class BackendAPI(object):
     def countries(self, **args):
         es_query = {
             "filters": {
-                "type": {"terms": ["Place"]}
+                "type": {"terms": ["Place"]},
+                "name": {"terms": COUNTRIES.keys()}
             },
             "expansions": 3,
             "size": 400  # FIXME: increase size in the future
@@ -757,6 +758,12 @@ def countries():
         'countries.html',
         countries=COUNTRIES, selected_countries=selected_countries,
         locations=locations)
+
+
+@app.route("/countries.json")
+def countries_as_json():
+    # TODO: we can do internationalization of the country names here ...
+    return jsonify(api.countries()['as:items'])
 
 @app.route("/set_language")
 def set_language():

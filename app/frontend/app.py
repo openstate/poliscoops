@@ -762,8 +762,14 @@ def countries():
 
 @app.route("/countries.json")
 def countries_as_json():
+    hl, rl = get_languages()
     # TODO: we can do internationalization of the country names here ...
-    return jsonify(api.countries()['as:items'])
+    countries = api.countries()['as:items']
+    result = [c for c in countries]
+    for c in result:
+        c['name'] = COUNTRIES[c['nameMap']['nl']];
+        c['denonym'] = LANGUAGES[c['nameMap']['nl']];
+    return jsonify(countries)
 
 @app.route("/set_language")
 def set_language():

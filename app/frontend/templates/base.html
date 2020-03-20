@@ -156,9 +156,18 @@
               <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
             </a>
 
-            <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="{{ search_params.location }}" role="button">
+            <a id="modal-subscribe-location-info" class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="#" role="button">
               <!-- TODO: locaton is either a list or string and contrains full links to places. resolve. -->
-              <i class="fa fa-map" aria-hidden="true"></i> {{ search_params.location }}
+              <i class="fa fa-map" aria-hidden="true"></i>
+              <ul class="list-inline">
+                {% for s in search_params.location %}
+                  {% if s.endswith('Place/') %}
+                  <!-- skipped -->
+                  {% else %}
+                  <li class="list-inline-item" data-location="{{ s }}">{{ s }}</li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
               <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
             </a>
 

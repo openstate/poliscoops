@@ -19,8 +19,8 @@ window.Poliscoops = Poliscoops;
 
 Poliscoops.map_countries = function() {
   Poliscoops.countries.raw.forEach(function (c) {
-    Poliscoops.countries.id2name[c['@id']] = c['nameMap']['nl'];
-    Poliscoops.countries.name2id[c['nameMap']['nl']] = c['@id'];
+    Poliscoops.countries.id2name[c['@id']] = c['name'];
+    Poliscoops.countries.name2id[c['name']] = c['@id'];
   });
 };
 
@@ -37,6 +37,7 @@ Poliscoops.init = function() {
 
   Poliscoops.get_countries();
 
+  // country checkbox selection thingie
   $('input[type="checkbox"]').on('change', function() {
     var state = $('#' + $(this).attr('id')).is(':checked');
     if (state) {
@@ -46,7 +47,16 @@ Poliscoops.init = function() {
     }
   });
 
+  // countries for the collect modal
+  $('#modal-subscribe').on('show.bs.modal', function (e) {
+    // do something...
+    console.log('show subscribe modal!');
 
+    $('#modal-subscribe-location-info ul li').each(function (idx, item) {
+      console.log('setting country name for ' + item);
+      $(item).text(Poliscoops.countries.id2name[$(item).attr('data-location')]);
+    });
+  });
 };
 
 $(function() {

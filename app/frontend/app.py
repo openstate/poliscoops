@@ -989,10 +989,14 @@ def email_subscribe():
     if len(active_filters) > 0:
         query['query']['bool']['must'] += active_filters
 
+    frequency = request.form.get('interval', '1h')
+    if frequency.strip() == '':
+        frequency = None
+
     request_data = {
         'application': 'poliscoops',
         'email': request.form.get('email', None),
-        'frequency': request.form.get('interval', '1h'),
+        'frequency': frequency,
         'description': request.form.get('query', None),
         'query': query
     }

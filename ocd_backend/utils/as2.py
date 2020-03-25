@@ -99,25 +99,33 @@ class AS2ConverterMixin(object):
                 d_id = d['@id'].split('/')[-1]
             except LookupError:
                 d_id = None
-            #print >>sys.stderr, combined_index_doc['translations']
-            translations = combined_index_doc.get('translations', {}).get(d.get('@id', ''), [])
-            if len(translations) == 0:
-                translation_keys = {}
-            if len(translations) == 1:
-                translation_keys = {0: 'contentMap'}
-            if len(translations) == 2:
-                translation_keys = {0: 'nameMap', 1: 'contentMap'}
-            for t_idx, t_key in translation_keys.iteritems():
-                d[t_key] = {x['to']: x['text'] for x in translations[t_idx]['translations']}
+            if d.get('@type', 'Note') in settings.AS2_TRANSLATION_TYPES:
+                #print >>sys.stderr, combined_index_doc['translations']
+                translations = combined_index_doc.get('translations', {}).get(d.get('@id', ''), [])
+                if len(translations) == 0:
+                    translation_keys = {}
+                if len(translations) == 1:
+                    translation_keys = {0: 'contentMap'}
+                if len(translations) == 2:
+                    translation_keys = {0: 'nameMap', 1: 'contentMap'}
+                for t_idx, t_key in translation_keys.iteritems():
+                    d[t_key] = {x['to']: x['text'] for x in translations[t_idx]['translations']}
 
                 # always take the language of the content, since content tends to
                 # be longer than the title
                 d['@language'] = translations[-1]['detectedLanguage']['language']
 
-            # only add interestingness for types that are translatable
-            if d.get('@type', 'Note') in settings.AS2_TRANSLATION_TYPES:
+                # only add interestingness for types that are translatable
                 interestingness = combined_index_doc.get('interestingness', {}).get(d.get('@id', ''), 'laag')
                 interestingness_obj = self.get_interestingness(interestingness)
+                items_to_index.append({
+                    '_op_type': 'update',
+                    '_index': settings.COMBINED_INDEX,
+                    '_type': interestingness_obj['@type'],
+                    '_id': interestingness_obj['@id'],
+                    'doc': interestingness_obj,
+                    "doc_as_upsert" : True
+                })
                 d['tag'].append(interestingness_obj['@id'])
 
             item_doc = {

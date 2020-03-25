@@ -4,6 +4,10 @@ import bleach
 from bleach.sanitizer import Cleaner
 from html5lib.filters.base import Filter
 
+from ocd_backend.log import get_source_logger
+
+log = get_source_logger('interestingness')
+
 class_labels = ['hoog', 'laag']
 
 
@@ -34,7 +38,7 @@ def featurize(poliflw_obj):
         u'source': [u'Partij nieuws', u'Facebook']
     }
 
-    desc = poliflw_obj.get(u'description', u'')
+    desc = poliflw_obj.get(u'contentMap', {}).get(u'nl', u'')
 
     if '<div class="facebook-external-link">' in desc:
         facebook_external = 1
@@ -43,7 +47,10 @@ def featurize(poliflw_obj):
     result.append(facebook_external)
 
     for f in data2feature.keys():
-        result.append(data2feature[f].index(poliflw_obj[f]))
+        if f in poliflw_obj:
+            result.append(data2feature[f].index(poliflw_obj[f]))
+        else:
+            result.append(0)  # partij nieuws
 
     clean_desc = html_cleanup(desc)
     result.append(len(clean_desc))

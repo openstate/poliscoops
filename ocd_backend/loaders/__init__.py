@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 from pprint import pprint
+import traceback
 
 import requests
 from elasticsearch import ConflictError
@@ -14,6 +15,7 @@ from ocd_backend.log import get_source_logger
 from ocd_backend.mixins import (OCDBackendTaskSuccessMixin,
                                 OCDBackendTaskFailureMixin)
 from ocd_backend.utils.as2 import AS2ConverterMixin
+from ocd_backend.utils.voc import VocabularyMixin
 
 log = get_source_logger('loader')
 
@@ -122,7 +124,7 @@ class ElasticsearchLoader(BaseLoader):
                     log.debug('Resolver document %s already exists' % url_hash)
 
 
-class AS2Loader(ElasticsearchLoader, AS2ConverterMixin):
+class AS2Loader(ElasticsearchLoader, VocabularyMixin, AS2ConverterMixin):
     """
     Specific loader for Activitystream 2.0 type objects.
     """
@@ -134,7 +136,9 @@ class AS2Loader(ElasticsearchLoader, AS2ConverterMixin):
         try:
             self.as2_index(combined_index_doc, combined_index_doc['item']['items'])
         except Exception as e:
-            log.error('Unexpected error: %s' % (e,)) 
+            track = traceback.format_exc()
+            log.error('Unexpected error: %s' % (e,))
+            log.error(track)
         self._create_resolvable_media_urls(doc)
 
 

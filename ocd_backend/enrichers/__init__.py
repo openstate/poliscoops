@@ -159,19 +159,22 @@ class PoliTagsEnricher(BaseEnricher, HttpRequestMixin):
 
 
 # class InterestingnessEnricher(BaseEnricher, HttpRequestMixin):
-class InterestingnessEnricher(PoliTagsEnricher):
+class InterestingnessEnricher(BaseEnricher, HttpRequestMixin):
     def _perform_interestingness(self, object_id, combined_index_doc):
         res = clf.predict([featurize(combined_index_doc)])
-        return {
-            'interestingness': class_labels[res[0]]
-        }
+        return class_labels[res[0]]
 
     def enrich_item(self, enrichments, object_id, combined_index_doc, doc):
-        enrichments = super(InterestingnessEnricher, self).enrich_item(
-            enrichments, object_id, combined_index_doc, doc)
+        enrichments['interestingness'] = {}
+        for item in combined_index_doc.get('item', {}).get('items', []):
+            if item.get('@type', 'Note') not in settings.AS2_TRANSLATION_TYPES:
+                # log.info(
+                #     'Document %s is not a translatable type (%s)' % (
+                #         item.get('@id', '???'), item['@type'],))
+                continue
 
-        enrichments.update(self._perform_interestingness(
-            object_id, combined_index_doc))
+            result = self._perform_interestingness(item['@id'], item)
+            enrichments['interestingness'][item['@id']] = result
 
         return enrichments
 

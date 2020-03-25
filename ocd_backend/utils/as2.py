@@ -114,6 +114,12 @@ class AS2ConverterMixin(object):
                 # be longer than the title
                 d['@language'] = translations[-1]['detectedLanguage']['language']
 
+            # only add interestingness for types that are translatable
+            if d.get('@type', 'Note') in settings.AS2_TRANSLATION_TYPES:
+                interestingness = combined_index_doc.get('interestingness', {}).get(d.get('@id', ''), 'laag')
+                interestingness_obj = self.get_interestingness(interestingness)
+                d['tag'].append(interestingness_obj['@id'])
+
             item_doc = {
                 'hidden': combined_index_doc.get('hidden', False),
                 'item': d,

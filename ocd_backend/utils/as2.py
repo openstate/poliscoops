@@ -102,6 +102,7 @@ class AS2ConverterMixin(object):
             if d.get('@type', 'Note') in settings.AS2_TRANSLATION_TYPES:
                 #print >>sys.stderr, combined_index_doc['translations']
                 translations = combined_index_doc.get('translations', {}).get(d.get('@id', ''), [])
+                log.info('translations:', translations)
                 if len(translations) == 0:
                     translation_keys = {}
                 if len(translations) == 1:

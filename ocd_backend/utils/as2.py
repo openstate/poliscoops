@@ -122,9 +122,10 @@ class AS2ConverterMixin(object):
                     '_op_type': 'update',
                     '_index': settings.COMBINED_INDEX,
                     '_type': interestingness_obj['@type'],
-                    '_id': interestingness_obj['@id'],
+                    '_id': interestingness_obj['@id'].split('/')[-1],
                     'doc': interestingness_obj,
-                    "doc_as_upsert" : True
+                    "doc_as_upsert" : True,
+                    "version_type": "force"
                 })
                 d['tag'].append(interestingness_obj['@id'])
 
@@ -147,13 +148,15 @@ class AS2ConverterMixin(object):
             }
 
             if d_id is not None:
+                # maybe add version_type "force" or check if items already exist?
                 items_to_index.append({
                     '_op_type': 'update',
                     '_index': settings.COMBINED_INDEX,
                     '_type': d['@type'],
                     '_id': d_id,
                     'doc': item_doc,
-                    "doc_as_upsert" : True
+                    "doc_as_upsert" : True,
+                    "version_type": "force"
                 })
             else:
                 item_doc.update({

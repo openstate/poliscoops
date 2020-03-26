@@ -102,9 +102,13 @@ class AS2ConverterMixin(object):
                 d_id = d['@id'].split('/')[-1]
             except LookupError:
                 d_id = None
-            if d.get('@type', 'Note') in settings.AS2_TRANSLATION_TYPES:
+            translations = combined_index_doc.get('translations', {}).get(d.get('@id', ''), [])
+            if (
+                (d.get('@type', 'Note') in settings.AS2_TRANSLATION_TYPES) and
+                ('error' not in translations)
+            ):
                 #print >>sys.stderr, combined_index_doc['translations']
-                translations = combined_index_doc.get('translations', {}).get(d.get('@id', ''), [])
+                if 'error' not in translations:
                 if len(translations) == 0:
                     translation_keys = {}
                 if len(translations) == 1:

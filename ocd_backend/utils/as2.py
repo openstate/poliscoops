@@ -3,6 +3,8 @@ import datetime
 import sys
 from urlparse import urljoin
 
+from elasticsearch.helpers import BulkIndexError
+
 from ocd_backend import settings
 from ocd_backend.es import elasticsearch
 from ocd_backend.log import get_source_logger
@@ -93,7 +95,8 @@ class AS2ConverterMixin(object):
         return combined_index_data
 
     def as2_index(self, combined_index_doc, items):
-        items_to_index = []
+        items_to_index = {}
+        other_to_index = []
         for d in items:
             try:
                 d_id = d['@id'].split('/')[-1]
@@ -102,7 +105,6 @@ class AS2ConverterMixin(object):
             if d.get('@type', 'Note') in settings.AS2_TRANSLATION_TYPES:
                 #print >>sys.stderr, combined_index_doc['translations']
                 translations = combined_index_doc.get('translations', {}).get(d.get('@id', ''), [])
-                log.info('translations:', translations)
                 if len(translations) == 0:
                     translation_keys = {}
                 if len(translations) == 1:
@@ -114,21 +116,39 @@ class AS2ConverterMixin(object):
 
                 # always take the language of the content, since content tends to
                 # be longer than the title
-                d['@language'] = translations[-1]['detectedLanguage']['language']
+                if len(translations) > 0:
+                    d['@language'] = translations[-1]['detectedLanguage']['language']
+                else:
+                    d['@language'] = 'en'
 
                 # only add interestingness for types that are translatable
                 interestingness = combined_index_doc.get('interestingness', {}).get(d.get('@id', ''), 'laag')
                 interestingness_obj = self.get_interestingness(interestingness)
-                items_to_index.append({
-                    '_op_type': 'update',
-                    '_index': settings.COMBINED_INDEX,
-                    '_type': interestingness_obj['@type'],
-                    '_id': interestingness_obj['@id'].split('/')[-1],
-                    'doc': interestingness_obj,
-                    "doc_as_upsert" : True,
-                    "version_type": "force"
-                })
-                d['tag'].append(interestingness_obj['@id'])
+                if interestingness_obj['@id'] not in items_to_index:
+                    interestingness_doc = {
+                        '_op_type': 'create',
+                        '_index': settings.COMBINED_INDEX,
+                        '_type': interestingness_obj['@type'],
+                        '_id': interestingness_obj['@id'].split('/')[-1],
+                        'hidden': combined_index_doc.get('hidden', False),
+                        'item': interestingness_obj,
+                        #'enrichments': {'translations': translations},
+                        'meta': {
+                            'processing_started': datetime.datetime.now(),
+                            'processing_finished': datetime.datetime.now(),
+                            'source_id': 'whatever',
+                            'collection': 'whatever',
+                            'rights': u'unknown',
+                            'original_object_id': d_id,
+                            'original_object_urls': {
+                                'html': urljoin(
+                                    urljoin(settings.AS2_NAMESPACE, d['@type']), d_id)
+                            },
+                        }
+                    }
+                    items_to_index[interestingness_obj['@id']] = interestingness_doc
+                if d['tag'].index(interestingness_obj['@id']) < 0:
+                    d['tag'].append(interestingness_obj['@id'])
 
             item_doc = {
                 'hidden': combined_index_doc.get('hidden', False),
@@ -148,21 +168,43 @@ class AS2ConverterMixin(object):
                 }
             }
 
+            # maybe add version_type "force" or check if items already exist?
+            # need to rethink this somehow.. celery concurrency clashes
+            # with bulk updates ...
+            # NOTE: actually it does not matter if a `create` (op_type)
+            # fails (need to check manually tmrw):
+            # 1. create object 1
+            # 2. update object 1 with a partial doc
+            # 3 create object 1 (again)
+            # also: need to weed out objects that appear twice in the array below
             if d_id is not None:
-                # maybe add version_type "force" or check if items already exist?
-                items_to_index.append({
-                    '_op_type': 'update',
-                    '_index': settings.COMBINED_INDEX,
-                    '_type': d['@type'],
-                    '_id': d_id,
-                    'doc': item_doc,
-                    "doc_as_upsert" : True,
-                    "version_type": "force"
-                })
-            else:
                 item_doc.update({
+                    '_op_type': 'create',
                     '_index': settings.COMBINED_INDEX,
                     '_type': d['@type'],
                     '_id': d_id,})
-                items_to_index.append(item_doc)
-        bulk(elasticsearch, items_to_index)
+                if item_doc['item']['@id'] not in items_to_index:
+                    items_to_index[item_doc['item']['@id']] = item_doc
+            else:
+                item_doc.update({
+                    '_op_type': 'index',
+                    '_index': settings.COMBINED_INDEX,
+                    '_type': d['@type']})
+                other_to_index.append(item_doc)
+        log.info(items_to_index.values() + other_to_index)
+
+        try:
+            bulk(elasticsearch, items_to_index.values() + other_to_index)
+        except BulkIndexError as e:
+            counts = {}
+            type_counts = {}
+            for err in e.errors:
+                try:
+                    counts[err['create']['status']] += 1
+                except LookupError:
+                    counts[err['create']['status']] = 1
+                try:
+                    type_counts[err['create']['_type']] += 1
+                except LookupError:
+                    type_counts[err['create']['_type']] = 1
+            log.error('Bulk indexing resulted in: %s - %s', counts, type_counts)

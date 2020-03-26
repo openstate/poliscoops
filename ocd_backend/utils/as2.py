@@ -120,6 +120,7 @@ class AS2ConverterMixin(object):
                 # always take the language of the content, since content tends to
                 # be longer than the title
                 if len(translations) > 0:
+                    log.info(translations)
                     d['@language'] = translations[-1]['detectedLanguage']['language']
                 else:
                     d['@language'] = 'en'

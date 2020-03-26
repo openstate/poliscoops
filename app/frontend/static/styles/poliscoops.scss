@@ -206,7 +206,7 @@ h3 {
 
 .info-box ol {
   padding: 0.3em;
-  list-style: decimal inside;
+  list-style: none;
   font-size: 26px;
   line-height: 32px;
   font-family: $font-nav;
@@ -215,15 +215,23 @@ h3 {
 
 .info-box ol > li {
   background: white;
-  padding: 1em;
+  padding: 0.82em;
   width: auto;
-  margin: 1em;
+  margin: 0.7em;
   border-radius: 20px;
 }
 
-.info-box ol > li span {
+.info-box ol > li div.exp {
     font-size: 13px;
     line-height: 18px;
+    width: 80%;
+    float: right;
+}
+
+.info-box ol > li div.counter {
+    font-size: 26px;
+    line-height: 32px;
+    float: left;
 }
 
 .nav-filtering {

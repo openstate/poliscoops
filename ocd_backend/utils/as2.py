@@ -108,7 +108,6 @@ class AS2ConverterMixin(object):
                 ('error' not in translations)
             ):
                 #print >>sys.stderr, combined_index_doc['translations']
-                if 'error' not in translations:
                 if len(translations) == 0:
                     translation_keys = {}
                 if len(translations) == 1:

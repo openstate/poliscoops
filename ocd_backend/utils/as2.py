@@ -112,7 +112,10 @@ class AS2ConverterMixin(object):
                 if len(translations) == 2:
                     translation_keys = {0: 'nameMap', 1: 'contentMap'}
                 for t_idx, t_key in translation_keys.iteritems():
-                    d[t_key] = {x['to']: x['text'] for x in translations[t_idx]['translations']}
+                    try:
+                        d[t_key] = {x['to']: x['text'] for x in translations[t_idx]['translations']}
+                    except LookupError:
+                        pass
 
                 # always take the language of the content, since content tends to
                 # be longer than the title
@@ -147,7 +150,11 @@ class AS2ConverterMixin(object):
                         }
                     }
                     items_to_index[interestingness_obj['@id']] = interestingness_doc
-                if d['tag'].index(interestingness_obj['@id']) < 0:
+                try:
+                    should_add_int = not (d['tag'].index(interestingness_obj['@id']) >= 0)
+                except ValueError:
+                    should_add_int = True
+                if should_add_int:
                     d['tag'].append(interestingness_obj['@id'])
 
             item_doc = {

@@ -136,26 +136,6 @@ nav.navbar .nav-link {
   float: left;
 }
 
-#icon-feather {
-  left: 245px;
-  top: -35px;
-}
-
-#icon-city-1 {
-  top: 0px;
-  left: 300px;
-}
-
-#icon-city-2 {
-  top: 95px;
-  left: 240px;
-}
-
-#icon-city-3 {
-  top: 105px;
-  left: 5px;
-}
-
 .lead-text {
   color: white;
   font-family: $font-nav;
@@ -439,9 +419,9 @@ h3 {
   }
   background: #EBF3F7;
   padding: 0.5em;
-  fint-size: 10px;
+  font-size: 10px;
   line-height: 14px;
-  font-wieght: 600;
+  font-weight: 600;
   border-radius: 0;
   margin-bottom: 0;
 }
@@ -522,6 +502,15 @@ article .lead {
 }
 
 /* media queris */
+/*
+xs: 0,
+sm: 576px,
+md: 768px,
+lg: 992px,
+xl: 1200px,
+xxl: 1440px
+*/
+
 @media (max-width: 440px) {
   .nav-main-link {
     display: none !important;
@@ -550,9 +539,141 @@ article .lead {
   }
 }
 
+@media (max-width: 576px) {
+  #icon-feather {
+    left: 250px;
+    top: -15px;
+  }
+
+  #icon-city-1 {
+    top: 0;
+    left: 330px;
+  }
+
+  #icon-city-2 {
+    top: -10px;
+    left: 205px;
+  }
+
+  #icon-city-3 {
+    top: 90px;
+    left: 50px;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  #icon-feather {
+    left: 245px;
+    top: -35px;
+  }
+
+  #icon-city-1 {
+    top: -170px;
+    left: 330px;
+  }
+
+  #icon-city-2 {
+    top: 40px;
+    left: 280px;
+  }
+
+  #icon-city-3 {
+    top: 100px;
+    left: 100px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  #icon-feather {
+    left: 245px;
+    top: -35px;
+  }
+
+  #icon-city-1 {
+    top: -150px;
+    left: 300px;
+  }
+
+  #icon-city-2 {
+    top: -66px;
+    left: 280px;
+  }
+
+  #icon-city-3 {
+    top: -25px;
+    left: 115px;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  #icon-feather {
+    left: 245px;
+    top: -35px;
+  }
+
+  #icon-city-1 {
+    top: 0px;
+    left: 300px;
+  }
+
+  #icon-city-2 {
+    top: 95px;
+    left: 280px;
+  }
+
+  #icon-city-3 {
+    top: 125px;
+    left: 115px;
+  }
+}
+
+/* xl */
+@media (min-width: 1201px) and (max-width: 1440px) {
+  #icon-feather {
+    left: 245px;
+    top: -35px;
+  }
+
+  #icon-city-1 {
+    top: 0px;
+    left: 300px;
+  }
+
+  #icon-city-2 {
+    top: 95px;
+    left: 280px;
+  }
+
+  #icon-city-3 {
+    top: 125px;
+    left: 115px;
+  }
+}
+
+/* xxl */
 @media (min-width: 1440px) {
   .lead-text {
     font-size: 64px;
     line-height: 68px;
+  }
+
+  #icon-feather {
+    left: 245px;
+    top: -35px;
+  }
+
+  #icon-city-1 {
+    top: 0px;
+    left: 300px;
+  }
+
+  #icon-city-2 {
+    top: 95px;
+    left: 240px;
+  }
+
+  #icon-city-3 {
+    top: 105px;
+    left: 5px;
   }
 }

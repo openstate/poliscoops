@@ -196,6 +196,10 @@ h3 {
   color: #000055;
 }
 
+.info-box a {
+    color: #E1383A;
+}
+
 .info-box-contents {
   background: url(/static/images/bar.svg) no-repeat top left / 30% auto white;
 }
@@ -533,6 +537,26 @@ xxl: 1440px
 }
 
 @media (max-width: 480px) {
+  #icon-feather {
+    left: 250px;
+    top: -15px;
+  }
+
+  #icon-city-1 {
+    top: -30px;
+    left: 330px;
+  }
+
+  #icon-city-2 {
+    top: -10px;
+    left: 280px;
+  }
+
+  #icon-city-3 {
+    top: 90px;
+    left: 250px;
+  }
+
   .lead-text {
     font-size: 40px;
     line-height: 44px;

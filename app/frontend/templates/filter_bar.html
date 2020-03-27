@@ -1,11 +1,12 @@
 <ul class="nav nav-pills nav-filtering d-flex align-items-center">
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{%trans%}Most relevant{%endtrans%}</a>
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{%trans%}Most recent{%endtrans%}</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">{%trans%}Most relevant{%endtrans%}</a>
-      <a class="dropdown-item" href="#">{%trans%}Most recent{%endtrans%} action</a>
+      <a class="dropdown-item" href="{{ url_for('search',sort='relevance') }}">{%trans%}Most relevant{%endtrans%}</a>
+      <a class="dropdown-item" href="{{ url_for('search',sort='recent') }}">{%trans%}Most recent{%endtrans%}</a>
     </div>
   </li>
+  {% if not filter_bar_homepage %}
   <li class="ml-auto">
     <a class="btn" href="#" data-toggle="modal" data-target="#modal-filters">
       <img src="/static/images/btn-sort.svg" />
@@ -16,4 +17,5 @@
       <span class="sr-only">{%trans%}Collect{%endtrans%}<span class="sr-only">
     </a>
   </li>
+  {% endif %}
 </ul>

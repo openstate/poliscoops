@@ -120,12 +120,40 @@ nav.navbar .nav-link {
 }
 
 .jumbotron {
-  background: url(/static/images/local-news-bg-2x.png) no-repeat;
+  background: url(/static/images/local-news-bg-2x.png) no-repeat 0px -280px;
 }
 
 .jumbotron img {
   margin-bottom: 2em;
-  width: 100%
+  width: 100%;
+}
+
+.jumbotron img.icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  float: left;
+}
+
+#icon-feather {
+  left: 245px;
+  top: -35px;
+}
+
+#icon-city-1 {
+  top: 0px;
+  left: 300px;
+}
+
+#icon-city-2 {
+  top: 95px;
+  left: 240px;
+}
+
+#icon-city-3 {
+  top: 105px;
+  left: 5px;
 }
 
 .lead-text {

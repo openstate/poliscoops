@@ -102,8 +102,9 @@ footer {
   width: 100%;
 }
 #footer-logos img {
-  max-height: 75px;
+  max-width: 100%;
 }
+
 .fa-2x {
   vertical-align: middle;
 }
@@ -561,6 +562,10 @@ xxl: 1440px
     font-size: 40px;
     line-height: 44px;
   }
+
+  #footer-logos img {
+    max-height: 60px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -582,6 +587,10 @@ xxl: 1440px
   #icon-city-3 {
     top: 90px;
     left: 50px;
+  }
+
+  #footer-logos img {
+    max-height: 60px;
   }
 }
 
@@ -605,6 +614,10 @@ xxl: 1440px
     top: 100px;
     left: 100px;
   }
+
+  #footer-logos img {
+    max-height: 70px;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
@@ -626,6 +639,10 @@ xxl: 1440px
   #icon-city-3 {
     top: -25px;
     left: 115px;
+  }
+
+  #footer-logos img {
+    max-height: 70px;
   }
 }
 
@@ -649,6 +666,10 @@ xxl: 1440px
     top: 125px;
     left: 115px;
   }
+
+  #footer-logos img {
+    max-height: 70px;
+  }
 }
 
 /* xl */
@@ -671,6 +692,10 @@ xxl: 1440px
   #icon-city-3 {
     top: 125px;
     left: 115px;
+  }
+
+  #footer-logos img {
+    max-height: 70px;
   }
 }
 
@@ -699,5 +724,9 @@ xxl: 1440px
   #icon-city-3 {
     top: 105px;
     left: 5px;
+  }
+
+  #footer-logos img {
+    max-height: 70px;
   }
 }

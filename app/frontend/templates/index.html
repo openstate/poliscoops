@@ -66,6 +66,9 @@
   <div id="discover" class="col-xs-12 col-md-9 col-lg-8">
     <div class="search-box">
       {% set filter_bar_homepage = True %}
+      {% set filter_bar_relevance_link = url_for('search',sort='relevance') %}
+      {% set filter_bar_recent_link = url_for('search',sort='recent') %}
+      {% set filter_bar_sort = "recent" %}
       {% include "filter_bar.html" %}
       <div class="mt-4" id="form-search-fp">
       {% include "search.html" %}

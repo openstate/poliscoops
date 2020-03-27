@@ -1,9 +1,19 @@
 <ul class="nav nav-pills nav-filtering d-flex align-items-center">
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{%trans%}Most recent{%endtrans%}</a>
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      {% if filter_bar_sort == "recent" %}
+      {%trans%}Most recent{%endtrans%}
+      {% else %}
+      {%trans%}Most relevant{%endtrans%}
+      {% endif %}
+    </a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="{{ url_for('search',sort='relevance') }}">{%trans%}Most relevant{%endtrans%}</a>
-      <a class="dropdown-item" href="{{ url_for('search',sort='recent') }}">{%trans%}Most recent{%endtrans%}</a>
+      <a class="dropdown-item" href="{{ filter_bar_relevance_link }}">
+        {%trans%}Most relevant{%endtrans%}
+      </a>
+      <a class="dropdown-item" href="{{ filter_bar_recent_link }}">
+        {%trans%}Most recent{%endtrans%}
+      </a>
     </div>
   </li>
   {% if not filter_bar_homepage %}

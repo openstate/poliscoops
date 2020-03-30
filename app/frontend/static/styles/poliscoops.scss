@@ -143,6 +143,7 @@ nav.navbar .nav-link {
   font-weight: 800;
   font-size: 50px;
   line-height: 55px;
+  float: left;
 }
 
 .lead-text span {
@@ -627,23 +628,49 @@ xxl: 1440px
   }
 
   #icon-city-1 {
-    top: -150px;
+    top: 0px;
     left: 300px;
   }
 
   #icon-city-2 {
-    top: -66px;
+    top: 84px;
     left: 280px;
   }
 
   #icon-city-3 {
-    top: -25px;
+    top: 125px;
     left: 115px;
   }
 
   #footer-logos img {
     max-height: 70px;
   }
+
+  .lead-text {
+    font-size: 40px;
+    line-height: 46px;
+  }
+
+  h1 {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  .info-box ol > li div.exp {
+      font-size: 10px;
+      line-height: 12px;
+  }
+
+  .info-box ol > li div.counter {
+      font-size: 20px;
+      line-height: 26px;
+  }
+
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
@@ -669,6 +696,20 @@ xxl: 1440px
 
   #footer-logos img {
     max-height: 70px;
+  }
+
+  .info-box ol > li div.exp {
+      font-size: 11px;
+      line-height: 14px;
+  }
+
+  .info-box ol > li div.counter {
+      font-size: 22px;
+      line-height: 28px;
+  }
+
+  h2 {
+    font-size: 22px;
   }
 }
 

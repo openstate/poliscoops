@@ -619,6 +619,7 @@ xxl: 1440px
   #footer-logos img {
     max-height: 70px;
   }
+
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
@@ -669,6 +670,11 @@ xxl: 1440px
   .info-box ol > li div.counter {
       font-size: 20px;
       line-height: 26px;
+  }
+
+  .info-box .btn-lg {
+    font-size: 20px !important;
+    line-height: 22px !important;
   }
 
 }

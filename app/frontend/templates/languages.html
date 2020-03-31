@@ -19,7 +19,7 @@
   <ul class="nav nav-pills">
     {% for k, v in interface_languages %}
       <li class="nav-item mr-4">
-        <a class="nav-link {% if k == hl %}active{% endif %}" href="{{ url_for('set_language', hl=k, rl=rl)}}">{{ v }}</a>
+        <a class="nav-link {% if k == hl %}active{% endif %}" href="{{ url_for('set_language', hl=k, rl=rl, redirect=redirect)}}">{{ v }}</a>
       </li>
     {% endfor %}
   </ul>
@@ -29,9 +29,12 @@
   <ul class="nav nav-pills">
     {% for k, v in article_languages %}
       <li class="nav-item mr-4 mb-4">
-        <a class="nav-link {% if k == rl %}active{% endif %}" href="{{ url_for('set_language', rl=k, hl=hl)}}">{{ v }}</a>
+        <a class="nav-link {% if k == rl %}active{% endif %}" href="{{ url_for('set_language', rl=k, hl=hl,redirect=redirect)}}">{{ v }}</a>
       </li>
     {% endfor %}
   </ul>
+
+  <a class="btn btn-primary" href="{{ redirect }}">{%trans%}Go back{%endtrans%}</a>
 </div>
+
 {%endblock%}

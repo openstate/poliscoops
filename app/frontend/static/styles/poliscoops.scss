@@ -523,8 +523,30 @@ lg: 992px,
 xl: 1200px,
 xxl: 1440px
 */
+@media (max-width: 420px) {
+  .lead-text {
+    font-size: 20px;
+    line-height: 24px;
+  }
 
-@media (max-width: 440px) {
+  #icon-feather {
+    display: none;
+  }
+
+  #icon-city-1 {
+    display: none;
+  }
+
+  #icon-city-2 {
+    display: none;
+  }
+
+  #icon-city-3 {
+    display: none;
+  }
+
+}
+@media (min-width: 421px) and (max-width: 440px) {
   .nav-main-link {
     display: none !important;
   }
@@ -532,6 +554,22 @@ xxl: 1440px
   .lead-text {
     font-size: 26px;
     line-height: 28px;
+  }
+
+  #icon-feather {
+    display: none;
+  }
+
+  #icon-city-1 {
+    display: none;
+  }
+
+  #icon-city-2 {
+    display: none;
+  }
+
+  #icon-city-3 {
+    display: none;
   }
 }
 
@@ -543,17 +581,15 @@ xxl: 1440px
   .navbar-toggler, .nav-main-link {
     margin-top: -50px;
   }
-}
 
-@media (max-width: 480px) {
   #icon-feather {
     left: 250px;
     top: -15px;
   }
 
   #icon-city-1 {
-    top: -30px;
-    left: 330px;
+    top: -30px !important;
+    left: 330px !important;
   }
 
   #icon-city-2 {
@@ -576,7 +612,7 @@ xxl: 1440px
   }
 }
 
-@media (max-width: 576px) {
+@media (min-width: 481px) and (max-width: 576px) {
   #icon-feather {
     left: 250px;
     top: -15px;
@@ -588,12 +624,12 @@ xxl: 1440px
   }
 
   #icon-city-2 {
-    top: -10px;
-    left: 205px;
+    top: 10px;
+    left: 215px;
   }
 
   #icon-city-3 {
-    top: 90px;
+    top: 20px;
     left: 50px;
   }
 
@@ -609,17 +645,17 @@ xxl: 1440px
   }
 
   #icon-city-1 {
-    top: -170px;
+    top: -50px;
     left: 330px;
   }
 
   #icon-city-2 {
-    top: 40px;
+    top: -20px;
     left: 280px;
   }
 
   #icon-city-3 {
-    top: 100px;
+    top: 40px;
     left: 100px;
   }
 
@@ -636,17 +672,17 @@ xxl: 1440px
   }
 
   #icon-city-1 {
-    top: 0px;
+    top: 5px;
     left: 300px;
   }
 
   #icon-city-2 {
-    top: 84px;
-    left: 280px;
+    top: 45px;
+    left: 240px;
   }
 
   #icon-city-3 {
-    top: 125px;
+    top: 30px;
     left: 115px;
   }
 
@@ -697,18 +733,23 @@ xxl: 1440px
   }
 
   #icon-city-1 {
-    top: 0px;
-    left: 300px;
+    top: 25px;
+    left: 130px;
   }
 
   #icon-city-2 {
-    top: 95px;
-    left: 280px;
+    top: 40px;
+    left: 315px;
   }
 
   #icon-city-3 {
-    top: 125px;
-    left: 115px;
+    top: 0px;
+    left: 280px;
+  }
+
+  .lead-text {
+    font-size: 32px;
+    line-height: 50px;
   }
 
   #footer-logos img {
@@ -744,17 +785,22 @@ xxl: 1440px
 
   #icon-city-2 {
     top: 95px;
-    left: 280px;
+    left: 420px;
   }
 
   #icon-city-3 {
-    top: 125px;
+    top: 65px;
     left: 115px;
   }
 
   #footer-logos img {
     max-height: 70px;
   }
+
+  .jumbotron {
+    min-height: 450px;
+  }
+
 }
 
 /* xxl */

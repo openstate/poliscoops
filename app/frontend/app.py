@@ -226,8 +226,10 @@ def image_rewrite(url, doc_id):
 @app.context_processor
 def inject_intervals():
     hl,rl = get_languages()
+    redirect_url = request.args.get('redirect') or request.url
     return dict(
-        intervals=INTERVALS, hl=hl, rl=rl, search_params={})
+        intervals=INTERVALS, hl=hl, rl=rl, search_params={},
+        redirect=redirect_url)
 
 @app.template_global()
 def modify_query(**new_values):
@@ -775,7 +777,8 @@ def countries_as_json():
 def set_language():
     hl = request.args.get('hl', DEFAULT_LANGUAGE)
     rl = request.args.get('rl', None)
-    resp = make_response(redirect(url_for('languages')))
+    redirect_url = request.args.get('redirect', None)
+    resp = make_response(redirect(url_for('languages', redirect=redirect_url)))
     resp.set_cookie('hl', hl)
     if rl is not None:
         resp.set_cookie('rl', rl)

@@ -18,6 +18,7 @@
 <h3 class="">{%trans%}Set the source{%endtrans%}:</h3>
 
 <form method="post" action="{{ url_for('set_countries') }}" class="form-countries">
+  <input type="hidden" name="redirect" value="{{ redirect }}">
   {% for k, v in countries.iteritems() %}
   <div class="form-check mb-4">
     <input type="checkbox" class="form-check-input" name="countries" value="{{ locations[k] }}" id="check-country-{{ k }}" {%if locations[k] in selected_countries %}checked{%endif%}>

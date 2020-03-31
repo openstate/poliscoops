@@ -520,8 +520,8 @@ def do_pls_location(s):
 
 
 class BackendAPI(object):
-    URL = 'http://nginx/v0'
-    #URL = 'https://api.poliscoops.com/v0'
+    #URL = 'http://nginx/v0'
+    URL = 'https://api.poliscoops.com/v0'
     HEADERS = {'Host': 'api.poliscoops.com'}
 
     def sources(self):
@@ -751,7 +751,7 @@ def languages():
 @app.route("/countries")
 def countries():
     selected_countries = get_locations()
-    api_locations = api.locations()
+    api_locations = api.countries()
     locations = {}
     for l in api_locations.get('as:items', []):
         first_key = l.get('nameMap', {}).keys()[0]
@@ -788,8 +788,14 @@ def set_language():
 
 @app.route("/set_countries", methods=['POST'])
 def set_countries():
+    # note: this requires all countries to be in the dsata or it does not work
     countries = ','.join(request.form.getlist('countries'))
-    resp = make_response(redirect(url_for('countries')))
+    redirect_url = request.form.get('redirect', None)
+    print >>sys.stderr, "Redirect: %s" % (redirect_url,)
+    if redirect_url is not None:
+        resp = make_response(redirect(redirect_url))
+    else:
+        resp = make_response(redirect(url_for('countries')))
     resp.set_cookie('countries', countries)
     return resp
 

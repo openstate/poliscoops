@@ -146,6 +146,13 @@ nav.navbar .nav-link {
   float: left;
 }
 
+.lead-button {
+  float: none;
+  clear: both;
+  margin-left: 3rem;
+  margin-top: 1rem;
+}
+
 .lead-text span {
   color: #ECF248;
 }
@@ -648,8 +655,8 @@ xxl: 1440px
   }
 
   .lead-text {
-    font-size: 40px;
-    line-height: 46px;
+    font-size: 36px;
+    line-height: 57px;
   }
 
   h1 {
@@ -663,8 +670,8 @@ xxl: 1440px
   }
 
   .info-box ol > li div.exp {
-      font-size: 10px;
-      line-height: 12px;
+      font-size: 11px;
+      line-height: 14px;
   }
 
   .info-box ol > li div.counter {
@@ -677,6 +684,10 @@ xxl: 1440px
     line-height: 22px !important;
   }
 
+  #form-search-fp input {
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
@@ -748,6 +759,10 @@ xxl: 1440px
 
 /* xxl */
 @media (min-width: 1440px) {
+  .jumbotron {
+    min-height: 432px;
+  }
+
   .lead-text {
     font-size: 64px;
     line-height: 68px;
@@ -764,12 +779,12 @@ xxl: 1440px
   }
 
   #icon-city-2 {
-    top: 95px;
-    left: 240px;
+    top: 5px;
+    left: 400px;
   }
 
   #icon-city-3 {
-    top: 105px;
+    top: 50px;
     left: 5px;
   }
 

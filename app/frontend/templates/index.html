@@ -3,23 +3,25 @@
 {% block content %}
 
 <div class="row mt-4">
-  <div class="col-xs-12 col-md-8 col-lg-8">
-    <div class="jumbotron">
+  <div class="col-xs-12 col-md-7 col-lg-6 col-xl-8">
+    <div class="jumbotron clearfix">
       <img id="icon-feather" src="/static/images/icon-feather.svg" class="icon">
-      <p class="lead-text">
+      <div class="lead-text">
         {%trans%}find and <span>collect</span>{%endtrans%}<br>
         {%trans%}european <span>local</span>{%endtrans%}<br>
-        {%trans%}policital <span>news</span>{%endtrans%}
-      </p>
+        {%trans%}political <span>news</span>{%endtrans%}
+      </div>
 
+      <div class="lead-button">
       <a class="btn btn-lg btn-primary mt-4" href="#discover" role="button">{%trans%}Discover{%endtrans%} <i class="fa fa-chevron-circle-right"></i></a>
+      </div>
       <img id="icon-city-1" src="/static/images/icon-pin.svg" class="icon">
       <img id="icon-city-2" src="/static/images/icon-pin.svg" class="icon">
       <img id="icon-city-3" src="/static/images/icon-pin.svg" class="icon">
     </div>
   </div>
 
-  <div class="col-xs-12 col-md-4 col-lg-4 info-box">
+  <div class="col-xs-12 col-md-5 col-lg-6 col-xl-4 info-box">
     <h1>{%trans%}What can this do?{%endtrans%}</h1>
     <div class="info-box-contents">
       <h2>{%trans%}Find local news{%endtrans%}</h2>
@@ -33,7 +35,7 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-md-3 col-lg-4 info-box">
+  <div class="col-xs-12 col-md-5 col-lg-4 info-box">
     <h1>{%trans%}Contribute{%endtrans%}</h1>
 
     <div class="info-box-contents">
@@ -63,7 +65,7 @@
     </div>
   </div>
 
-  <div id="discover" class="col-xs-12 col-md-9 col-lg-8">
+  <div id="discover" class="col-xs-12 col-md-7 col-lg-8">
     <div class="search-box">
       {% set filter_bar_homepage = True %}
       {% set filter_bar_relevance_link = url_for('search',sort='relevance') %}

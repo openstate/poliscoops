@@ -25,6 +25,7 @@ from werkzeug.urls import url_encode
 from flask_babel import Babel, format_datetime, gettext, ngettext, lazy_gettext
 
 from jinja2 import Markup
+from jinja2.exceptions import TemplateNotFound
 
 import bleach
 from bleach.sanitizer import Cleaner
@@ -737,8 +738,14 @@ def main():
 
 @app.route("/about")
 def about():
-    return render_template(
-        'about.html', sub_template='about.%s.html' % (hl,))
+    hl, rl = get_languages()
+    try:
+        res = render_template(
+            'about.html', sub_template='about.%s.html' % (hl,))
+    except TemplateNotFound as e:
+        res = render_template(
+            'about.html', sub_template='about.en.html')
+    return res
 
 
 @app.route("/languages")

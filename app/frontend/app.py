@@ -736,16 +736,20 @@ def main():
         visible_facets=[f for f in FACETS if f[2]])
 
 
-@app.route("/about")
-def about():
+def _render_page(page_name):
     hl, rl = get_languages()
     try:
         res = render_template(
-            'about.html', sub_template='about.%s.html' % (hl,))
+            '%s.html' % (page_name,), sub_template='%s.%s.html' % (page_name,hl,))
     except TemplateNotFound as e:
         res = render_template(
-            'about.html', sub_template='about.en.html')
+            '%s.html' % (page_name,), sub_template='%s.en.html' % (page_name,))
     return res
+
+
+@app.route("/about")
+def about():
+    return _render_page('about')
 
 
 @app.route("/languages")

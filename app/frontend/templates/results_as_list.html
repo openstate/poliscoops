@@ -29,26 +29,28 @@
 
 {% if results.items %}
 
-<nav id="pager" class="text-center">
-  <ul class="pagination">
+<div>
+<nav id="pager" aria-label="{%trans%}Pagination{%endtrans%}">
+  <ul class="pagination justify-content-center mt-3 mt-xl-3">
     {% if page <= 1 %}
-    <li class="prev previous_page disabled">
-      <a href="#" rel="prev">{%trans%}Previous{%endtrans%}</a>
+    <li class="page-item disabled">
+      <a href="#" class="page-link" rel="prev">{%trans%}Previous{%endtrans%}</a>
     {% else %}
-    <li class="prev previous_page">
-      <a href="{{ dict(page=(page - 1)) |url_for_search_page(gov_slug) }}" rel="prev">{%trans%}Previous{%endtrans%}</a>
+    <li class="page-item">
+      <a href="{{ dict(page=(page - 1)) |url_for_search_page(gov_slug) }}" class="page-link" rel="prev">{%trans%}Previous{%endtrans%}</a>
     {% endif %}
     </li>
     {% if page >= max_pages %}
-    <li class="next next_page disabled">
-      <a href="#" rel="next">{%trans%}Next{%endtrans%}</a>
+    <li class="page-item disabled">
+      <a href="#" class="page-link" rel="next">{%trans%}Next{%endtrans%}</a>
     {% else %}
-    <li class="next next_page">
-      <a href="{{ dict(page=(page + 1)) |url_for_search_page(gov_slug) }}" rel="next">{%trans%}Next{%endtrans%}</a>
+    <li class="page-item">
+      <a href="{{ dict(page=(page + 1)) |url_for_search_page(gov_slug) }}" class="page-link" rel="next">{%trans%}Next{%endtrans%}</a>
     {% endif %}
     </li>
   </ul>
 </nav>
+</div>
 {% else %}
 <div class="row">
   <div class="col-xs-12">
@@ -64,5 +66,3 @@
 let articleObjects = {{ results['as:items'] |tojson|safe }};
 {% endif %}
 </script>
-
-<p>{{ locations }}</p>

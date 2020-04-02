@@ -38,7 +38,7 @@
     <header>
       <nav class="navbar navbar-expand-xxl navbar-light container" style="background-color: #ffffff;">
         <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='dist/images/logo-desktop.svg') }}" alt="{%trans%}Poliscoops{%endtrans%}" style="width: 200px;" /></a>
-        <a class="nav-main-link nav-link d-flex d-none d-xs-none d-sm-block" href="#">{%trans%}About{%endtrans%}</a>
+        <a class="nav-main-link nav-link d-flex d-none d-xs-block d-sm-none" href="{{ url_for('about') }}">{%trans%}About{%endtrans%}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="{%trans%}Toggle navigation{%endtrans%}">
           <span class="navbar-toggler-icon"></span> {%trans%}Menu{%endtrans%}
         </button>
@@ -46,7 +46,7 @@
         <div class="collapse navbar-collapse" id="navbarsExample04">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" class="d-block d-sm-none" href="{{ url_for('search') }}">{%trans%}Search{%endtrans%}  <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ url_for('search') }}">{%trans%}Search{%endtrans%}  <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('languages', redirect=redirect) }}">{%trans%}Languages{%endtrans%}</a>

@@ -87,9 +87,17 @@ FACETS = (
     ('interestingness', lazy_gettext('Interestingness'), False, False, False,)
 )
 
+TAGS = {
+    'laag': lazy_gettext('Low'),
+    'hoog': lazy_gettext('High'),
+    'partij': lazy_gettext('Party')
+}
+
 FACETS_MAPPING = {
     'language': lambda x: LANGUAGES.get(x.upper(), x),
-    'location': lambda x: COUNTRIES.get(x.upper(), x)
+    'location': lambda x: COUNTRIES.get(x.upper(), x),
+    # currently only interestingness bu should be updated somehow
+    'tag': lambda x: TAGS.get(x.lower(), x),
 }
 
 INTERVALS = OrderedDict([
@@ -240,6 +248,11 @@ def modify_query(**new_values):
         args[key] = value
 
     return '{}?{}'.format(request.path, url_encode(args))
+
+
+@app.template_filter('pls_show_label_for_facet')
+def do_pls_show_label_for_facet(s, t):
+    return FACETS_MAPPING[t](s)
 
 
 @app.template_filter('pls_location')

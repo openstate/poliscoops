@@ -17,7 +17,7 @@
         {% for t in result_object.tag %}
         <li class="list-inline-item">
           <a class="btn btn-sm btn-link" href="{{t |pfl_link }}">
-            {{ 'name' |as2_i18n_field(t, rl) }}
+            {{ 'name' |as2_i18n_field(t, rl) |pls_show_label_for_facet('tag') }}
           </a>
         </li>
         {% endfor %}

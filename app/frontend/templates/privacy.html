@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{%block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">{%trans%}Home{%endtrans%}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{%trans%}Privacy{%endtrans%}</li>
+  </ol>
+</nav>
+{%endblock%}
+
+{% block content %}
+
+{% include sub_template %}
+
+{% endblock %}

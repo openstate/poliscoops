@@ -760,11 +760,6 @@ def _render_page(page_name):
     return res
 
 
-@app.route("/about")
-def about():
-    return _render_page('about')
-
-
 @app.route("/languages")
 def languages():
     return render_template(
@@ -1065,6 +1060,15 @@ def email_unsubscribe():
     else:
         result = None
     return render_template('unsubscribe.html', result=result)
+
+
+@app.route("/<page_name>")
+def show_page(page_name):
+    try:
+        res = _render_page(page_name)
+    except TemplateNotFound as e:
+        abort(404)
+    return res
 
 
 def create_app():

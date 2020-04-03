@@ -140,16 +140,26 @@
             <div class="info-box">
               <div class="info-box-contents">
                 <ol class="info-box-bg-alt-2">
-                  <li><span>{%trans%}Select which of the content you will receive{%endtrans%}</span></li>
+                  <li class="clearfix">
+                    <div class="counter">
+                      <img src="/static/images/icon-help.svg" alt="{%trans%}Mail{%endtrans%}" class="img-responsive visible-xs-inline">
+                    </div>
+                    <div class="exp">
+                      {%trans%}Select which of the content you will receive{%endtrans%}
+                    </div>
+                  </li>
                 </ol>
               </div>
             </div>
 
+            {%if query %}
             <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="#" title="{{ query }}" role="button">
               <i class="fa fa-circle" aria-hidden="true"></i> {{ query }}
               <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
             </a>
+            {% endif %}
 
+            {% if search_params.location %}
             <a id="modal-subscribe-location-info" class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="#" role="button">
               <!-- TODO: locaton is either a list or string and contrains full links to places. resolve. -->
               <i class="fa fa-map" aria-hidden="true"></i>
@@ -164,11 +174,28 @@
               </ul>
               <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
             </a>
+            {% endif %}
 
+            {% if search_params.actor %}
             <a class="btn btn-default btn-selectable btn-block w-100  d-flex align-items-center" href="{{ actor }}" title="{{ actor }}" role="button">
               <i class="fa fa-circle" aria-hidden="true"></i> {{ search_params.actor }}
               <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
             </a>
+            {% endif %}
+
+            <div class="info-box">
+              <div class="info-box-contents">
+                <ol class="info-box-bg-alt mb-0">
+                  <li class="clearfix">
+                    <div class="counter">
+                      <img src="/static/images/icon-mail.svg" alt="{%trans%}Mail{%endtrans%}" class="img-responsive visible-xs-inline">
+                    </div>
+                    <div class="exp">
+                      {%trans%}Subscribe &amp; receive email for your selected topics.{%endtrans%}
+                    </div></li>
+                </ol>
+              </div>
+            </div>
 
             <div class="info-box-contents mb-4 language-selection">
               <h3 class="">{%trans%}Interval{%endtrans%}:</h3>

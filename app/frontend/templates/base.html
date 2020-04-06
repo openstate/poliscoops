@@ -80,7 +80,7 @@
       <div class="row">
         <div class="col-xs-12 w-100">
           <div class="alert alert-primary w-100 mt-3" role="alert">
-            {%trans url=url_for('countries') %}It looks like you have not selected any source countries. You can change this <a href="{{ url }}">here</a>.{%endtrans%}
+            {%trans url=url_for('countries', redirect=redirect) %}It looks like you have not selected any source countries. You can change this <a href="{{ url }}">here</a>.{%endtrans%}
           </div>
         </div>
       </div>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'search.html' %}
+
+<div class="row">
+  <div class="col-xs-12 article-text">
+    {% if result %}
+      {% if result.status == 'ok' %}
+        <p>{%trans%}You were succesfully subscribed to the alert.{%endtrans%}</p>
+      {% else %}
+        <p>{%trans%}Something went wrong. Please try again{%endtrans%}</p>
+      {% endif %}
+    {% else %}
+      <p>{%trans%}Something went wrong. Please try again{%endtrans%}</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

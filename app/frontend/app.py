@@ -1079,9 +1079,10 @@ def email_subscribe():
         'query': query
     }
     # return jsonify(json.dumps(request_data))
-    return jsonify(requests.post(
+    result = requests.post(
         'http://binoas.openstate.eu/subscriptions/new',
-        data=json.dumps(request_data)).content)
+        data=json.dumps(request_data)).json()
+    return render_template('subscribe.html', result=result)
 
 
 @app.route("/unsubscribe", methods=['GET'])

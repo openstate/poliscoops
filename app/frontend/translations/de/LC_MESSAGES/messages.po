@@ -486,7 +486,7 @@ msgstr "Sammeln"
 
 #: templates/index.html:10
 msgid "find and <span>collect</span>"
-msgstr "finden und <span>sammeln</ span>"
+msgstr "finden und <span>sammeln</span>"
 
 #: templates/index.html:11
 msgid "european <span>local</span>"
@@ -494,7 +494,7 @@ msgstr "europäische <span>local</span>"
 
 #: templates/index.html:12
 msgid "political <span>news</span>"
-msgstr "politische <span>Nachrichten</ span>"
+msgstr "politische <span>Nachrichten</span>"
 
 #: templates/index.html:16
 msgid "Discover"

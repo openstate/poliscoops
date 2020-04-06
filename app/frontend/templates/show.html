@@ -32,9 +32,14 @@
     {% include "inner_result.html" %}
   </div>
   <div class="content mb-4">
-    {% if not rl %}
+    {% if not rl and result_object.contentMap[result_object['@language']] %}
     <div class="alert alert-primary" role="alert">
       {%trans url=url_for('languages') %}This article is shown in the language in which it was written. You can change this <a href="{{ url }}">here</a>.{%endtrans%}
+    </div>
+    {% endif %}
+    {% if not rl and not result_object.contentMap[result_object['@language']] %}
+    <div class="alert alert-primary" role="alert">
+      {%trans url=url_for('languages') %}This article is shown in english, since we do not have the version in the original language for unknown reasons. You can change language settings <a href="{{ url }}">here</a>.{%endtrans%}
     </div>
     {% endif %}
     {{ 'content' |as2_i18n_field(result_object, rl) |html_cleanup(result_object) |pls_generate_article_template |safe }}

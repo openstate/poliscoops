@@ -184,10 +184,10 @@ LANGUAGES = {
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 
-def cookies_set():
-    hl = request.cookies.get('hl', None)
-    rl = request.cookies.get('rl', None)
-    return (hl is not None)
+def is_cookie_set(cookie_name):
+    ck = request.cookies.get(cookie_name, None)
+    return (ck is not None)
+
 
 def get_languages():
     hl = request.args.get('hl', None) or request.cookies.get('hl', None) or DEFAULT_LANGUAGE
@@ -249,7 +249,9 @@ def inject_intervals():
     redirect_url = request.args.get('redirect') or request.url
     return dict(
         intervals=INTERVALS, hl=hl, rl=rl, search_params={},
-        redirect=redirect_url, are_cookies_set=cookies_set())
+        redirect=redirect_url, cookie_hl_set=is_cookie_set('hl'),
+        cookie_rl_set=is_cookie_set('rl'),
+        cookie_countries_set=is_cookie_set('countries'))
 
 @app.template_global()
 def modify_query(**new_values):

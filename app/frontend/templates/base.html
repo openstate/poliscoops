@@ -75,17 +75,17 @@
           {% endblock %}
         </div>
       </div>
-      {% if not are_cookies_set %}
+      {% block cookies_set_alert %}
+      {% if not cookie_countries_set %}
       <div class="row">
         <div class="col-xs-12 w-100">
-          {% block cookies_set_alert %}
           <div class="alert alert-primary w-100 mt-3" role="alert">
-            {%trans url=url_for('languages') %}It looks like you have not selected any source countries. You can change this <a href="{{ url }}">here</a>.{%endtrans%}
+            {%trans url=url_for('countries') %}It looks like you have not selected any source countries. You can change this <a href="{{ url }}">here</a>.{%endtrans%}
           </div>
-          {% endblock %}
         </div>
       </div>
       {% endif %}
+      {% endblock %}
     {% block content %}
     {% endblock %}
     </div>

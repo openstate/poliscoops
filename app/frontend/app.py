@@ -184,6 +184,11 @@ LANGUAGES = {
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 
+def cookies_set():
+    hl = request.cookies.get('hl', None)
+    rl = request.cookies.get('rl', None)
+    return (hl is not None)
+
 def get_languages():
     hl = request.args.get('hl', None) or request.cookies.get('hl', None) or DEFAULT_LANGUAGE
     rl = request.args.get('rl', None) or request.cookies.get('rl', None)
@@ -191,7 +196,12 @@ def get_languages():
 
 
 def get_locations():
-    return request.cookies.get('countries', '').split(',')
+    is_cookie_set = request.cookies.get('countries', None)
+    if is_cookie_set:
+        return request.cookies.get('countries', '').split(',')
+    else:
+        countries = api.countries()
+        return [x['@id'].split('/')[-1] for x in countries['as:items']]
 
 
 @babel.localeselector
@@ -239,7 +249,7 @@ def inject_intervals():
     redirect_url = request.args.get('redirect') or request.url
     return dict(
         intervals=INTERVALS, hl=hl, rl=rl, search_params={},
-        redirect=redirect_url)
+        redirect=redirect_url, are_cookies_set=cookies_set())
 
 @app.template_global()
 def modify_query(**new_values):

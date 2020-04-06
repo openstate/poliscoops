@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-02-14 17:04+0000\n"
+"POT-Creation-Date: 2020-04-06 14:50+0000\n"
 "PO-Revision-Date: 2020-02-14 17:04+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -18,216 +18,717 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app.py:65
+#: app.py:70
 msgid "Kind"
 msgstr ""
 
-#: app.py:66
+#: app.py:71
 msgid "Origin"
 msgstr ""
 
-#: app.py:67
+#: app.py:72
 msgid "Date from"
 msgstr ""
 
-#: app.py:68
+#: app.py:73
 msgid "Date until"
 msgstr ""
 
-#: app.py:69
+#: app.py:74
 msgid "Language"
 msgstr ""
 
-#: app.py:70
+#: app.py:75
 msgid "Location"
 msgstr ""
 
-#: app.py:71
+#: app.py:76 templates/inner_result.html:44 templates/show.html:52
 msgid "Source"
 msgstr ""
 
-#: app.py:73
+#: app.py:78
 msgid "Mentions"
 msgstr ""
 
-#: app.py:78
+#: app.py:83
 msgid "Created by"
 msgstr ""
 
-#: app.py:80
+#: app.py:85
 msgid "Polarity"
 msgstr ""
 
-#: app.py:81
+#: app.py:86
 msgid "Sentiment"
 msgstr ""
 
-#: app.py:82
+#: app.py:87
 msgid "Interestingness"
 msgstr ""
 
-#: templates/base.html:7 templates/base.html:37 templates/base.html:93
+#: app.py:91
+msgid "Low"
+msgstr ""
+
+#: app.py:92
+msgid "High"
+msgstr ""
+
+#: app.py:93
+msgid "Party"
+msgstr ""
+
+#: app.py:104
+msgid "Direct"
+msgstr ""
+
+#: app.py:105
+msgid "Daily"
+msgstr ""
+
+#: app.py:106
+msgid "Weekly"
+msgstr ""
+
+#: app.py:112 app.py:116 app.py:182
+msgid "English"
+msgstr ""
+
+#: app.py:113 app.py:117 app.py:154 app.py:164
+msgid "German"
+msgstr ""
+
+#: app.py:114 app.py:118 app.py:163
+msgid "French"
+msgstr ""
+
+#: app.py:119
+msgid "Original language"
+msgstr ""
+
+#: app.py:122
+msgid "Austria"
+msgstr ""
+
+#: app.py:123
+msgid "Belgium"
+msgstr ""
+
+#: app.py:124
+msgid "Bulgaria"
+msgstr ""
+
+#: app.py:125
+msgid "Croatia"
+msgstr ""
+
+#: app.py:126
+msgid "Cyprus"
+msgstr ""
+
+#: app.py:127
+msgid "Czech Republic"
+msgstr ""
+
+#: app.py:128
+msgid "Denmark"
+msgstr ""
+
+#: app.py:129
+msgid "Estonia"
+msgstr ""
+
+#: app.py:130
+msgid "Finland"
+msgstr ""
+
+#: app.py:131
+msgid "France"
+msgstr ""
+
+#: app.py:132
+msgid "Germany"
+msgstr ""
+
+#: app.py:133
+msgid "Greece"
+msgstr ""
+
+#: app.py:134
+msgid "Hungary"
+msgstr ""
+
+#: app.py:135
+msgid "Italy"
+msgstr ""
+
+#: app.py:136
+msgid "Ireland"
+msgstr ""
+
+#: app.py:137
+msgid "Latvia"
+msgstr ""
+
+#: app.py:138
+msgid "Lithuania"
+msgstr ""
+
+#: app.py:139
+msgid "Luxembourg"
+msgstr ""
+
+#: app.py:140
+msgid "Malta"
+msgstr ""
+
+#: app.py:141
+msgid "Netherlands"
+msgstr ""
+
+#: app.py:142
+msgid "Poland"
+msgstr ""
+
+#: app.py:143
+msgid "Portugal"
+msgstr ""
+
+#: app.py:144
+msgid "Romania"
+msgstr ""
+
+#: app.py:145
+msgid "Spain"
+msgstr ""
+
+#: app.py:146
+msgid "Slovakia"
+msgstr ""
+
+#: app.py:147
+msgid "Slovenia"
+msgstr ""
+
+#: app.py:148
+msgid "Sweden"
+msgstr ""
+
+#: app.py:149
+msgid "United Kingdom"
+msgstr ""
+
+#: app.py:150
+msgid "Eurpean Union"
+msgstr ""
+
+#: app.py:155 app.py:173
+msgid "Dutch"
+msgstr ""
+
+#: app.py:156
+msgid "Bulgarian"
+msgstr ""
+
+#: app.py:157
+msgid "Croatian"
+msgstr ""
+
+#: app.py:158 app.py:165
+msgid "Greek"
+msgstr ""
+
+#: app.py:159
+msgid "Czech"
+msgstr ""
+
+#: app.py:160
+msgid "Danish"
+msgstr ""
+
+#: app.py:161
+msgid "Estonian"
+msgstr ""
+
+#: app.py:162
+msgid "Finnish"
+msgstr ""
+
+#: app.py:166
+msgid "Hungarian"
+msgstr ""
+
+#: app.py:167
+msgid "Italan"
+msgstr ""
+
+#: app.py:168
+msgid "Irish"
+msgstr ""
+
+#: app.py:169
+msgid "Latvian"
+msgstr ""
+
+#: app.py:170
+msgid "Lithuanian"
+msgstr ""
+
+#: app.py:171
+msgid "Luxembourgish"
+msgstr ""
+
+#: app.py:172
+msgid "Maltese"
+msgstr ""
+
+#: app.py:174
+msgid "Polish"
+msgstr ""
+
+#: app.py:175
+msgid "Portugese"
+msgstr ""
+
+#: app.py:176
+msgid "Romanian"
+msgstr ""
+
+#: app.py:177
+msgid "Spanish"
+msgstr ""
+
+#: app.py:178
+msgid "Slovakian"
+msgstr ""
+
+#: app.py:179
+msgid "Slovenian"
+msgstr ""
+
+#: app.py:180
+msgid "Swedish"
+msgstr ""
+
+#: app.py:181
+msgid "Eurpean Unionish"
+msgstr ""
+
+#: templates/about.en.html:1 templates/base.html:7 templates/base.html:17
+#: templates/base.html:18 templates/base.html:24 templates/base.html:40
+#: templates/show.html:5
 msgid "Poliscoops"
 msgstr ""
 
-#: templates/base.html:59
-msgid "Toggle navigation"
-msgstr ""
-
-#: templates/base.html:60
-msgid "Menu"
-msgstr ""
-
-#: templates/base.html:67
+#: templates/about.html:6 templates/countries.html:6
+#: templates/disclaimer.html:6 templates/feedback.html:6
+#: templates/languages.html:6 templates/privacy.html:6
+#: templates/search_results.html:20
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:69
-msgid "Taal"
-msgstr ""
-
-#: templates/base.html:71
-msgid "nl"
-msgstr ""
-
-#: templates/base.html:72
-msgid "en"
-msgstr ""
-
-#: templates/base.html:73
-msgid "fr"
-msgstr ""
-
-#: templates/base.html:74
-msgid "de"
-msgstr ""
-
-#: templates/base.html:77
+#: templates/about.html:7 templates/base.html:41 templates/base.html:61
 msgid "About"
 msgstr ""
 
-#: templates/base.html:78
-msgid "API"
+#: templates/base.html:42
+msgid "Toggle navigation"
 msgstr ""
 
-#: templates/base.html:79
-msgid "Feedback"
+#: templates/base.html:43
+msgid "Menu"
 msgstr ""
 
-#: templates/base.html:80
-msgid "Contact"
-msgstr ""
-
-#: templates/base.html:97
-msgid "Make poltical news searchable"
-msgstr ""
-
-#: templates/base.html:130
-msgid "An initiative from:"
-msgstr ""
-
-#: templates/base.html:159
-msgid "Subscribe to search"
-msgstr ""
-
-#: templates/base.html:162
-msgid "You can subscribe to the following query:"
-msgstr ""
-
-#: templates/base.html:165
-msgid "Search query:"
-msgstr ""
-
-#: templates/base.html:168
-msgid "Location:"
-msgstr ""
-
-#: templates/base.html:171
-msgid "Party:"
-msgstr ""
-
-#: templates/base.html:174
-msgid ""
-"Choose one of the following options and enter your email to subscribe to "
-"the search query above"
-msgstr ""
-
-#: templates/base.html:178
-msgid "Direct notification"
-msgstr ""
-
-#: templates/base.html:184
-msgid "Hourly"
-msgstr ""
-
-#: templates/base.html:190
-msgid "6 hours"
-msgstr ""
-
-#: templates/base.html:194
-msgid "Email address"
-msgstr ""
-
-#: templates/base.html:199
-msgid "Subscribe"
-msgstr ""
-
-#: templates/base.html:200
-msgid "Cancel"
-msgstr ""
-
-#: templates/index.html:18
-#, python-format
-msgid "Use the field to search in %(num_results)s messages ..."
-msgstr ""
-
-#: templates/index.html:54 templates/results_as_list.html:133
-#: templates/results_as_list.html:136
-msgid "Previous"
-msgstr ""
-
-#: templates/index.html:58 templates/results_as_list.html:141
-#: templates/results_as_list.html:144
-msgid "Next"
-msgstr ""
-
-#: templates/results_as_list.html:3
-#, python-format
-msgid "%(num_results)s documenten"
-msgstr ""
-
-#: templates/results_as_list.html:5 templates/search_results.html:73
-msgid "Filters"
-msgstr ""
-
-#: templates/results_as_list.html:120
-msgid "Bron:"
-msgstr ""
-
-#: templates/results_as_list.html:152
-msgid "Unfortunately we were not able to find any documents matching your query."
-msgstr ""
-
-#: templates/search.html:7
+#: templates/base.html:49 templates/search_results.html:21
 msgid "Search"
 msgstr "Suche"
 
-#: templates/search.html:14
-msgid "Word, location or party ..."
+#: templates/base.html:52 templates/languages.html:7
+msgid "Languages"
 msgstr ""
 
-#: templates/search_results.html:78
+#: templates/base.html:55 templates/countries.html:7
+msgid "Countries"
+msgstr ""
+
+#: templates/base.html:58 templates/feedback.en.html:3
+#: templates/feedback.html:7 templates/index.html:60
+msgid "Feedback"
+msgstr ""
+
+#: templates/base.html:83
+#, python-format
+msgid ""
+"It looks like you have not selected any source countries. You can change "
+"this <a href=\"%(url)s\">here</a>."
+msgstr ""
+
+#: templates/base.html:98
+msgid "SIDN Fonds"
+msgstr ""
+
+#: templates/base.html:103
+msgid "DNI Fund"
+msgstr ""
+
+#: templates/base.html:108
+msgid "NL Net"
+msgstr ""
+
+#: templates/base.html:113
+msgid "Open State Foundation"
+msgstr ""
+
+#: templates/base.html:121 templates/privacy.html:7
+msgid "Privacy"
+msgstr ""
+
+#: templates/base.html:126 templates/disclaimer.html:7
+msgid "Disclaimer"
+msgstr ""
+
+#: templates/base.html:147
+msgid "Collect &amp; Subscribe"
+msgstr ""
+
+#: templates/base.html:156 templates/base.html:202
+#: templates/feedback.en.html:10 templates/index.html:63
+msgid "Mail"
+msgstr ""
+
+#: templates/base.html:159
+msgid "Select which of the content you will receive"
+msgstr ""
+
+#: templates/base.html:205
+msgid "Subscribe &amp; receive email for your selected topics."
+msgstr ""
+
+#: templates/base.html:212
+msgid "Interval"
+msgstr ""
+
+#: templates/base.html:228 templates/feedback.en.html:20
+msgid "Email address"
+msgstr ""
+
+#: templates/base.html:234
+msgid "Subscribe"
+msgstr ""
+
+#: templates/base.html:235
+msgid "Cancel"
+msgstr ""
+
+#: templates/countries.html:17
+msgid "Source countries"
+msgstr ""
+
+#: templates/countries.html:21
+msgid "Set the source"
+msgstr ""
+
+#: templates/feedback.en.html:5 templates/index.html:62
+msgid "Help"
+msgstr ""
+
+#: templates/feedback.en.html:5 templates/index.html:62
+msgid ""
+"<a href=\"/feedback\">Help</a> us if we missed something or if you have a"
+" suggestion"
+msgstr ""
+
+#: templates/feedback.en.html:13
+msgid ""
+"Please fill out the contact form  at the <a "
+"href=\"https://openstate.eu/en/contact/\" target=\"_blank\">openstate.eu "
+"website</a>."
+msgstr ""
+
+#: templates/feedback.en.html:22
+msgid "We'll never share your email with anyone else."
+msgstr ""
+
+#: templates/feedback.en.html:25
+msgid "Message"
+msgstr ""
+
+#: templates/feedback.en.html:30
+msgid "I agree to the terms and conditons."
+msgstr ""
+
+#: templates/feedback.en.html:32
+msgid "Submit"
+msgstr ""
+
+#: templates/filter_bar.html:5 templates/filter_bar.html:15
+msgid "Most recent"
+msgstr ""
+
+#: templates/filter_bar.html:7 templates/filter_bar.html:12
+msgid "Most relevant"
+msgstr ""
+
+#: templates/filter_bar.html:23
+msgid "Sort"
+msgstr ""
+
+#: templates/filter_bar.html:27 templates/index.html:45 templates/index.html:53
+msgid "Collect"
+msgstr ""
+
+#: templates/index.html:10
+msgid "find and <span>collect</span>"
+msgstr ""
+
+#: templates/index.html:11
+msgid "european <span>local</span>"
+msgstr ""
+
+#: templates/index.html:12
+msgid "political <span>news</span>"
+msgstr ""
+
+#: templates/index.html:16
+msgid "Discover"
+msgstr ""
+
+#: templates/index.html:25
+msgid "What can this do?"
+msgstr ""
+
+#: templates/index.html:27
+msgid "Find local news"
+msgstr ""
+
+#: templates/index.html:29
+msgid "Choose your <a href=\"/languages\">language</a> for articles and topics"
+msgstr ""
+
+#: templates/index.html:30
+msgid ""
+"Find local news across Europe. Setup your <a href=\"/countries\">source "
+"country</a>"
+msgstr ""
+
+#: templates/index.html:31
+msgid ""
+"Collect the content of your selected <a href=\"/search\">articles and "
+"topics</a>"
+msgstr ""
+
+#: templates/index.html:39
+msgid "Contribute"
+msgstr ""
+
+#: templates/index.html:42
+msgid "Your opinion matters"
+msgstr ""
+
+#: templates/index.html:44 templates/inner_result.html:13
+msgid "Verify"
+msgstr ""
+
+#: templates/index.html:44
+msgid "Verify articles and help keep articles up to date"
+msgstr ""
+
+#: templates/index.html:45
+msgid "Collect selected articles and topics"
+msgstr ""
+
+#: templates/index.html:50
+msgid "Collect local news"
+msgstr ""
+
+#: templates/index.html:58
+msgid "Contact"
+msgstr ""
+
+#: templates/index.html:63
+msgid ""
+"Any <a href=\"https://openstate.eu/contact\">questions</a>? We want to "
+"know your opinion"
+msgstr ""
+
+#: templates/index.html:91
+msgid "Discover more scoops"
+msgstr ""
+
+#: templates/inner_result.html:46
+msgid "Read more"
+msgstr ""
+
+#: templates/languages.html:17
+msgid "Set your language"
+msgstr ""
+
+#: templates/languages.html:20
+msgid "Website"
+msgstr ""
+
+#: templates/languages.html:30
+msgid "News articles"
+msgstr ""
+
+#: templates/languages.html:40
+msgid "Go back"
+msgstr ""
+
+#: templates/results_as_list.html:5
+#, python-format
+msgid "%(num_results)s results for:  %(query)s"
+msgstr ""
+
+#: templates/results_as_list.html:7
+#, python-format
+msgid "%(num_results)s results:"
+msgstr ""
+
+#: templates/results_as_list.html:33
+msgid "Pagination"
+msgstr ""
+
+#: templates/results_as_list.html:37 templates/results_as_list.html:40
+msgid "Previous"
+msgstr ""
+
+#: templates/results_as_list.html:45 templates/results_as_list.html:48
+msgid "Next"
+msgstr ""
+
+#: templates/results_as_list.html:57
+msgid "Unfortunately we were not able to find any documents matching your query."
+msgstr ""
+
+#: templates/search.html:3
+msgid "Find articles, parties, locations..."
+msgstr ""
+
+#: templates/search_results.html:7 templates/search_results.html:10
+#, python-format
+msgid "Recent political news about %(query)s"
+msgstr ""
+
+#: templates/search_results.html:31
+msgid "Filters"
+msgstr ""
+
+#: templates/search_results.html:37
 msgid "Period"
 msgstr "Periode"
 
-#: templates/search_results.html:121
+#: templates/search_results.html:77
 msgid "Show more"
+msgstr ""
+
+#: templates/show.html:37
+#, python-format
+msgid ""
+"This article is shown in the language in which it was written, since we "
+"do not have the translated version for unknown reasons. You can change "
+"language settings <a href=\"%(url)s\">here</a>."
+msgstr ""
+
+#: templates/show.html:42
+#, python-format
+msgid ""
+"This article is shown in the language in which it was written. You can "
+"change this <a href=\"%(url)s\">here</a>."
+msgstr ""
+
+#: templates/show.html:47
+#, python-format
+msgid ""
+"This article is shown in english, since we do not have the version in the"
+" original language for unknown reasons. You can change language settings "
+"<a href=\"%(url)s\">here</a>."
+msgstr ""
+
+#: templates/show.html:57
+msgid "Share on Twitter"
+msgstr ""
+
+#: templates/show.html:60
+msgid "Share on Facebook"
+msgstr ""
+
+#: templates/subscribe.html:11
+msgid "You were succesfully subscribed to the alert."
+msgstr ""
+
+#: templates/subscribe.html:13 templates/subscribe.html:16
+#: templates/unsubscribe.html:13 templates/unsubscribe.html:16
+msgid "Something went wrong. Please try again"
 msgstr ""
 
 #: templates/unsubscribe.html:11
 msgid "You were succesfully unsubscribed."
 msgstr ""
 
-#: templates/unsubscribe.html:13 templates/unsubscribe.html:16
-msgid "Something went wrong. Please try again"
-msgstr ""
+#~ msgid "Taal"
+#~ msgstr ""
+
+#~ msgid "nl"
+#~ msgstr ""
+
+#~ msgid "en"
+#~ msgstr ""
+
+#~ msgid "fr"
+#~ msgstr ""
+
+#~ msgid "de"
+#~ msgstr ""
+
+#~ msgid "API"
+#~ msgstr ""
+
+#~ msgid "Make poltical news searchable"
+#~ msgstr ""
+
+#~ msgid "An initiative from:"
+#~ msgstr ""
+
+#~ msgid "Subscribe to search"
+#~ msgstr ""
+
+#~ msgid "You can subscribe to the following query:"
+#~ msgstr ""
+
+#~ msgid "Search query:"
+#~ msgstr ""
+
+#~ msgid "Location:"
+#~ msgstr ""
+
+#~ msgid "Party:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Choose one of the following options "
+#~ "and enter your email to subscribe "
+#~ "to the search query above"
+#~ msgstr ""
+
+#~ msgid "Direct notification"
+#~ msgstr ""
+
+#~ msgid "Hourly"
+#~ msgstr ""
+
+#~ msgid "6 hours"
+#~ msgstr ""
+
+#~ msgid "Use the field to search in %(num_results)s messages ..."
+#~ msgstr ""
+
+#~ msgid "%(num_results)s documenten"
+#~ msgstr ""
+
+#~ msgid "Bron:"
+#~ msgstr ""
+
+#~ msgid "Word, location or party ..."
+#~ msgstr ""
+

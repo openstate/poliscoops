@@ -20,199 +20,199 @@ msgstr ""
 
 #: app.py:70
 msgid "Kind"
-msgstr ""
+msgstr "Sorte"
 
 #: app.py:71
 msgid "Origin"
-msgstr ""
+msgstr "Ursprung"
 
 #: app.py:72
 msgid "Date from"
-msgstr ""
+msgstr "ab Datum"
 
 #: app.py:73
 msgid "Date until"
-msgstr ""
+msgstr "Datum bis"
 
 #: app.py:74
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #: app.py:75
 msgid "Location"
-msgstr ""
+msgstr "Standort"
 
 #: app.py:76 templates/inner_result.html:44 templates/show.html:52
 msgid "Source"
-msgstr ""
+msgstr "Quelle"
 
 #: app.py:78
 msgid "Mentions"
-msgstr ""
+msgstr "Erwähnungen"
 
 #: app.py:83
 msgid "Created by"
-msgstr ""
+msgstr "erstellt von"
 
 #: app.py:85
 msgid "Polarity"
-msgstr ""
+msgstr "Polarität"
 
 #: app.py:86
 msgid "Sentiment"
-msgstr ""
+msgstr "Gefühl"
 
 #: app.py:87
 msgid "Interestingness"
-msgstr ""
+msgstr "Interessantheit"
 
 #: app.py:91
 msgid "Low"
-msgstr ""
+msgstr "Gering"
 
 #: app.py:92
 msgid "High"
-msgstr ""
+msgstr "hoch"
 
 #: app.py:93
 msgid "Party"
-msgstr ""
+msgstr "Partei"
 
 #: app.py:104
 msgid "Direct"
-msgstr ""
+msgstr "Direkte"
 
 #: app.py:105
 msgid "Daily"
-msgstr ""
+msgstr "Täglich"
 
 #: app.py:106
 msgid "Weekly"
-msgstr ""
+msgstr "wöchentlich"
 
 #: app.py:112 app.py:116 app.py:182
 msgid "English"
-msgstr ""
+msgstr "Englisch"
 
 #: app.py:113 app.py:117 app.py:154 app.py:164
 msgid "German"
-msgstr ""
+msgstr "Deutsche"
 
 #: app.py:114 app.py:118 app.py:163
 msgid "French"
-msgstr ""
+msgstr "Französisch"
 
 #: app.py:119
 msgid "Original language"
-msgstr ""
+msgstr "Ursprache"
 
 #: app.py:122
 msgid "Austria"
-msgstr ""
+msgstr "Österreich"
 
 #: app.py:123
 msgid "Belgium"
-msgstr ""
+msgstr "Belgien"
 
 #: app.py:124
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgarien"
 
 #: app.py:125
 msgid "Croatia"
-msgstr ""
+msgstr "Kroatien"
 
 #: app.py:126
 msgid "Cyprus"
-msgstr ""
+msgstr "Zypern"
 
 #: app.py:127
 msgid "Czech Republic"
-msgstr ""
+msgstr "Tschechien"
 
 #: app.py:128
 msgid "Denmark"
-msgstr ""
+msgstr "Dänemark"
 
 #: app.py:129
 msgid "Estonia"
-msgstr ""
+msgstr "Estland"
 
 #: app.py:130
 msgid "Finland"
-msgstr ""
+msgstr "Finnland"
 
 #: app.py:131
 msgid "France"
-msgstr ""
+msgstr "Frankreich"
 
 #: app.py:132
 msgid "Germany"
-msgstr ""
+msgstr "Deutschland"
 
 #: app.py:133
 msgid "Greece"
-msgstr ""
+msgstr "Griechenland"
 
 #: app.py:134
 msgid "Hungary"
-msgstr ""
+msgstr "Ungarn"
 
 #: app.py:135
 msgid "Italy"
-msgstr ""
+msgstr "Italien"
 
 #: app.py:136
 msgid "Ireland"
-msgstr ""
+msgstr "Irland"
 
 #: app.py:137
 msgid "Latvia"
-msgstr ""
+msgstr "Lettland"
 
 #: app.py:138
 msgid "Lithuania"
-msgstr ""
+msgstr "Litauen"
 
 #: app.py:139
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luxemburg"
 
 #: app.py:140
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 #: app.py:141
 msgid "Netherlands"
-msgstr ""
+msgstr "Niederlande"
 
 #: app.py:142
 msgid "Poland"
-msgstr ""
+msgstr "Polen"
 
 #: app.py:143
 msgid "Portugal"
-msgstr ""
+msgstr "Portugal"
 
 #: app.py:144
 msgid "Romania"
-msgstr ""
+msgstr "Rumänien"
 
 #: app.py:145
 msgid "Spain"
-msgstr ""
+msgstr "Spanien"
 
 #: app.py:146
 msgid "Slovakia"
-msgstr ""
+msgstr "Slowakei"
 
 #: app.py:147
 msgid "Slovenia"
-msgstr ""
+msgstr "Slowenien"
 
 #: app.py:148
 msgid "Sweden"
-msgstr ""
+msgstr "Schweden"
 
 #: app.py:149
 msgid "United Kingdom"
@@ -220,99 +220,99 @@ msgstr ""
 
 #: app.py:150
 msgid "Eurpean Union"
-msgstr ""
+msgstr "Großbritannien"
 
 #: app.py:155 app.py:173
 msgid "Dutch"
-msgstr ""
+msgstr "Niederländisch"
 
 #: app.py:156
 msgid "Bulgarian"
-msgstr ""
+msgstr "bulgarisch"
 
 #: app.py:157
 msgid "Croatian"
-msgstr ""
+msgstr "kroatisch"
 
 #: app.py:158 app.py:165
 msgid "Greek"
-msgstr ""
+msgstr "griechisch"
 
 #: app.py:159
 msgid "Czech"
-msgstr ""
+msgstr "Tschechisch"
 
 #: app.py:160
 msgid "Danish"
-msgstr ""
+msgstr "dänisch"
 
 #: app.py:161
 msgid "Estonian"
-msgstr ""
+msgstr "estnisch"
 
 #: app.py:162
 msgid "Finnish"
-msgstr ""
+msgstr "finnisch"
 
 #: app.py:166
 msgid "Hungarian"
-msgstr ""
+msgstr "ungarisch"
 
 #: app.py:167
 msgid "Italan"
-msgstr ""
+msgstr "Italienisch"
 
 #: app.py:168
 msgid "Irish"
-msgstr ""
+msgstr "irisch"
 
 #: app.py:169
 msgid "Latvian"
-msgstr ""
+msgstr "lettisch"
 
 #: app.py:170
 msgid "Lithuanian"
-msgstr ""
+msgstr "litauisch"
 
 #: app.py:171
 msgid "Luxembourgish"
-msgstr ""
+msgstr "Luxemburgisch"
 
 #: app.py:172
 msgid "Maltese"
-msgstr ""
+msgstr "maltesisch"
 
 #: app.py:174
 msgid "Polish"
-msgstr ""
+msgstr "Polieren"
 
 #: app.py:175
 msgid "Portugese"
-msgstr ""
+msgstr "Portugiesisch"
 
 #: app.py:176
 msgid "Romanian"
-msgstr ""
+msgstr "rumänisch"
 
 #: app.py:177
 msgid "Spanish"
-msgstr ""
+msgstr "Spanisch"
 
 #: app.py:178
 msgid "Slovakian"
-msgstr ""
+msgstr "Slowakisch"
 
 #: app.py:179
 msgid "Slovenian"
-msgstr ""
+msgstr "Slowenisch"
 
 #: app.py:180
 msgid "Swedish"
-msgstr ""
+msgstr "Schwedisch"
 
 #: app.py:181
 msgid "Eurpean Unionish"
-msgstr ""
+msgstr "Europäische Unionish"
 
 #: templates/about.en.html:1 templates/base.html:7 templates/base.html:17
 #: templates/base.html:18 templates/base.html:24 templates/base.html:40
@@ -329,15 +329,15 @@ msgstr ""
 
 #: templates/about.html:7 templates/base.html:41 templates/base.html:61
 msgid "About"
-msgstr ""
+msgstr "Über"
 
 #: templates/base.html:42
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Navigation umschalten"
 
 #: templates/base.html:43
 msgid "Menu"
-msgstr ""
+msgstr "Menü"
 
 #: templates/base.html:49 templates/search_results.html:21
 msgid "Search"
@@ -345,16 +345,16 @@ msgstr "Suche"
 
 #: templates/base.html:52 templates/languages.html:7
 msgid "Languages"
-msgstr ""
+msgstr "Sprachen"
 
 #: templates/base.html:55 templates/countries.html:7
 msgid "Countries"
-msgstr ""
+msgstr "Länder"
 
 #: templates/base.html:58 templates/feedback.en.html:3
 #: templates/feedback.html:7 templates/index.html:60
 msgid "Feedback"
-msgstr ""
+msgstr "Feedback"
 
 #: templates/base.html:83
 #, python-format
@@ -362,6 +362,8 @@ msgid ""
 "It looks like you have not selected any source countries. You can change "
 "this <a href=\"%(url)s\">here</a>."
 msgstr ""
+"Es sieht so aus, als hätten Sie keine Quellländer ausgewählt. Sie können dies "
+"<a href=\"%(url)s\">hier ändern</a>."
 
 #: templates/base.html:98
 msgid "SIDN Fonds"
@@ -389,54 +391,56 @@ msgstr ""
 
 #: templates/base.html:147
 msgid "Collect &amp; Subscribe"
-msgstr ""
+msgstr "Sammeln &amp; Abonnieren"
 
 #: templates/base.html:156 templates/base.html:202
 #: templates/feedback.en.html:10 templates/index.html:63
 msgid "Mail"
-msgstr ""
+msgstr "Email"
 
 #: templates/base.html:159
 msgid "Select which of the content you will receive"
-msgstr ""
+msgstr "Wählen Sie aus, welchen Inhalt Sie erhalten möchten"
 
 #: templates/base.html:205
 msgid "Subscribe &amp; receive email for your selected topics."
-msgstr ""
+msgstr "Abonnieren und erhalten Sie eine E-Mail für Ihre ausgewählten Themen"
 
 #: templates/base.html:212
 msgid "Interval"
-msgstr ""
+msgstr "Intervall"
 
 #: templates/base.html:228 templates/feedback.en.html:20
 msgid "Email address"
-msgstr ""
+msgstr "Email"
 
 #: templates/base.html:234
 msgid "Subscribe"
-msgstr ""
+msgstr "Abonnieren"
 
 #: templates/base.html:235
 msgid "Cancel"
-msgstr ""
+msgstr "Annulieren"
 
 #: templates/countries.html:17
 msgid "Source countries"
-msgstr ""
+msgstr "Herkunftsländer"
 
 #: templates/countries.html:21
 msgid "Set the source"
-msgstr ""
+msgstr "Stellen Sie die Quelle ein"
 
 #: templates/feedback.en.html:5 templates/index.html:62
 msgid "Help"
-msgstr ""
+msgstr "Hilfe"
 
 #: templates/feedback.en.html:5 templates/index.html:62
 msgid ""
 "<a href=\"/feedback\">Help</a> us if we missed something or if you have a"
 " suggestion"
 msgstr ""
+"<a href=\"/feedback\">Helfen Sie uns</a>, wenn wir etwas verpasst haben oder wenn Sie eine "
+"Vorschlag haben"
 
 #: templates/feedback.en.html:13
 msgid ""
@@ -444,175 +448,184 @@ msgid ""
 "href=\"https://openstate.eu/en/contact/\" target=\"_blank\">openstate.eu "
 "website</a>."
 msgstr ""
+"Bitte füllen Sie das Kontaktformular unter <a "
+"href=\"https://openstate.eu/en/contact/\" target=\"_blank \">openstate.eu "
+"Website </a> aus."
 
 #: templates/feedback.en.html:22
 msgid "We'll never share your email with anyone else."
-msgstr ""
+msgstr "Wir werden Ihre E-Mail-Adresse niemals an Dritte weitergeben."
 
 #: templates/feedback.en.html:25
 msgid "Message"
-msgstr ""
+msgstr "Botschaft"
 
 #: templates/feedback.en.html:30
 msgid "I agree to the terms and conditons."
-msgstr ""
+msgstr "Ich stimme den AGB zu."
 
 #: templates/feedback.en.html:32
 msgid "Submit"
-msgstr ""
+msgstr "Einreichen"
 
 #: templates/filter_bar.html:5 templates/filter_bar.html:15
 msgid "Most recent"
-msgstr ""
+msgstr "neueste"
 
 #: templates/filter_bar.html:7 templates/filter_bar.html:12
 msgid "Most relevant"
-msgstr ""
+msgstr "relevanteste"
 
 #: templates/filter_bar.html:23
 msgid "Sort"
-msgstr ""
+msgstr "Sortieren"
 
 #: templates/filter_bar.html:27 templates/index.html:45 templates/index.html:53
 msgid "Collect"
-msgstr ""
+msgstr "Sammeln"
 
 #: templates/index.html:10
 msgid "find and <span>collect</span>"
-msgstr ""
+msgstr "finden und <span>sammeln</ span>"
 
 #: templates/index.html:11
 msgid "european <span>local</span>"
-msgstr ""
+msgstr "europäische <span>local</span>"
 
 #: templates/index.html:12
 msgid "political <span>news</span>"
-msgstr ""
+msgstr "politische <span>Nachrichten</ span>"
 
 #: templates/index.html:16
 msgid "Discover"
-msgstr ""
+msgstr "Entdecken"
 
 #: templates/index.html:25
 msgid "What can this do?"
-msgstr ""
+msgstr "Was kann das tun?"
 
 #: templates/index.html:27
 msgid "Find local news"
-msgstr ""
+msgstr "Finden Sie lokale Nachrichten"
 
 #: templates/index.html:29
 msgid "Choose your <a href=\"/languages\">language</a> for articles and topics"
-msgstr ""
+msgstr "Wählen Sie Ihre <a href=\"/languages\">Sprache</a> für Artikel und Themen"
 
 #: templates/index.html:30
 msgid ""
 "Find local news across Europe. Setup your <a href=\"/countries\">source "
 "country</a>"
 msgstr ""
+"Finden Sie lokale Nachrichten in ganz Europa. Richten Sie Ihre <a href=\"/countries\">Quelle ein"
+"Land</a>"
 
 #: templates/index.html:31
 msgid ""
 "Collect the content of your selected <a href=\"/search\">articles and "
 "topics</a>"
 msgstr ""
+"Sammeln Sie den Inhalt Ihrer ausgewählten <a href=\"/search\">Artikel und"
+"Themen</a>"
 
 #: templates/index.html:39
 msgid "Contribute"
-msgstr ""
+msgstr "Beitragen"
 
 #: templates/index.html:42
 msgid "Your opinion matters"
-msgstr ""
+msgstr "Deine Meinung zählt"
 
 #: templates/index.html:44 templates/inner_result.html:13
 msgid "Verify"
-msgstr ""
+msgstr "Überprüfen"
 
 #: templates/index.html:44
 msgid "Verify articles and help keep articles up to date"
-msgstr ""
+msgstr "Überprüfen Sie die Artikel und halten Sie die Artikel auf dem neuesten Stand"
 
 #: templates/index.html:45
 msgid "Collect selected articles and topics"
-msgstr ""
+msgstr "Sammeln Sie ausgewählte Artikel und Themen"
 
 #: templates/index.html:50
 msgid "Collect local news"
-msgstr ""
+msgstr "Sammeln Sie lokale Nachrichten"
 
 #: templates/index.html:58
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: templates/index.html:63
 msgid ""
 "Any <a href=\"https://openstate.eu/contact\">questions</a>? We want to "
 "know your opinion"
 msgstr ""
+"Haben Sie <a href=\"https://openstate.eu/contact\">Fragen</a>? Wir möchten"
+"Kenne deine Meinung"
 
 #: templates/index.html:91
 msgid "Discover more scoops"
-msgstr ""
+msgstr "Entdecken Sie mehr Kugeln"
 
 #: templates/inner_result.html:46
 msgid "Read more"
-msgstr ""
+msgstr "Weiterlesen"
 
 #: templates/languages.html:17
 msgid "Set your language"
-msgstr ""
+msgstr "Stellen Sie Ihre Sprache ein"
 
 #: templates/languages.html:20
 msgid "Website"
-msgstr ""
+msgstr "Webseite"
 
 #: templates/languages.html:30
 msgid "News articles"
-msgstr ""
+msgstr "Zeitungsartikel"
 
 #: templates/languages.html:40
 msgid "Go back"
-msgstr ""
+msgstr "Geh zurück"
 
 #: templates/results_as_list.html:5
 #, python-format
 msgid "%(num_results)s results for:  %(query)s"
-msgstr ""
+msgstr "%(num_results)s Ergebnisse für: %(query)s"
 
 #: templates/results_as_list.html:7
 #, python-format
 msgid "%(num_results)s results:"
-msgstr ""
+msgstr "%(num_results)s Ergebnisse:"
 
 #: templates/results_as_list.html:33
 msgid "Pagination"
-msgstr ""
+msgstr "Seitennummerierung"
 
 #: templates/results_as_list.html:37 templates/results_as_list.html:40
 msgid "Previous"
-msgstr ""
+msgstr "Vorig"
 
 #: templates/results_as_list.html:45 templates/results_as_list.html:48
 msgid "Next"
-msgstr ""
+msgstr "Nächster"
 
 #: templates/results_as_list.html:57
 msgid "Unfortunately we were not able to find any documents matching your query."
-msgstr ""
+msgstr "Leider konnten wir keine Dokumente finden, die Ihrer Anfrage entsprechen."
 
 #: templates/search.html:3
 msgid "Find articles, parties, locations..."
-msgstr ""
+msgstr "Finden Sie Artikel, Partys, Orte ..."
 
 #: templates/search_results.html:7 templates/search_results.html:10
 #, python-format
 msgid "Recent political news about %(query)s"
-msgstr ""
+msgstr "Aktuelle politische Nachrichten zu %(query)s"
 
 #: templates/search_results.html:31
 msgid "Filters"
-msgstr ""
+msgstr "Filter"
 
 #: templates/search_results.html:37
 msgid "Period"
@@ -620,7 +633,7 @@ msgstr "Periode"
 
 #: templates/search_results.html:77
 msgid "Show more"
-msgstr ""
+msgstr "Zeig mehr"
 
 #: templates/show.html:37
 #, python-format
@@ -629,6 +642,9 @@ msgid ""
 "do not have the translated version for unknown reasons. You can change "
 "language settings <a href=\"%(url)s\">here</a>."
 msgstr ""
+"Dieser Artikel wird in der Sprache gezeigt, in der er geschrieben wurde, da wir"
+"habe die übersetzte Version aus unbekannten Gründen nicht. Sie können die "
+"Spracheinstellungen <a href=\"%(url)s\">hier</a> ändern."
 
 #: templates/show.html:42
 #, python-format
@@ -636,6 +652,8 @@ msgid ""
 "This article is shown in the language in which it was written. You can "
 "change this <a href=\"%(url)s\">here</a>."
 msgstr ""
+"Dieser Artikel wird in der Sprache gezeigt, in der er geschrieben wurde. Sie können die "
+"Spracheinstellungen <a href=\"%(url)s\">hier</a> ändern."
 
 #: templates/show.html:47
 #, python-format
@@ -644,27 +662,30 @@ msgid ""
 " original language for unknown reasons. You can change language settings "
 "<a href=\"%(url)s\">here</a>."
 msgstr ""
+"Dieser Artikel wird in Englisch gezeigt, da wir die Version nicht in der"
+"Originalsprache aus unbekannten Gründen. Sie können die Spracheinstellungen "
+"<a href=\"%(url)s\">hier</a> ändern."
 
 #: templates/show.html:57
 msgid "Share on Twitter"
-msgstr ""
+msgstr "Auf Twitter teilen"
 
 #: templates/show.html:60
 msgid "Share on Facebook"
-msgstr ""
+msgstr "Auf Facebook teilen"
 
 #: templates/subscribe.html:11
 msgid "You were succesfully subscribed to the alert."
-msgstr ""
+msgstr "Sie haben die Benachrichtigung erfolgreich abonniert."
 
 #: templates/subscribe.html:13 templates/subscribe.html:16
 #: templates/unsubscribe.html:13 templates/unsubscribe.html:16
 msgid "Something went wrong. Please try again"
-msgstr ""
+msgstr "Etwas ist schief gelaufen. Bitte versuche es erneut"
 
 #: templates/unsubscribe.html:11
 msgid "You were succesfully unsubscribed."
-msgstr ""
+msgstr "Sie wurden erfolgreich abgemeldet."
 
 #~ msgid "Taal"
 #~ msgstr ""
@@ -731,4 +752,3 @@ msgstr ""
 
 #~ msgid "Word, location or party ..."
 #~ msgstr ""
-

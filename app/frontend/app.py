@@ -906,15 +906,12 @@ def search():
     if search_params['location'] is None:
         search_params['location'] = locations
 
-    sort_key = request.args.get('sort', None)
-    print >>sys.stderr, "Got sort key: %s" % (sort_key)
-    print >>sys.stderr, SORTING[sort_key]
+    sort_key = request.args.get('sort', 'relevancy')
     if sort_key is not None:
         try:
             search_params.update(SORTING[sort_key])
         except LookupError as e:
             pass
-    print >>sys.stderr, "search params: %s" % (search_params,)
     results = api.search(**search_params)
     try:
         max_pages = int(math.floor(results['as:totalItems'] / PAGE_SIZE))
@@ -927,7 +924,8 @@ def search():
         result_facets=order_facets(get_facets_from_results(results)),
         query=search_params['query'], page=search_params['page'],
         max_pages=max_pages, search_params=search_params,
-        dt_now=datetime.datetime.now(), locations=locations)
+        dt_now=datetime.datetime.now(), locations=locations,
+        sort_key=sort_key)
 
 
 @app.route("/<as2_type>/<id>")

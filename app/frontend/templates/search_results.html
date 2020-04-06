@@ -102,6 +102,14 @@
   </div>
 </div>
 
+{% set filter_bar_homepage = False %}
+{% set filter_bar_relevance_link = dict(sort='relevancy') |url_for_search_page(gov_slug) %}
+{% set filter_bar_recent_link = dict(sort='recency') |url_for_search_page(gov_slug) %}
+{% if sort_key == "recency" %}
+  {% set filter_bar_sort = "recent" %}
+{% else %}
+  {% set filter_bar_sort = "relevant" %}
+{% endif %}
 {% include "filter_bar.html" %}
 
 <section id="content-search-results">

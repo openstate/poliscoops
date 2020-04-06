@@ -181,6 +181,17 @@ LANGUAGES = {
     'EU': lazy_gettext('Eurpean Unionish'),
     'EN': lazy_gettext('English')}
 
+SORTING = {
+    'recency': {
+        'sort': 'item.created',
+        'order': 'desc'
+    },
+    'relevancy': {
+        'sort': None,
+        'order': None
+    }
+}
+
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 
@@ -628,8 +639,14 @@ class BackendAPI(object):
             }
         }
 
-        if 'size' in kwargs:
-            es_query['size'] = kwargs['size']
+        print >>sys.stderr, kwargs
+        for kw_opt in ['size', 'sort', 'order']:
+            if kw_opt in kwargs:
+                if kwargs[kw_opt] is not None:
+                    es_query[kw_opt] = kwargs[kw_opt]
+                else:
+                    del es_query[kw_opt]
+
         if kwargs.get('query', None) is not None:
             es_query['query'] = kwargs['query']
 
@@ -889,6 +906,15 @@ def search():
     if search_params['location'] is None:
         search_params['location'] = locations
 
+    sort_key = request.args.get('sort', None)
+    print >>sys.stderr, "Got sort key: %s" % (sort_key)
+    print >>sys.stderr, SORTING[sort_key]
+    if sort_key is not None:
+        try:
+            search_params.update(SORTING[sort_key])
+        except LookupError as e:
+            pass
+    print >>sys.stderr, "search params: %s" % (search_params,)
     results = api.search(**search_params)
     try:
         max_pages = int(math.floor(results['as:totalItems'] / PAGE_SIZE))

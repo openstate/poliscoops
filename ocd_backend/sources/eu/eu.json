@@ -10,6 +10,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "bij1",
@@ -33,6 +37,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -58,6 +66,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "pvv",
@@ -81,6 +93,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -106,6 +122,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "d66",
@@ -129,6 +149,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -154,6 +178,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "sp",
@@ -177,6 +205,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -202,6 +234,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "cu",
@@ -225,6 +261,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -250,6 +290,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "50+",
@@ -273,6 +317,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -298,6 +346,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "denk",
@@ -321,6 +373,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -346,6 +402,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "n_va",
@@ -369,6 +429,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -394,6 +458,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "cd_v",
@@ -417,6 +485,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -442,6 +514,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "groen",
@@ -465,6 +541,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -490,6 +570,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "mr",
@@ -513,6 +597,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -538,6 +626,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "cdh",
@@ -561,6 +653,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -586,6 +682,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "pp",
@@ -609,6 +709,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -634,6 +738,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "csv",
@@ -657,6 +765,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -682,6 +794,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "dp",
@@ -705,6 +821,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -730,6 +850,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "adr",
@@ -753,6 +877,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -778,6 +906,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "lenk",
@@ -801,6 +933,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -826,6 +962,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "lr",
@@ -849,6 +989,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -874,6 +1018,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "fi",
@@ -897,6 +1045,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -922,6 +1074,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "eelv",
@@ -945,6 +1101,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -970,6 +1130,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "udi",
@@ -993,6 +1157,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1018,6 +1186,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "dlf",
@@ -1041,6 +1213,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1066,6 +1242,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "psoe",
@@ -1089,6 +1269,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1114,6 +1298,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "cs",
@@ -1137,6 +1325,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1162,6 +1354,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "vox",
@@ -1185,6 +1381,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1210,6 +1410,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "jxcat",
@@ -1233,6 +1437,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1258,6 +1466,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ehb",
@@ -1281,6 +1493,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1306,6 +1522,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "cc_pnc",
@@ -1329,6 +1549,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1354,6 +1578,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "prc",
@@ -1377,6 +1605,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1402,6 +1634,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "psd",
@@ -1425,6 +1661,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1450,6 +1690,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "cdu",
@@ -1473,6 +1717,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1498,6 +1746,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "pan",
@@ -1521,6 +1773,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1546,6 +1802,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "l",
@@ -1569,6 +1829,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1594,6 +1858,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ff",
@@ -1617,6 +1885,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1642,6 +1914,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "lab",
@@ -1665,6 +1941,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1690,6 +1970,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "sd",
@@ -1713,6 +1997,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1738,6 +2026,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "lab",
@@ -1761,6 +2053,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1786,6 +2082,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "snp",
@@ -1809,6 +2109,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1834,6 +2138,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "greens",
@@ -1857,6 +2165,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1882,6 +2194,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "pc",
@@ -1905,6 +2221,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1930,6 +2250,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "rv",
@@ -1953,6 +2277,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -1978,6 +2306,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "el",
@@ -2001,6 +2333,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2026,6 +2362,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "a",
@@ -2049,6 +2389,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2074,6 +2418,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "s",
@@ -2097,6 +2445,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2122,6 +2474,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "sd",
@@ -2145,6 +2501,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2170,6 +2530,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "kd",
@@ -2193,6 +2557,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2218,6 +2586,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "mp",
@@ -2241,6 +2613,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2266,6 +2642,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ps",
@@ -2289,6 +2669,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2314,6 +2698,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "kesk",
@@ -2337,6 +2725,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2362,6 +2754,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "vas",
@@ -2385,6 +2781,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2410,6 +2810,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "kd",
@@ -2433,6 +2837,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2458,6 +2866,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "re",
@@ -2481,6 +2893,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2506,6 +2922,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "erkre",
@@ -2529,6 +2949,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2554,6 +2978,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "sde",
@@ -2577,6 +3005,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2602,6 +3034,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "sdps",
@@ -2625,6 +3061,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2650,6 +3090,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ap",
@@ -2673,6 +3117,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2698,6 +3146,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "zzs",
@@ -2721,6 +3173,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2746,6 +3202,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "lra",
@@ -2769,6 +3229,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2794,6 +3258,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ts_lkd",
@@ -2817,6 +3285,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2842,6 +3314,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "lsdp",
@@ -2865,6 +3341,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2890,6 +3370,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "lcp",
@@ -2913,6 +3397,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2938,6 +3426,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "dp",
@@ -2961,6 +3453,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -2986,6 +3482,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ls",
@@ -3009,6 +3509,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3034,6 +3538,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "pis",
@@ -3057,6 +3565,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3082,6 +3594,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "sld",
@@ -3105,6 +3621,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3130,6 +3650,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "konfederacja",
@@ -3153,6 +3677,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3178,6 +3706,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "razem",
@@ -3201,6 +3733,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3226,6 +3762,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "cdu",
@@ -3249,6 +3789,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3274,6 +3818,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "afd",
@@ -3297,6 +3845,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3322,6 +3874,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "die_linke",
@@ -3345,6 +3901,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3370,6 +3930,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "csu",
@@ -3393,6 +3957,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3418,6 +3986,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ods",
@@ -3441,6 +4013,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3466,6 +4042,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "spd",
@@ -3489,6 +4069,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3514,6 +4098,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "cssd",
@@ -3537,6 +4125,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3562,6 +4154,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "top09",
@@ -3585,6 +4181,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3610,6 +4210,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "olano_nova",
@@ -3633,6 +4237,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3658,6 +4266,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "l_sns",
@@ -3681,6 +4293,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3706,6 +4322,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "mh",
@@ -3729,6 +4349,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3754,6 +4378,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "fidesz",
@@ -3777,6 +4405,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3802,6 +4434,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "jobbik",
@@ -3825,6 +4461,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3850,6 +4490,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "parbeszed",
@@ -3873,6 +4517,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3898,6 +4546,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "dk",
@@ -3921,6 +4573,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3946,6 +4602,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ldu",
@@ -3969,6 +4629,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -3994,6 +4658,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "sds",
@@ -4017,6 +4685,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4042,6 +4714,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "sd",
@@ -4065,6 +4741,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4090,6 +4770,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "levica",
@@ -4113,6 +4797,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4138,6 +4826,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "desus",
@@ -4161,6 +4853,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4186,6 +4882,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "spoe",
@@ -4209,6 +4909,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4234,6 +4938,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "gruene",
@@ -4257,6 +4965,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4282,6 +4994,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "jetzt",
@@ -4305,6 +5021,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4330,6 +5050,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "pd",
@@ -4353,6 +5077,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4378,6 +5106,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "svp",
@@ -4401,6 +5133,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4426,6 +5162,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "fdi",
@@ -4449,6 +5189,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4474,6 +5218,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ad",
@@ -4497,6 +5245,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4522,6 +5274,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "akel",
@@ -4545,6 +5301,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4570,6 +5330,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ks_edek",
@@ -4593,6 +5357,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4618,6 +5386,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ka",
@@ -4641,6 +5413,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4666,6 +5442,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "elam",
@@ -4689,6 +5469,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4714,6 +5498,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "s",
@@ -4737,6 +5525,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4762,6 +5554,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "kidiso",
@@ -4785,6 +5581,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4810,6 +5610,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "el",
@@ -4833,6 +5637,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4858,6 +5666,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "syriza",
@@ -4881,6 +5693,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4906,6 +5722,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "gerb",
@@ -4929,6 +5749,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -4954,6 +5778,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "vmro_bnd",
@@ -4977,6 +5805,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5002,6 +5834,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ataka",
@@ -5025,6 +5861,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5050,6 +5890,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "volja",
@@ -5073,6 +5917,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5098,6 +5946,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "pnl",
@@ -5121,6 +5973,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5146,6 +6002,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "rmdsz",
@@ -5169,6 +6029,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5194,6 +6058,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "pmp",
@@ -5217,6 +6085,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5242,6 +6114,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "plus",
@@ -5265,6 +6141,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5290,6 +6170,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "hdz",
@@ -5313,6 +6197,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5338,6 +6226,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "hds",
@@ -5361,6 +6253,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5386,6 +6282,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "hns",
@@ -5409,6 +6309,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5434,6 +6338,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "most",
@@ -5457,6 +6365,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5482,6 +6394,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "mb365",
@@ -5505,6 +6421,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5530,6 +6450,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "ids",
@@ -5553,6 +6477,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5578,6 +6506,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "hl",
@@ -5601,6 +6533,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5626,6 +6562,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "epp",
@@ -5649,6 +6589,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5674,6 +6618,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "pes",
@@ -5697,6 +6645,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5722,6 +6674,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "greens_efa",
@@ -5745,6 +6701,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5770,6 +6730,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "efa",
@@ -5793,6 +6757,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5818,6 +6786,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "id",
@@ -5841,6 +6813,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5866,6 +6842,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "acre",
@@ -5889,6 +6869,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],
@@ -5914,6 +6898,10 @@
       [
         "ocd_backend.enrichers.BinoasEnricher",
         {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
+        {}
       ]
     ],
     "index_name": "gue_ngl",
@@ -5937,6 +6925,10 @@
       ],
       [
         "ocd_backend.enrichers.BinoasEnricher",
+        {}
+      ],
+      [
+        "ocd_backend.enrichers.InterestingnessEnricher",
         {}
       ]
     ],

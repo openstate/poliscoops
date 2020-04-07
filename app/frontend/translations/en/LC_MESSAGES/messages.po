@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-06 14:50+0000\n"
+"POT-Creation-Date: 2020-04-07 10:00+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -314,10 +314,10 @@ msgstr ""
 msgid "Eurpean Unionish"
 msgstr ""
 
-#: templates/about.en.html:1 templates/base.html:7 templates/base.html:17
-#: templates/base.html:18 templates/base.html:24 templates/base.html:40
-#: templates/show.html:5
-msgid "Poliscoops"
+#: templates/about.de.html:1 templates/about.en.html:1
+#: templates/about.fr.html:1 templates/about.html:7 templates/base.html:41
+#: templates/base.html:61
+msgid "About"
 msgstr ""
 
 #: templates/about.html:6 templates/countries.html:6
@@ -327,8 +327,9 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/about.html:7 templates/base.html:41 templates/base.html:61
-msgid "About"
+#: templates/base.html:7 templates/base.html:17 templates/base.html:18
+#: templates/base.html:24 templates/base.html:40 templates/show.html:5
+msgid "Poliscoops"
 msgstr ""
 
 #: templates/base.html:42
@@ -502,12 +503,14 @@ msgid "Find local news"
 msgstr ""
 
 #: templates/index.html:29
-msgid "Choose your <a href=\"/languages\">language</a> for articles and topics"
+#, python-format
+msgid "Choose your <a href=\"%(url)s\">language</a> for articles and topics"
 msgstr ""
 
 #: templates/index.html:30
+#, python-format
 msgid ""
-"Find local news across Europe. Setup your <a href=\"/countries\">source "
+"Find local news across Europe. Setup your <a href=\"%(url)s\">source "
 "country</a>"
 msgstr ""
 
@@ -665,4 +668,12 @@ msgstr ""
 #: templates/unsubscribe.html:11
 msgid "You were succesfully unsubscribed."
 msgstr ""
+
+#~ msgid "Choose your <a href=\"/languages\">language</a> for articles and topics"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Find local news across Europe. Setup "
+#~ "your <a href=\"/countries\">source country</a>"
+#~ msgstr ""
 

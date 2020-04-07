@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-06 14:50+0000\n"
+"POT-Creation-Date: 2020-04-07 10:00+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -314,11 +314,11 @@ msgstr "Suédois"
 msgid "Eurpean Unionish"
 msgstr "Européen Unionish"
 
-#: templates/about.en.html:1 templates/base.html:7 templates/base.html:17
-#: templates/base.html:18 templates/base.html:24 templates/base.html:40
-#: templates/show.html:5
-msgid "Poliscoops"
-msgstr ""
+#: templates/about.de.html:1 templates/about.en.html:1
+#: templates/about.fr.html:1 templates/about.html:7 templates/base.html:41
+#: templates/base.html:61
+msgid "About"
+msgstr "Sur"
 
 #: templates/about.html:6 templates/countries.html:6
 #: templates/disclaimer.html:6 templates/feedback.html:6
@@ -327,9 +327,10 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/about.html:7 templates/base.html:41 templates/base.html:61
-msgid "About"
-msgstr "Sur"
+#: templates/base.html:7 templates/base.html:17 templates/base.html:18
+#: templates/base.html:24 templates/base.html:40 templates/show.html:5
+msgid "Poliscoops"
+msgstr ""
 
 #: templates/base.html:42
 msgid "Toggle navigation"
@@ -362,8 +363,8 @@ msgid ""
 "It looks like you have not selected any source countries. You can change "
 "this <a href=\"%(url)s\">here</a>."
 msgstr ""
-"Il semble que vous n'ayez sélectionné aucun pays d'origine. Vous pouvez changer"
-"ceci <a href=\"%(url)s\">ici</a>."
+"Il semble que vous n'ayez sélectionné aucun pays d'origine. Vous pouvez "
+"changerceci <a href=\"%(url)s\">ici</a>."
 
 #: templates/base.html:98
 msgid "SIDN Fonds"
@@ -439,7 +440,8 @@ msgid ""
 "<a href=\"/feedback\">Help</a> us if we missed something or if you have a"
 " suggestion"
 msgstr ""
-"<a href=\"/feedback\">Aidez-nous</a> si nous avons manqué quelque chose ou si vous avez une suggestion"
+"<a href=\"/feedback\">Aidez-nous</a> si nous avons manqué quelque chose "
+"ou si vous avez une suggestion"
 
 #: templates/feedback.en.html:13
 msgid ""
@@ -448,7 +450,8 @@ msgid ""
 "website</a>."
 msgstr ""
 "Veuillez remplir le formulaire de contact sur <a "
-"href=\"https://openstate.eu/en/contact/\" target=\"_blank\">le site openstate.eu</a>."
+"href=\"https://openstate.eu/en/contact/\" target=\"_blank\">le site "
+"openstate.eu</a>."
 
 #: templates/feedback.en.html:22
 msgid "We'll never share your email with anyone else."
@@ -507,24 +510,26 @@ msgid "Find local news"
 msgstr "Trouvez les nouvelles locales"
 
 #: templates/index.html:29
-msgid "Choose your <a href=\"/languages\">language</a> for articles and topics"
-msgstr "Choisissez votre <a href=\"/languages\"> langue </a> pour les articles et les sujets"
+#, python-format
+msgid "Choose your <a href=\"%(url)s\">language</a> for articles and topics"
+msgstr "Choisissez votre <a href=\"%(url)s\">langue</a> pour les articles et les sujets"
 
 #: templates/index.html:30
+#, python-format
 msgid ""
-"Find local news across Europe. Setup your <a href=\"/countries\">source "
+"Find local news across Europe. Setup your <a href=\"%(url)s\">source "
 "country</a>"
 msgstr ""
-"Trouvez les actualités locales à travers l'Europe. Configurez votre <a href=\"/countries\"> source"
-"pays </a>"
+"Trouvez les actualités locales à travers l'Europe. Configurez votre <a href=\"%(url)s\"> source "
+"pays</a>"
 
 #: templates/index.html:31
 msgid ""
 "Collect the content of your selected <a href=\"/search\">articles and "
 "topics</a>"
 msgstr ""
-"Collectez le contenu de vos <a href=\"/search\"> articles sélectionnés et"
-"sujets </a>"
+"Collectez le contenu de vos <a href=\"/search\"> articles sélectionnés "
+"etsujets </a>"
 
 #: templates/index.html:39
 msgid "Contribute"
@@ -559,7 +564,8 @@ msgid ""
 "Any <a href=\"https://openstate.eu/contact\">questions</a>? We want to "
 "know your opinion"
 msgstr ""
-"Des <a href=\"https://openstate.eu/contact\">questions</a>? Nous voulons connaître votre opinion"
+"Des <a href=\"https://openstate.eu/contact\">questions</a>? Nous voulons "
+"connaître votre opinion"
 
 #: templates/index.html:91
 msgid "Discover more scoops"
@@ -593,7 +599,7 @@ msgstr "%(num_results)s résultats pour: %(query)s"
 #: templates/results_as_list.html:7
 #, python-format
 msgid "%(num_results)s results:"
-msgstr ""%(num_results)s résultats:"
+msgstr "\"%(num_results)s résultats:"
 
 #: templates/results_as_list.html:33
 msgid "Pagination"
@@ -609,7 +615,9 @@ msgstr "Prochain"
 
 #: templates/results_as_list.html:57
 msgid "Unfortunately we were not able to find any documents matching your query."
-msgstr "Malheureusement, nous n'avons trouvé aucun document correspondant à votre requête."
+msgstr ""
+"Malheureusement, nous n'avons trouvé aucun document correspondant à votre"
+" requête."
 
 #: templates/search.html:3
 msgid "Find articles, parties, locations..."
@@ -639,9 +647,9 @@ msgid ""
 "do not have the translated version for unknown reasons. You can change "
 "language settings <a href=\"%(url)s\">here</a>."
 msgstr ""
-"Cet article est affiché dans la langue dans laquelle il a été rédigé, car nous"
-"n'ont pas la version traduite pour des raisons inconnues. Vous pouvez changer"
-"paramètres de langue <a href=\"%(url)s\">ici</a>."
+"Cet article est affiché dans la langue dans laquelle il a été rédigé, car"
+" nousn'ont pas la version traduite pour des raisons inconnues. Vous "
+"pouvez changerparamètres de langue <a href=\"%(url)s\">ici</a>."
 
 #: templates/show.html:42
 #, python-format
@@ -649,8 +657,8 @@ msgid ""
 "This article is shown in the language in which it was written. You can "
 "change this <a href=\"%(url)s\">here</a>."
 msgstr ""
-"Cet article est affiché dans la langue dans laquelle il a été écrit. Vous pouvez"
-"modifiez cette <a href=\"%(url)s\">ici</a>."
+"Cet article est affiché dans la langue dans laquelle il a été écrit. Vous"
+" pouvezmodifiez cette <a href=\"%(url)s\">ici</a>."
 
 #: templates/show.html:47
 #, python-format
@@ -659,9 +667,9 @@ msgid ""
 " original language for unknown reasons. You can change language settings "
 "<a href=\"%(url)s\">here</a>."
 msgstr ""
-"Cet article est affiché en anglais, car nous n'avons pas la version dans le"
-"langue d'origine pour des raisons inconnues. Vous pouvez modifier les paramètres de langue"
-"<a href=\"%(url)s\"> ici </a>."
+"Cet article est affiché en anglais, car nous n'avons pas la version dans "
+"lelangue d'origine pour des raisons inconnues. Vous pouvez modifier les "
+"paramètres de langue<a href=\"%(url)s\"> ici </a>."
 
 #: templates/show.html:57
 msgid "Share on Twitter"
@@ -683,3 +691,17 @@ msgstr "Quelque chose a mal tourné. Veuillez réessayer"
 #: templates/unsubscribe.html:11
 msgid "You were succesfully unsubscribed."
 msgstr "Vous vous êtes bien désabonné."
+
+#~ msgid "Choose your <a href=\"/languages\">language</a> for articles and topics"
+#~ msgstr ""
+#~ "Choisissez votre <a href=\"/languages\"> "
+#~ "langue </a> pour les articles et "
+#~ "les sujets"
+
+#~ msgid ""
+#~ "Find local news across Europe. Setup "
+#~ "your <a href=\"/countries\">source country</a>"
+#~ msgstr ""
+#~ "Trouvez les actualités locales à travers"
+#~ " l'Europe. Configurez votre <a "
+#~ "href=\"/countries\"> sourcepays </a>"

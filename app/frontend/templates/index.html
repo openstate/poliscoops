@@ -26,8 +26,8 @@
     <div class="info-box-contents">
       <h2>{%trans%}Find local news{%endtrans%}</h2>
       <ol class="info-box-bg-alt">
-        <li class="clearfix"><div class="counter">1</div><div class="exp">{%trans%}Choose your <a href="/languages">language</a> for articles and topics{%endtrans%}</div></li>
-        <li class="clearfix"><div class="counter">2</div><div class="exp">{%trans%}Find local news across Europe. Setup your <a href="/countries">source country</a>{%endtrans%}</div></li>
+        <li class="clearfix"><div class="counter">1</div><div class="exp">{%trans url=url_for('languages', redirect=redirect) %}Choose your <a href="{{ url }}">language</a> for articles and topics{%endtrans%}</div></li>
+        <li class="clearfix"><div class="counter">2</div><div class="exp">{%trans url=url_for('countries', redirect=redirect) %}Find local news across Europe. Setup your <a href="{{ url }}">source country</a>{%endtrans%}</div></li>
         <li class="clearfix"><div class="counter">3</div><div class="exp">{%trans%}Collect the content of your selected <a href="/search">articles and topics</a>{%endtrans%}</div></li>
       </ol>
     </div>

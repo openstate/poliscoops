@@ -1,4 +1,4 @@
-PoliFLW API install notes
+Poliscoops API install notes
 ######################################
 
 .. contents::
@@ -9,11 +9,11 @@ Installation instructions
 Install using Docker
 ------------
 
-Using `Docker Compose <https://docs.docker.com/compose/install/>`_ is by far the easiest way to spin up a development environment and get started with contributing to the PoliFLW API. The following has been tested to work with Docker 1.0.1 and up.
+Using `Docker Compose <https://docs.docker.com/compose/install/>`_ is by far the easiest way to spin up a development environment and get started with contributing to Poliscoops. The following has been tested to work with Docker 1.0.1 and up.
 
 1. Clone the PoliFLW API git repository::
 
-   $ git clone https://github.com/openstate/poliflw.git
+   $ git clone https://github.com/openstate/poliscoops.git
    $ cd poliflw/docker
 
 2. Build and start the containers::
@@ -30,7 +30,7 @@ Elasticsearch is now accessible locally in the Docker container via http://127.0
 
 Furthermore, to make everything ready for getting sources and using it locally, you need to do the following::
 
-   $ docker exec -it pfl_backend_1 bash
+   $ docker exec -it pls_backend_1 bash
    $ source ../env/bin/activate
    $ ./manage.py elasticsearch put_template
    $ ./manage.py elasticsearch create_indexes es_mappings
@@ -65,7 +65,7 @@ Usage
 
 Some quick notes on how to use the PoliFLW API
 
-Running an PoliFLW API extractor
+Running an Poliscoops extractor
 ------------
 
 1. Make the necessary changes to the 'sources' settings file (``ocd_backend/sources.json``). For example, fill out any API keys you might need for specific APIs.
@@ -83,11 +83,11 @@ To generate the documentation run::
 
    $ docker exec pfl_backend_1 sh -c "source ../bin/activate && cd docs && make html"
 
-If you get permission errors then ``pfl_nginx_1`` probably already created an empty ``_build/html`` directory. Simply delete this directory and run the command above again.
+If you get permission errors then ``pls_nginx_1`` probably already created an empty ``_build/html`` directory. Simply delete this directory and run the command above again.
 
 Automatic updating using cron
 ------------
 
 The ``update.sh`` script contains the instructions to update indices. On the host machine run ``sudo crontab -e`` and add the following line::
 
-   $ 0 1,7,13,19 * * * sudo docker exec pfl_backend_1 /opt/pfl/bin/update.sh
+   $ 0 1,7,13,19 * * * sudo docker exec pls_backend_1 /opt/pfl/bin/update.sh

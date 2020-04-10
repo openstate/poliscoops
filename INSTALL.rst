@@ -11,7 +11,7 @@ Install using Docker
 
 Using `Docker Compose <https://docs.docker.com/compose/install/>`_ is by far the easiest way to spin up a development environment and get started with contributing to Poliscoops. The following has been tested to work with Docker 1.0.1 and up.
 
-1. Clone the PoliFLW API git repository::
+1. Clone the Poliscoops git repository::
 
    $ git clone https://github.com/openstate/poliscoops.git
    $ cd poliflw/docker

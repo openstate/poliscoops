@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-07 10:00+0000\n"
+"POT-Creation-Date: 2020-04-14 16:27+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -18,301 +18,357 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app.py:70
+#: app.py:71
 msgid "Kind"
 msgstr "Sorte"
 
-#: app.py:71
+#: app.py:72
 msgid "Origin"
 msgstr "Origine"
 
-#: app.py:72
+#: app.py:73
 msgid "Date from"
 msgstr "Partir de la date"
 
-#: app.py:73
+#: app.py:74
 msgid "Date until"
 msgstr "jusqu'à la date"
 
-#: app.py:74
+#: app.py:75
 msgid "Language"
 msgstr "Langue"
 
-#: app.py:75
+#: app.py:76
 msgid "Location"
 msgstr "Emplacement"
 
-#: app.py:76 templates/inner_result.html:44 templates/show.html:52
+#: app.py:77 templates/inner_result.html:49 templates/show.html:56
 msgid "Source"
 msgstr "La source"
 
-#: app.py:78
+#: app.py:79
 msgid "Mentions"
 msgstr "mentionne"
 
-#: app.py:83
+#: app.py:84
 msgid "Created by"
 msgstr "créé par"
 
-#: app.py:85
+#: app.py:86
 msgid "Polarity"
 msgstr "Polarité"
 
-#: app.py:86
+#: app.py:87
 msgid "Sentiment"
 msgstr "Sentiment"
 
-#: app.py:87
+#: app.py:88
 msgid "Interestingness"
 msgstr "Intérêt"
 
-#: app.py:91
+#: app.py:92
 msgid "Low"
 msgstr "Faible"
 
-#: app.py:92
+#: app.py:93
 msgid "High"
 msgstr "Haut"
 
-#: app.py:93
+#: app.py:94
 msgid "Party"
 msgstr "Partie"
 
-#: app.py:104
+#: app.py:105
 msgid "Direct"
 msgstr "Direct"
 
-#: app.py:105
+#: app.py:106
 msgid "Daily"
 msgstr "du quotidien"
 
-#: app.py:106
+#: app.py:107
 msgid "Weekly"
 msgstr "Hebdomadaire"
 
-#: app.py:112 app.py:116 app.py:182
+#: app.py:113 app.py:117 app.py:183
 msgid "English"
 msgstr "Anglais"
 
-#: app.py:113 app.py:117 app.py:154 app.py:164
+#: app.py:114 app.py:118 app.py:155 app.py:165
 msgid "German"
 msgstr "Allemand"
 
-#: app.py:114 app.py:118 app.py:163
+#: app.py:115 app.py:119 app.py:164
 msgid "French"
 msgstr "Français"
 
-#: app.py:119
+#: app.py:120
 msgid "Original language"
 msgstr "Langue originale"
 
-#: app.py:122
+#: app.py:123
 msgid "Austria"
 msgstr "L'Autriche"
 
-#: app.py:123
+#: app.py:124
 msgid "Belgium"
 msgstr "Belgique"
 
-#: app.py:124
+#: app.py:125
 msgid "Bulgaria"
 msgstr "Bulgarie"
 
-#: app.py:125
+#: app.py:126
 msgid "Croatia"
 msgstr "Croatie"
 
-#: app.py:126
+#: app.py:127
 msgid "Cyprus"
 msgstr "Chypre"
 
-#: app.py:127
+#: app.py:128
 msgid "Czech Republic"
 msgstr "République Tchèque"
 
-#: app.py:128
+#: app.py:129
 msgid "Denmark"
 msgstr "Danemark"
 
-#: app.py:129
+#: app.py:130
 msgid "Estonia"
 msgstr "Estonie"
 
-#: app.py:130
+#: app.py:131
 msgid "Finland"
 msgstr "Finlande"
 
-#: app.py:131
+#: app.py:132
 msgid "France"
 msgstr "France"
 
-#: app.py:132
+#: app.py:133
 msgid "Germany"
 msgstr "Allemagne"
 
-#: app.py:133
+#: app.py:134
 msgid "Greece"
 msgstr "Grèce"
 
-#: app.py:134
+#: app.py:135
 msgid "Hungary"
 msgstr "Hongrie"
 
-#: app.py:135
+#: app.py:136
 msgid "Italy"
 msgstr "Italie"
 
-#: app.py:136
+#: app.py:137
 msgid "Ireland"
 msgstr "Irlande"
 
-#: app.py:137
+#: app.py:138
 msgid "Latvia"
 msgstr "Lettonie"
 
-#: app.py:138
+#: app.py:139
 msgid "Lithuania"
 msgstr "Lituanie"
 
-#: app.py:139
+#: app.py:140
 msgid "Luxembourg"
 msgstr "Luxembourg"
 
-#: app.py:140
+#: app.py:141
 msgid "Malta"
 msgstr "Malte"
 
-#: app.py:141
+#: app.py:142
 msgid "Netherlands"
 msgstr "Pays-Bas"
 
-#: app.py:142
+#: app.py:143
 msgid "Poland"
 msgstr "Pologne"
 
-#: app.py:143
+#: app.py:144
 msgid "Portugal"
 msgstr "le Portugal"
 
-#: app.py:144
+#: app.py:145
 msgid "Romania"
 msgstr "Roumanie"
 
-#: app.py:145
+#: app.py:146
 msgid "Spain"
 msgstr "Espagne"
 
-#: app.py:146
+#: app.py:147
 msgid "Slovakia"
 msgstr "Slovaquie"
 
-#: app.py:147
+#: app.py:148
 msgid "Slovenia"
 msgstr "Slovénie"
 
-#: app.py:148
+#: app.py:149
 msgid "Sweden"
 msgstr "Suède"
 
-#: app.py:149
+#: app.py:150
 msgid "United Kingdom"
 msgstr "Royaume-Uni"
 
-#: app.py:150
+#: app.py:151
 msgid "Eurpean Union"
 msgstr "Union européenne"
 
-#: app.py:155 app.py:173
+#: app.py:156 app.py:174
 msgid "Dutch"
 msgstr "Néerlandais"
 
-#: app.py:156
+#: app.py:157
 msgid "Bulgarian"
 msgstr "bulgare"
 
-#: app.py:157
+#: app.py:158
 msgid "Croatian"
 msgstr "croate"
 
-#: app.py:158 app.py:165
+#: app.py:159 app.py:166
 msgid "Greek"
 msgstr "Grec"
 
-#: app.py:159
+#: app.py:160
 msgid "Czech"
 msgstr "tchèque"
 
-#: app.py:160
+#: app.py:161
 msgid "Danish"
 msgstr "Danois"
 
-#: app.py:161
+#: app.py:162
 msgid "Estonian"
 msgstr "estonien"
 
-#: app.py:162
+#: app.py:163
 msgid "Finnish"
 msgstr "Finlandais"
 
-#: app.py:166
+#: app.py:167
 msgid "Hungarian"
 msgstr "Hongrois"
 
-#: app.py:167
+#: app.py:168
 msgid "Italan"
 msgstr "italien"
 
-#: app.py:168
+#: app.py:169
 msgid "Irish"
 msgstr "Irlandais"
 
-#: app.py:169
+#: app.py:170
 msgid "Latvian"
 msgstr "letton"
 
-#: app.py:170
+#: app.py:171
 msgid "Lithuanian"
 msgstr "Lituanien"
 
-#: app.py:171
+#: app.py:172
 msgid "Luxembourgish"
 msgstr "Luxembourgeois"
 
-#: app.py:172
+#: app.py:173
 msgid "Maltese"
 msgstr "maltais"
 
-#: app.py:174
+#: app.py:175
 msgid "Polish"
 msgstr "polonais"
 
-#: app.py:175
+#: app.py:176
 msgid "Portugese"
 msgstr "Portugais"
 
-#: app.py:176
+#: app.py:177
 msgid "Romanian"
 msgstr "Roumain"
 
-#: app.py:177
+#: app.py:178
 msgid "Spanish"
 msgstr "Espagnol"
 
-#: app.py:178
+#: app.py:179
 msgid "Slovakian"
 msgstr "Slovaque"
 
-#: app.py:179
+#: app.py:180
 msgid "Slovenian"
 msgstr "slovène"
 
-#: app.py:180
+#: app.py:181
 msgid "Swedish"
 msgstr "Suédois"
 
-#: app.py:181
+#: app.py:182
 msgid "Eurpean Unionish"
 msgstr "Européen Unionish"
+
+#: app.py:475
+msgid "year"
+msgstr "année"
+
+#: app.py:475
+msgid "years"
+msgstr "années"
+
+#: app.py:476
+msgid "month"
+msgstr "mois"
+
+#: app.py:476
+msgid "months"
+msgstr "mois"
+
+#: app.py:477
+msgid "week"
+msgstr "semaine"
+
+#: app.py:477
+msgid "weeks"
+msgstr "semaines"
+
+#: app.py:478
+msgid "day"
+msgstr "journée"
+
+#: app.py:478
+msgid "days"
+msgstr "journées"
+
+#: app.py:479
+msgid "hour"
+msgstr "heure"
+
+#: app.py:479
+msgid "hours"
+msgstr "heures"
+
+#: app.py:480
+msgid "minute"
+msgstr "minute"
+
+#: app.py:480
+msgid "minutes"
+msgstr "minutes"
+
+#: app.py:481
+msgid "second"
+msgstr ""
+
+#: app.py:481
+msgid "seconds"
+msgstr ""
 
 #: templates/about.de.html:1 templates/about.en.html:1
 #: templates/about.fr.html:1 templates/about.html:7 templates/base.html:41
@@ -374,52 +430,52 @@ msgstr ""
 msgid "DNI Fund"
 msgstr ""
 
-#: templates/base.html:108
+#: templates/base.html:109 templates/base.html:114
 msgid "NL Net"
 msgstr ""
 
-#: templates/base.html:113
+#: templates/base.html:119
 msgid "Open State Foundation"
 msgstr ""
 
-#: templates/base.html:121 templates/privacy.html:7
+#: templates/base.html:127 templates/privacy.html:7
 msgid "Privacy"
 msgstr ""
 
-#: templates/base.html:126 templates/disclaimer.html:7
+#: templates/base.html:132 templates/disclaimer.html:7
 msgid "Disclaimer"
 msgstr ""
 
-#: templates/base.html:147
+#: templates/base.html:153
 msgid "Collect &amp; Subscribe"
 msgstr "Collectez et abonnez-vous"
 
-#: templates/base.html:156 templates/base.html:202
+#: templates/base.html:162 templates/base.html:208
 #: templates/feedback.en.html:10 templates/index.html:63
 msgid "Mail"
 msgstr "Email"
 
-#: templates/base.html:159
+#: templates/base.html:165
 msgid "Select which of the content you will receive"
 msgstr "Sélectionnez le contenu que vous recevrez"
 
-#: templates/base.html:205
+#: templates/base.html:211
 msgid "Subscribe &amp; receive email for your selected topics."
 msgstr "Abonnez-vous et recevez des e-mails pour vos sujets sélectionnés."
 
-#: templates/base.html:212
+#: templates/base.html:218
 msgid "Interval"
 msgstr "Intervalle"
 
-#: templates/base.html:228 templates/feedback.en.html:20
+#: templates/base.html:234 templates/feedback.en.html:20
 msgid "Email address"
 msgstr "Email"
 
-#: templates/base.html:234
+#: templates/base.html:240
 msgid "Subscribe"
 msgstr "Souscrire"
 
-#: templates/base.html:235
+#: templates/base.html:241
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -512,7 +568,9 @@ msgstr "Trouvez les nouvelles locales"
 #: templates/index.html:29
 #, python-format
 msgid "Choose your <a href=\"%(url)s\">language</a> for articles and topics"
-msgstr "Choisissez votre <a href=\"%(url)s\">langue</a> pour les articles et les sujets"
+msgstr ""
+"Choisissez votre <a href=\"%(url)s\">langue</a> pour les articles et les "
+"sujets"
 
 #: templates/index.html:30
 #, python-format
@@ -520,8 +578,8 @@ msgid ""
 "Find local news across Europe. Setup your <a href=\"%(url)s\">source "
 "country</a>"
 msgstr ""
-"Trouvez les actualités locales à travers l'Europe. Configurez votre <a href=\"%(url)s\"> source "
-"pays</a>"
+"Trouvez les actualités locales à travers l'Europe. Configurez votre <a "
+"href=\"%(url)s\"> source pays</a>"
 
 #: templates/index.html:31
 msgid ""
@@ -571,7 +629,7 @@ msgstr ""
 msgid "Discover more scoops"
 msgstr "Découvrez plus de scoops"
 
-#: templates/inner_result.html:46
+#: templates/inner_result.html:51
 msgid "Read more"
 msgstr "Lire la suite"
 
@@ -671,11 +729,15 @@ msgstr ""
 "lelangue d'origine pour des raisons inconnues. Vous pouvez modifier les "
 "paramètres de langue<a href=\"%(url)s\"> ici </a>."
 
-#: templates/show.html:57
+#: templates/show.html:52
+msgid "Originallypublished on:"
+msgstr "Publié à l'origine le:"
+
+#: templates/show.html:61
 msgid "Share on Twitter"
 msgstr "Partager sur Twitter"
 
-#: templates/show.html:60
+#: templates/show.html:64
 msgid "Share on Facebook"
 msgstr "Partager sur Facebook"
 

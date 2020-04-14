@@ -33,6 +33,7 @@ import iso8601
 import requests
 from redis import StrictRedis
 from lxml import etree
+import pytz
 
 # locale.setlocale(locale.LC_TIME, "nl_NL")
 
@@ -452,6 +453,37 @@ def do_timestamp_to_str(s, format):
     except ValueError:
         return u''
 
+# https://github.com/orionmelt/snoopsnoo/blob/3db203f356b9673c31aea7f362edd89467215a47/application/jinja_filters.py
+@app.template_filter('timesince')
+def timesince(value):
+    """Returns textual representation of time since given datetime object."""
+    amsterdam_tz = pytz.timezone('Europe/Amsterdam')
+    current_dt = datetime.datetime.now(tz=amsterdam_tz)
+    value_parsed = iso8601.parse_date(value)
+    adjusted_dt = value_parsed
+    try:
+        current_tz = value_parsed.tzinfo
+    except AttributeError:
+        current_tz = None
+    if current_tz is not None:
+        diff = current_dt - value_parsed
+    else:
+        # adjust for amsterdam time
+        adjusted_dt = iso8601.parse_date('%s+02:00' % (value,))
+        diff = current_dt - adjusted_dt
+    periods = (
+        (diff.days / 365, lazy_gettext("year"), lazy_gettext("years")),
+        (diff.days / 30, lazy_gettext("month"), lazy_gettext("months")),
+        (diff.days / 7, lazy_gettext("week"), lazy_gettext("weeks")),
+        (diff.days, lazy_gettext("day"), lazy_gettext("days")),
+        (diff.seconds / 3600, lazy_gettext("hour"), lazy_gettext("hours")),
+        (diff.seconds / 60, lazy_gettext("minute"), lazy_gettext("minutes")),
+        (diff.seconds, lazy_gettext("second"), lazy_gettext("seconds")),
+    )
+    for period, singular, plural in periods:
+        if period:
+            return "%d %s" % (period, singular if period == 1 else plural)
+    return "a few seconds"
 
 @app.template_filter('iso8601_delay_in_days')
 def do_iso8601_delay_in_days(q, a=None):

@@ -563,8 +563,10 @@ def do_split(s, delim):
 
 @app.template_filter('pfl_link')
 def do_pfl_link(doc):
+    hl,rl = get_languages()
     return url_for(
-        'show', as2_type=doc['@type'], id=doc['@id'].split('/')[-1])
+        'show', as2_type=doc['@type'], id=doc['@id'].split('/')[-1], rl=rl,
+        hl=hl)
 
 @app.template_filter('as2_i18n_field')
 def do_as2_i18n_field(s, result, l):

@@ -38,7 +38,7 @@
     <header>
       <nav class="navbar navbar-expand-xxl navbar-light container" style="background-color: #ffffff;">
         <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='dist/images/logo-desktop.svg') }}" alt="{%trans%}Poliscoops{%endtrans%}" style="width: 200px;" /></a>
-        <a class="nav-main-link nav-link d-flex d-none d-xs-block d-sm-none" href="/about">{%trans%}About{%endtrans%}</a>
+        <a class="nav-main-link nav-link d-flex d-none d-xs-block d-sm-none" href="{{ url_for('show_page', page_name='about', hl=hl, rl=rl) }}">{%trans%}About{%endtrans%}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="{%trans%}Toggle navigation{%endtrans%}">
           <span class="navbar-toggler-icon"></span> {%trans%}Menu{%endtrans%}
         </button>
@@ -46,19 +46,19 @@
         <div class="collapse navbar-collapse" id="navbarsExample04">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('search') }}">{%trans%}Search{%endtrans%}  <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ url_for('search', hl=hl, rl=rl) }}">{%trans%}Search{%endtrans%}  <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('languages', redirect=redirect) }}">{%trans%}Languages{%endtrans%}</a>
+              <a class="nav-link" href="{{ url_for('languages', redirect=redirect, hl=hl, rl=rl) }}">{%trans%}Languages{%endtrans%}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('countries', redirect=redirect) }}">{%trans%}Countries{%endtrans%}</a>
+              <a class="nav-link" href="{{ url_for('countries', redirect=redirect, hl=hl, rl=rl) }}">{%trans%}Countries{%endtrans%}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/feedback">{%trans%}Feedback{%endtrans%}</a>
+              <a class="nav-link" href="{{ url_for('show_page', page_name='feedback', hl=hl, rl=rl) }}">{%trans%}Feedback{%endtrans%}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/about">{%trans%}About{%endtrans%}</a>
+              <a class="nav-link" href="{{ url_for('show_page', page_name='about', hl=hl, rl=rl) }}">{%trans%}About{%endtrans%}</a>
             </li>
           </ul>
         </div>
@@ -80,7 +80,7 @@
       <div class="row">
         <div class="col-xs-12 w-100">
           <div class="alert alert-primary w-100 mt-3" role="alert">
-            {%trans url=url_for('countries', redirect=redirect) %}It looks like you have not selected any source countries. You can change this <a href="{{ url }}">here</a>.{%endtrans%}
+            {%trans url=url_for('countries', redirect=redirect, hl=hl, rl=rl) %}It looks like you have not selected any source countries. You can change this <a href="{{ url }}">here</a>.{%endtrans%}
           </div>
         </div>
       </div>
@@ -138,6 +138,12 @@
 
     <div class="modal fade" id="modal-subscribe" tabindex="-1" role="dialog" aria-labelledby="modal-subscribe-label" aria-hidden="true" data-user-query="{{ query }}">
       <form action="{{ url_for('email_subscribe') }}" method="post">
+        {% if hl %}
+        <input type="hidden" name="hl" value="{{ hl }}" />
+        {% endif %}
+        {% if rl %}
+        <input type="hidden" name="rl" value="{{ hl }}" />
+        {% endif %}
         {%if query %}
         <input type="hidden" name="query" value="{{ query }}" />
         {% endif %}

@@ -16,7 +16,7 @@
         </li>
         <li class="list-inline-item">
           <a class="btn btn-sm btn-link" href="#">
-          {{ result_object.created |timesince }}
+            <i class="fa fa-clock-o" aria-hidden="true"></i> {{ result_object.created |timesince }}
           </a>
         </li>
         {% for t in result_object.tag %}

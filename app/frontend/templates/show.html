@@ -47,11 +47,11 @@
       {%trans url=url_for('languages', redirect=redirect) %}This article is shown in english, since we do not have the version in the original language for unknown reasons. You can change language settings <a href="{{ url }}">here</a>.{%endtrans%}
     </div>
     {% endif %}
-    {{ 'content' |as2_i18n_field(result_object, rl) |html_cleanup(result_object) |pls_generate_article_template |safe }}
-    <div class="byline-alt mt-4">
+    <div class="byline-alt mt-4 mb-4">
       <span>{%trans%}Originallypublished on:{%endtrans%}</span><br>
       {{ result_object.created |iso8601_to_str('full') }}
     </div>
+    {{ 'content' |as2_i18n_field(result_object, rl) |html_cleanup(result_object) |pls_generate_article_template |safe }}
     <div class="byline-alt mt-4">
       <span>{%trans%}Source{%endtrans%}</span><br>
       <a href="{{ result_object.url }}" target="_blank">{{ result_object.url |pls_hostname }}</a>

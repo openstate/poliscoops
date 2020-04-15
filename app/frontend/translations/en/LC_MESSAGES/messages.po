@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-14 16:27+0000\n"
+"POT-Creation-Date: 2020-04-15 16:16+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: app.py:77 templates/inner_result.html:49 templates/show.html:56
+#: app.py:77 templates/inner_result.html:49 templates/show.html:58
 msgid "Source"
 msgstr ""
 
@@ -314,59 +314,59 @@ msgstr ""
 msgid "Eurpean Unionish"
 msgstr ""
 
-#: app.py:475
+#: app.py:498
 msgid "year"
 msgstr ""
 
-#: app.py:475
+#: app.py:498
 msgid "years"
 msgstr ""
 
-#: app.py:476
+#: app.py:499
 msgid "month"
 msgstr ""
 
-#: app.py:476
+#: app.py:499
 msgid "months"
 msgstr ""
 
-#: app.py:477
+#: app.py:500
 msgid "week"
 msgstr ""
 
-#: app.py:477
+#: app.py:500
 msgid "weeks"
 msgstr ""
 
-#: app.py:478
+#: app.py:501
 msgid "day"
 msgstr ""
 
-#: app.py:478
+#: app.py:501
 msgid "days"
 msgstr ""
 
-#: app.py:479
+#: app.py:502
 msgid "hour"
 msgstr ""
 
-#: app.py:479
+#: app.py:502
 msgid "hours"
 msgstr ""
 
-#: app.py:480
+#: app.py:503
 msgid "minute"
 msgstr ""
 
-#: app.py:480
+#: app.py:503
 msgid "minutes"
 msgstr ""
 
-#: app.py:481
+#: app.py:504
 msgid "second"
 msgstr ""
 
-#: app.py:481
+#: app.py:504
 msgid "seconds"
 msgstr ""
 
@@ -444,36 +444,36 @@ msgstr ""
 msgid "Disclaimer"
 msgstr ""
 
-#: templates/base.html:153
+#: templates/base.html:159
 msgid "Collect &amp; Subscribe"
 msgstr ""
 
-#: templates/base.html:162 templates/base.html:208
+#: templates/base.html:168 templates/base.html:214
 #: templates/feedback.en.html:10 templates/index.html:63
 msgid "Mail"
 msgstr ""
 
-#: templates/base.html:165
+#: templates/base.html:171
 msgid "Select which of the content you will receive"
 msgstr ""
 
-#: templates/base.html:211
+#: templates/base.html:217
 msgid "Subscribe &amp; receive email for your selected topics."
 msgstr ""
 
-#: templates/base.html:218
+#: templates/base.html:224
 msgid "Interval"
 msgstr ""
 
-#: templates/base.html:234 templates/feedback.en.html:20
+#: templates/base.html:240 templates/feedback.en.html:20
 msgid "Email address"
 msgstr ""
 
-#: templates/base.html:240
+#: templates/base.html:246
 msgid "Subscribe"
 msgstr ""
 
-#: templates/base.html:241
+#: templates/base.html:247
 msgid "Cancel"
 msgstr ""
 
@@ -489,10 +489,8 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: templates/feedback.en.html:5 templates/index.html:62
-msgid ""
-"<a href=\"/feedback\">Help</a> us if we missed something or if you have a"
-" suggestion"
+#: templates/feedback.en.html:5
+msgid "Help us if we missed something or if you have a suggestion"
 msgstr ""
 
 #: templates/feedback.en.html:13
@@ -571,8 +569,9 @@ msgid ""
 msgstr ""
 
 #: templates/index.html:31
+#, python-format
 msgid ""
-"Collect the content of your selected <a href=\"/search\">articles and "
+"Collect the content of your selected <a href=\"%(url)s\">articles and "
 "topics</a>"
 msgstr ""
 
@@ -602,6 +601,13 @@ msgstr ""
 
 #: templates/index.html:58
 msgid "Contact"
+msgstr ""
+
+#: templates/index.html:62
+#, python-format
+msgid ""
+"<a href=\"%(url)s\">Help</a> us if we missed something or if you have a "
+"suggestion"
 msgstr ""
 
 #: templates/index.html:63
@@ -704,15 +710,15 @@ msgid ""
 "<a href=\"%(url)s\">here</a>."
 msgstr ""
 
-#: templates/show.html:52
+#: templates/show.html:51
 msgid "Originallypublished on:"
 msgstr "Originally published on:"
 
-#: templates/show.html:61
+#: templates/show.html:63
 msgid "Share on Twitter"
 msgstr ""
 
-#: templates/show.html:64
+#: templates/show.html:66
 msgid "Share on Facebook"
 msgstr ""
 
@@ -736,3 +742,15 @@ msgstr ""
 #~ "Find local news across Europe. Setup "
 #~ "your <a href=\"/countries\">source country</a>"
 #~ msgstr ""
+
+#~ msgid ""
+#~ "<a href=\"/feedback\">Help</a> us if we "
+#~ "missed something or if you have a"
+#~ " suggestion"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Collect the content of your selected "
+#~ "<a href=\"/search\">articles and topics</a>"
+#~ msgstr ""
+

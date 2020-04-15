@@ -28,7 +28,7 @@
       <ol class="info-box-bg-alt">
         <li class="clearfix"><div class="counter">1</div><div class="exp">{%trans url=url_for('languages', redirect=redirect) %}Choose your <a href="{{ url }}">language</a> for articles and topics{%endtrans%}</div></li>
         <li class="clearfix"><div class="counter">2</div><div class="exp">{%trans url=url_for('countries', redirect=redirect) %}Find local news across Europe. Setup your <a href="{{ url }}">source country</a>{%endtrans%}</div></li>
-        <li class="clearfix"><div class="counter">3</div><div class="exp">{%trans%}Collect the content of your selected <a href="/search">articles and topics</a>{%endtrans%}</div></li>
+        <li class="clearfix"><div class="counter">3</div><div class="exp">{%trans url=url_for('search', hl=hl, rl=rl) %}Collect the content of your selected <a href="{{ url}}">articles and topics</a>{%endtrans%}</div></li>
       </ol>
     </div>
   </div>
@@ -50,7 +50,7 @@
       <h2>{%trans%}Collect local news{%endtrans%}</h2>
       <div class="jumbotron text-center">
         <img src="/static/images/filter-collect-icons.svg" />
-        <a class="btn btn-lg btn-primary" href="/search" role="button" style="color: white;">{%trans%}Collect{%endtrans%} <i class="fa fa-chevron-circle-right"></i></a>
+        <a class="btn btn-lg btn-primary" href="{{ url_for('search', hl=hl, rl=rl) }}" role="button" style="color: white;">{%trans%}Collect{%endtrans%} <i class="fa fa-chevron-circle-right"></i></a>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
     <div class="info-box-contents">
       <h2>{%trans%}Feedback{%endtrans%}</h2>
       <ol class="info-box-bg-alt-2">
-        <li class="clearfix"><div class="counter"><img src="/static/images/icon-help.svg" alt="{%trans%}Help{%endtrans%}" class="img-responsive visible-xs-inline"></div><div class="exp">{%trans%}<a href="/feedback">Help</a> us if we missed something or if you have a suggestion{%endtrans%}</div></li>
+        <li class="clearfix"><div class="counter"><img src="/static/images/icon-help.svg" alt="{%trans%}Help{%endtrans%}" class="img-responsive visible-xs-inline"></div><div class="exp">{%trans url=url_for('show_page', page_name='feedback', hl=hl, rl=rl) %}<a href="{{ url }}">Help</a> us if we missed something or if you have a suggestion{%endtrans%}</div></li>
         <li class="clearfix"><div class="counter"><img src="/static/images/icon-mail.svg" alt="{%trans%}Mail{%endtrans%}" class="img-responsive visible-xs-inline"></div><div class="exp">{%trans%}Any <a href="https://openstate.eu/contact">questions</a>? We want to know your opinion{%endtrans%}</div></li>
       </ol>
     </div>
@@ -68,8 +68,8 @@
   <div id="discover" class="col-xs-12 col-md-7 col-lg-8">
     <div class="search-box">
       {% set filter_bar_homepage = True %}
-      {% set filter_bar_relevance_link = url_for('search',sort='relevancy') %}
-      {% set filter_bar_recent_link = url_for('search',sort='recency') %}
+      {% set filter_bar_relevance_link = url_for('search',sort='relevancy', hl=hl, rl=rl) %}
+      {% set filter_bar_recent_link = url_for('search',sort='recency', hl=hl, rl=rl) %}
       {% set filter_bar_sort = "recent" %}
       {% include "filter_bar.html" %}
       <div class="mt-4" id="form-search-fp">
@@ -88,7 +88,7 @@
       </div>
 
       <div class="d-flex justify-content-center mt-4">
-        <a class="btn btn-lg btn-primary" href="{{ url_for('search') }}" role="button">{%trans%}Discover more scoops{%endtrans%}  <i class="fa fa-chevron-circle-right"></i></a>
+        <a class="btn btn-lg btn-primary" href="{{ url_for('search', hl=hl, rl=rl) }}" role="button">{%trans%}Discover more scoops{%endtrans%}  <i class="fa fa-chevron-circle-right"></i></a>
       </div>
     </div>
   </div>

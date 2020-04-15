@@ -103,8 +103,8 @@
 </div>
 
 {% set filter_bar_homepage = False %}
-{% set filter_bar_relevance_link = dict(sort='relevancy') |url_for_search_page(gov_slug) %}
-{% set filter_bar_recent_link = dict(sort='recency') |url_for_search_page(gov_slug) %}
+{% set filter_bar_relevance_link = dict(sort='relevancy', hl=hl, rl=rl) |url_for_search_page(gov_slug) %}
+{% set filter_bar_recent_link = dict(sort='recency', hl=hl, rl=rl) |url_for_search_page(gov_slug) %}
 {% if sort_key == "recency" %}
   {% set filter_bar_sort = "recent" %}
 {% else %}

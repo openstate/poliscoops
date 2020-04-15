@@ -37,7 +37,7 @@
       <a href="#" class="page-link" rel="prev">{%trans%}Previous{%endtrans%}</a>
     {% else %}
     <li class="page-item">
-      <a href="{{ dict(page=(page - 1)) |url_for_search_page(gov_slug) }}" class="page-link" rel="prev">{%trans%}Previous{%endtrans%}</a>
+      <a href="{{ dict(page=(page - 1), hl=hl, tl=tl) |url_for_search_page(gov_slug) }}" class="page-link" rel="prev">{%trans%}Previous{%endtrans%}</a>
     {% endif %}
     </li>
     {% if page >= max_pages %}
@@ -45,7 +45,7 @@
       <a href="#" class="page-link" rel="next">{%trans%}Next{%endtrans%}</a>
     {% else %}
     <li class="page-item">
-      <a href="{{ dict(page=(page + 1)) |url_for_search_page(gov_slug) }}" class="page-link" rel="next">{%trans%}Next{%endtrans%}</a>
+      <a href="{{ dict(page=(page + 1), hl=hl, rl=rl) |url_for_search_page(gov_slug) }}" class="page-link" rel="next">{%trans%}Next{%endtrans%}</a>
     {% endif %}
     </li>
   </ul>

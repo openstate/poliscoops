@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-14 16:27+0000\n"
+"POT-Creation-Date: 2020-04-15 16:16+0000\n"
 "PO-Revision-Date: 2020-02-14 17:04+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -42,7 +42,7 @@ msgstr "Sprache"
 msgid "Location"
 msgstr "Standort"
 
-#: app.py:77 templates/inner_result.html:49 templates/show.html:56
+#: app.py:77 templates/inner_result.html:49 templates/show.html:58
 msgid "Source"
 msgstr "Quelle"
 
@@ -314,59 +314,59 @@ msgstr "Schwedisch"
 msgid "Eurpean Unionish"
 msgstr "Europäische Unionish"
 
-#: app.py:475
+#: app.py:498
 msgid "year"
 msgstr "Jahr"
 
-#: app.py:475
+#: app.py:498
 msgid "years"
 msgstr "Jahre"
 
-#: app.py:476
+#: app.py:499
 msgid "month"
 msgstr "Monat"
 
-#: app.py:476
+#: app.py:499
 msgid "months"
 msgstr "Monate"
 
-#: app.py:477
+#: app.py:500
 msgid "week"
 msgstr "Woche"
 
-#: app.py:477
+#: app.py:500
 msgid "weeks"
 msgstr "Wochen"
 
-#: app.py:478
+#: app.py:501
 msgid "day"
 msgstr "Tag"
 
-#: app.py:478
+#: app.py:501
 msgid "days"
 msgstr "Tage"
 
-#: app.py:479
+#: app.py:502
 msgid "hour"
 msgstr "Stunde"
 
-#: app.py:479
+#: app.py:502
 msgid "hours"
 msgstr "Stunden"
 
-#: app.py:480
+#: app.py:503
 msgid "minute"
 msgstr "Minute"
 
-#: app.py:480
+#: app.py:503
 msgid "minutes"
 msgstr "Minuten"
 
-#: app.py:481
+#: app.py:504
 msgid "second"
 msgstr "Sekunde"
 
-#: app.py:481
+#: app.py:504
 msgid "seconds"
 msgstr "Sekunden"
 
@@ -446,36 +446,36 @@ msgstr ""
 msgid "Disclaimer"
 msgstr ""
 
-#: templates/base.html:153
+#: templates/base.html:159
 msgid "Collect &amp; Subscribe"
 msgstr "Sammeln &amp; Abonnieren"
 
-#: templates/base.html:162 templates/base.html:208
+#: templates/base.html:168 templates/base.html:214
 #: templates/feedback.en.html:10 templates/index.html:63
 msgid "Mail"
 msgstr "Email"
 
-#: templates/base.html:165
+#: templates/base.html:171
 msgid "Select which of the content you will receive"
 msgstr "Wählen Sie aus, welchen Inhalt Sie erhalten möchten"
 
-#: templates/base.html:211
+#: templates/base.html:217
 msgid "Subscribe &amp; receive email for your selected topics."
 msgstr "Abonnieren und erhalten Sie eine E-Mail für Ihre ausgewählten Themen"
 
-#: templates/base.html:218
+#: templates/base.html:224
 msgid "Interval"
 msgstr "Intervall"
 
-#: templates/base.html:234 templates/feedback.en.html:20
+#: templates/base.html:240 templates/feedback.en.html:20
 msgid "Email address"
 msgstr "Email"
 
-#: templates/base.html:240
+#: templates/base.html:246
 msgid "Subscribe"
 msgstr "Abonnieren"
 
-#: templates/base.html:241
+#: templates/base.html:247
 msgid "Cancel"
 msgstr "Annulieren"
 
@@ -491,13 +491,12 @@ msgstr "Stellen Sie die Quelle ein"
 msgid "Help"
 msgstr "Hilfe"
 
-#: templates/feedback.en.html:5 templates/index.html:62
-msgid ""
-"<a href=\"/feedback\">Help</a> us if we missed something or if you have a"
-" suggestion"
+#: templates/feedback.en.html:5
+msgid "Help us if we missed something or if you have a suggestion"
 msgstr ""
-"<a href=\"/feedback\">Helfen Sie uns</a>, wenn wir etwas verpasst haben "
-"oder wenn Sie eine Vorschlag haben"
+"Helfen Sie uns, wenn"
+" wir etwas verpasst haben oder wenn"
+" Sie eine Vorschlag haben"
 
 #: templates/feedback.en.html:13
 msgid ""
@@ -580,12 +579,14 @@ msgstr ""
 "href=\"%(url)s\">Quellland</a> ein"
 
 #: templates/index.html:31
+#, python-format
 msgid ""
-"Collect the content of your selected <a href=\"/search\">articles and "
+"Collect the content of your selected <a href=\"%(url)s\">articles and "
 "topics</a>"
 msgstr ""
-"Sammeln Sie den Inhalt Ihrer ausgewählten <a href=\"/search\">Artikel "
-"undThemen</a>"
+"Sammeln Sie den Inhalt Ihrer "
+"ausgewählten <a href=\"%(url)s\">Artikel "
+"und Themen</a>"
 
 #: templates/index.html:39
 msgid "Contribute"
@@ -616,6 +617,16 @@ msgstr "Sammeln Sie lokale Nachrichten"
 #: templates/index.html:58
 msgid "Contact"
 msgstr "Kontakt"
+
+#: templates/index.html:62
+#, python-format
+msgid ""
+"<a href=\"%(url)s\">Help</a> us if we missed something or if you have a "
+"suggestion"
+msgstr ""
+"<a href=\"%(url)s\">Helfen Sie uns</a>, wenn"
+" wir etwas verpasst haben oder wenn"
+" Sie eine Vorschlag haben"
 
 #: templates/index.html:63
 msgid ""
@@ -727,15 +738,15 @@ msgstr ""
 "derOriginalsprache aus unbekannten Gründen. Sie können die "
 "Spracheinstellungen <a href=\"%(url)s\">hier</a> ändern."
 
-#: templates/show.html:52
+#: templates/show.html:51
 msgid "Originallypublished on:"
 msgstr "Ursprünglich veröffentlicht am:"
 
-#: templates/show.html:61
+#: templates/show.html:63
 msgid "Share on Twitter"
 msgstr "Auf Twitter teilen"
 
-#: templates/show.html:64
+#: templates/show.html:66
 msgid "Share on Facebook"
 msgstr "Auf Facebook teilen"
 
@@ -831,3 +842,20 @@ msgstr "Sie wurden erfolgreich abgemeldet."
 #~ "Finden Sie lokale Nachrichten in ganz"
 #~ " Europa. Richten Sie Ihre <a "
 #~ "href=\"/countries\">Quelle einLand</a>"
+
+#~ msgid ""
+#~ "<a href=\"/feedback\">Help</a> us if we "
+#~ "missed something or if you have a"
+#~ " suggestion"
+#~ msgstr ""
+#~ "<a href=\"/feedback\">Helfen Sie uns</a>, wenn"
+#~ " wir etwas verpasst haben oder wenn"
+#~ " Sie eine Vorschlag haben"
+
+#~ msgid ""
+#~ "Collect the content of your selected "
+#~ "<a href=\"/search\">articles and topics</a>"
+#~ msgstr ""
+#~ "Sammeln Sie den Inhalt Ihrer "
+#~ "ausgewählten <a href=\"/search\">Artikel "
+#~ "undThemen</a>"

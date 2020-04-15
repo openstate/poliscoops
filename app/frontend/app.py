@@ -258,7 +258,7 @@ def image_rewrite(url, doc_id):
 @app.context_processor
 def inject_intervals():
     hl,rl = get_languages()
-    redirect_url = request.args.get('redirect') or request.url
+    redirect_url = request.args.get('redirect') or modify_query(hl=None, rl=None)
     return dict(
         intervals=INTERVALS, hl=hl, rl=rl, search_params={},
         redirect=redirect_url, cookie_hl_set=is_cookie_set('hl'),
@@ -418,7 +418,7 @@ def do_url_for_search_page(params, gov_slug):
 def do_link_bucket(bucket, facet):
     url_args = {
     }
-    for a in ['query', 'hl']:
+    for a in ['query', 'hl', 'rl']:
         if a in request.args:
             url_args[a] = request.args[a]
 

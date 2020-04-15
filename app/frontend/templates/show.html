@@ -49,7 +49,9 @@
     {% endif %}
     <div class="byline-alt mt-4 mb-4">
       <span>{%trans%}Originallypublished on:{%endtrans%}</span><br>
-      {{ result_object.created |iso8601_to_str('full') }}
+      {{ result_object.created |correct_timezone |iso8601_to_str('full') }}
+      <!-- initial: {{ result_object.created }} -->
+      <!-- corrected: {{ result_object.created |correct_timezone }} -->
     </div>
     {{ 'content' |as2_i18n_field(result_object, rl) |html_cleanup(result_object) |pls_generate_article_template |safe }}
     <div class="byline-alt mt-4">

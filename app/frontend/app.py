@@ -453,10 +453,21 @@ def do_timestamp_to_str(s, format):
     except ValueError:
         return u''
 
-# https://github.com/orionmelt/snoopsnoo/blob/3db203f356b9673c31aea7f362edd89467215a47/application/jinja_filters.py
-@app.template_filter('timesince')
-def timesince(value):
-    """Returns textual representation of time since given datetime object."""
+
+def correct_iso8601_date_for_timezone(value):
+    amsterdam_tz = pytz.timezone('Europe/Amsterdam')
+    value_parsed = iso8601.parse_date(value)
+
+    if re.match(r'(Z|\+)', value):
+        return value_parsed
+    else:
+        # adjust for amsterdam time, dunno why -2 :P
+        adjusted_dt = iso8601.parse_date('%s-02:00' % (value,))
+        return adjusted_dt
+    return value_parsed
+
+
+def get_timesince_and_correct_for_timezone(value):
     amsterdam_tz = pytz.timezone('Europe/Amsterdam')
     current_dt = datetime.datetime.now(tz=amsterdam_tz)
     value_parsed = iso8601.parse_date(value)
@@ -471,6 +482,18 @@ def timesince(value):
         # adjust for amsterdam time
         adjusted_dt = iso8601.parse_date('%s+02:00' % (value,))
         diff = current_dt - adjusted_dt
+    return diff
+
+@app.template_filter('correct_timezone')
+def correct_timezone(value):
+    v = correct_iso8601_date_for_timezone(value)
+    return v.isoformat()
+
+# https://github.com/orionmelt/snoopsnoo/blob/3db203f356b9673c31aea7f362edd89467215a47/application/jinja_filters.py
+@app.template_filter('timesince')
+def timesince(value):
+    """Returns textual representation of time since given datetime object."""
+    diff = get_timesince_and_correct_for_timezone(value)
     periods = (
         (diff.days / 365, lazy_gettext("year"), lazy_gettext("years")),
         (diff.days / 30, lazy_gettext("month"), lazy_gettext("months")),

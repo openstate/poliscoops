@@ -95,6 +95,26 @@ footer {
     border-radius: 0;
 }
 
+/*---mobile menu - svg attached ---*/
+.navbar-light .navbar-toggler-icon {
+    background-image: url(/static/images/icon-feather-menu.svg);
+}
+/*---mobile menu - menu ---*/
+.navbar-light .navbar-toggler {
+    border:none;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #000056;
+}
+
+/*---mobile menu - about ---*/
+nav.navbar .nav-link {
+    border:none;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #0603A6;
+}
+
 #footer-actions {
   padding-top: 2em;
   margin-bottom: 2em;

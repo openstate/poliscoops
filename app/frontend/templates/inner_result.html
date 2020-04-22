@@ -9,7 +9,7 @@
     <div class="tags-container byline-container">
       <ul class="tags list-inline">
         <li class="list-inline-item">
-          <a class="btn btn-big-icon" id="verification-btn" href="#">
+          <a class="btn btn-big-icon btn-verification" href="#">
             <img src="/static/images/icon-verification.svg" alt="{%trans%}Verify{%endtrans%}" class="img-responsive visible-xs-inline">
             <span class="sr-only">{{ 'name' |as2_i18n_field(result_object.attributedTo, rl) }}</span>
           </a>
@@ -46,9 +46,16 @@
         </li>
         {% endif %}
         {% if result_object.url %}
-        <li class="list-inline-item"><a class="btn btn-big-icon" href="{{ result_object.url }}" target="_blank"><img src="/static/images/btn-source.svg" /><span class="sr-only">{%trans%}Source{%endtrans%}<span class="sr-only"></a></li>
+        <li class="list-inline-item">
+          <a class="btn btn-big-icon" href="{{ result_object.url }}" target="_blank">
+            <img src="/static/images/btn-source.svg" alt="{%trans%}Source{%endtrans%}" />
+            <span class="sr-only">{%trans%}Source{%endtrans%}</span>
+          </a>
+        </li>
         {% endif %}
-        <li class="list-inline-item ml-auto"><a class="read-more-link" href="{{ result_object |pfl_link }}">{%trans%}Read more{%endtrans%}  <i class="fa fa-chevron-down"></i></a></li>
+        <li class="list-inline-item ml-auto">
+          <a class="read-more-link" href="{{ result_object |pfl_link }}">{%trans%}Read more{%endtrans%}  <i class="fa fa-chevron-down"></i></a>
+        </li>
       </ul>
     </div>
   </div>

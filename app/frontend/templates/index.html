@@ -5,7 +5,7 @@
 <div class="row mt-4">
   <div class="col-xs-12 col-md-7 col-lg-6 col-xl-8">
     <div class="jumbotron clearfix">
-      <img id="icon-feather" src="/static/images/icon-feather.svg" class="icon">
+      <img id="icon-feather" src="/static/images/icon-feather.svg" class="icon" alt="[{%trans%}broadcasting station{%endtrans%}]">
       <div class="lead-text">
         {%trans%}find and <span>collect</span>{%endtrans%}<br>
         {%trans%}european <span>local</span>{%endtrans%}<br>
@@ -15,9 +15,9 @@
       <div class="lead-button">
       <a class="btn btn-lg btn-primary mt-4" href="#discover" role="button">{%trans%}Discover{%endtrans%} <i class="fa fa-chevron-circle-right"></i></a>
       </div>
-      <img id="icon-city-1" src="/static/images/icon-pin.svg" class="icon">
-      <img id="icon-city-2" src="/static/images/icon-pin.svg" class="icon">
-      <img id="icon-city-3" src="/static/images/icon-pin.svg" class="icon">
+      <img id="icon-city-1" src="/static/images/icon-pin.svg" class="icon" alt="[{%trans num=1 %}receiving city {{ num}}{%endtrans%}]">
+      <img id="icon-city-2" src="/static/images/icon-pin.svg" class="icon" alt="[{%trans num=2 %}receiving city {{ num}}{%endtrans%}]">
+      <img id="icon-city-3" src="/static/images/icon-pin.svg" class="icon" alt="[{%trans num=3 %}receiving city {{ num}}{%endtrans%}]">
     </div>
   </div>
 
@@ -49,7 +49,7 @@
     <div class="info-box-contents">
       <h2>{%trans%}Collect local news{%endtrans%}</h2>
       <div class="jumbotron text-center">
-        <img src="/static/images/filter-collect-icons.svg" />
+        <img src="/static/images/filter-collect-icons.svg" alt="{%trans%}Collect{%endtrans%}"/>
         <a class="btn btn-lg btn-primary" href="{{ url_for('search', hl=hl, rl=rl) }}" role="button" style="color: white;">{%trans%}Collect{%endtrans%} <i class="fa fa-chevron-circle-right"></i></a>
       </div>
     </div>

@@ -59,10 +59,10 @@
       <a href="{{ result_object.url }}" target="_blank">{{ result_object.url |pls_hostname }}</a>
     </div>
     <div class="byline-alt mt-4">
-      <a class="mr-4" href="https://twitter.com/share?text={{ 'name' |as2_i18n_field(result_object, rl) }}&url={{ request.url }}">
+      <a class="mr-4" href="https://twitter.com/share?text={{ 'name' |as2_i18n_field(result_object, rl) |urlencode }}&url={{ request.url |urlencode}}">
         <i class="fa fa-2x fa-twitter-square mr-1" aria-hidden="true"></i>{%trans%}Share on Twitter{%endtrans%}
       </a>
-      <a class="mr-4" href="https://www.facebook.com/sharer/sharer.php?u={{ request.url }}&t={{ 'name' |as2_i18n_field(result_object, rl) }}">
+      <a class="mr-4" href="https://www.facebook.com/sharer/sharer.php?u={{ request.url |urlencode }}&t={{ 'name' |as2_i18n_field(result_object, rl) |urlencode }}">
         <i class="fa fa-2x fa-facebook-square mr-1" aria-hidden="true"></i>{%trans%}Share on Facebook{%endtrans%}
       </a>
     </div>
@@ -70,7 +70,7 @@
 </article>
 {% endfor %}
 
-<script type="text/javascript">
+<script>
 "use strict";
 
 let articleObject = {{ results |tojson|safe }};

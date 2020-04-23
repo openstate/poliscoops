@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-filtering d-flex align-items-center">
+<ul class="nav nav-pills nav-filtering d-flex align-items-center" role="toolbar">
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
       {% if filter_bar_sort == "recent" %}
@@ -18,13 +18,11 @@
   </li>
   {% if not filter_bar_homepage %}
   <li class="ml-auto">
-    <a class="btn" href="#" data-toggle="modal" data-target="#modal-filters">
-      <img src="/static/images/btn-sort.svg" />
-      <span class="sr-only">{%trans%}Sort{%endtrans%}</span>
+    <a class="btn" href="#" data-toggle="modal" data-target="#modal-filters" role="button">
+      <img src="/static/images/btn-sort.svg" alt="{%trans%}Sort{%endtrans%}"/>
     </a>
-    <a class="btn" href="#" data-toggle="modal" data-target="#modal-subscribe">
-      <img src="/static/images/btn-collect.svg" />
-      <span class="sr-only">{%trans%}Collect{%endtrans%}<span class="sr-only">
+    <a class="btn" href="#" data-toggle="modal" data-target="#modal-subscribe" role="button">
+      <img src="/static/images/btn-collect.svg" alt="{%trans%}Collect{%endtrans%}" />
     </a>
   </li>
   {% endif %}

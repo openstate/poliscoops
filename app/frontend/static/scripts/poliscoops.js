@@ -47,6 +47,15 @@ Poliscoops.init = function() {
     }
   });
 
+  $('.form-countries .form-check').keydown(function (e) {
+    console.log('countrie checkbox thingie keydown!');
+    console.dir(e);
+    if (e.originalEvent.key == "x") {
+      console.log('x pressed!');
+      $(e.target.firstElementChild).click();
+    }
+  });
+
   // countries for the collect modal
   $('#modal-subscribe').on('show.bs.modal', function (e) {
     // do something...

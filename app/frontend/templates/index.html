@@ -80,6 +80,11 @@
 
         {% for result in results['as:items'] %}
           {% set result_object = result %}
+          {% if rl %}
+          {% set article_language = rl %}
+          {% else %}
+          {% set article_language = result_object['@language'] %}
+          {% endif %}
           <div class="col-xs-12 col-lg-6">
             {%include "inner_result.html" %}
           </div>

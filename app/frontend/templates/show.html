@@ -26,8 +26,13 @@
 -->
 
 {% for result in results['as:items'] %}
-<article>
+<article role="article">
   <div class="verification">
+    {% if rl %}
+    {% set article_language = rl %}
+    {% else %}
+    {% set article_language = result_object['@language'] %}
+    {% endif %}
     {% set result_object = result %}
     {% include "inner_result.html" %}
   </div>
@@ -53,7 +58,9 @@
       <!-- initial: {{ result_object.created }} -->
       <!-- corrected: {{ result_object.created |correct_timezone }} -->
     </div>
+    <div lang="{{ article_language }}">
     {{ 'content' |as2_i18n_field(result_object, rl) |html_cleanup(result_object) |pls_generate_article_template |safe }}
+    </div>
     <div class="byline-alt mt-4">
       <span>{%trans%}Source{%endtrans%}</span><br>
       <a href="{{ result_object.url }}" target="_blank">{{ result_object.url |pls_hostname }}</a>

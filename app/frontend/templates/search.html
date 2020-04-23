@@ -1,4 +1,4 @@
-    <form action="{{ url_for('search') }}" method="get" class="form-inline w-100 form-search" id="form-search" name="form-search">
+    <form action="{{ url_for('search') }}" method="get" class="form-inline w-100 form-search" id="form-search" name="form-search" role="search">
       {% if hl %}
       <input type="hidden" name="hl" value="{{ hl }}" />
       {% endif %}
@@ -6,10 +6,16 @@
       <input type="hidden" name="rl" value="{{ hl }}" />
       {% endif %}
         <div class="input-group w-100">
-              <input class="form-control py-2" type="search" value="{%if query %}{{ query }}{% endif %}" name="query" placeholder="{%trans%}Find articles, parties, locations...{%endtrans%}">
+              <input
+                class="form-control py-2" type="search" value="{%if query %}{{ query }}{% endif %}"
+                name="query"
+                placeholder="{%trans%}Find articles, parties, locations...{%endtrans%}"
+                aria-label="{%trans%}Find articles, parties, locations...{%endtrans%}"
+                aria-required="true"
+              >
               <span class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button">
-                    <i class="fa fa-search"></i>
+                    <span class="sr-only">{%trans%}Search{%endtrans%} <i class="fa fa-search"></i>
                 </button>
               </span>
         </div>

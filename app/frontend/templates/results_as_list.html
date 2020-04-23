@@ -20,6 +20,11 @@
   {% else %}
     {% set result_object = result %}
   {% endif %}
+  {% if rl %}
+  {% set article_language = rl %}
+  {% else %}
+  {% set article_language = result_object['@language'] %}
+  {% endif %}
   {% include "inner_result.html" %}
   </div>
 {% if loop.index % 2 == 0 %}

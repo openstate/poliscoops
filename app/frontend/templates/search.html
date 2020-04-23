@@ -7,6 +7,7 @@
       {% endif %}
         <div class="input-group w-100">
               <input
+                id="form-search-query"
                 class="form-control py-2" type="search" value="{%if query %}{{ query }}{% endif %}"
                 name="query"
                 placeholder="{%trans%}Find articles, parties, locations...{%endtrans%}"
@@ -15,7 +16,7 @@
               >
               <span class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button">
-                    <span class="sr-only">{%trans%}Search{%endtrans%} <i class="fa fa-search"></i>
+                    <label for="form-search-query" class="sr-only">{%trans%}Search{%endtrans%}</label><i class="fa fa-search"></i>
                 </button>
               </span>
         </div>

@@ -263,7 +263,8 @@ def inject_intervals():
         intervals=INTERVALS, hl=hl, rl=rl, search_params={},
         redirect=redirect_url, cookie_hl_set=is_cookie_set('hl'),
         cookie_rl_set=is_cookie_set('rl'),
-        cookie_countries_set=is_cookie_set('countries'))
+        cookie_countries_set=is_cookie_set('countries'),
+        interface_languages=INTERFACE_LANGUAGES.items())
 
 @app.template_global()
 def modify_query(**new_values):
@@ -851,7 +852,6 @@ def _render_page(page_name):
 def languages():
     return render_template(
         'languages.html',
-        interface_languages=INTERFACE_LANGUAGES.items(),
         article_languages=ARTICLE_LANGUAGES.items())
 
 @app.route("/countries")

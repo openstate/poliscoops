@@ -259,12 +259,14 @@ def image_rewrite(url, doc_id):
 def inject_intervals():
     hl,rl = get_languages()
     redirect_url = request.args.get('redirect') or modify_query(hl=None, rl=None)
+    selected_countries = get_locations()
     return dict(
         intervals=INTERVALS, hl=hl, rl=rl, search_params={},
         redirect=redirect_url, cookie_hl_set=is_cookie_set('hl'),
         cookie_rl_set=is_cookie_set('rl'),
         cookie_countries_set=is_cookie_set('countries'),
-        interface_languages=INTERFACE_LANGUAGES.items())
+        interface_languages=INTERFACE_LANGUAGES.items(),
+        countries=COUNTRIES, selected_countries=selected_countries)
 
 @app.template_global()
 def modify_query(**new_values):
@@ -856,16 +858,12 @@ def languages():
 
 @app.route("/countries")
 def countries():
-    selected_countries = get_locations()
     api_locations = api.countries()
     locations = {}
     for l in api_locations.get('as:items', []):
         first_key = l.get('nameMap', {}).keys()[0]
         locations[l['nameMap'][first_key]] = l['@id'].split('/')[-1]
-    return render_template(
-        'countries.html',
-        countries=COUNTRIES, selected_countries=selected_countries,
-        locations=locations)
+    return render_template('countries.html',locations=locations)
 
 
 @app.route("/countries.json")

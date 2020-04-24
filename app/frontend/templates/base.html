@@ -63,8 +63,8 @@
           </ul>
         </div>
 
-        <a class="nav-link nav-link-selection nav-link-country-selection" href="#"><i class="fa fa-2x fa-globe" aria-hidden="true"></i> [2/24]</a>
-        <a class="nav-link nav-link-selection nav-link-language-selection" href="#"><img src="/static/images/countries/{{ hl }}.svg" alt="{{ hl }}" style="max-height: 26px;" class="mr-1" />{{ dict(interface_languages)[hl] }}</a>
+        <a class="nav-link nav-link-selection nav-link-country-selection" href="{{ url_for('countries', redirect=redirect, hl=hl, rl=rl) }}"><i class="fa fa-2x fa-globe" aria-hidden="true"></i> [{{ selected_countries |length}}/{{ countries |length }}]</a>
+        <a class="nav-link nav-link-selection nav-link-language-selection" href="{{ url_for('languages', redirect=redirect, hl=hl, rl=rl) }}"><img src="/static/images/countries/{{ hl }}.svg" alt="{{ hl }}" style="max-height: 26px;" class="mr-1" />{{ dict(interface_languages)[hl] }}</a>
       </nav>
 
   </header>

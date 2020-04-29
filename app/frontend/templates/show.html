@@ -10,6 +10,7 @@
 <meta property="og:url" content="{{ request.url |make_https }}" />
 <meta property="og:title" content="{{ 'name' |as2_i18n_field(results['as:items'].0, rl) |html_title_cleanup(result) }}" />
 <meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="{{ 'content' |as2_i18n_field(results['as:items'].0, rl) |html_getimage(result) |make_https |safe }}"/>
 <meta property="og:description" content="{{ 'content' |as2_i18n_field(results['as:items'].0, rl) |html_title_cleanup(result) }}" />
 {% endblock %}

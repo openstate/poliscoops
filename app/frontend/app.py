@@ -278,6 +278,10 @@ def modify_query(**new_values):
     return '{}?{}'.format(request.path, url_encode(args))
 
 
+@app.template_filter('make_https')
+def do_make_https(s):
+    return re.sub(r'^http:\/\/', 'https://', s)
+
 @app.template_filter('pls_show_label_for_facet')
 def do_pls_show_label_for_facet(s, t):
     return FACETS_MAPPING[t](s)

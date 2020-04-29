@@ -20,9 +20,9 @@
     <meta name="theme-color" content="#ffffff">
 
     {% block og %}
-    <meta property="og:url" content="{{ request.url }}" />
+    <meta property="og:url" content="{{ request.url |make_https }}" />
     <meta property="og:title" content="{%trans%}Poliscoops{%endtrans%}" />
-    <meta property="og:image" content="{{ url_for('static', filename='images/local-news-bg-2x.png', _external=True) }}" />
+    <meta property="og:image" content="{{ url_for('static', filename='images/local-news-bg-2x.png', _external=True) |make_https }}" />
     {% endblock %}
 
     <meta name="google-site-verification" content="YvPuaR2sNzCGEcQQIWhoDkN0HE6yD8Z3c3A4yRW-erY" />

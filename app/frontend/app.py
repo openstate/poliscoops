@@ -246,11 +246,11 @@ def allow_src(tag, name, value):
     return False
 
 
-def image_rewrite(url, doc_id):
+def image_rewrite(url, doc_id, _external=False):
     if url.startswith(REWRITE_IMAGE_LINKS_CHECK):
         img_hash = hashlib.md5('%s:%s' % (
             doc_id.encode('utf-8'), url.encode('utf-8'))).hexdigest()
-        return url_for('link_proxy', hash=img_hash, url=url, id=doc_id)
+        return url_for('link_proxy', hash=img_hash, url=url, id=doc_id, _external=_external)
     else:
         return url
 
@@ -362,10 +362,10 @@ def do_html_getimage(s, result):
         images = html.xpath('//img/@src')
 
         if len(images) > 0:
-            id = result.get('id', None) or result['meta']['_id']
+            id = result.get('as:items', [{'@id': None}])[0].get('@id', None)
             return image_rewrite(urljoin(
-                result['meta']['original_object_urls']['html'],
-                images[0]), id)
+                request.url,
+                images[0]), id, True)
     return u'https://www.poliflw.nl/static/images/mstile-310x310.png'
 
 @app.template_filter('html_title_cleanup')

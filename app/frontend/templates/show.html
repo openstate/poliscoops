@@ -28,12 +28,12 @@
 {% for result in results['as:items'] %}
 <article role="article">
   <div class="verification">
+    {% set result_object = result %}
     {% if rl %}
     {% set article_language = rl %}
     {% else %}
     {% set article_language = result_object['@language'] %}
     {% endif %}
-    {% set result_object = result %}
     {% include "inner_result.html" %}
   </div>
   <div class="content mb-4">

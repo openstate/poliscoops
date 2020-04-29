@@ -6,7 +6,7 @@
 {% block og %}
 <meta property="og:title" content="{%trans query=query %}Recent political news about {{ query }}{%endtrans%}" />
 <meta property="og:type" content="article"/>
-<meta property="og:image" content="https://www.poliflw.nl/static/images/mstile-310x310.png"/>
+<meta property="og:image" content="{{ url_for('static', filename='images/local-news-bg-2x.png', _external=True) }}" />
 <meta property="og:description" content="{%trans query=query %}Recent political news about {{ query }}{%endtrans%}" />
 {% endblock %}
 

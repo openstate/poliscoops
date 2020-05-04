@@ -147,7 +147,7 @@ COUNTRIES = OrderedDict([
     ('SK', lazy_gettext('Slovakia')),
     ('SI', lazy_gettext('Slovenia')),
     ('SE', lazy_gettext('Sweden')),
-    ('EN', lazy_gettext('United Kingdom')),
+    ('UK', lazy_gettext('United Kingdom')),
     ('EU', lazy_gettext('Eurpean Union')),
 ])
 

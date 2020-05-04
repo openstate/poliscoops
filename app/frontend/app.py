@@ -145,7 +145,7 @@ COUNTRIES = OrderedDict([
     ('RO', lazy_gettext('Romania')),
     ('ES', lazy_gettext('Spain')),
     ('SK', lazy_gettext('Slovakia')),
-    ('SL', lazy_gettext('Slovenia')),
+    ('SI', lazy_gettext('Slovenia')),
     ('SE', lazy_gettext('Sweden')),
     ('EN', lazy_gettext('United Kingdom')),
     ('EU', lazy_gettext('Eurpean Union')),
@@ -177,7 +177,7 @@ LANGUAGES = {
     'RO': lazy_gettext('Romanian'),
     'ES': lazy_gettext('Spanish'),
     'SK': lazy_gettext('Slovakian'),
-    'SL': lazy_gettext('Slovenian'),
+    'SI': lazy_gettext('Slovenian'),
     'SE': lazy_gettext('Swedish'),
     'EU': lazy_gettext('Eurpean Unionish'),
     'EN': lazy_gettext('English')}

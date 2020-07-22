@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-22 15:14+0000\n"
+"POT-Creation-Date: 2020-07-22 15:24+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -643,6 +643,15 @@ msgstr ""
 
 #: templates/inner_result.html:14 templates/inner_result.html:25
 msgid "Tag"
+msgstr ""
+
+#: templates/inner_result.html:19
+msgid "Created"
+msgstr ""
+
+#: templates/inner_result.html:19
+#, python-format
+msgid "%(since)s ago"
 msgstr ""
 
 #: templates/inner_result.html:57

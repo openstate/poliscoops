@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-22 15:14+0000\n"
+"POT-Creation-Date: 2020-07-22 15:24+0000\n"
 "PO-Revision-Date: 2020-02-14 17:04+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -665,6 +665,15 @@ msgstr "Entdecken Sie mehr Kugeln"
 msgid "Tag"
 msgstr ""
 
+#: templates/inner_result.html:19
+msgid "Created"
+msgstr ""
+
+#: templates/inner_result.html:19
+#, python-format
+msgid "%(since)s ago"
+msgstr "seit %(since)s"
+
 #: templates/inner_result.html:57
 msgid "Read more"
 msgstr "Weiterlesen"
@@ -890,4 +899,3 @@ msgstr "Sie wurden erfolgreich abgemeldet."
 
 #~ msgid "receiving city %(num)s"
 #~ msgstr ""
-

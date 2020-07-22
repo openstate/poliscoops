@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-22 15:24+0000\n"
+"POT-Creation-Date: 2020-07-22 15:43+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -455,6 +455,15 @@ msgstr ""
 #: templates/base.html:134 templates/privacy.html:7
 msgid "Privacy"
 msgstr ""
+
+#: templates/base.html:135 templates/base.html:136 templates/base.html:137
+#, python-format
+msgid "Follow us on %(site)s"
+msgstr "Suivez-nous sur %(site)s"
+
+#: templates/base.html:138
+msgid "Send us an email"
+msgstr "Envoyez-nous un e-mail"
 
 #: templates/base.html:139 templates/disclaimer.html:7
 msgid "Disclaimer"

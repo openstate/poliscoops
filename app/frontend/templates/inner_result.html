@@ -11,7 +11,7 @@
         <li class="list-inline-item">
           <a class="btn btn-big-icon btn-verification" href="#">
             <img src="/static/images/icon-verification.svg" alt="{%trans%}Verify{%endtrans%}" class="img-responsive visible-xs-inline">
-            <span class="sr-only">{{ 'name' |as2_i18n_field(result_object.attributedTo, rl) }}</span>
+            <span class="sr-only">{%trans%}Tag{%endtrans%}: {{ 'name' |as2_i18n_field(result_object.attributedTo, rl) }}</span>
           </a>
         </li>
         <li class="list-inline-item">
@@ -22,14 +22,14 @@
         {% for t in result_object.tag %}
         <li class="list-inline-item">
           <a class="btn btn-sm btn-link" href="{{ url_for('search', tag=t['@id']) }}">
-            {{ 'name' |as2_i18n_field(t, rl) |pls_show_label_for_facet('tag') }}
+              <span class="sr-only">{%trans%}Tag{%endtrans%}:</span> {{ 'name' |as2_i18n_field(t, rl) |pls_show_label_for_facet('tag') }}
           </a>
         </li>
         {% endfor %}
         {% if result_object.location %}
         <li class="list-inline-item">
           <a class="btn btn-sm btn-link" href="{{ url_for('search', location=result_object.location['@id']) }}">
-            {{ 'name' |as2_i18n_field(result_object.location, rl) |pls_location }}
+              <span class="sr-only">{%trans%}Location{%endtrans%}:</span> {{ 'name' |as2_i18n_field(result_object.location, rl) |pls_location }}
           </a>
         </li>
         {% endif %}

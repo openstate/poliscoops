@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-22 14:52+0000\n"
+"POT-Creation-Date: 2020-07-22 15:14+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -38,7 +38,7 @@ msgstr "jusqu'à la date"
 msgid "Language"
 msgstr "Langue"
 
-#: app.py:76
+#: app.py:76 templates/inner_result.html:32
 msgid "Location"
 msgstr "Emplacement"
 
@@ -436,10 +436,6 @@ msgstr ""
 msgid "SIDN Fonds"
 msgstr ""
 
-#: templates/base.html:105
-msgid "SIDN Fonds"
-msgstr "SIDN Fund"
-
 #: templates/base.html:110
 msgid "DNI Fund"
 msgstr "Digital News Initiative fund"
@@ -468,14 +464,14 @@ msgstr ""
 msgid "Collect &amp; Subscribe"
 msgstr "Collectez et abonnez-vous"
 
-#: templates/base.html:175 templates/base.html:221
-#: templates/feedback.en.html:10 templates/index.html:63
-msgid "Mail"
-msgstr "Email"
-
 #: templates/base.html:178
 msgid "Select which of the content you will receive"
 msgstr "Sélectionnez le contenu que vous recevrez"
+
+#: templates/base.html:221 templates/feedback.en.html:10
+#: templates/index.html:63
+msgid "Mail"
+msgstr "Email"
 
 #: templates/base.html:224
 msgid "Subscribe &amp; receive email for your selected topics."
@@ -567,10 +563,6 @@ msgstr "Trier"
 msgid "Collect"
 msgstr "Collecte"
 
-#: templates/index.html:8
-msgid "broadcasting station"
-msgstr ""
-
 #: templates/index.html:10
 msgid "find and <span>collect</span>"
 msgstr "rechercher et <span>collecter</span>"
@@ -586,11 +578,6 @@ msgstr "<span>actualités</span> politiques"
 #: templates/index.html:16
 msgid "Discover"
 msgstr "Découvrir"
-
-#: templates/index.html:18 templates/index.html:19 templates/index.html:20
-#, python-format
-msgid "receiving city %(num)s"
-msgstr ""
 
 #: templates/index.html:25
 msgid "What can this do?"
@@ -673,6 +660,10 @@ msgstr ""
 #: templates/index.html:96
 msgid "Discover more scoops"
 msgstr "Découvrez plus de scoops"
+
+#: templates/inner_result.html:14 templates/inner_result.html:25
+msgid "Tag"
+msgstr ""
 
 #: templates/inner_result.html:57
 msgid "Read more"
@@ -829,3 +820,10 @@ msgstr "Vous vous êtes bien désabonné."
 #~ "Collectez le contenu de vos <a "
 #~ "href=\"/search\"> articles sélectionnés etsujets "
 #~ "</a>"
+
+#~ msgid "broadcasting station"
+#~ msgstr ""
+
+#~ msgid "receiving city %(num)s"
+#~ msgstr ""
+

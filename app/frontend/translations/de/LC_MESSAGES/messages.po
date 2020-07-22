@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 15:18+0000\n"
+"POT-Creation-Date: 2020-07-22 14:47+0000\n"
 "PO-Revision-Date: 2020-02-14 17:04+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -43,7 +43,7 @@ msgid "Location"
 msgstr "Standort"
 
 #: app.py:77 templates/inner_result.html:51 templates/inner_result.html:52
-#: templates/show.html:65
+#: templates/show.html:66
 msgid "Source"
 msgstr "Quelle"
 
@@ -315,65 +315,65 @@ msgstr "Schwedisch"
 msgid "Eurpean Unionish"
 msgstr "Europäische Unionish"
 
-#: app.py:501
+#: app.py:505
 msgid "year"
 msgstr "Jahr"
 
-#: app.py:501
+#: app.py:505
 msgid "years"
 msgstr "Jahre"
 
-#: app.py:502
+#: app.py:506
 msgid "month"
 msgstr "Monat"
 
-#: app.py:502
+#: app.py:506
 msgid "months"
 msgstr "Monate"
 
-#: app.py:503
+#: app.py:507
 msgid "week"
 msgstr "Woche"
 
-#: app.py:503
+#: app.py:507
 msgid "weeks"
 msgstr "Wochen"
 
-#: app.py:504
+#: app.py:508
 msgid "day"
 msgstr "Tag"
 
-#: app.py:504
+#: app.py:508
 msgid "days"
 msgstr "Tage"
 
-#: app.py:505
+#: app.py:509
 msgid "hour"
 msgstr "Stunde"
 
-#: app.py:505
+#: app.py:509
 msgid "hours"
 msgstr "Stunden"
 
-#: app.py:506
+#: app.py:510
 msgid "minute"
 msgstr "Minute"
 
-#: app.py:506
+#: app.py:510
 msgid "minutes"
 msgstr "Minuten"
 
-#: app.py:507
+#: app.py:511
 msgid "second"
 msgstr "Sekunde"
 
-#: app.py:507
+#: app.py:511
 msgid "seconds"
 msgstr "Sekunden"
 
 #: templates/about.de.html:1 templates/about.en.html:1
-#: templates/about.fr.html:1 templates/about.html:7 templates/base.html:41
-#: templates/base.html:61
+#: templates/about.fr.html:1 templates/about.html:7 templates/base.html:43
+#: templates/base.html:63
 msgid "About"
 msgstr "Über"
 
@@ -385,37 +385,45 @@ msgid "Home"
 msgstr ""
 
 #: templates/base.html:7 templates/base.html:17 templates/base.html:18
-#: templates/base.html:24 templates/base.html:40 templates/show.html:5
+#: templates/base.html:25 templates/base.html:42 templates/show.html:5
 msgid "Poliscoops"
 msgstr ""
 
+#: templates/base.html:26
+msgid "Local political news"
+msgstr "lokale politische Nachrichten"
+
 #: templates/base.html:42
+msgid "Find local political news"
+msgstr "Finden Sie lokale politische Nachrichten"
+
+#: templates/base.html:44
 msgid "Toggle navigation"
 msgstr "Navigation umschalten"
 
-#: templates/base.html:43
+#: templates/base.html:45
 msgid "Menu"
 msgstr "Menü"
 
-#: templates/base.html:49 templates/search.html:19
+#: templates/base.html:51 templates/search.html:19
 #: templates/search_results.html:21
 msgid "Search"
 msgstr "Suche"
 
-#: templates/base.html:52 templates/languages.html:7
+#: templates/base.html:54 templates/languages.html:7
 msgid "Languages"
 msgstr "Sprachen"
 
-#: templates/base.html:55 templates/countries.html:7
+#: templates/base.html:57 templates/countries.html:7
 msgid "Countries"
 msgstr "Länder"
 
-#: templates/base.html:58 templates/feedback.en.html:3
+#: templates/base.html:60 templates/feedback.en.html:3
 #: templates/feedback.html:7 templates/index.html:60
 msgid "Feedback"
 msgstr "Feedback"
 
-#: templates/base.html:87
+#: templates/base.html:89
 #, python-format
 msgid ""
 "It looks like you have not selected any source countries. You can change "
@@ -424,69 +432,69 @@ msgstr ""
 "Es sieht so aus, als hätten Sie keine Quellländer ausgewählt. Sie können "
 "dies <a href=\"%(url)s\">hier ändern</a>."
 
-#: templates/base.html:103
+#: templates/base.html:105
 msgid "SIDN Fonds"
 msgstr ""
 
-#: templates/base.html:108
+#: templates/base.html:110
 msgid "DNI Fund"
 msgstr ""
 
-#: templates/base.html:114 templates/base.html:119
+#: templates/base.html:116 templates/base.html:121
 msgid "NL Net"
 msgstr ""
 
-#: templates/base.html:124
+#: templates/base.html:126
 msgid "Open State Foundation"
 msgstr ""
 
-#: templates/base.html:132 templates/privacy.html:7
+#: templates/base.html:134 templates/privacy.html:7
 msgid "Privacy"
 msgstr ""
 
-#: templates/base.html:137 templates/disclaimer.html:7
+#: templates/base.html:139 templates/disclaimer.html:7
 msgid "Disclaimer"
 msgstr ""
 
-#: templates/base.html:164
+#: templates/base.html:166
 msgid "Collect &amp; Subscribe"
 msgstr "Sammeln &amp; Abonnieren"
 
-#: templates/base.html:173 templates/base.html:219
+#: templates/base.html:175 templates/base.html:221
 #: templates/feedback.en.html:10 templates/index.html:63
 msgid "Mail"
 msgstr "Email"
 
-#: templates/base.html:176
+#: templates/base.html:178
 msgid "Select which of the content you will receive"
 msgstr "Wählen Sie aus, welchen Inhalt Sie erhalten möchten"
 
-#: templates/base.html:222
+#: templates/base.html:224
 msgid "Subscribe &amp; receive email for your selected topics."
 msgstr "Abonnieren und erhalten Sie eine E-Mail für Ihre ausgewählten Themen"
 
-#: templates/base.html:229
+#: templates/base.html:231
 msgid "Interval"
 msgstr "Intervall"
 
-#: templates/base.html:245 templates/feedback.en.html:20
+#: templates/base.html:247 templates/feedback.en.html:20
 msgid "Email address"
 msgstr "Email"
 
-#: templates/base.html:249
+#: templates/base.html:250
 msgid ""
 "We will only use this information to send you the alerts you set for "
 "yourself. You can unsubscribe at any time using the link in the mail."
 msgstr ""
-"Wir werden diese Informationen nur verwenden, um Ihnen die von Ihnen selbst "
-"festgelegten Benachrichtigungen zu senden. Sie können sich jederzeit über den"
-" Link in der E-Mail abmelden.
+"Wir werden diese Informationen nur verwenden, um Ihnen die von Ihnen "
+"selbst festgelegten Benachrichtigungen zu senden. Sie können sich "
+"jederzeit über den Link in der E-Mail abmelden"
 
-#: templates/base.html:254
+#: templates/base.html:256
 msgid "Subscribe"
 msgstr "Abonnieren"
 
-#: templates/base.html:255
+#: templates/base.html:257
 msgid "Cancel"
 msgstr "Annulieren"
 
@@ -725,7 +733,7 @@ msgstr "Periode"
 msgid "Show more"
 msgstr "Zeig mehr"
 
-#: templates/show.html:42
+#: templates/show.html:43
 #, python-format
 msgid ""
 "This article is shown in the language in which it was written, since we "
@@ -736,7 +744,7 @@ msgstr ""
 "da wirhabe die übersetzte Version aus unbekannten Gründen nicht. Sie "
 "können die Spracheinstellungen <a href=\"%(url)s\">hier</a> ändern."
 
-#: templates/show.html:47
+#: templates/show.html:48
 #, python-format
 msgid ""
 "This article is shown in the language in which it was written. You can "
@@ -745,7 +753,7 @@ msgstr ""
 "Dieser Artikel wird in der Sprache gezeigt, in der er geschrieben wurde. "
 "Sie können die Spracheinstellungen <a href=\"%(url)s\">hier</a> ändern."
 
-#: templates/show.html:52
+#: templates/show.html:53
 #, python-format
 msgid ""
 "This article is shown in english, since we do not have the version in the"
@@ -756,15 +764,15 @@ msgstr ""
 "derOriginalsprache aus unbekannten Gründen. Sie können die "
 "Spracheinstellungen <a href=\"%(url)s\">hier</a> ändern."
 
-#: templates/show.html:56
+#: templates/show.html:57
 msgid "Originallypublished on:"
 msgstr "Ursprünglich veröffentlicht am:"
 
-#: templates/show.html:70
+#: templates/show.html:71
 msgid "Share on Twitter"
 msgstr "Auf Twitter teilen"
 
-#: templates/show.html:73
+#: templates/show.html:74
 msgid "Share on Facebook"
 msgstr "Auf Facebook teilen"
 

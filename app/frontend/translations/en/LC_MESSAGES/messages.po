@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-22 14:47+0000\n"
+"POT-Creation-Date: 2020-07-22 14:52+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -432,14 +432,18 @@ msgstr ""
 
 #: templates/base.html:105
 msgid "SIDN Fonds"
-msgstr ""
+msgstr "SIDN Fund"
 
 #: templates/base.html:110
 msgid "DNI Fund"
-msgstr ""
+msgstr "Digital News Initiative fund"
 
-#: templates/base.html:116 templates/base.html:121
+#: templates/base.html:116
 msgid "NL Net"
+msgstr "NL Net Foundation"
+
+#: templates/base.html:121
+msgid "NGI Zero"
 msgstr ""
 
 #: templates/base.html:126
@@ -779,4 +783,3 @@ msgstr ""
 #~ "Collect the content of your selected "
 #~ "<a href=\"/search\">articles and topics</a>"
 #~ msgstr ""
-

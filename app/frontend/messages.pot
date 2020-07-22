@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-22 14:47+0000\n"
+"POT-Creation-Date: 2020-07-22 14:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -437,8 +437,12 @@ msgstr ""
 msgid "DNI Fund"
 msgstr ""
 
-#: templates/base.html:116 templates/base.html:121
+#: templates/base.html:116
 msgid "NL Net"
+msgstr ""
+
+#: templates/base.html:121
+msgid "NGI Zero"
 msgstr ""
 
 #: templates/base.html:126

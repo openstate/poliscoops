@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-22 15:43+0000\n"
+"POT-Creation-Date: 2020-07-24 13:01+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -695,11 +695,15 @@ msgstr "Définissez votre langue"
 msgid "Website"
 msgstr "Site Internet"
 
-#: templates/languages.html:30
+#: templates/languages.html:28 templates/languages.html:43
+msgid "Selected"
+msgstr "choisi"
+
+#: templates/languages.html:35
 msgid "News articles"
 msgstr "Articles de presse"
 
-#: templates/languages.html:40
+#: templates/languages.html:50
 msgid "Go back"
 msgstr "Retourner"
 

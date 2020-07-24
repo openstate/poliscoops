@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title>
-{{ 'name' |as2_i18n_field(results['as:items'].0, rl) }} | {%trans%}Poliscoops{%endtrans%}
-</title>
+{{ 'name' |as2_i18n_field(results['as:items'].0, rl) }}
 {% endblock %}
 
 {% block og %}

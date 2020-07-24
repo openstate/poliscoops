@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
+{% block title %}
+{% if query %}
+{%trans query=query%}Search for &quot;{{ query }}&quot;{%endtrans%}
+{% else %}
+{%trans%}Search{%endtrans%}
+{% endif %}
+{%endblock%}
+
 {% block lead %}
 {% endblock %}
 

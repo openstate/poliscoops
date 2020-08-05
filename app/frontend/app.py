@@ -180,7 +180,8 @@ LANGUAGES = {
     'SI': lazy_gettext('Slovenian'),
     'SE': lazy_gettext('Swedish'),
     'EU': lazy_gettext('Eurpean Unionish'),
-    'EN': lazy_gettext('English')}
+    'EN': lazy_gettext('English'),
+    'UK': lazy_gettext('English')}
 
 SORTING = {
     'recency': {

@@ -427,7 +427,7 @@ msgstr ""
 #, python-format
 msgid ""
 "It looks like you have not selected any source countries. You can change "
-"this <a href=\"%(url)s\">here</a>."
+"this <a href=\"%(url)s\"><span class="sr-only">_</span>here<span class="sr-only">_</span></a>."
 msgstr ""
 
 #: templates/base.html:103
@@ -749,14 +749,14 @@ msgstr ""
 msgid ""
 "This article is shown in the language in which it was written, since we "
 "do not have the translated version for unknown reasons. You can change "
-"language settings <a href=\"%(url)s\">here</a>."
+"language settings <a href=\"%(url)s\"><span class="sr-only">_</span>here<span class="sr-only">_</span></a>."
 msgstr ""
 
 #: templates/show.html:46
 #, python-format
 msgid ""
 "This article is shown in the language in which it was written. You can "
-"change this <a href=\"%(url)s\">here</a>."
+"change this <a href=\"%(url)s\"><span class="sr-only">_</span>here<span class="sr-only">_</span></a>."
 msgstr ""
 
 #: templates/show.html:51
@@ -764,7 +764,7 @@ msgstr ""
 msgid ""
 "This article is shown in english, since we do not have the version in the"
 " original language for unknown reasons. You can change language settings "
-"<a href=\"%(url)s\">here</a>."
+"<a href=\"%(url)s\"><span class="sr-only">_</span>here<span class="sr-only">_</span></a>."
 msgstr ""
 
 #: templates/show.html:55

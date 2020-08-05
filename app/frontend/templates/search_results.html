@@ -79,6 +79,7 @@
                 {% set obj_attr = sub_attr.keys()[0] %}
               {% endif %}
               <h3 id="facet-{{ key }}">{{ desc }}</h3>
+              <ul>
               {% for bucket in result_facets[key].buckets %}
                   {% if loop.index == 11 %}
                   <button class="btn btn-primary btn-category btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
@@ -94,10 +95,10 @@
                     {% include "inner_facet_button.html" %}
                   {% endif %}
               {% endfor %}
-              </ul>
               {% if result_facets[key].buckets|length > 10 %}
                 </div> <!-- collapse-{{ key }} -->
               {% endif %}
+              </ul>
             {% endif %}
           {% endif %}
         {% endfor %}

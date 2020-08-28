@@ -227,6 +227,11 @@ class AS2TranslationEnricher(BaseEnricher, AzureTranslationMixin, HttpRequestMix
             except Exception as e:
                 log.error(e)
                 resp = None
+                # skip translation if things do not resolve
+                log.info(
+                    'Document %s resulted in error, so not translating' % (
+                        item['@id'],))
+                translated = True
 
             if translated:
                 log.info('Document %s was already translated' % (item['@id'],))

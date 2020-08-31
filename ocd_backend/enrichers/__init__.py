@@ -209,19 +209,18 @@ class AS2TranslationEnricher(BaseEnricher, AzureTranslationMixin, HttpRequestMix
                     first_item = resp['as:items'][0]
                     log.info('Found %s existing document(s) for  %s, translated into %s' % (
                         resp['as:totalItems'], item['@id'], first_item['contentMap'].keys(),))
-                    #translated = sorted(first_item['contentMap'].keys()) == sorted(settings.AS2_TRANSLATION_LANGUAGES)
-                    translated = set(settings.AS2_TRANSLATION_LANGUAGES).issubset(set(first_item['contentMap'].keys()))
-                    if translated:
-                        # if doc is already translated, use the translation we used before.
-                        docs = []
-                        for fld in ['nameMap', 'contentMap']:
-                            if fld in first_item:
-                                docs.append({
-                                    # FIXME: hould copy the source langueage from the doc!!!
-                                    'detectedLanguage': {"language": first_item.get('@language', 'nl'), "score": 1.0},
-                                    'translations': [{'text': v, 'to': k} for k, v in first_item[fld].iteritems()]
-                                })
-                        enrichments['translations'][item['@id']] = docs
+
+                    translated = True
+                    # if doc is already translated, use the translation we used before.
+                    docs = []
+                    for fld in ['nameMap', 'contentMap']:
+                        if fld in first_item:
+                            docs.append({
+                                # FIXME: hould copy the source langueage from the doc!!!
+                                'detectedLanguage': {"language": first_item.get('@language', 'nl'), "score": 1.0},
+                                'translations': [{'text': v, 'to': k} for k, v in first_item[fld].iteritems()]
+                            })
+                    enrichments['translations'][item['@id']] = docs
                 else:
                     resp = None
             except Exception as e:

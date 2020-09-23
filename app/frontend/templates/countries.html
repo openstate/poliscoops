@@ -25,12 +25,14 @@
 <form method="post" action="{{ url_for('set_countries') }}" class="form-countries">
   <input type="hidden" name="redirect" value="{{ redirect }}">
   {% for k, v in countries.iteritems() %}
-  <div class="form-check mb-4" role="button" tabindex="0">
-    <input type="checkbox" class="form-check-input" name="countries" value="{{ locations[k] }}" id="check-country-{{ k }}" {%if locations[k] in selected_countries %}checked{%endif%}>
-    <label class="form-check-label btn-selectable w-100  d-flex align-items-center" for="check-country-{{ k }}" tabindex="0">
+  <div class="form-check mb-4 btn-selectable d-flex" role="button" tabindex="0">
+    <label class="form-check-label w-100 mr-auto d-flex align-items-center" for="check-country-{{ k }}" tabindex="0">
       <img src="/static/images/countries/{{ k |lower }}.svg" alt="{{ k }}" style="max-width: 26px; max-height: 26px;" class="mr-1" />
-      {{ v }} <i class="fa fa-{%if locations[k] in selected_countries %}check-{%endif%}square-o ml-auto" aria-hidden="true"></i>
+      {{ v }}
     </label>
+    <div class="ml-auto">
+      <input type="checkbox" class="form-check-input" name="countries" value="{{ locations[k] }}" id="check-country-{{ k }}" {%if locations[k] in selected_countries %}checked{%endif%}>
+    </div>
   </div>
   {% endfor %}
 

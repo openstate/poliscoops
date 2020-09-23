@@ -67,11 +67,15 @@
                       <h3>{{ d }}</h3>
                       {% endif %}
                     {% endfor %}
+                    <ul class="list-unstyled">
                     {% for bucket in result_facets[key].buckets %}
                       {% if bucket.object[obj_attr] == sub_facet %}
+                      <li>
                           {% include "inner_facet_button.html" %}
+                        </li>
                       {% endif %}
                     {% endfor %}
+                    </ul>
                   {% endfor %}
                 {% endfor %}
               {% endif %}
@@ -79,7 +83,7 @@
                 {% set obj_attr = sub_attr.keys()[0] %}
               {% endif %}
               <h3 id="facet-{{ key }}">{{ desc }}</h3>
-              <ul>
+              <ul class="list-unstyled">
               {% for bucket in result_facets[key].buckets %}
                   {% if loop.index == 11 %}
                   <button class="btn btn-primary btn-category btn-block btn-large toggle-hide-after" type="button" data-toggle="collapse" data-target="#collapse-{{ key }}" aria-expanded="false" aria-controls="collapse-{{ key }}" style=" color: white !important;">
@@ -89,10 +93,14 @@
                   {% endif %}
                   {% if sub_attr %}
                     {% if bucket.object[obj_attr] not in sub_attr[obj_attr] %}
+                      <li>
                       {% include "inner_facet_button.html" %}
+                      </li>
                     {% endif %}
                   {% else %}
-                    {% include "inner_facet_button.html" %}
+                    <li>
+                      {% include "inner_facet_button.html" %}
+                    </li>
                   {% endif %}
               {% endfor %}
               {% if result_facets[key].buckets|length > 10 %}

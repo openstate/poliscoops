@@ -624,6 +624,19 @@ article .lead {
     }
 }
 
+.btn-filter-bar {
+  color: #0603A6;
+  background: #EBF3F7;
+  font-size: 11px;
+  font-weight: 300;
+  text-transform: lowercase;
+  min-width: 36px;
+
+  span {
+    display: block;
+    line-height: 16px;
+  }
+}
 /* media queris */
 /*
 xs: 0,

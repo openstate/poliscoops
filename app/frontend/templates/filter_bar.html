@@ -18,11 +18,13 @@
   </li>
   {% if not filter_bar_homepage %}
   <li class="ml-auto">
-    <a class="btn" href="#" data-toggle="modal" data-target="#modal-filters" role="button">
-      <img src="/static/images/btn-sort.svg" alt="{%trans%}Sort{%endtrans%}"/>
+    <a class="btn btn-filter-bar" href="#" data-toggle="modal" data-target="#modal-filters" role="button">
+      <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+      <span>{%trans%}Sort{%endtrans%}</span>
     </a>
-    <a class="btn" href="#" data-toggle="modal" data-target="#modal-subscribe" role="button">
-      <img src="/static/images/btn-collect.svg" alt="{%trans%}Collect{%endtrans%}" />
+    <a class="btn btn-filter-bar" href="#" data-toggle="modal" data-target="#modal-subscribe" role="button">
+      <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+      <span>{%trans%}Collect{%endtrans%}</span>
     </a>
   </li>
   {% endif %}

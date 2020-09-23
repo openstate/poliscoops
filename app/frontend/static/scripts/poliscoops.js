@@ -66,6 +66,10 @@ Poliscoops.init = function() {
       $(item).text(Poliscoops.countries.id2name[$(item).attr('data-location')]);
     });
   });
+
+  $('.skip-content a').on('click', function (e) {
+    $(this).parent().hide();
+  });
 };
 
 $(function() {

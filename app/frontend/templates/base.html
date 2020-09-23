@@ -34,7 +34,10 @@
     <!--[if lte IE 9]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <div class="skip-content d-md-none d-lg-none  d-xl-none">
+      <a href="#main-content" class="mr-3">{%trans%}Skip to content{%endtrans%}</a>
+      <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+    </div>
     <header>
       <nav class="navbar navbar-expand-xxl navbar-light container" style="background-color: #ffffff;" role="navigation">
         <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='dist/images/logo-desktop.svg') }}" alt="{%trans%}Poliscoops{%endtrans%} - {%trans%}Find local political news{%endtrans%}" style="width: 200px;" /></a>
@@ -90,8 +93,10 @@
       </div>
       {% endif %}
       {% endblock %}
+      <div id="main-content">
     {% block content %}
     {% endblock %}
+  </div>
     </div>
   </main>
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 14:00+0000\n"
+"POT-Creation-Date: 2020-09-23 15:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,7 +90,7 @@ msgstr ""
 msgid "Weekly"
 msgstr ""
 
-#: app.py:113 app.py:117 app.py:183
+#: app.py:113 app.py:117 app.py:183 app.py:184
 msgid "English"
 msgstr ""
 
@@ -314,65 +314,65 @@ msgstr ""
 msgid "Eurpean Unionish"
 msgstr ""
 
-#: app.py:505
+#: app.py:506
 msgid "year"
 msgstr ""
 
-#: app.py:505
+#: app.py:506
 msgid "years"
 msgstr ""
 
-#: app.py:506
+#: app.py:507
 msgid "month"
 msgstr ""
 
-#: app.py:506
+#: app.py:507
 msgid "months"
 msgstr ""
 
-#: app.py:507
+#: app.py:508
 msgid "week"
 msgstr ""
 
-#: app.py:507
+#: app.py:508
 msgid "weeks"
 msgstr ""
 
-#: app.py:508
+#: app.py:509
 msgid "day"
 msgstr ""
 
-#: app.py:508
+#: app.py:509
 msgid "days"
 msgstr ""
 
-#: app.py:509
+#: app.py:510
 msgid "hour"
 msgstr ""
 
-#: app.py:509
+#: app.py:510
 msgid "hours"
 msgstr ""
 
-#: app.py:510
+#: app.py:511
 msgid "minute"
 msgstr ""
 
-#: app.py:510
+#: app.py:511
 msgid "minutes"
 msgstr ""
 
-#: app.py:511
+#: app.py:512
 msgid "second"
 msgstr ""
 
-#: app.py:511
+#: app.py:512
 msgid "seconds"
 msgstr ""
 
 #: templates/about.de.html:1 templates/about.en.html:1
 #: templates/about.fr.html:1 templates/about.html:3 templates/about.html:9
-#: templates/base.html:41 templates/base.html:61
+#: templates/base.html:44 templates/base.html:64
 msgid "About"
 msgstr ""
 
@@ -384,7 +384,7 @@ msgid "Home"
 msgstr ""
 
 #: templates/base.html:6 templates/base.html:15 templates/base.html:16
-#: templates/base.html:23 templates/base.html:40
+#: templates/base.html:23 templates/base.html:43
 msgid "Poliscoops"
 msgstr ""
 
@@ -392,117 +392,121 @@ msgstr ""
 msgid "Local political news"
 msgstr ""
 
-#: templates/base.html:40
-msgid "Find local political news"
-msgstr ""
-
-#: templates/base.html:42
-msgid "Toggle navigation"
+#: templates/base.html:38
+msgid "Skip to content"
 msgstr ""
 
 #: templates/base.html:43
+msgid "Find local political news"
+msgstr ""
+
+#: templates/base.html:45
+msgid "Toggle navigation"
+msgstr ""
+
+#: templates/base.html:46
 msgid "Menu"
 msgstr ""
 
-#: templates/base.html:49 templates/search.html:19
+#: templates/base.html:52 templates/search.html:19
 #: templates/search_results.html:7 templates/search_results.html:29
 msgid "Search"
 msgstr ""
 
-#: templates/base.html:52 templates/languages.html:3 templates/languages.html:9
+#: templates/base.html:55 templates/languages.html:3 templates/languages.html:9
 msgid "Languages"
 msgstr ""
 
-#: templates/base.html:55 templates/countries.html:3 templates/countries.html:9
+#: templates/base.html:58 templates/countries.html:3 templates/countries.html:9
 msgid "Countries"
 msgstr ""
 
-#: templates/base.html:58 templates/feedback.en.html:3
+#: templates/base.html:61 templates/feedback.en.html:3
 #: templates/feedback.html:3 templates/feedback.html:9 templates/index.html:60
 msgid "Feedback"
 msgstr ""
 
-#: templates/base.html:87
+#: templates/base.html:90
 #, python-format
 msgid ""
 "It looks like you have not selected any source countries. You can change "
 "this <a href=\"%(url)s\">here</a>."
 msgstr ""
 
-#: templates/base.html:103
+#: templates/base.html:108
 msgid "SIDN Fonds"
 msgstr ""
 
-#: templates/base.html:108
+#: templates/base.html:113
 msgid "DNI Fund"
 msgstr ""
 
-#: templates/base.html:114
+#: templates/base.html:119
 msgid "NL Net"
 msgstr ""
 
-#: templates/base.html:119
+#: templates/base.html:124
 msgid "NGI Zero"
 msgstr ""
 
-#: templates/base.html:124
+#: templates/base.html:129
 msgid "Open State Foundation"
 msgstr ""
 
-#: templates/base.html:132 templates/privacy.html:3 templates/privacy.html:9
+#: templates/base.html:137 templates/privacy.html:3 templates/privacy.html:9
 msgid "Privacy"
 msgstr ""
 
-#: templates/base.html:133 templates/base.html:134 templates/base.html:135
+#: templates/base.html:138 templates/base.html:139 templates/base.html:140
 #, python-format
 msgid "Follow us on %(site)s"
 msgstr ""
 
-#: templates/base.html:136
+#: templates/base.html:141
 msgid "Send us an email"
 msgstr ""
 
-#: templates/base.html:137 templates/disclaimer.html:3
+#: templates/base.html:142 templates/disclaimer.html:3
 #: templates/disclaimer.html:9
 msgid "Disclaimer"
 msgstr ""
 
-#: templates/base.html:164
+#: templates/base.html:169
 msgid "Collect &amp; Subscribe"
 msgstr ""
 
-#: templates/base.html:176
+#: templates/base.html:181
 msgid "Select which of the content you will receive"
 msgstr ""
 
-#: templates/base.html:219 templates/feedback.en.html:10
+#: templates/base.html:224 templates/feedback.en.html:10
 #: templates/index.html:63
 msgid "Mail"
 msgstr ""
 
-#: templates/base.html:222
+#: templates/base.html:227
 msgid "Subscribe &amp; receive email for your selected topics."
 msgstr ""
 
-#: templates/base.html:229
+#: templates/base.html:234
 msgid "Interval"
 msgstr ""
 
-#: templates/base.html:245 templates/feedback.en.html:20
+#: templates/base.html:250 templates/feedback.en.html:20
 msgid "Email address"
 msgstr ""
 
-#: templates/base.html:248
+#: templates/base.html:253
 msgid ""
 "We will only use this information to send you the alerts you set for "
 "yourself. You can unsubscribe at any time using the link in the mail."
 msgstr ""
 
-#: templates/base.html:254
+#: templates/base.html:259
 msgid "Subscribe"
 msgstr ""
 
-#: templates/base.html:255
+#: templates/base.html:260
 msgid "Cancel"
 msgstr ""
 
@@ -557,11 +561,11 @@ msgstr ""
 msgid "Most relevant"
 msgstr ""
 
-#: templates/filter_bar.html:22
+#: templates/filter_bar.html:23
 msgid "Sort"
 msgstr ""
 
-#: templates/filter_bar.html:25 templates/index.html:45 templates/index.html:52
+#: templates/filter_bar.html:27 templates/index.html:45 templates/index.html:52
 #: templates/index.html:53
 msgid "Collect"
 msgstr ""
@@ -739,7 +743,7 @@ msgstr ""
 msgid "Period"
 msgstr ""
 
-#: templates/search_results.html:85
+#: templates/search_results.html:90
 msgid "Show more"
 msgstr ""
 

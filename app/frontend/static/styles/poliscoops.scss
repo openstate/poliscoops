@@ -637,6 +637,21 @@ article .lead {
     line-height: 16px;
   }
 }
+
+.skip-content {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: white;
+  background: black;
+  padding: 1em;
+  z-index: 50;
+  line-height:24px;
+
+  a, a:hover, button {
+    color: white;
+  }
+}
 /* media queris */
 /*
 xs: 0,

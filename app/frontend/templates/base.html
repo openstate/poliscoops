@@ -66,8 +66,14 @@
           </ul>
         </div>
 
-        <a class="nav-link nav-link-selection nav-link-country-selection mr-2" href="{{ url_for('countries', redirect=redirect, hl=hl, rl=rl) }}"><i class="fa fa-2x fa-globe" aria-hidden="true"></i> [{{ selected_countries |length}}/{{ countries |length }}]</a>
-        <a class="nav-link nav-link-selection nav-link-language-selection" href="{{ url_for('languages', redirect=redirect, hl=hl, rl=rl) }}"><img src="/static/images/countries/{{ hl }}.svg" alt="{{ dict(interface_languages)[hl] }}" style="max-height: 26px;" class="mr-1" />{{ dict(interface_languages)[hl] }}</a>
+        <a class="nav-link nav-link-selection nav-link-country-selection mr-2" href="{{ url_for('countries', redirect=redirect, hl=hl, rl=rl) }}">
+          <i class="fa fa-2x fa-globe" aria-hidden="true"></i> [{{ selected_countries |length}}/{{ countries |length }}] <span class="sr-only">{%trans%}Select countries{%endtrans%}</span>
+        </a>
+        <a class="nav-link nav-link-selection nav-link-language-selection" href="{{ url_for('languages', redirect=redirect, hl=hl, rl=rl) }}">
+          <img src="/static/images/countries/{{ hl }}.svg" alt="{{ dict(interface_languages)[hl] }}" style="max-height: 26px;" class="mr-1" />
+          {{ dict(interface_languages)[hl] }}
+           <span class="sr-only">{%trans%}Select language{%endtrans%}</span>
+        </a>
       </nav>
 
   </header>

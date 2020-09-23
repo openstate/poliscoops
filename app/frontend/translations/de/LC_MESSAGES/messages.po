@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-23 15:39+0000\n"
+"POT-Creation-Date: 2020-09-23 16:14+0000\n"
 "PO-Revision-Date: 2020-02-14 17:04+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -427,77 +427,85 @@ msgstr "Länder"
 msgid "Feedback"
 msgstr "Feedback"
 
-#: templates/base.html:90
+#: templates/base.html:70
+msgid "Select countries"
+msgstr "Länder auswählen"
+
+#: templates/base.html:75
+msgid "Select language"
+msgstr "Sprache auswählen"
+
+#: templates/base.html:96
 #, python-format
 msgid ""
 "It looks like you have not selected any source countries. You can change "
 "this <a href=\"%(url)s\">here</a>."
 msgstr ""
 
-#: templates/base.html:108
+#: templates/base.html:114
 msgid "SIDN Fonds"
 msgstr ""
 
-#: templates/base.html:113
+#: templates/base.html:119
 msgid "DNI Fund"
 msgstr "Digital News Initiative fund"
 
-#: templates/base.html:119
+#: templates/base.html:125
 msgid "NL Net"
 msgstr "NL Net Foundation"
 
-#: templates/base.html:124
+#: templates/base.html:130
 msgid "NGI Zero"
 msgstr ""
 
-#: templates/base.html:129
+#: templates/base.html:135
 msgid "Open State Foundation"
 msgstr ""
 
-#: templates/base.html:137 templates/privacy.html:3 templates/privacy.html:9
+#: templates/base.html:143 templates/privacy.html:3 templates/privacy.html:9
 msgid "Privacy"
 msgstr ""
 
-#: templates/base.html:138 templates/base.html:139 templates/base.html:140
+#: templates/base.html:144 templates/base.html:145 templates/base.html:146
 #, python-format
 msgid "Follow us on %(site)s"
 msgstr "Folgen sie uns auf %(site)s"
 
-#: templates/base.html:141
+#: templates/base.html:147
 msgid "Send us an email"
 msgstr "senden Sie uns eine Email"
 
-#: templates/base.html:142 templates/disclaimer.html:3
+#: templates/base.html:148 templates/disclaimer.html:3
 #: templates/disclaimer.html:9
 msgid "Disclaimer"
 msgstr ""
 
-#: templates/base.html:169
+#: templates/base.html:175
 msgid "Collect &amp; Subscribe"
 msgstr "Sammeln &amp; Abonnieren"
 
-#: templates/base.html:181
+#: templates/base.html:187
 msgid "Select which of the content you will receive"
 msgstr "Wählen Sie aus, welchen Inhalt Sie erhalten möchten"
 
-#: templates/base.html:224 templates/feedback.en.html:10
+#: templates/base.html:230 templates/feedback.en.html:10
 #: templates/index.html:63
 msgid "Mail"
 msgstr "Email"
 
-#: templates/base.html:227
+#: templates/base.html:233
 msgid "Subscribe &amp; receive email for your selected topics."
 msgstr "Abonnieren und erhalten Sie eine E-Mail für Ihre ausgewählten Themen"
 
-#: templates/base.html:234
+#: templates/base.html:240
 msgid "Interval"
 msgstr "Intervall"
 
-#: templates/base.html:250 templates/feedback.en.html:20
+#: templates/base.html:256 templates/feedback.en.html:20
 msgid "Email address"
 msgstr "Email"
 
-#: templates/base.html:253
+#: templates/base.html:259
 msgid ""
 "We will only use this information to send you the alerts you set for "
 "yourself. You can unsubscribe at any time using the link in the mail."
@@ -506,11 +514,11 @@ msgstr ""
 "selbst festgelegten Benachrichtigungen zu senden. Sie können sich "
 "jederzeit über den Link in der E-Mail abmelden"
 
-#: templates/base.html:259
+#: templates/base.html:265
 msgid "Subscribe"
 msgstr "Abonnieren"
 
-#: templates/base.html:260
+#: templates/base.html:266
 msgid "Cancel"
 msgstr "Annulieren"
 

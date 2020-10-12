@@ -3,21 +3,31 @@
     <span id="filter-bar-sorting-label" class="filter-bar-label mr-1">{%trans%}Sort by{%endtrans%}</span>
     <ul class="nav nav-pills d-flex align-items-center" role="toolbar">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <button
+          id="filter-bar-sorting-button" class="nav-link dropdown-toggle"
+          data-toggle="dropdown" href="#" role="button"
+          aria-haspopup="listbox" aria-expanded="false"
+          aria-labelledby="filter-bar-sorting-label filter-bar-sorting-button">
           {% if filter_bar_sort == "recent" %}
           {%trans%}Most recent{%endtrans%}
           {% else %}
           {%trans%}Most relevant{%endtrans%}
           {% endif %}
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{{ filter_bar_relevance_link }}">
-            {%trans%}Most relevant{%endtrans%}
-          </a>
-          <a class="dropdown-item" href="{{ filter_bar_recent_link }}">
+        </button>
+        <ul class="dropdown-menu" tabindex="-1"
+          role="listbox"
+          aria-labelledby="filter-bar-sorting-label">
+          <li role="option">
+            <a class="dropdown-item" role="option" href="{{ filter_bar_relevance_link }}">
+              {%trans%}Most relevant{%endtrans%}
+            </a>
+          </li>
+          <li role="option">
+          <a class="dropdown-item" role="option" href="{{ filter_bar_recent_link }}">
             {%trans%}Most recent{%endtrans%}
           </a>
-        </div>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>

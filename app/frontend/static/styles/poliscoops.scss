@@ -343,6 +343,7 @@ h3 {
   line-height: 18px;
   font-weight: 600;
   padding: 1em;
+  margin: 0;
 
   .btn {
     padding: 0;
@@ -351,10 +352,18 @@ h3 {
   .nav-item {
     background: transparent;
   }
+
 }
 
 .nav-filtering a.nav-link {
   color: white;
+}
+
+.filter-bar-label {
+  float: left;
+  color: white;
+  background: transparent;
+  margin: 7px 0;
 }
 
 .search-box {

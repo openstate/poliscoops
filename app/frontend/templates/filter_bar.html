@@ -17,12 +17,22 @@
         <ul class="dropdown-menu" tabindex="-1"
           role="listbox"
           aria-labelledby="filter-bar-sorting-label">
-          <li role="option">
+          <li
+            role="option"
+            {% if filter_bar_sort != "recent" %}
+            aria-selected="true"
+            {% endif %}
+          >
             <a class="dropdown-item" role="option" href="{{ filter_bar_relevance_link }}">
               {%trans%}Most relevant{%endtrans%}
             </a>
           </li>
-          <li role="option">
+          <li
+            role="option"
+            {% if filter_bar_sort == "recent" %}
+            aria-selected="true"
+            {% endif %}
+          >
           <a class="dropdown-item" role="option" href="{{ filter_bar_recent_link }}">
             {%trans%}Most recent{%endtrans%}
           </a>

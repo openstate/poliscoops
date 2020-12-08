@@ -40,16 +40,14 @@
         {% if result_object.attributedTo %}
         <li class="list-inline-item">
           <a class="btn btn-big-icon" href="{{ url_for('search', location=result_object.attributedTo['@id']) }}">
-            <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) |party_image }}.png" alt="{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) }}" class="img-responsive visible-xs-inline">
-            <span class="sr-only">{{ 'name' |as2_i18n_field(result_object.attributedTo, rl) }}</span>
+            <img src="/static/images/parties/{{ 'name' |as2_i18n_field(result_object.attributedTo, hl) |party_image }}.png" alt="{%trans%}See all posts from{%endtrans%} {{ 'name' |as2_i18n_field(result_object.attributedTo, rl) }}" class="img-responsive visible-xs-inline">
           </a>
         </li>
         {% endif %}
         {% if result_object.url %}
         <li class="list-inline-item">
           <a class="btn btn-big-icon" href="{{ result_object.url }}" target="_blank">
-            <img src="/static/images/btn-source.svg" alt="{%trans%}Source{%endtrans%}" />
-            <span class="sr-only">{%trans%}Source{%endtrans%}</span>
+            <img src="/static/images/btn-source.svg" alt="{%trans%}Go to the external source link{%endtrans%}" />
           </a>
         </li>
         {% endif %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-08 17:22+0000\n"
+"POT-Creation-Date: 2020-12-08 17:34+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -692,7 +692,7 @@ msgid "Go to the external source link"
 msgstr ""
 
 #: templates/inner_result.html:55
-msgid "Read more"
+msgid "Read the full article"
 msgstr ""
 
 #: templates/languages.html:19
@@ -881,5 +881,8 @@ msgstr ""
 #~ " reasons. You can change language "
 #~ "settings <a href=\"%(url)s\"><span class=\"sr-"
 #~ "only\">_</span>here<span class=\"sr-only\">_</span></a>."
+#~ msgstr ""
+
+#~ msgid "Read more"
 #~ msgstr ""
 

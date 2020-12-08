@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-08 17:22+0000\n"
+"POT-Creation-Date: 2020-12-08 17:34+0000\n"
 "PO-Revision-Date: 2020-02-14 17:04+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -710,8 +710,8 @@ msgid "Go to the external source link"
 msgstr "Gehen Sie zum externen Quelllink"
 
 #: templates/inner_result.html:55
-msgid "Read more"
-msgstr "Weiterlesen"
+msgid "Read the full article"
+msgstr "Lesen Sie den vollständigen Artikel"
 
 #: templates/languages.html:19
 msgid "Set your language"
@@ -996,3 +996,6 @@ msgstr "Sie wurden erfolgreich abgemeldet."
 #~ "derOriginalsprache aus unbekannten Gründen. "
 #~ "Sie können die Spracheinstellungen <a "
 #~ "href=\"%(url)s\">hier</a> ändern."
+
+#~ msgid "Read more"
+#~ msgstr "Weiterlesen"

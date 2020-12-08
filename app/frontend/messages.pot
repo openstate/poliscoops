@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-08 17:22+0000\n"
+"POT-Creation-Date: 2020-12-08 17:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -691,7 +691,7 @@ msgid "Go to the external source link"
 msgstr ""
 
 #: templates/inner_result.html:55
-msgid "Read more"
+msgid "Read the full article"
 msgstr ""
 
 #: templates/languages.html:19

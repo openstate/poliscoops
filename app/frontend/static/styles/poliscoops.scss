@@ -86,6 +86,15 @@ footer {
   border: 1px solid #005;
 }
 
+
+.page-link {
+    color: #005 !important;
+}
+
+.page-item.disabled a.page-link {
+  color: #387499 !important;
+}
+
 .alert-primary {
     color: #000056;
     background-color: #fff;
@@ -517,6 +526,7 @@ padding-top: 0.4em;
 .nav-item {
   background-color: #EBF3F7;
 }
+
 
 /*.nav-pills .nav-link.active {
     background-color: #FFFFFF;

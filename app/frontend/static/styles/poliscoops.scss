@@ -82,6 +82,10 @@ footer {
 
 }
 
+.form-control {
+  border: 1px solid #005;
+}
+
 .alert-primary {
     color: #000056;
     background-color: #fff;
@@ -456,7 +460,7 @@ padding-top: 0.4em;
     font-size: 16px;
     line-height: 22px;
     font-weight: 600;
-    color: white;
+    color: #0603A6;
 }
 
 .read-more-link:hover {
@@ -468,7 +472,7 @@ padding-top: 0.4em;
   color: white;
   font-size: 26px;
   line-height: 28px;
-  background: #9EC3DA;
+  background: #005;
   padding: 0.5em;
   input {
     color: white !important;

@@ -763,7 +763,7 @@ msgstr ""
 
 #: templates/search.html:13 templates/search.html:14
 msgid "Find articles, parties, locations..."
-msgstr "Trouver des articles, des parties, des lieux ..."
+msgstr "Trouver des articles..."
 
 #: templates/search_results.html:5
 #, python-format

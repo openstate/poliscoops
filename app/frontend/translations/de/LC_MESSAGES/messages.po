@@ -761,7 +761,7 @@ msgstr "Leider konnten wir keine Dokumente finden, die Ihrer Anfrage entsprechen
 
 #: templates/search.html:13 templates/search.html:14
 msgid "Find articles, parties, locations..."
-msgstr "Finden Sie Artikel, Partys, Orte ..."
+msgstr "Finden Sie Artikel..."
 
 #: templates/search_results.html:5
 #, python-format

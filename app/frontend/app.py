@@ -841,17 +841,20 @@ def main():
         'index.html',
         results=results,
         facets=FACETS,
-        visible_facets=[f for f in FACETS if f[2]])
+        visible_facets=[f for f in FACETS if f[2]], current='home')
 
 
 def _render_page(page_name):
     hl, rl = get_languages()
     try:
         res = render_template(
-            '%s.html' % (page_name,), sub_template='%s.%s.html' % (page_name,hl,))
+            '%s.html' % (page_name,),
+            sub_template='%s.%s.html' % (page_name,hl,),
+            current=page_name)
     except TemplateNotFound as e:
         res = render_template(
-            '%s.html' % (page_name,), sub_template='%s.en.html' % (page_name,))
+            '%s.html' % (page_name,), sub_template='%s.en.html' % (page_name,),
+            current='search')
     return res
 
 
@@ -859,7 +862,7 @@ def _render_page(page_name):
 def languages():
     return render_template(
         'languages.html',
-        article_languages=ARTICLE_LANGUAGES.items())
+        article_languages=ARTICLE_LANGUAGES.items(), current='languages')
 
 @app.route("/countries")
 def countries():
@@ -868,7 +871,7 @@ def countries():
     for l in api_locations.get('as:items', []):
         first_key = l.get('nameMap', {}).keys()[0]
         locations[l['nameMap'][first_key]] = l['@id'].split('/')[-1]
-    return render_template('countries.html',locations=locations)
+    return render_template('countries.html',locations=locations, current='countries')
 
 
 @app.route("/countries.json")
@@ -985,7 +988,7 @@ def search():
         query=search_params['query'], page=search_params['page'],
         max_pages=max_pages, search_params=search_params,
         dt_now=datetime.datetime.now(), locations=locations,
-        sort_key=sort_key)
+        sort_key=sort_key, current='search')
 
 
 @app.route("/<as2_type>/<id>")

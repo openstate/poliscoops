@@ -289,7 +289,7 @@
               {% endfor %}
               <div class="form-group">
                 <label for="form-subscribe-email">{%trans%}Email address{%endtrans%}</label>
-                <input type="text" class="form-control" name="email" id="form-subscribe-email" placeholder="jan@example.org" required autocomplete="email" aria-required="true">
+                <input type="text" class="form-control" name="email" id="form-subscribe-email" placeholder="jan@example.org" required autocomplete="email" aria-required="true" oninvalid="this.setCustomValidity('{%trans%}Please enter a valid email address{%endtrans%}')" oninput="this.setCustomValidity('')">
                 <small id="passwordHelpBlock" class="form-text text-muted" aria-describedby="passwordHelpBlock">
                   {%trans%}We will only use this information to send you the alerts you set for yourself. You can unsubscribe at any time using the link in the mail.{%endtrans%}
                 </small>

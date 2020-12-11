@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-11 17:10+0000\n"
+"POT-Creation-Date: 2020-12-11 17:16+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -504,6 +504,10 @@ msgstr "Intervalle"
 msgid "Email address"
 msgstr "Email"
 
+#: templates/base.html:292
+msgid "Please enter a valid email address"
+msgstr "S'il vous plaît, mettez une adresse email valide"
+
 #: templates/base.html:294
 msgid ""
 "We will only use this information to send you the alerts you set for "
@@ -947,4 +951,3 @@ msgstr "Vous vous êtes bien désabonné."
 
 #~ msgid "Kind"
 #~ msgstr "Sorte"
-

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-11 17:10+0000\n"
+"POT-Creation-Date: 2020-12-11 17:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -501,6 +501,10 @@ msgstr ""
 
 #: templates/base.html:291 templates/feedback.en.html:20
 msgid "Email address"
+msgstr ""
+
+#: templates/base.html:292
+msgid "Please enter a valid email address"
 msgstr ""
 
 #: templates/base.html:294

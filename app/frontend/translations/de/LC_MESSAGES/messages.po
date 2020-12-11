@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-08 17:34+0000\n"
+"POT-Creation-Date: 2020-12-11 17:04+0000\n"
 "PO-Revision-Date: 2020-02-14 17:04+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -372,7 +372,7 @@ msgstr "Sekunden"
 
 #: templates/about.de.html:1 templates/about.en.html:1
 #: templates/about.fr.html:1 templates/about.html:3 templates/about.html:9
-#: templates/base.html:44 templates/base.html:64
+#: templates/base.html:50 templates/base.html:95
 msgid "About"
 msgstr "Über"
 
@@ -384,7 +384,7 @@ msgid "Home"
 msgstr ""
 
 #: templates/base.html:6 templates/base.html:15 templates/base.html:16
-#: templates/base.html:23 templates/base.html:43
+#: templates/base.html:23 templates/base.html:44
 msgid "Poliscoops"
 msgstr ""
 
@@ -396,115 +396,115 @@ msgstr "lokale politische Nachrichten"
 msgid "Skip to content"
 msgstr "Zum Inhalt springen"
 
-#: templates/base.html:43
+#: templates/base.html:44
 msgid "Find local political news"
 msgstr "Finden Sie lokale politische Nachrichten"
 
-#: templates/base.html:45
+#: templates/base.html:55
 msgid "Toggle navigation"
 msgstr "Navigation umschalten"
 
-#: templates/base.html:46
+#: templates/base.html:56
 msgid "Menu"
 msgstr "Menü"
 
-#: templates/base.html:52 templates/search.html:19
+#: templates/base.html:63 templates/search.html:19
 #: templates/search_results.html:7 templates/search_results.html:29
 msgid "Search"
 msgstr "Suche"
 
-#: templates/base.html:55 templates/languages.html:3 templates/languages.html:9
+#: templates/base.html:71 templates/languages.html:3 templates/languages.html:9
 msgid "Languages"
 msgstr "Sprachen"
 
-#: templates/base.html:58 templates/countries.html:3 templates/countries.html:9
+#: templates/base.html:79 templates/countries.html:3 templates/countries.html:9
 msgid "Countries"
 msgstr "Länder"
 
-#: templates/base.html:61 templates/feedback.en.html:3
+#: templates/base.html:87 templates/feedback.en.html:3
 #: templates/feedback.html:3 templates/feedback.html:9 templates/index.html:60
 msgid "Feedback"
 msgstr "Feedback"
 
-#: templates/base.html:70
+#: templates/base.html:105
 msgid "Select countries"
 msgstr "Länder auswählen"
 
-#: templates/base.html:75
+#: templates/base.html:110
 msgid "Select language"
 msgstr "Sprache auswählen"
 
-#: templates/base.html:96
+#: templates/base.html:131
 #, python-format
 msgid ""
 "It looks like you have not selected any source countries. You can change "
 "this <a href=\"%(url)s\">here</a>."
 msgstr ""
 
-#: templates/base.html:114
+#: templates/base.html:149
 msgid "SIDN Fonds"
 msgstr ""
 
-#: templates/base.html:119
+#: templates/base.html:154
 msgid "DNI Fund"
 msgstr "Digital News Initiative fund"
 
-#: templates/base.html:125
+#: templates/base.html:160
 msgid "NL Net"
 msgstr "NL Net Foundation"
 
-#: templates/base.html:130
+#: templates/base.html:165
 msgid "NGI Zero"
 msgstr ""
 
-#: templates/base.html:135
+#: templates/base.html:170
 msgid "Open State Foundation"
 msgstr ""
 
-#: templates/base.html:143 templates/privacy.html:3 templates/privacy.html:9
+#: templates/base.html:178 templates/privacy.html:3 templates/privacy.html:9
 msgid "Privacy"
 msgstr ""
 
-#: templates/base.html:144 templates/base.html:145 templates/base.html:146
+#: templates/base.html:179 templates/base.html:180 templates/base.html:181
 #, python-format
 msgid "Follow us on %(site)s"
 msgstr "Folgen sie uns auf %(site)s"
 
-#: templates/base.html:147
+#: templates/base.html:182
 msgid "Send us an email"
 msgstr "senden Sie uns eine Email"
 
-#: templates/base.html:148 templates/disclaimer.html:3
+#: templates/base.html:183 templates/disclaimer.html:3
 #: templates/disclaimer.html:9
 msgid "Disclaimer"
 msgstr ""
 
-#: templates/base.html:175
+#: templates/base.html:210
 msgid "Collect &amp; Subscribe"
 msgstr "Sammeln &amp; Abonnieren"
 
-#: templates/base.html:187
+#: templates/base.html:222
 msgid "Select which of the content you will receive"
 msgstr "Wählen Sie aus, welchen Inhalt Sie erhalten möchten"
 
-#: templates/base.html:230 templates/feedback.en.html:10
+#: templates/base.html:265 templates/feedback.en.html:10
 #: templates/index.html:63
 msgid "Mail"
 msgstr "Email"
 
-#: templates/base.html:233
+#: templates/base.html:268
 msgid "Subscribe &amp; receive email for your selected topics."
 msgstr "Abonnieren und erhalten Sie eine E-Mail für Ihre ausgewählten Themen"
 
-#: templates/base.html:240
+#: templates/base.html:275
 msgid "Interval"
 msgstr "Intervall"
 
-#: templates/base.html:256 templates/feedback.en.html:20
+#: templates/base.html:291 templates/feedback.en.html:20
 msgid "Email address"
 msgstr "Email"
 
-#: templates/base.html:259
+#: templates/base.html:294
 msgid ""
 "We will only use this information to send you the alerts you set for "
 "yourself. You can unsubscribe at any time using the link in the mail."
@@ -513,11 +513,11 @@ msgstr ""
 "selbst festgelegten Benachrichtigungen zu senden. Sie können sich "
 "jederzeit über den Link in der E-Mail abmelden"
 
-#: templates/base.html:265
+#: templates/base.html:300
 msgid "Subscribe"
 msgstr "Abonnieren"
 
-#: templates/base.html:266
+#: templates/base.html:301
 msgid "Cancel"
 msgstr "Annulieren"
 
@@ -778,10 +778,16 @@ msgid "Filters"
 msgstr "Filter"
 
 #: templates/search_results.html:45
+msgid ""
+"Selecting one of the options below will activate the chosen filter "
+"immediately."
+msgstr "Wenn Sie eine der folgenden Optionen auswählen, wird der ausgewählte Filter sofort aktiviert."
+
+#: templates/search_results.html:46
 msgid "Period"
 msgstr "Periode"
 
-#: templates/search_results.html:90
+#: templates/search_results.html:91
 msgid "Show more"
 msgstr "Zeig mehr"
 

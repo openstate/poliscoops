@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-11 17:04+0000\n"
+"POT-Creation-Date: 2020-12-11 17:10+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Generated-By: Babel 2.9.0\n"
 
 #: app.py:71
-msgid "Kind"
+msgid "Type"
 msgstr ""
 
 #: app.py:72
@@ -890,5 +890,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Read more"
+#~ msgstr ""
+
+#~ msgid "Kind"
 #~ msgstr ""
 

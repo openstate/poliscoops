@@ -68,7 +68,7 @@ AS2_ENTITIES = [
 FACETS = (
     # facet, label, display?, filter?, sub filter attribute
     # ('hl', 'Display taal', False, False, False,),
-    ('type', lazy_gettext('Kind'), True, True, False,),
+    ('type', lazy_gettext('Type'), True, True, False,),
     ('generator', lazy_gettext('Origin'), True, True, False,),
     ('date_from', lazy_gettext('Date from'), False, True, False,),
     ('date_to', lazy_gettext('Date until'), False, True, False,),

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-11 17:04+0000\n"
+"POT-Creation-Date: 2020-12-11 17:10+0000\n"
 "PO-Revision-Date: 2020-04-06 14:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Generated-By: Babel 2.9.0\n"
 
 #: app.py:71
-msgid "Kind"
-msgstr "Sorte"
+msgid "Type"
+msgstr ""
 
 #: app.py:72
 msgid "Origin"
@@ -783,7 +783,9 @@ msgstr "Filtres"
 msgid ""
 "Selecting one of the options below will activate the chosen filter "
 "immediately."
-msgstr "La sélection de l'une des options ci-dessous activera immédiatement le filtre choisi."
+msgstr ""
+"La sélection de l'une des options ci-dessous activera immédiatement le "
+"filtre choisi."
 
 #: templates/search_results.html:46
 msgid "Period"
@@ -942,3 +944,7 @@ msgstr "Vous vous êtes bien désabonné."
 
 #~ msgid "Read more"
 #~ msgstr "Lire la suite"
+
+#~ msgid "Kind"
+#~ msgstr "Sorte"
+

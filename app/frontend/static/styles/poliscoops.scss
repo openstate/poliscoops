@@ -372,10 +372,11 @@ h3 {
   color: white;
 }
 
-#filter-bar-sorting-button {
-  color: white;
+#filter-bar-sorting-button, #filter-bar-sorting-button:hover {
+  color: white !important;
   background: transparent;
-  border: 0;
+  border: 1px solid white;
+  border-radius: 3px;
 }
 
 .filter-bar-label {

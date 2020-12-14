@@ -1,10 +1,3 @@
-<a class="btn btn-default btn-selectable btn-block {{ bucket |active_bucket(key) }} w-100  d-flex align-items-center" href="{{ bucket |link_bucket(key) }}" title="{{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})" role="button">
+<a class="btn btn-default btn-selectable btn-block {{ bucket |active_bucket(key) }} w-100  d-flex align-items-center" href="{{ bucket |link_bucket(key) }}" title="{{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})">
   {{ bucket |format_bucket(key) }} ({{ bucket.doc_count}})
-  <!--
-  {% if bucket |active_bucket(key) == 'active' %}
-  <i class="fa fa-check-square-o ml-auto" aria-hidden="true"></i>
-  {% else %}
-  <i class="fa fa-square-o ml-auto" aria-hidden="true"></i>
-  {% endif %}
-  -->
 </a>

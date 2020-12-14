@@ -25,8 +25,8 @@
 <form method="post" action="{{ url_for('set_countries') }}" class="form-countries">
   <input type="hidden" name="redirect" value="{{ redirect }}">
   {% for k, v in countries.iteritems() %}
-  <div class="form-check mb-4 btn-selectable d-flex" tabindex="0">
-    <label class="form-check-label w-100 mr-auto d-flex align-items-center" for="check-country-{{ k }}" tabindex="0">
+  <div class="form-check mb-4 btn-selectable d-flex" tabindex="-1">
+    <label class="form-check-label w-100 mr-auto d-flex align-items-center" for="check-country-{{ k }}" tabindex="-1">
       <img src="/static/images/countries/{{ k |lower }}.svg" alt="{{ k }}" style="max-width: 26px; max-height: 26px;" class="mr-1" />
       {{ v }}
     </label>

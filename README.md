@@ -14,7 +14,7 @@
  - [Copyright and license](#copyright-and-license)
 
 ## Important links
- - [PoliFLW homepage](https://poliscoops.e/)
+ - [Poliscoops homepage](https://poliscoops.eu/)
  - [Official source code repo](https://github.com/openstate/poliscoops/)
  - [Documentation](http://docs.poliscoops.eu/)
  - [Issue tracker](https://github.com/openstate/poliscoops/issues)

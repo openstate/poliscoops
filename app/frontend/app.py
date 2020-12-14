@@ -263,7 +263,8 @@ def inject_intervals():
     selected_countries = get_locations()
     return dict(
         intervals=INTERVALS, hl=hl, rl=rl, search_params={},
-        redirect=redirect_url, cookie_hl_set=is_cookie_set('hl'),
+        redirect=redirect_url, redirect_url_set=request.args.get('redirect'),
+        cookie_hl_set=is_cookie_set('hl'),
         cookie_rl_set=is_cookie_set('rl'),
         cookie_countries_set=is_cookie_set('countries'),
         interface_languages=INTERFACE_LANGUAGES.items(),

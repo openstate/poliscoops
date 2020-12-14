@@ -49,7 +49,9 @@
     {% endfor %}
   </ul>
 
+  {% if redirect_url_set and not redirect.startswith('/languages?') %}
   <a class="btn btn-primary" href="{{ redirect }}">{%trans%}Go back{%endtrans%}</a>
+  {% endif %}
 </div>
 
 {%endblock%}

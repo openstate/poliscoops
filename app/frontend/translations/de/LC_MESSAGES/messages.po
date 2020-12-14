@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-11 17:16+0000\n"
+"POT-Creation-Date: 2020-12-14 15:31+0000\n"
 "PO-Revision-Date: 2020-02-14 17:04+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -314,59 +314,59 @@ msgstr "Schwedisch"
 msgid "Eurpean Unionish"
 msgstr "Europäische Unionish"
 
-#: app.py:506
+#: app.py:507
 msgid "year"
 msgstr "Jahr"
 
-#: app.py:506
+#: app.py:507
 msgid "years"
 msgstr "Jahre"
 
-#: app.py:507
+#: app.py:508
 msgid "month"
 msgstr "Monat"
 
-#: app.py:507
+#: app.py:508
 msgid "months"
 msgstr "Monate"
 
-#: app.py:508
+#: app.py:509
 msgid "week"
 msgstr "Woche"
 
-#: app.py:508
+#: app.py:509
 msgid "weeks"
 msgstr "Wochen"
 
-#: app.py:509
+#: app.py:510
 msgid "day"
 msgstr "Tag"
 
-#: app.py:509
+#: app.py:510
 msgid "days"
 msgstr "Tage"
 
-#: app.py:510
+#: app.py:511
 msgid "hour"
 msgstr "Stunde"
 
-#: app.py:510
+#: app.py:511
 msgid "hours"
 msgstr "Stunden"
 
-#: app.py:511
+#: app.py:512
 msgid "minute"
 msgstr "Minute"
 
-#: app.py:511
+#: app.py:512
 msgid "minutes"
 msgstr "Minuten"
 
-#: app.py:512
+#: app.py:513
 msgid "second"
 msgstr "Sekunde"
 
-#: app.py:512
+#: app.py:513
 msgid "seconds"
 msgstr "Sekunden"
 
@@ -733,7 +733,7 @@ msgstr "ausgewählt"
 msgid "News articles"
 msgstr "Zeitungsartikel"
 
-#: templates/languages.html:52
+#: templates/languages.html:53
 msgid "Go back"
 msgstr "Geh zurück"
 
@@ -777,11 +777,30 @@ msgstr "Suche nach &quot;%(query)s&quot;"
 msgid "Recent political news about %(query)s"
 msgstr "Aktuelle politische Nachrichten zu %(query)s"
 
-#: templates/search_results.html:39
+#: templates/search_results.html:40
 msgid "Filters"
 msgstr "Filter"
 
-#: templates/search_results.html:45
+#: templates/search_results.html:46
+msgid "Period"
+msgstr "Periode"
+
+#: templates/search_results.html:48
+#, fuzzy
+msgid "From"
+msgstr "ab Datum"
+
+#: templates/search_results.html:49 templates/search_results.html:53
+#, fuzzy
+msgid "Please enter a valid date"
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein"
+
+#: templates/search_results.html:52
+#, fuzzy
+msgid "Until"
+msgstr "Datum bis"
+
+#: templates/search_results.html:55
 msgid ""
 "Selecting one of the options below will activate the chosen filter "
 "immediately."
@@ -789,11 +808,7 @@ msgstr ""
 "Wenn Sie eine der folgenden Optionen auswählen, wird der ausgewählte "
 "Filter sofort aktiviert."
 
-#: templates/search_results.html:46
-msgid "Period"
-msgstr "Periode"
-
-#: templates/search_results.html:91
+#: templates/search_results.html:87
 msgid "Show more"
 msgstr "Zeig mehr"
 
@@ -1014,3 +1029,4 @@ msgstr "Sie wurden erfolgreich abgemeldet."
 
 #~ msgid "Kind"
 #~ msgstr "Sorte"
+

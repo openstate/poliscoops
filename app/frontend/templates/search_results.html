@@ -45,12 +45,12 @@
       <div class="modal-body">
         <h3>{%trans%}Period{%endtrans%}</h3>
         <div class="form-group">
-          <label for="form-subscribe-email">{%trans%}From{%endtrans%}:</label>
-          <input type="date" value="{% if search_params.date_from %}{{ search_params.date_from |timestamp_to_str('%d-%m-%Y') }}{% else %}01-01-1980{% endif %}" class="form-control" name="date_from" id="form-subscribe-date-from" placeholder="01-01-1980" oninvalid="this.setCustomValidity('{%trans%}Please enter a valid date{%endtrans%}')" oninput="this.setCustomValidity('')">
+          <label for="form-subscribe-email">{%trans%}From{%endtrans%}: ({{ search_params.date_from }})</label>
+          <input type="date" value="{% if search_params.date_from %}{{ search_params.date_from }}{% else %}01-01-1980{% endif %}" class="form-control" name="date_from" id="form-subscribe-date-from" placeholder="01-01-1980" oninvalid="this.setCustomValidity('{%trans%}Please enter a valid date{%endtrans%}')" oninput="this.setCustomValidity('')">
         </div>
         <div class="form-group">
           <label for="form-subscribe-email">{%trans%}Until{%endtrans%}:</label>
-          <input type="date" value="{% if search_params.date_to %}{{ search_params.date_to |timestamp_to_str('%d-%m-%Y') }}{% else %}{{ dt_now.strftime('%d-%m-%Y') }}{% endif %}" class="form-control" name="date_to" id="form-subscribe-date-to" placeholder="-01-1-2021" oninvalid="this.setCustomValidity('{%trans%}Please enter a valid date{%endtrans%}')" oninput="this.setCustomValidity('')">
+          <input type="date" value="{% if search_params.date_to %}{{ search_params.date_to }}{% else %}{{ dt_now.strftime('%Y-%m-%d') }}{% endif %}" class="form-control" name="date_to" id="form-subscribe-date-to" placeholder="-01-1-2021" oninvalid="this.setCustomValidity('{%trans%}Please enter a valid date{%endtrans%}')" oninput="this.setCustomValidity('')">
         </div>
         <p>{%trans%}Selecting one of the options below will activate the chosen filter immediately.{%endtrans%}</p>
         {% for key, desc, is_displayed, is_filter, sub_attr in facets %}

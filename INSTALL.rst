@@ -62,8 +62,21 @@ Some useful Docker commands::
 
 Usage
 ============
-
 Some quick notes on how to use the PoliFLW API
+
+Compile assets
+---------------
+Install all packages (only need to run once after installation or when you change packages): `sudo docker exec poen_node_1 yarn`
+
+Production
+----------
+Build CSS/JS to static/dist directory: `sudo docker exec poen_node_1 yarn prod`
+
+Development
+------------
+- Build CSS/JS to static/dist directory (with map files): `sudo docker exec poen_node_1 yarn dev`
+- Automatically build CSS/JS when a file changes (simply refresh the page in your browser after a change): `sudo docker exec poen_node_1 yarn watch`
+
 
 Running an Poliscoops extractor
 ------------

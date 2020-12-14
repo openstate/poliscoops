@@ -33,6 +33,7 @@
 
 {% block content %}
 <div class="modal fade" id="modal-filters" tabindex="-1" role="dialog" aria-labelledby="modal-filters-title" aria-hidden="true">
+  <form>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -42,21 +43,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>{%trans%}Selecting one of the options below will activate the chosen filter immediately.{%endtrans%}</p>
         <h3>{%trans%}Period{%endtrans%}</h3>
-        <input type="text" name="daterange" class="form-control btn-category btn-block" value="
-        {% if search_params.date_from %}
-        {{ search_params.date_from |timestamp_to_str('%d-%m-%Y') }}
-        {% else %}
-        01-01-1980
-        {% endif %}
-         -
-        {% if search_params.date_to %}
-        {{ search_params.date_to |timestamp_to_str('%d-%m-%Y') }}
-        {% else %}
-        {{ dt_now.strftime('%d-%m-%Y') }}
-        {% endif %}
-        " />
+        <div class="form-group">
+          <label for="form-subscribe-email">{%trans%}From{%endtrans%}:</label>
+          <input type="date" value="{% if search_params.date_from %}{{ search_params.date_from |timestamp_to_str('%d-%m-%Y') }}{% else %}01-01-1980{% endif %}" class="form-control" name="date_from" id="form-subscribe-date-from" placeholder="01-01-1980" oninvalid="this.setCustomValidity('{%trans%}Please enter a valid date{%endtrans%}')" oninput="this.setCustomValidity('')">
+        </div>
+        <div class="form-group">
+          <label for="form-subscribe-email">{%trans%}Until{%endtrans%}:</label>
+          <input type="date" value="{% if search_params.date_to %}{{ search_params.date_to |timestamp_to_str('%d-%m-%Y') }}{% else %}{{ dt_now.strftime('%d-%m-%Y') }}{% endif %}" class="form-control" name="date_to" id="form-subscribe-date-to" placeholder="-01-1-2021" oninvalid="this.setCustomValidity('{%trans%}Please enter a valid date{%endtrans%}')" oninput="this.setCustomValidity('')">
+        </div>
+        <p>{%trans%}Selecting one of the options below will activate the chosen filter immediately.{%endtrans%}</p>
         {% for key, desc, is_displayed, is_filter, sub_attr in facets %}
           {% if key in result_facets %}
             {% if result_facets[key].buckets|length > 0 %}
@@ -114,10 +110,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary" id="modal-filters-submit">Apply</button>
       </div>
     </div>
   </div>
+  </form>
 </div>
 
 {% set filter_bar_homepage = False %}

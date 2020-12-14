@@ -725,13 +725,17 @@ class BackendAPI(object):
             facet_enabled = kwargs.get(facet, None) is not None
             if facet_enabled:
                 if main_facet == 'date':
-                    facet_value = datetime.datetime.fromtimestamp(
-                        int(kwargs[facet]) / 1000)
+                    if re.match('\d{4}-\d{2}-\d{2}', kwargs[facet]):
+                        facet_value = time.mktime(
+                            iso8601.parse_date(kwargs[facet]).timetuple())
+                    else:
+                        facet_value = datetime.datetime.fromtimestamp(
+                            int(kwargs[facet]) / 1000)
                 else:
                     facet_value = kwargs[facet]
 
                 if sub_facet is not None:
-                    es_query['filters'][main_facet][sub_facet] = facet_value.isoformat()
+                    es_query['filters'][main_facet][sub_facet] = datetime.datetime.fromtimestamp(facet_value).strftime('%Y-%m-%d')  #.isoformat()
                 else:
                     if isinstance(kwargs[facet], list):
                         es_query['filters'][facet] = {'terms': kwargs[facet]}

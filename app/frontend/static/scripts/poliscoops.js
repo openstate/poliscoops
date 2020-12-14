@@ -70,6 +70,12 @@ Poliscoops.init = function() {
   $('.skip-content a').on('click', function (e) {
     $(this).parent().hide();
   });
+
+  $('#modal-filters-submit').on('submit', function (e) {
+    console.log('sort modal submitted!');
+    e.preventDefault();
+    return false;
+  });
 };
 
 $(function() {

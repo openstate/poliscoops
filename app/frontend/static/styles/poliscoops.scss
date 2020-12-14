@@ -315,7 +315,7 @@ h3 {
 }
 
 
-.info-box ol {
+.info-box ol, .info-box ul {
   padding: 0.3em;
   list-style: none;
   font-size: 26px;
@@ -324,7 +324,7 @@ h3 {
   font-weight: 800;
 }
 
-.info-box ol > li {
+.info-box ol > li, .info-box ul > li  {
   background: white;
   padding: none;
   width: auto;
@@ -332,7 +332,7 @@ h3 {
   border-radius: 20px;
 }
 
-.info-box ol > li div.exp {
+.info-box ol > li div.exp, .info-box ul > li div.exp {
     width: 80%;
     padding: 13px;
     font-size: 13px;
@@ -340,7 +340,7 @@ h3 {
     float: right;
 }
 
-.info-box ol > li div.counter {
+.info-box ol > li div.counter, .info-box ul > li div.counter {
     font-size: 26px;
     line-height: 32px;
     float: left;

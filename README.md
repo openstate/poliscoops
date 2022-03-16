@@ -27,6 +27,9 @@ Have a bug or a feature request? Please first read the [issue guidelines](https:
 
 See this guide to [install the Poliscoops API](https://github.com/openstate/poliscoops/blob/master/INSTALL.rst) using Docker. There are also a few usage commands to get you started.
 
+## Removing items
+
+in the `pfl_backend_1 container`: `curl -XDELETE 'http://elasticsearch:9200/pfl_combined_index_fixed/item/60f7e58767aec51e657ae6848ed15c1c36fe8185'`
 ## Documentation
 
 The documentation of the Poliscoops API can be found at [docs.poliscoops.eu](http://docs.poliscoops.eu/).

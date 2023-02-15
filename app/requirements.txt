@@ -20,6 +20,6 @@ six==1.10.0
 translitcodec==0.4.0
 uWSGI==2.0.17.1
 virtualenv==15.0.3
-werkzeug==0.16.1
+werkzeug==2.2.3
 html5lib==1.0.1
 lxml==4.3.0

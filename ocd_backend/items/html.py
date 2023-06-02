@@ -15,6 +15,7 @@ class HTMLPageItem(BaseItem, HttpRequestMixin):
         return unicode(self.original_item['link'])
 
     def get_original_object_id(self):
+        print self.original_item
         return unicode(self.original_item['link'])
 
     def get_original_object_urls(self):

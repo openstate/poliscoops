@@ -1,8 +1,8 @@
 version: "2.1"
 services:
   nginx:
-    ports:
-      - "80:80"
+    #ports:
+    #  - "80:80"
     volumes:
       - ./nginx-dev/:/etc/nginx/
     restart: "no"
@@ -18,8 +18,8 @@ services:
     mem_limit: 4g
     restart: "no"
   elasticsearch:
-    mem_limit: 1g
-    restart: "no"
+    mem_limit: 8g
+    restart: "yes"
   app:
     build:
       context: ../app
@@ -30,4 +30,4 @@ volumes:
     driver: local
 networks:
   pfl:
-  nginx-load-balancer:
+  #nginx-load-balancer:

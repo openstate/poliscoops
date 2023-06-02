@@ -42,6 +42,7 @@ class FacebookExtractor(BaseExtractor, HttpRequestMixin):
         # check if we get good status codes
         if (r.status_code >= 300) or (r.status_code < 200):
             print "%s got status code: %s" % (graph_url, r.status_code,)
+            print r.content
             return {'data': []}  # return an empty object
         return r.json()
 

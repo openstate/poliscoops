@@ -10,6 +10,8 @@ from ocd_backend.utils.misc import slugify
 
 
 def get_facebook_path(full_url):
+    if not full_url:
+        return ''
     parts = full_url.replace(
         "https://www.facebook.com/", "").split("/")
     first_part = parts[0]
@@ -49,7 +51,10 @@ def convert_party(party, feed_type, locations):
     if feed_type != 'Feed':
         feed_id = "%s_%s_1" % (slug, slug_location,)
     else:
-        feed_id = "%s_%s_fb_1" % (slug, slug_location,)
+        feed_id = "%s_%s_1" % (slug, slug_location,)
+
+    if not party[feed_type]:
+        return
 
     result = {
         "extractor": feed_type_defs[feed_type]['extractor'],
@@ -85,7 +90,7 @@ def convert_party(party, feed_type, locations):
 def _get_normalized_locations():
     loc_path = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
-        '/opt/pfl/ocd_backend/data/cbs-name2018-mapping.csv')
+        '/opt/pfl/ocd_backend/data/cbs-name2023-mapping.csv')
     result = {}
     with open(loc_path) as locations_in:
         locations = reader = csv.reader(locations_in)
@@ -116,7 +121,7 @@ def main(argv):
         parties = json.load(in_file)
 
     for party in parties:
-        if party[feed_type] != '':
+        if party[feed_type] and (party[feed_type] != ''):
             result.append(convert_party(party, feed_type, locations))
 
     print json.dumps(result, indent=2)

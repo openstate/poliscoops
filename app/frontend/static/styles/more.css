@@ -172,6 +172,7 @@ ul.wordcloud li { display: inline-block; }
 
 .article-text {
   text-align: justify;
+  img {display: none !important;}
 }
 
 .search-result {

@@ -1,7 +1,7 @@
 -e git+https://github.com/mikeboers/PyAV.git@34d568f924e7dbb49a6f337e7791204c64fd8c52#egg=av
 Pillow>=6.2.0
 lxml==3.3.5
-celery==3.1.26.post2
+celery==5.2.2
 redis==2.10.6
 elasticsearch>=5.0.0,<6.0.0
 click==2.1
